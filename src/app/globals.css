@@ -1,26 +1,88 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+  Palette drawn from hardened tool steel:
+  oxide  – black-oxide tool finish
+  steel  – freshly ground surface
+  gauge  – machined grey for secondary text
+  temper – the blue that appears when tool steel is tempered
+  straw  – the straw colour of a lower temper, used sparingly for action
+*/
+@theme {
+  --color-oxide: #1c2329;
+  --color-oxide-2: #28313a;
+  --color-steel: #e3e7ea;
+  --color-paper: #f6f7f8;
+  --color-gauge: #69737c;
+  --color-temper: #2b4c7e;
+  --color-temper-dark: #203a61;
+  --color-straw: #c9a24a;
+  --color-straw-light: #e9d9ae;
+
+  --font-display: var(--font-barlow), "Arial Narrow", sans-serif;
+  --font-sans: var(--font-plex), system-ui, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-paper text-oxide font-sans antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display font-semibold tracking-tight;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-temper);
+    outline-offset: 3px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@utility container-x {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 72rem;
+  padding-inline: 1.25rem;
+  @media (width >= 40rem) {
+    padding-inline: 2rem;
+  }
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-sm px-5 py-3 text-sm font-semibold transition-colors;
+}
+@utility btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-sm px-5 py-3 text-sm font-semibold transition-colors bg-temper text-white hover:bg-temper-dark;
+}
+@utility btn-outline {
+  @apply inline-flex items-center justify-center gap-2 rounded-sm px-5 py-3 text-sm font-semibold transition-colors border border-oxide/25 text-oxide hover:border-oxide hover:bg-white;
+}
+@utility btn-light {
+  @apply inline-flex items-center justify-center gap-2 rounded-sm px-5 py-3 text-sm font-semibold transition-colors border border-white/40 text-white hover:bg-white hover:text-oxide;
+}
+@utility btn-straw {
+  @apply inline-flex items-center justify-center gap-2 rounded-sm px-5 py-3 text-sm font-semibold transition-colors bg-straw text-oxide hover:bg-straw-light;
+}
+
+/* Section hatch, as on an engineering drawing */
+@utility hatch {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    color-mix(in oklab, var(--color-oxide) 12%, transparent) 0 1px,
+    transparent 1px 7px
+  );
+}
+
+@layer components {
+  .prose-body p {
+    @apply mb-4 max-w-[68ch] leading-relaxed text-oxide/85;
+  }
 }
