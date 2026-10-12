@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Barlow_Condensed, IBM_Plex_Sans } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import { site } from "@/lib/site";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 const barlow = Barlow_Condensed({
   subsets: ["latin"],
@@ -63,10 +62,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={`${barlow.variable} ${plex.variable}`}>
       <body>
         <a href="#main" className={skipLinkClass}>Skip to content</a>
-        <Header />
+        <Navbar />
         <main id="main">{children}</main>
         <Footer />
-        <WhatsAppButton />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       </body>
     </html>

@@ -1,27 +1,132 @@
-import HomeHero from "@/components/HomeHero";
-import HomeAbout from "@/components/HomeAbout";
-import HomeProducts from "@/components/HomeProducts";
-import StatsStrip from "@/components/StatsStrip";
-import WhyChooseUs from "@/components/WhyChooseUs";
-import MissionVision from "@/components/MissionVision";
-import Industries from "@/components/Industries";
-import Testimonials from "@/components/Testimonials";
-import HomeClients from "@/components/HomeClients";
-import CtaBand from "@/components/CtaBand";
+import HeroCarousel from "@/components/HeroCarousel";
+import ProductsCarousel from "@/components/ProductsCarousel";
+import Link from "next/link";
 
 export default function HomePage() {
   return (
-    <>
-      <HomeHero />
-      <HomeAbout />
-      <HomeProducts />
-      <StatsStrip />
-      <WhyChooseUs />
-      <MissionVision />
-      <Industries />
-      <Testimonials />
-      <HomeClients />
-      <CtaBand />
-    </>
+    <div className="bg-slate-950 text-white font-sans">
+      {/* 1. Hero Carousel */}
+      <HeroCarousel />
+
+      {/* 2. Trust & Features Bar */}
+      <section className="bg-slate-900 border-y border-slate-800 py-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+            <div className="flex items-start space-x-4 p-4">
+              <div className="p-3 bg-amber-500/10 rounded-lg text-amber-400 flex-shrink-0">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-heading font-bold text-lg text-white">Hardened & Ground Steel</h3>
+                <p className="text-sm text-slate-400 mt-1">Manufactured using premium alloy steels with induction hardening for maximum wear resistance.</p>
+              </div>
+            </div>
+
+            <div className="flex items-start space-x-4 p-4">
+              <div className="p-3 bg-amber-500/10 rounded-lg text-amber-400 flex-shrink-0">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-heading font-bold text-lg text-white">High Precision Accuracy</h3>
+                <p className="text-sm text-slate-400 mt-1">Strict quality control ensures exact angular precision and consistent sheet metal bending results.</p>
+              </div>
+            </div>
+
+            <div className="flex items-start space-x-4 p-4">
+              <div className="p-3 bg-amber-500/10 rounded-lg text-amber-400 flex-shrink-0">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-heading font-bold text-lg text-white">Global Machine Compatibility</h3>
+                <p className="text-sm text-slate-400 mt-1">Fully compatible with Amada, Trumpf, LVD, Bystronic, and standard press brake tooling systems.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Products Auto-Sliding Showcase Section */}
+      <section className="py-20 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ProductsCarousel />
+      </section>
+
+      {/* 4. About / Manufacturing Excellence Section */}
+      <section className="bg-slate-900/50 border-y border-slate-800 py-20 lg:py-28">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div className="space-y-6">
+            <span className="text-amber-500 font-semibold text-sm uppercase tracking-wider">Pune Manufacturing Hub</span>
+            <h2 className="text-3xl sm:text-4xl font-bold font-heading text-white tracking-tight">
+              Engineered for Excellence in Sheet Metal Tooling
+            </h2>
+            <p className="text-slate-300 text-base leading-relaxed">
+              Based in Pune, <strong className="text-white">Autozone Tooling</strong> specializes in the manufacturing of superior press brake punches, dies, hemming tools, radius tools, and shear blades. We serve leading fabrication shops and heavy industries with reliable, custom, and standard tooling solutions.
+            </p>
+            <ul className="space-y-3 text-sm text-slate-300">
+              <li className="flex items-center space-x-3">
+                <svg className="w-5 h-5 text-amber-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7"/></svg>
+                <span>Custom tool design based on component drawing</span>
+              </li>
+              <li className="flex items-center space-x-3">
+                <svg className="w-5 h-5 text-amber-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7"/></svg>
+                <span>State-of-the-art CNC grinding & heat treatment</span>
+              </li>
+              <li className="flex items-center space-x-3">
+                <svg className="w-5 h-5 text-amber-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7"/></svg>
+                <span>Competitive pricing with prompt PAN-India dispatch</span>
+              </li>
+            </ul>
+            <div className="pt-4">
+              <Link
+                href="/about"
+                className="inline-flex items-center bg-slate-800 hover:bg-slate-700 text-white font-semibold px-6 py-3 rounded-md border border-slate-600 transition-colors"
+              >
+                Learn More About Us
+              </Link>
+            </div>
+          </div>
+          <div className="relative h-80 sm:h-96 rounded-lg overflow-hidden border border-slate-800 bg-slate-900 shadow-2xl flex items-center justify-center">
+            <div className="text-center p-8 space-y-4">
+              <div className="w-16 h-16 bg-amber-500 rounded-full flex items-center justify-center mx-auto text-slate-950 font-bold text-2xl">
+                AT
+              </div>
+              <h3 className="text-xl font-bold font-heading text-white">Autozone Tooling Facility</h3>
+              <p className="text-sm text-slate-400">Precision Machine Tool Manufacturing in Pune, Maharashtra.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Call To Action Banner */}
+      <section className="py-20 bg-gradient-to-r from-amber-600 to-amber-500 text-slate-950">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading tracking-tight">
+            Need Custom Press Brake Tooling or Shear Blades?
+          </h2>
+          <p className="text-slate-900 text-lg max-w-2xl mx-auto font-medium">
+            Share your bending requirements, drawings, or machine specifications with our engineering team for a quick quote.
+          </p>
+          <div className="pt-2 flex flex-wrap justify-center gap-4">
+            <Link
+              href="/contact"
+              className="bg-slate-950 hover:bg-slate-900 text-white font-semibold px-8 py-3.5 rounded-md shadow-xl transition-all duration-200"
+            >
+              Request a Custom Quote
+            </Link>
+            <Link
+              href="/compatibility"
+              className="bg-white/20 hover:bg-white/30 text-slate-950 font-semibold px-8 py-3.5 rounded-md border border-slate-950/20 backdrop-blur-sm transition-all"
+            >
+              Check Compatibility
+            </Link>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }
