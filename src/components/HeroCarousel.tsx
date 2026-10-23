@@ -21,7 +21,7 @@ const slides: Slide[] = [
     highlight: "Press Brake Tooling",
     description:
       "Manufactured with hardened & ground high-grade alloy steel for maximum durability and clean bends. Compatible with Amada, Trumpf, LVD, and more.",
-    image: "/images/hero/1.jpg",
+    image: "/images/products/5.avif",
     primaryCTA: { text: "Explore Products", href: "/products" },
     secondaryCTA: { text: "Request a Quote", href: "/contact" },
   },
@@ -31,8 +31,8 @@ const slides: Slide[] = [
     highlight: "Punches & Dies",
     description:
       "Custom and standard tooling designed to handle heavy-duty sheet metal fabrication with unmatched accuracy and longevity.",
-    image: "/images/hero/2.jpg",
-    primaryCTA: { text: "View Catalog", href: "/products/punches-and-dies" },
+    image: "/images/products/6.avif",
+    primaryCTA: { text: "View Catalog", href: "/products" },
     secondaryCTA: { text: "Contact Us", href: "/contact" },
   },
   {
@@ -41,8 +41,8 @@ const slides: Slide[] = [
     highlight: "Hemming & Radius Tools",
     description:
       "Engineered specifically for specialized forming requirements, offering precision, consistency, and reduced setup times.",
-    image: "/images/hero/3.jpg",
-    primaryCTA: { text: "Learn More", href: "/products/specialized-tools" },
+    image: "/images/products/3.avif",
+    primaryCTA: { text: "Learn More", href: "/products" },
     secondaryCTA: { text: "Get in Touch", href: "/contact" },
   },
   {
@@ -51,8 +51,8 @@ const slides: Slide[] = [
     highlight: "Shear Blades",
     description:
       "Built for long-lasting cutting performance and superior wear resistance across multiple industrial sheet metal applications.",
-    image: "/images/hero/4.jpg",
-    primaryCTA: { text: "View Shear Blades", href: "/products/shear-blades" },
+    image: "/images/products/4.avif",
+    primaryCTA: { text: "View Shear Blades", href: "/products" },
     secondaryCTA: { text: "Enquire Now", href: "/contact" },
   },
 ];
