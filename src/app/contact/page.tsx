@@ -3,7 +3,7 @@ import { site } from "@/lib/site";
 export const metadata = {
   title: "Contact Us",
   description:
-    "Get in touch with Autozone Tooling in Pune for custom press brake punches, dies, shear blades, and tooling quotations.",
+    "Get in touch with Autozone Tooling in Akurdi, Pune for custom press brake punches, dies, shear blades, and tooling quotations.",
 };
 
 export default function ContactPage() {
@@ -29,21 +29,32 @@ export default function ContactPage() {
           {/* Left Column: Contact Info Cards */}
           <div className="lg:col-span-1 space-y-6">
             
-            {/* Phone Card */}
+            {/* Phone & WhatsApp Card */}
             <div className="bg-slate-900 border border-slate-800 rounded-lg p-6 space-y-3 shadow-lg">
               <div className="w-10 h-10 bg-amber-500/10 rounded-md flex items-center justify-center text-amber-400">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-heading font-bold text-white">Call Us</h3>
-              <p className="text-sm text-slate-400">Speak directly with our technical sales and support team.</p>
-              <a
-                href={site.phones[0]?.href}
-                className="inline-block text-amber-400 hover:text-amber-300 font-semibold text-sm pt-1"
-              >
-                {site.phones[0]?.label}
-              </a>
+              <h3 className="text-lg font-heading font-bold text-white">Call &amp; WhatsApp</h3>
+              <p className="text-sm text-slate-400">Speak directly or chat with our technical sales team.</p>
+              
+              <div className="space-y-1.5 pt-1">
+                <a
+                  href="tel:+919922566974"
+                  className="block text-amber-400 hover:text-amber-300 font-semibold text-sm"
+                >
+                  +91 99225 66974
+                </a>
+                <a
+                  href="https://wa.me/919922566974"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1.5 rounded-md hover:bg-emerald-500/20 transition-colors"
+                >
+                  Chat on WhatsApp
+                </a>
+              </div>
             </div>
 
             {/* Email Card */}
@@ -72,9 +83,9 @@ export default function ContactPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-heading font-bold text-white">Our Location</h3>
-              <p className="text-sm text-slate-400">
-                {site.address.street}<br />
-                {site.address.city}, {site.address.state} - {site.address.postal}<br />
+              <p className="text-sm text-slate-400 leading-relaxed">
+                <strong className="text-white">Akurdi</strong><br />
+                Pune, Maharashtra - 411035<br />
                 <strong className="text-white">India</strong>
               </p>
             </div>
@@ -137,7 +148,7 @@ export default function ContactPage() {
                     type="tel"
                     id="phone"
                     required
-                    placeholder="+91 98220 XXXXX"
+                    defaultValue="+91 99225 66974"
                     className="w-full bg-slate-950 border border-slate-800 rounded-md px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-amber-500 transition-colors"
                   />
                 </div>

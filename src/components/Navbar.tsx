@@ -34,12 +34,12 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full font-sans">
-      {/* Top Utility Bar - Contact info & quick details */}
+      {/* Top Utility Bar - Contact info, Social Links & Location */}
       <div className="bg-slate-950 text-slate-300 text-xs sm:text-sm border-b border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-10 flex items-center justify-between">
           <div className="flex items-center space-x-6">
             <a
-              href={site.phones[0]?.href}
+              href="tel:+919922566974"
               className="flex items-center space-x-2 hover:text-amber-400 transition-colors"
             >
               <svg className="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -51,7 +51,7 @@ export default function Navbar() {
                 />
               </svg>
               <span className="hidden sm:inline">Call Us:</span>
-              <span>{site.phones[0]?.label}</span>
+              <span>+91 99225 66974</span>
             </a>
             <a
               href={`mailto:${site.email}`}
@@ -68,8 +68,39 @@ export default function Navbar() {
               <span>{site.email}</span>
             </a>
           </div>
-          <div className="text-slate-400 font-medium tracking-wide">
-            Pune, Maharashtra, India
+
+          <div className="flex items-center space-x-4">
+            {/* Social Icons */}
+            <div className="flex items-center space-x-3 border-r border-slate-800 pr-4">
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+                className="text-slate-400 hover:text-amber-400 transition-colors"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                </svg>
+              </a>
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+                className="text-slate-400 hover:text-amber-400 transition-colors"
+              >
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+                </svg>
+              </a>
+            </div>
+
+            <div className="text-slate-400 font-medium tracking-wide">
+              Akurdi, Pune, Maharashtra, India
+            </div>
           </div>
         </div>
       </div>
