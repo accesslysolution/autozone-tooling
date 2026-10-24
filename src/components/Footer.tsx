@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { site } from "@/lib/site";
 
 export default function Footer() {
@@ -13,8 +14,13 @@ export default function Footer() {
           {/* Column 1 & 2: Brand Info & Important Text (Span 2) */}
           <div className="lg:col-span-2 space-y-6">
             <Link href="/" className="flex items-center space-x-3 group inline-flex">
-              <div className="relative w-10 h-10 bg-amber-500 rounded flex items-center justify-center font-heading font-bold text-slate-950 text-xl shadow-md">
-                AT
+              <div className="relative w-10 h-10 flex items-center justify-center">
+                <Image
+                  src="/images/logo.png"
+                  alt="Autozone Tooling Logo"
+                  fill
+                  className="object-contain"
+                />
               </div>
               <div className="flex flex-col">
                 <span className="text-white font-heading font-bold text-xl tracking-wide uppercase">
@@ -57,7 +63,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 3: Quick Navigation (Machine Compatibility Removed) */}
+          {/* Column 3: Quick Navigation */}
           <div className="space-y-4">
             <h3 className="text-white font-heading font-semibold text-sm uppercase tracking-wider border-l-2 border-amber-500 pl-3">
               Navigation

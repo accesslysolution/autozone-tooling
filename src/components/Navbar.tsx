@@ -113,10 +113,16 @@ export default function Navbar() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          {/* Logo / Brand Name */}
+          {/* Logo / Brand Image */}
           <Link href="/" className="flex items-center space-x-3 group">
-            <div className="relative w-10 h-10 bg-amber-500 rounded flex items-center justify-center font-heading font-bold text-slate-950 text-xl shadow-md group-hover:bg-amber-400 transition-colors">
-              AT
+            <div className="relative w-10 h-10 overflow-hidden flex items-center justify-center">
+              <Image
+                src="/images/logo.png"
+                alt="Autozone Tooling Logo"
+                fill
+                className="object-contain"
+                priority
+              />
             </div>
             <div className="flex flex-col">
               <span className="text-white font-heading font-bold text-xl tracking-wide uppercase">
