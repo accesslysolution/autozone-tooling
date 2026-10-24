@@ -69,16 +69,16 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center space-x-4">
-            {/* Social Icons */}
-            <div className="flex items-center space-x-3 border-r border-slate-800 pr-4">
+            {/* Social Icons with Permanent Brand Colors */}
+            <div className="flex items-center space-x-2.5 border-r border-slate-800 pr-4">
               <a
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
-                className="text-slate-400 hover:text-amber-400 transition-colors"
+                className="w-6 h-6 bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-600 text-white rounded flex items-center justify-center transform hover:scale-110 hover:brightness-110 transition-all duration-300 shadow-sm"
               >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                   <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
                   <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                   <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
@@ -89,9 +89,9 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className="text-slate-400 hover:text-amber-400 transition-colors"
+                className="w-6 h-6 bg-[#1877F2] text-white rounded flex items-center justify-center transform hover:scale-110 hover:brightness-110 transition-all duration-300 shadow-sm"
               >
-                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
                 </svg>
               </a>
@@ -113,7 +113,7 @@ export default function Navbar() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
-          {/* Logo / Brand Image */}
+          {/* Logo / Brand Image (Transparent Background) */}
           <Link href="/" className="flex items-center space-x-3 group">
             <div className="relative w-10 h-10 overflow-hidden flex items-center justify-center">
               <Image

@@ -138,7 +138,7 @@ export default function Footer() {
               <p className="text-amber-400 font-semibold pt-1">India</p>
             </div>
 
-            {/* Social Icons */}
+            {/* Social Icons with Permanent Brand Colors & Scale Effect on Hover */}
             <div className="pt-2 space-y-2">
               <p className="text-xs text-slate-400 font-medium uppercase tracking-wider">Connect With Us</p>
               <div className="flex items-center space-x-3">
@@ -148,7 +148,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram"
-                  className="w-9 h-9 bg-slate-900 border border-slate-800 rounded-lg flex items-center justify-center text-slate-300 hover:text-amber-400 hover:border-amber-500/50 transition-colors"
+                  className="w-9 h-9 bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-600 text-white rounded-lg flex items-center justify-center shadow-md transform hover:scale-110 hover:brightness-110 transition-all duration-300"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                     <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
@@ -162,7 +162,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Facebook"
-                  className="w-9 h-9 bg-slate-900 border border-slate-800 rounded-lg flex items-center justify-center text-slate-300 hover:text-amber-400 hover:border-amber-500/50 transition-colors"
+                  className="w-9 h-9 bg-[#1877F2] text-white rounded-lg flex items-center justify-center shadow-md transform hover:scale-110 hover:brightness-110 transition-all duration-300"
                 >
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
@@ -174,7 +174,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
-                  className="w-9 h-9 bg-slate-900 border border-slate-800 rounded-lg flex items-center justify-center text-slate-300 hover:text-amber-400 hover:border-amber-500/50 transition-colors"
+                  className="w-9 h-9 bg-[#0A66C2] text-white rounded-lg flex items-center justify-center shadow-md transform hover:scale-110 hover:brightness-110 transition-all duration-300"
                 >
                   <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" />
