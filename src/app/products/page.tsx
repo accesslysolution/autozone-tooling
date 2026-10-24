@@ -296,7 +296,7 @@ export default function ProductsPage() {
                 key={product.id}
                 className="flex-shrink-0 w-80 bg-slate-900 border border-slate-800 rounded-xl overflow-hidden group snap-start flex flex-col justify-between hover:border-amber-500/50 transition-all duration-300 shadow-xl"
               >
-                <div className="relative h-48 w-full overflow-hidden bg-slate-950">
+                <div className="relative aspect-square w-full overflow-hidden bg-slate-950">
                   <Image
                     src={product.image}
                     alt={product.name}
@@ -366,7 +366,7 @@ export default function ProductsPage() {
                 key={product.id}
                 className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden group flex flex-col justify-between hover:border-amber-500/50 transition-all duration-300 shadow-xl"
               >
-                <div className="relative h-52 w-full overflow-hidden bg-slate-950">
+                <div className="relative aspect-square w-full overflow-hidden bg-slate-950">
                   <Image
                     src={product.image}
                     alt={product.name}
