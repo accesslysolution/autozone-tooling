@@ -21,7 +21,7 @@ const slides: Slide[] = [
     highlight: "Press Brake Tooling",
     description:
       "Manufactured with hardened & ground high-grade alloy steel for maximum durability and clean bends. Compatible with Amada, Trumpf, LVD, and more.",
-    image: "/images/products/5.avif",
+    image: "/images/hero/5.avif",
     primaryCTA: { text: "Explore Products", href: "/products" },
     secondaryCTA: { text: "Request a Quote", href: "/contact" },
   },
@@ -31,7 +31,7 @@ const slides: Slide[] = [
     highlight: "Punches & Dies",
     description:
       "Custom and standard tooling designed to handle heavy-duty sheet metal fabrication with unmatched accuracy and longevity.",
-    image: "/images/products/6.avif",
+    image: "/images/hero/6.avif",
     primaryCTA: { text: "View Catalog", href: "/products" },
     secondaryCTA: { text: "Contact Us", href: "/contact" },
   },
@@ -41,7 +41,7 @@ const slides: Slide[] = [
     highlight: "Hemming & Radius Tools",
     description:
       "Engineered specifically for specialized forming requirements, offering precision, consistency, and reduced setup times.",
-    image: "/images/products/3.avif",
+    image: "/images/hero/3.avif",
     primaryCTA: { text: "Learn More", href: "/products" },
     secondaryCTA: { text: "Get in Touch", href: "/contact" },
   },
@@ -51,7 +51,7 @@ const slides: Slide[] = [
     highlight: "Shear Blades",
     description:
       "Built for long-lasting cutting performance and superior wear resistance across multiple industrial sheet metal applications.",
-    image: "/images/products/4.avif",
+    image: "/images/hero/4.avif",
     primaryCTA: { text: "View Shear Blades", href: "/products" },
     secondaryCTA: { text: "Enquire Now", href: "/contact" },
   },
@@ -80,7 +80,7 @@ export default function HeroCarousel() {
 
   return (
     <section
-      className="relative w-full aspect-[16/9] min-h-[480px] max-h-[800px] overflow-hidden bg-slate-950 text-white"
+      className="relative w-full h-[calc(100vh-104px)] min-h-[500px] max-h-[700px] overflow-hidden bg-slate-950 text-white"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -105,7 +105,7 @@ export default function HeroCarousel() {
                 style={{ transform: isActive ? "scale(1)" : "scale(1.05)" }}
               />
               {/* Dark industrial gradient overlay for text readability */}
-              <div className="absolute inset-0 bg-gradient-to-r from-slate-950/90 via-slate-950/70 to-slate-950/40" />
+              <div className="absolute inset-0 bg-gradient-to-r from-slate-950/95 via-slate-950/75 to-slate-950/40" />
             </div>
 
             {/* Content Container */}
