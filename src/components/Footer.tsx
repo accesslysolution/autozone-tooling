@@ -17,23 +17,23 @@ export default function Footer() {
               <div className="relative w-10 h-10 flex items-center justify-center">
                 <Image
                   src="/images/logo.png"
-                  alt="Autozone Tooling Logo"
+                  alt="Raj High Tech Ventures Logo"
                   fill
                   className="object-contain"
                 />
               </div>
               <div className="flex flex-col">
                 <span className="text-white font-heading font-bold text-xl tracking-wide uppercase">
-                  Autozone
+                  Raj High Tech
                 </span>
                 <span className="text-amber-400 text-xs tracking-widest font-semibold uppercase">
-                  Tooling
+                  Ventures Pvt. Ltd.
                 </span>
               </div>
             </Link>
             
             <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
-              Premier manufacturer of hardened and ground press brake punches, dies, hemming tools, radius inserts, and shear blades in Akurdi, Pune. Engineered to exact micron-level tolerances for maximum durability and flawless sheet metal fabrication.
+              Premier manufacturer of hardened and ground press brake punches, dies, hemming tools, radius inserts, and shear blades. Engineered to exact micron-level tolerances for maximum durability and flawless sheet metal fabrication.
             </p>
 
             {/* Important Trust Note */}
@@ -42,23 +42,38 @@ export default function Footer() {
                 Quality Assurance Guarantee
               </span>
               <p className="text-xs text-slate-400">
-                All tooling is manufactured using premium alloy steels (En8, EN31, H13) with induction/vacuum hardening for exceptional wear resistance and long operational life.
+                All tooling is manufactured using premium alloy steels with induction/vacuum hardening for exceptional wear resistance and long operational life.
               </p>
             </div>
 
             <div className="pt-2 text-sm space-y-2">
-              <p className="text-white font-medium">Quick Contact:</p>
+              <p className="text-white font-medium">Contact Details:</p>
+              <p className="text-xs text-amber-400 font-semibold">
+                Mr. Vikas Ganpat Kapse (Managing Director)[cite: 1]
+              </p>
               <a
-                href="tel:+919922566974"
+                href="tel:+919822910481"
                 className="block text-slate-300 hover:text-amber-400 transition-colors font-semibold"
               >
-                +91 99225 66974
+                +91 98229 10481[cite: 1]
               </a>
               <a
-                href={`mailto:${site.email}`}
+                href="tel:+919881258028"
+                className="block text-slate-300 hover:text-amber-400 transition-colors font-semibold"
+              >
+                +91 98812 58028[cite: 1]
+              </a>
+              <a
+                href="tel:+919922923894"
+                className="block text-slate-300 hover:text-amber-400 transition-colors font-semibold"
+              >
+                +91 99229 23894[cite: 1]
+              </a>
+              <a
+                href="mailto:marketing@rajhightech.com"
                 className="block text-slate-300 hover:text-amber-400 transition-colors"
               >
-                {site.email}
+                marketing@rajhightech.com[cite: 1]
               </a>
             </div>
           </div>
@@ -66,96 +81,62 @@ export default function Footer() {
           {/* Column 3: Quick Navigation */}
           <div className="space-y-4">
             <h3 className="text-white font-heading font-semibold text-sm uppercase tracking-wider border-l-2 border-amber-500 pl-3">
-              Navigation
+              Quick Links
             </h3>
             <ul className="space-y-2.5 text-sm">
               <li>
                 <Link href="/" className="hover:text-amber-400 transition-colors">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/products" className="hover:text-amber-400 transition-colors">
-                  Products &amp; Catalog
+                  Home[cite: 1]
                 </Link>
               </li>
               <li>
                 <Link href="/about" className="hover:text-amber-400 transition-colors">
-                  About Us
+                  About Us[cite: 1]
+                </Link>
+              </li>
+              <li>
+                <Link href="/products" className="hover:text-amber-400 transition-colors">
+                  Products[cite: 1]
+                </Link>
+              </li>
+              <li>
+                <Link href="/clients" className="hover:text-amber-400 transition-colors">
+                  Clients[cite: 1]
                 </Link>
               </li>
               <li>
                 <Link href="/contact" className="hover:text-amber-400 transition-colors">
-                  Request a Quote
+                  Contact Us[cite: 1]
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Column 4: Updated Products List */}
+          {/* Column 4: Plant Address */}
           <div className="space-y-4">
             <h3 className="text-white font-heading font-semibold text-sm uppercase tracking-wider border-l-2 border-amber-500 pl-3">
-              Tooling Range
+              Plant Address
             </h3>
-            <ul className="space-y-2.5 text-sm">
-              <li>
-                <Link href="/products" className="hover:text-amber-400 transition-colors">
-                  Press Brake Punches (Straight, Neck, R0.5/R0.6)
-                </Link>
-              </li>
-              <li>
-                <Link href="/products" className="hover:text-amber-400 transition-colors">
-                  Press Brake Dies &amp; Multi V-Dies
-                </Link>
-              </li>
-              <li>
-                <Link href="/products" className="hover:text-amber-400 transition-colors">
-                  Special 3-Bend &amp; Door Frame Dies
-                </Link>
-              </li>
-              <li>
-                <Link href="/products" className="hover:text-amber-400 transition-colors">
-                  Hemming &amp; Radius Inserts (R8-R100)
-                </Link>
-              </li>
-              <li>
-                <Link href="/products" className="hover:text-amber-400 transition-colors">
-                  Metal Shearing Blades &amp; Turret Tooling
-                </Link>
-              </li>
-            </ul>
+            <div className="text-sm space-y-2 text-slate-400 leading-relaxed">
+              <p className="text-white font-medium">Plot No: 81-A, B.U. Bhandari Industrial Estate[cite: 1]</p>
+              <p>Near John Deere company, Sanaswadi, Tal. Shirur, Dist: Pune-412208[cite: 1]</p>
+            </div>
           </div>
 
-          {/* Column 5: Location & Social Media Links */}
+          {/* Column 5: Head Office & Social Media Links */}
           <div className="space-y-4">
             <h3 className="text-white font-heading font-semibold text-sm uppercase tracking-wider border-l-2 border-amber-500 pl-3">
-              Location &amp; Social
+              Head Office
             </h3>
-            <div className="text-sm space-y-2 text-slate-400">
-              <p className="text-white font-medium">{site.name}</p>
-              <p>Akurdi</p>
-              <p>Pune, Maharashtra - 411035</p>
-              <p className="text-amber-400 font-semibold pt-1">India</p>
+            <div className="text-sm space-y-2 text-slate-400 leading-relaxed">
+              <p className="text-white font-medium">Survey No. 22, Lalwani Heights[cite: 1]</p>
+              <p>Above Bank of Maharashtra, Sainikwadi, Wadgaon Sheri, Pune - 411014[cite: 1]</p>
             </div>
 
             {/* Social Icons with Permanent Brand Colors & Scale Effect on Hover */}
             <div className="pt-2 space-y-2">
               <p className="text-xs text-slate-400 font-medium uppercase tracking-wider">Connect With Us</p>
               <div className="flex items-center space-x-3">
-                {/* Instagram */}
-                <a
-                  href="https://instagram.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram"
-                  className="w-9 h-9 bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-600 text-white rounded-lg flex items-center justify-center shadow-md transform hover:scale-110 hover:brightness-110 transition-all duration-300"
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-                  </svg>
-                </a>
                 {/* Facebook */}
                 <a
                   href="https://facebook.com"
@@ -181,6 +162,20 @@ export default function Footer() {
                     <circle cx="4" cy="4" r="2" />
                   </svg>
                 </a>
+                {/* Instagram */}
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                  className="w-9 h-9 bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-600 text-white rounded-lg flex items-center justify-center shadow-md transform hover:scale-110 hover:brightness-110 transition-all duration-300"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                  </svg>
+                </a>
               </div>
             </div>
           </div>
@@ -192,7 +187,7 @@ export default function Footer() {
       <div className="border-t border-slate-900 bg-slate-950/80 py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 space-y-4 sm:space-y-0">
           <p>
-            &copy; {new Date().getFullYear()} Autozone Tooling. All rights reserved. Precision Press Brake Tool Manufacturer | Akurdi, Pune, India.
+            &copy; {new Date().getFullYear()} Raj High Tech Ventures Pvt. Ltd. All rights reserved.[cite: 1]
           </p>
           <div className="flex space-x-6">
             <Link href="/privacy" className="hover:text-slate-400 transition-colors">

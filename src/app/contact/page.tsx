@@ -3,7 +3,7 @@ import { site } from "@/lib/site";
 export const metadata = {
   title: "Contact Us",
   description:
-    "Get in touch with Autozone Tooling in Akurdi, Pune for custom press brake punches, dies, shear blades, and tooling quotations.",
+    "Get in touch with Raj High Tech Ventures in Sanaswadi & Wadgaon Sheri, Pune for custom press brake punches, dies, shear blades, and tooling quotations.",
 };
 
 export default function ContactPage() {
@@ -29,28 +29,34 @@ export default function ContactPage() {
           {/* Left Column: Contact Info Cards */}
           <div className="lg:col-span-1 space-y-6">
             
-            {/* Phone & WhatsApp Card */}
+            {/* Phone & Management Card */}
             <div className="bg-slate-900 border border-slate-800 rounded-lg p-6 space-y-3 shadow-lg">
               <div className="w-10 h-10 bg-amber-500/10 rounded-md flex items-center justify-center text-amber-400">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-heading font-bold text-white">Call &amp; WhatsApp</h3>
-              <p className="text-sm text-slate-400">Speak directly or chat with our technical sales team.</p>
+              <h3 className="text-lg font-heading font-bold text-white">Contact Details</h3>
+              <p className="text-sm text-slate-400">
+                <strong className="text-white">Mr. Vikas Ganpat Kapse</strong><br />
+                <span className="text-xs text-amber-400 font-medium">Managing Director</span>[cite: 1]
+              </p>
               
-              <div className="space-y-1.5 pt-1">
-                <a
-                  href="tel:+919922566974"
-                  className="block text-amber-400 hover:text-amber-300 font-semibold text-sm"
-                >
-                  +91 99225 66974
+              <div className="space-y-1.5 pt-1 text-sm">
+                <a href="tel:+919822910481" className="block text-amber-400 hover:text-amber-300 font-semibold">
+                  +91 98229 10481[cite: 1]
+                </a>
+                <a href="tel:+919881258028" className="block text-amber-400 hover:text-amber-300 font-semibold">
+                  +91 98812 58028[cite: 1]
+                </a>
+                <a href="tel:+919922923894" className="block text-amber-400 hover:text-amber-300 font-semibold">
+                  +91 99229 23894[cite: 1]
                 </a>
                 <a
-                  href="https://wa.me/919922566974"
+                  href="https://wa.me/919822910481"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1.5 rounded-md hover:bg-emerald-500/20 transition-colors"
+                  className="inline-flex items-center text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-1.5 rounded-md hover:bg-emerald-500/20 transition-colors mt-2"
                 >
                   Chat on WhatsApp
                 </a>
@@ -67,14 +73,14 @@ export default function ContactPage() {
               <h3 className="text-lg font-heading font-bold text-white">Email Us</h3>
               <p className="text-sm text-slate-400">Send us your drawings, CAD files, or formal inquiries.</p>
               <a
-                href={`mailto:${site.email}`}
+                href="mailto:marketing@rajhightech.com"
                 className="inline-block text-amber-400 hover:text-amber-300 font-semibold text-sm pt-1"
               >
-                {site.email}
+                marketing@rajhightech.com[cite: 1]
               </a>
             </div>
 
-            {/* Address Card */}
+            {/* Plant Address Card */}
             <div className="bg-slate-900 border border-slate-800 rounded-lg p-6 space-y-3 shadow-lg">
               <div className="w-10 h-10 bg-amber-500/10 rounded-md flex items-center justify-center text-amber-400">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -82,11 +88,26 @@ export default function ContactPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               </div>
-              <h3 className="text-lg font-heading font-bold text-white">Our Location</h3>
+              <h3 className="text-lg font-heading font-bold text-white">Plant Address</h3>
               <p className="text-sm text-slate-400 leading-relaxed">
-                <strong className="text-white">Akurdi</strong><br />
-                Pune, Maharashtra - 411035<br />
-                <strong className="text-white">India</strong>
+                <strong className="text-white">Plot No: 81-A, B.U. Bhandari Industrial Estate</strong><br />
+                Near John Deere company, Sanaswadi, Tal. Shirur,<br />
+                Dist: Pune - 412208[cite: 1]
+              </p>
+            </div>
+
+            {/* Head Office Address Card */}
+            <div className="bg-slate-900 border border-slate-800 rounded-lg p-6 space-y-3 shadow-lg">
+              <div className="w-10 h-10 bg-amber-500/10 rounded-md flex items-center justify-center text-amber-400">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-heading font-bold text-white">Head Office</h3>
+              <p className="text-sm text-slate-400 leading-relaxed">
+                <strong className="text-white">Survey No. 22, Lalwani Heights</strong><br />
+                Above Bank of Maharashtra,<br />
+                Sainikwadi, Wadgaon Sheri, Pune - 411014[cite: 1]
               </p>
             </div>
 
@@ -148,7 +169,7 @@ export default function ContactPage() {
                     type="tel"
                     id="phone"
                     required
-                    defaultValue="+91 99225 66974"
+                    defaultValue="+91 98229 10481"
                     className="w-full bg-slate-950 border border-slate-800 rounded-md px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-amber-500 transition-colors"
                   />
                 </div>

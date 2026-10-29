@@ -38,7 +38,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-10 flex items-center justify-between">
           <div className="flex items-center space-x-6">
             <a
-              href="tel:+919922566974"
+              href="tel:+919822910481"
               className="flex items-center space-x-2 hover:text-amber-400 transition-colors"
             >
               <svg className="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -50,10 +50,10 @@ export default function Navbar() {
                 />
               </svg>
               <span className="hidden sm:inline">Call Us:</span>
-              <span>+91 99225 66974</span>
+              <span>+91 98229 10481</span>
             </a>
             <a
-              href={`mailto:${site.email}`}
+              href="mailto:marketing@rajhightech.com"
               className="hidden md:flex items-center space-x-2 hover:text-amber-400 transition-colors"
             >
               <svg className="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -64,7 +64,7 @@ export default function Navbar() {
                   d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                 />
               </svg>
-              <span>{site.email}</span>
+              <span>marketing@rajhightech.com</span>
             </a>
           </div>
 
@@ -98,7 +98,7 @@ export default function Navbar() {
             </div>
 
             <div className="text-slate-400 font-medium tracking-wide">
-              Akurdi, Pune, Maharashtra, India
+              Pune, Maharashtra, India
             </div>
           </div>
         </div>
@@ -118,7 +118,7 @@ export default function Navbar() {
             <div className="relative w-10 h-10 overflow-hidden flex items-center justify-center">
               <Image
                 src="/images/logo.png"
-                alt="Autozone Tooling Logo"
+                alt="Raj High Tech Ventures Logo"
                 fill
                 className="object-contain"
                 priority
@@ -126,10 +126,10 @@ export default function Navbar() {
             </div>
             <div className="flex flex-col">
               <span className="text-white font-heading font-bold text-xl tracking-wide uppercase">
-                Autozone
+                Raj High Tech
               </span>
               <span className="text-amber-400 text-xs tracking-widest font-semibold uppercase">
-                Tooling
+                Ventures Pvt. Ltd.
               </span>
             </div>
           </Link>

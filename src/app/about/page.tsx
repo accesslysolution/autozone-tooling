@@ -4,7 +4,7 @@ import { site } from "@/lib/site";
 export const metadata = {
   title: "About Us",
   description:
-    "Learn about Autozone Tooling in Akurdi, Pune, a trusted manufacturer of high-precision hardened and ground press brake punches, dies, hemming tools, and shear blades.",
+    "Learn about Autozone Tooling in Bhosari MIDC, Pune, a trusted manufacturer of high-precision hardened and ground press brake punches, dies, hemming tools, and shear blades.",
 };
 
 export default function AboutPage() {
@@ -21,7 +21,7 @@ export default function AboutPage() {
             Precision Craftsmanship in Sheet Metal Tooling
           </h1>
           <p className="text-slate-400 text-base sm:text-lg leading-relaxed">
-            Based in the industrial hub of Akurdi, Pune, <strong className="text-white">Autozone Tooling</strong> is dedicated to delivering world-class press brake tooling and shear blades engineered for unmatched durability, tight tolerances, and superior operational performance.
+            Based in the industrial hub of Bhosari MIDC, Pune, <strong className="text-white">Autozone Tooling</strong> is dedicated to delivering world-class press brake tooling and shear blades engineered for unmatched durability, tight tolerances, and superior operational performance.
           </p>
         </div>
 
@@ -53,7 +53,7 @@ export default function AboutPage() {
             <ul className="space-y-4 text-slate-300 text-sm sm:text-base">
               <li className="flex items-start space-x-3">
                 <span className="text-amber-500 font-bold text-lg">✓</span>
-                <span><strong className="text-white">Superior Metallurgy:</strong> Crafted using certified high-grade alloy steels (En8, EN31, H13) paired with precise hardening techniques.</span>
+                <span><strong className="text-white">Superior Metallurgy:</strong> Crafted using certified high-grade alloy steels (D2, 42CrMo4, EN31) paired with precise hardening techniques.</span>
               </li>
               <li className="flex items-start space-x-3">
                 <span className="text-amber-500 font-bold text-lg">✓</span>
@@ -65,7 +65,7 @@ export default function AboutPage() {
               </li>
               <li className="flex items-start space-x-3">
                 <span className="text-amber-500 font-bold text-lg">✓</span>
-                <span><strong className="text-white">Strategic Pune Location:</strong> Positioned in Akurdi, Pune for seamless logistics, rapid prototyping, and prompt PAN-India dispatch.</span>
+                <span><strong className="text-white">Strategic Pune Location:</strong> Positioned in Bhosari MIDC, Pune for seamless logistics, rapid prototyping, and prompt PAN-India dispatch.</span>
               </li>
             </ul>
           </div>
@@ -165,7 +165,7 @@ export default function AboutPage() {
         {/* Section 5: Call to Action */}
         <div className="bg-gradient-to-r from-amber-600 to-amber-500 text-slate-950 rounded-2xl p-10 sm:p-14 text-center space-y-6 shadow-2xl">
           <h2 className="text-3xl sm:text-4xl font-bold font-heading tracking-tight">
-            Partner With Akurdi &amp; Pune&apos;s Trusted Tooling Specialist
+            Partner With Bhosari MIDC &amp; Pune&apos;s Trusted Tooling Specialist
           </h2>
           <p className="text-slate-900 text-base sm:text-lg max-w-2xl mx-auto font-medium leading-relaxed">
             Elevate your press brake bending accuracy and shear blade performance. Contact our engineering team today for immediate quotations and technical support.
