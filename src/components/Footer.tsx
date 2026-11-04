@@ -27,13 +27,15 @@ const company = {
     "https://www.google.com/maps/search/?api=1&query=Plot+No+256+Sector+7+PCNTDA+MIDC+Bhosari+Pune+411026",
 };
 
+
 const quickLinks = [
   { label: "Home", href: "/" },
-  { label: "About Us", href: "/about" },
   { label: "Products", href: "/products" },
   { label: "Clients", href: "/clients" },
+  { label: "About Us", href: "/about" },
   { label: "Contact Us", href: "/contact" },
 ];
+
 
 export default function Footer() {
   return (

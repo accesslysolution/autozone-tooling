@@ -6,12 +6,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
+
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "Products", href: "/products" },
+  { name: "Clients", href: "/clients" },
   { name: "About Us", href: "/about" },
   { name: "Contact Us", href: "/contact" },
 ];
+
 
 const company = {
   name: "Autozone Tooling",
