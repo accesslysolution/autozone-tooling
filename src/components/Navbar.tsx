@@ -14,30 +14,63 @@ const navLinks = [
   { name: "Contact Us", href: "/contact" },
 ];
 
+  
 const productCategories = [
   {
-    name: "Press Brake Punches",
-    href: "/products#punches",
+    name: "Press Brake Tool",
+    href: "/products#press-brake-tool",
   },
   {
-    name: "Press Brake Dies",
-    href: "/products#dies",
+    name: "Press Brake Punch",
+    href: "/products#press-brake-punch",
   },
   {
-    name: "Hemming & Specialized Forming Tools",
-    href: "/products#forming",
+    name: "Press Break Dies",
+    href: "/products#press-brake-dies",
   },
   {
-    name: "Tool Holders & Machine Accessories",
-    href: "/products#accessories",
+    name: "Radius Tools Holder",
+    href: "/products#radius-tools-holder",
   },
   {
-    name: "Industrial Shearing Blades",
-    href: "/products#blades",
+    name: "Radius Tools Insert",
+    href: "/products#radius-tools-insert",
   },
   {
-    name: "Turret Punching & Precision Inserts",
-    href: "/products#turret",
+    name: "Press Brake Hemming Tools",
+    href: "/products#press-brake-hemming-tools",
+  },
+  {
+    name: "Self Centering 2V Die",
+    href: "/products#self-centering-2v-die",
+  },
+  {
+    name: "Shear Blade",
+    href: "/products#shear-blade",
+  },
+  {
+    name: "Joggle Tool & Insert",
+    href: "/products#joggle-tool-insert",
+  },
+  {
+    name: "Amada Type Self Centering 1V Die",
+    href: "/products#amada-self-centering-1v-die",
+  },
+  {
+    name: "Amada Type Self Centering 1V Die Holder",
+    href: "/products#amada-self-centering-1v-die-holder",
+  },
+  {
+    name: "Single V Die",
+    href: "/products#single-v-die",
+  },
+  {
+    name: "Multi V Die",
+    href: "/products#multi-v-die",
+  },
+  {
+    name: "Special Application",
+    href: "/products#special-application",
   },
 ];
 
