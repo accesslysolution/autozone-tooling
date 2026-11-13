@@ -5,76 +5,33 @@ import Image from "next/image";
 import { useState } from "react";
 
 const clients = [
-  // ==========================================
-  // EXISTING CLIENTS
-  // ==========================================
   {
     name: "ADH Machine Tool",
-    image: "/clients/ADH Machine Tool Logo.avif",
+    image: "/clients/ADH Machine Tool.avif",
   },
-  {
-    name: "Sumeco Group of Companies",
-    image: "/clients/Sumeco Group Corporate Logo.avif",
-  },
-  {
-    name: "DC&T",
-    image: "/clients/DC&T Belo India Company Logo.avif",
-  },
-  {
-    name: "PSR Toolings and Stampings",
-    image: "/clients/PSR Toolings and Stampings Logo.avif",
-  },
-  {
-    name: "Rajesh Global",
-    image: "/clients/Rajesh Global Logo with Orange RG Icon.avif",
-  },
-  {
-    name: "PAA",
-    image: "/clients/PAA Logo with Rising Blue Dots.avif",
-  },
-  {
-    name: "Dynamic",
-    image: "/clients/Dynamic Working Smarter Logo.avif",
-  },
-  {
-    name: "RSB",
-    image: "/clients/RSB Globe and House Logo.avif",
-  },
-  {
-    name: "Finepac Structures",
-    image: "/clients/Finepac Structures Logo on White.avif",
-  },
-  {
-    name: "Sawant Group",
-    image: "/clients/Sawant Group Geometric Logo.avif",
-  },
-  {
-    name: "Glatt",
-    image: "/clients/Glatt Logo with Red Swirl.avif",
-  },
-  {
-    name: "S&T Engineers",
-    image: "/clients/S&T Engineers Globe Logo.avif",
-  },
-  {
-    name: "TRUMPF",
-    image: "/clients/TRUMPF Logo with Blue Square.avif",
-  },
-  {
-    name: "Benninger",
-    image: "/clients/Benninger Blue and Orange Logo.avif",
-  },
-
-  // ==========================================
-  // NEWLY ADDED CLIENTS
-  // ==========================================
   {
     name: "AURA Signal",
     image: "/clients/AURA Signal.avif",
   },
   {
-    name: "SAAKSHI",
-    image: "/clients/SAAKSHI.avif",
+    name: "Benninger",
+    image: "/clients/Benninger Blue and Orange.avif",
+  },
+  {
+    name: "DC&T",
+    image: "/clients/DC&T Belo India Company.avif",
+  },
+  {
+    name: "Dynamic",
+    image: "/clients/Dynamic Working Smarter.avif",
+  },
+  {
+    name: "Finepac Structures",
+    image: "/clients/Finepac Structures.avif",
+  },
+  {
+    name: "Glatt",
+    image: "/clients/Glatt.avif",
   },
   {
     name: "KOTECH Infra Pvt. Ltd.",
@@ -89,6 +46,10 @@ const clients = [
     image: "/clients/LeanFabLaser.avif",
   },
   {
+    name: "PAA",
+    image: "/clients/PAA.avif",
+  },
+  {
     name: "PAI KANE GROUP",
     image: "/clients/PAI KANE GROUP.avif",
   },
@@ -97,41 +58,68 @@ const clients = [
     image: "/clients/Proteck.avif",
   },
   {
+    name: "PSR Toolings and Stampings Pvt. Ltd.",
+    image: "/clients/PSR Toolings and Stampings.avif",
+  },
+  {
+    name: "Rajesh Global",
+    image: "/clients/Rajesh Global.avif",
+  },
+  {
+    name: "RSB",
+    image: "/clients/RSB Globe and House.avif",
+  },
+  {
+    name: "S&T Engineers",
+    image: "/clients/S&T Engineers Globe.avif",
+  },
+  {
+    name: "SAAKSHI",
+    image: "/clients/SAAKSHI.avif",
+  },
+  {
+    name: "Sawant Group",
+    image: "/clients/Sawant Group Geometric.avif",
+  },
+  {
     name: "Shree Refrigerations",
     image: "/clients/Shree Refrigerations.avif",
+  },
+  {
+    name: "Sumeco Group of Companies",
+    image: "/clients/Sumeco Group Corporate.avif",
+  },
+  {
+    name: "TRUMPF",
+    image: "/clients/TRUMPF.avif",
   },
 ];
 
 export default function ClientsSection() {
   const [isPaused, setIsPaused] = useState(false);
 
-  // Duplicate the client groups for seamless infinite scrolling.
-  // Each group contains all 22 clients.
   const totalClients = clients.length;
 
   return (
     <section
-      className="relative overflow-hidden bg-slate-950 py-20 lg:py-28 border-y border-slate-800"
+      className="relative overflow-hidden border-y border-slate-800 bg-slate-950 py-20 lg:py-28"
       aria-labelledby="clients-heading"
     >
-      {/* ===================================== */}
-      {/* SECTION HEADER                        */}
-      {/* ===================================== */}
+      {/* SECTION HEADER */}
+      <div className="mx-auto mb-14 max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+        <div className="mb-5 flex items-center justify-center gap-3">
+          <span className="h-px w-8 bg-amber-500" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-14">
-        <div className="flex items-center justify-center gap-3 mb-5">
-          <span className="w-8 h-px bg-amber-500" />
-
-          <span className="text-amber-400 text-xs sm:text-sm font-semibold uppercase tracking-[0.2em]">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-400 sm:text-sm">
             Our Valued Clients
           </span>
 
-          <span className="w-8 h-px bg-amber-500" />
+          <span className="h-px w-8 bg-amber-500" />
         </div>
 
         <h2
           id="clients-heading"
-          className="text-3xl sm:text-4xl lg:text-5xl font-heading font-bold text-white tracking-tight"
+          className="font-heading text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl"
         >
           Trusted by{" "}
           <span className="text-amber-400">
@@ -139,17 +127,15 @@ export default function ClientsSection() {
           </span>
         </h2>
 
-        <p className="text-slate-400 text-sm sm:text-base lg:text-lg mt-5 max-w-2xl mx-auto leading-relaxed">
+        <p className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed text-slate-400 sm:text-base lg:text-lg">
           Proud to serve leading names in engineering,
           manufacturing, and industrial fabrication with
-          precision CNC press brake tooling and shearing solutions.
+          precision CNC press brake tooling and shearing
+          solutions.
         </p>
       </div>
 
-      {/* ===================================== */}
-      {/* INFINITE CLIENT LOGO CAROUSEL         */}
-      {/* ===================================== */}
-
+      {/* INFINITE CLIENT LOGO CAROUSEL */}
       <div
         className="relative w-full overflow-hidden"
         onMouseEnter={() => setIsPaused(true)}
@@ -166,33 +152,32 @@ export default function ClientsSection() {
         }}
         aria-label={`Our ${totalClients} featured clients`}
       >
-        {/* Left Edge Fade */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 w-12 sm:w-24 lg:w-40 bg-gradient-to-r from-slate-950 to-transparent z-10" />
+        {/* LEFT EDGE FADE */}
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-slate-950 to-transparent sm:w-24 lg:w-40" />
 
-        {/* Right Edge Fade */}
-        <div className="pointer-events-none absolute inset-y-0 right-0 w-12 sm:w-24 lg:w-40 bg-gradient-to-l from-slate-950 to-transparent z-10" />
+        {/* RIGHT EDGE FADE */}
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-slate-950 to-transparent sm:w-24 lg:w-40" />
 
-        {/* Scrolling Track */}
+        {/* SCROLLING TRACK */}
         <div
-          className="flex w-max animate-clients-scroll"
+          className="clients-scroll-track flex w-max"
           style={{
             animationPlayState: isPaused ? "paused" : "running",
           }}
         >
-          {/* Two identical groups for seamless loop */}
           {[0, 1].map((copyIndex) => (
             <div
               key={copyIndex}
-              className="flex shrink-0 gap-5 sm:gap-7 pr-5 sm:pr-7"
+              className="flex shrink-0 gap-5 pr-5 sm:gap-7 sm:pr-7"
               aria-hidden={copyIndex === 1}
             >
               {clients.map((client) => (
                 <div
                   key={`${copyIndex}-${client.name}`}
-                  className="group w-40 sm:w-48 lg:w-52 shrink-0"
+                  className="group w-40 shrink-0 sm:w-48 lg:w-52"
                 >
-                  {/* Logo Container */}
-                  <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-white border border-slate-700/60 shadow-lg transition-all duration-300 group-hover:border-amber-500 group-hover:shadow-amber-500/10 group-hover:-translate-y-1">
+                  {/* LOGO CONTAINER */}
+                  <div className="relative aspect-square w-full overflow-hidden rounded-xl border border-slate-700/60 bg-white shadow-lg transition-all duration-300 group-hover:-translate-y-1 group-hover:border-amber-500 group-hover:shadow-amber-500/10">
                     <Image
                       src={client.image}
                       alt={
@@ -207,9 +192,9 @@ export default function ClientsSection() {
                     />
                   </div>
 
-                  {/* Client Name */}
-                  <div className="mt-4 text-center px-1">
-                    <h3 className="text-slate-300 text-xs sm:text-sm font-semibold leading-snug group-hover:text-amber-400 transition-colors">
+                  {/* CLIENT NAME */}
+                  <div className="mt-4 px-1 text-center">
+                    <h3 className="text-xs font-semibold leading-snug text-slate-300 transition-colors group-hover:text-amber-400 sm:text-sm">
                       {client.name}
                     </h3>
                   </div>
@@ -220,49 +205,18 @@ export default function ClientsSection() {
         </div>
       </div>
 
-      {/* ===================================== */}
-      {/* BOTTOM SUPPORTING TEXT                */}
-      {/* ===================================== */}
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-14 text-center">
+      {/* BOTTOM SUPPORTING TEXT */}
+      <div className="mx-auto mt-14 max-w-7xl px-4 text-center sm:px-6 lg:px-8">
         <div className="inline-flex items-center gap-3">
           <span className="h-px w-8 bg-slate-700" />
 
-          <p className="text-slate-500 text-xs sm:text-sm tracking-wide">
+          <p className="text-xs tracking-wide text-slate-500 sm:text-sm">
             Precision Tooling. Reliable Partnerships.
           </p>
 
           <span className="h-px w-8 bg-slate-700" />
         </div>
       </div>
-
-      {/* ===================================== */}
-      {/* COMPONENT-SCOPED CAROUSEL ANIMATION   */}
-      {/* ===================================== */}
-
-      <style jsx>{`
-        @keyframes clients-scroll {
-          from {
-            transform: translateX(0);
-          }
-
-          to {
-            transform: translateX(-50%);
-          }
-        }
-
-        .animate-clients-scroll {
-          animation: clients-scroll 100s linear infinite;
-          will-change: transform;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .animate-clients-scroll {
-            animation: none;
-            transform: translateX(0);
-          }
-        }
-      `}</style>
     </section>
   );
 }

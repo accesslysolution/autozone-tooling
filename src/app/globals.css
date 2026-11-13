@@ -1,88 +1,201 @@
+
 @import "tailwindcss";
 
+/* ==========================================
+   AUTOZONE TOOLING - DESIGN SYSTEM
+   ========================================== */
+
 /*
-  Palette drawn from hardened tool steel:
-  oxide  – black-oxide tool finish
-  steel  – freshly ground surface
-  gauge  – machined grey for secondary text
-  temper – the blue that appears when tool steel is tempered
-  straw  – the straw colour of a lower temper, used sparingly for action
+  Industrial palette inspired by hardened tool steel.
+
+  oxide  - Black oxide tool finish
+  steel  - Freshly ground surface
+  gauge  - Machined grey for secondary text
+  temper - Tempered steel blue
+  straw  - Warm industrial accent
 */
+
 @theme {
+  /* Primary Colors */
   --color-oxide: #1c2329;
   --color-oxide-2: #28313a;
+
+  /* Neutral Colors */
   --color-steel: #e3e7ea;
   --color-paper: #f6f7f8;
   --color-gauge: #69737c;
+
+  /* Brand Accent Colors */
   --color-temper: #2b4c7e;
   --color-temper-dark: #203a61;
+
+  /* Secondary Accent */
   --color-straw: #c9a24a;
   --color-straw-light: #e9d9ae;
 
+  /* Typography */
   --font-display: var(--font-barlow), "Arial Narrow", sans-serif;
   --font-sans: var(--font-plex), system-ui, sans-serif;
 }
+
+/* ==========================================
+   BASE STYLES
+   ========================================== */
 
 @layer base {
   html {
     scroll-behavior: smooth;
   }
+
   body {
     @apply bg-paper text-oxide font-sans antialiased;
   }
-  h1, h2, h3, h4 {
+
+  h1,
+  h2,
+  h3,
+  h4 {
     @apply font-display font-semibold tracking-tight;
     text-wrap: balance;
   }
+
   p {
     text-wrap: pretty;
   }
+
   :focus-visible {
     outline: 2px solid var(--color-temper);
     outline-offset: 3px;
   }
+
   @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
+    html {
+      scroll-behavior: auto;
+    }
   }
 }
+
+/* ==========================================
+   CONTAINER UTILITIES
+   ========================================== */
 
 @utility container-x {
   margin-inline: auto;
   width: 100%;
   max-width: 72rem;
   padding-inline: 1.25rem;
+
   @media (width >= 40rem) {
     padding-inline: 2rem;
   }
 }
 
+/* ==========================================
+   BUTTON UTILITIES
+   ========================================== */
+
 @utility btn {
   @apply inline-flex items-center justify-center gap-2 rounded-sm px-5 py-3 text-sm font-semibold transition-colors;
 }
+
 @utility btn-primary {
   @apply inline-flex items-center justify-center gap-2 rounded-sm px-5 py-3 text-sm font-semibold transition-colors bg-temper text-white hover:bg-temper-dark;
 }
+
 @utility btn-outline {
   @apply inline-flex items-center justify-center gap-2 rounded-sm px-5 py-3 text-sm font-semibold transition-colors border border-oxide/25 text-oxide hover:border-oxide hover:bg-white;
 }
+
 @utility btn-light {
   @apply inline-flex items-center justify-center gap-2 rounded-sm px-5 py-3 text-sm font-semibold transition-colors border border-white/40 text-white hover:bg-white hover:text-oxide;
 }
+
 @utility btn-straw {
   @apply inline-flex items-center justify-center gap-2 rounded-sm px-5 py-3 text-sm font-semibold transition-colors bg-straw text-oxide hover:bg-straw-light;
 }
 
-/* Section hatch, as on an engineering drawing */
+/* ==========================================
+   INDUSTRIAL HATCH UTILITY
+   ========================================== */
+
+/* Section hatch inspired by engineering drawings */
+
 @utility hatch {
   background-image: repeating-linear-gradient(
     -45deg,
-    color-mix(in oklab, var(--color-oxide) 12%, transparent) 0 1px,
+    color-mix(
+      in oklab,
+      var(--color-oxide) 12%,
+      transparent
+    ) 0 1px,
     transparent 1px 7px
   );
 }
 
+/* ==========================================
+   COMPONENT STYLES
+   ========================================== */
+
 @layer components {
   .prose-body p {
     @apply mb-4 max-w-[68ch] leading-relaxed text-oxide/85;
+  }
+}
+
+/* ==========================================
+   CLIENT LOGO CAROUSEL
+   ========================================== */
+
+/*
+  Infinite horizontal scrolling animation.
+
+  Two identical groups of client logos are rendered
+  inside the carousel.
+
+  The track moves exactly 50% of its total width
+  before repeating, creating a seamless loop.
+*/
+
+@keyframes clients-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.clients-scroll-track {
+  display: flex;
+  width: max-content;
+
+  animation-name: clients-scroll;
+  animation-duration: 100s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+/* Pause animation when hovered */
+.clients-scroll-track:hover {
+  animation-play-state: paused;
+}
+
+/* ==========================================
+   ACCESSIBILITY - REDUCED MOTION
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .clients-scroll-track {
+    animation: none !important;
+    transform: translate3d(0, 0, 0);
+    will-change: auto;
   }
 }

@@ -1,320 +1,689 @@
+
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-interface Product {
+interface Slide {
   id: number;
-  name: string;
-  category: string;
+  title: string;
+  highlight: string;
   description: string;
   image: string;
-  href: string;
+  primaryCTA: {
+    text: string;
+    href: string;
+  };
+  secondaryCTA: {
+    text: string;
+    href: string;
+  };
 }
 
-const products: Product[] = [
+const slides: Slide[] = [
   {
     id: 1,
-    name: "Press Brake R0.6 Straight 28 Degree Neck Punch",
-    category: "Press Brake Punch",
-    description: "Precision-engineered straight neck punch with R0.6 radius and 28-degree angle for specialized bending.",
-    image: "/images/products/1.avif",
-    href: "/products",
+    title: "Precision Bending",
+    highlight: "2-V Die & Setup",
+    description:
+      "Precision-engineered V-die tooling designed for accurate sheet metal bending, consistent angles, and dependable fabrication performance.",
+    image: "/images/products/2-V Die & Setup.avif",
+    primaryCTA: {
+      text: "Explore Products",
+      href: "/products",
+    },
+    secondaryCTA: {
+      text: "Request a Quote",
+      href: "/contact",
+    },
   },
   {
     id: 2,
-    name: "Press Brake R0.5 Straight 30 Degree Punch",
-    category: "Press Brake Punch",
-    description: "High-accuracy straight punch featuring a 0.5mm radius and 30-degree profile for clean sheet metal forming.",
-    image: "/images/products/2.avif",
-    href: "/products",
+    title: "Accurate Positioning",
+    highlight: "Back Gauge",
+    description:
+      "Precision back gauge solutions supporting accurate sheet positioning, repeatable bending operations, and efficient press brake production.",
+    image: "/images/products/Back Gauge.avif",
+    primaryCTA: {
+      text: "Explore Products",
+      href: "/products",
+    },
+    secondaryCTA: {
+      text: "Request a Quote",
+      href: "/contact",
+    },
   },
   {
     id: 3,
-    name: "En8 Alloy Steel Press Brake Punch",
-    category: "Press Brake Punch",
-    description: "Manufactured from high-grade En8 alloy steel for exceptional durability, toughness, and wear resistance.",
-    image: "/images/products/3.avif",
-    href: "/products",
+    title: "Reliable Tooling",
+    highlight: "Common Punch Holders & Inserts",
+    description:
+      "Durable punch holders and inserts engineered for secure tool positioning, reliable operation, and consistent bending performance.",
+    image: "/images/products/Common Punch Holders & Inserts.avif",
+    primaryCTA: {
+      text: "View Products",
+      href: "/products",
+    },
+    secondaryCTA: {
+      text: "Enquire Now",
+      href: "/contact",
+    },
   },
   {
     id: 4,
-    name: "Common Straight Punch Holders",
-    category: "Tool Holders",
-    description: "Robust and secure tool holders designed for standard straight press brake punches and quick changeovers.",
-    image: "/images/products/4.avif",
-    href: "/products",
+    title: "Complex Bending",
+    highlight: "Gooseneck Punch",
+    description:
+      "Specialized gooseneck punches designed to provide clearance for complex profiles, return flanges, and precision sheet metal forming.",
+    image: "/images/products/Gooseneck Punch.avif",
+    primaryCTA: {
+      text: "Explore Tooling",
+      href: "/products",
+    },
+    secondaryCTA: {
+      text: "Request a Quote",
+      href: "/contact",
+    },
   },
   {
     id: 5,
-    name: "R1 Straight Punch 86deg",
-    category: "Press Brake Punch",
-    description: "Straight press brake punch with an R1 radius and 86-degree angle configuration for precise acute bending.",
-    image: "/images/products/5.avif",
-    href: "/products",
+    title: "Precision Finishing",
+    highlight: "Hemming Die",
+    description:
+      "High-performance hemming dies developed for accurate sheet metal folding, clean edges, and consistent finishing operations.",
+    image: "/images/products/Hemming Die.avif",
+    primaryCTA: {
+      text: "View Products",
+      href: "/products",
+    },
+    secondaryCTA: {
+      text: "Contact Us",
+      href: "/contact",
+    },
   },
   {
     id: 6,
-    name: "Press Brake Special 3 Bend Block Die",
-    category: "Press Brake Die",
-    description: "Specialized 3-bend block die designed for complex multi-bend sheet metal forming profiles in a single stroke.",
-    image: "/images/products/6.avif",
-    href: "/products",
+    title: "Versatile Bending",
+    highlight: "Multi V Die",
+    description:
+      "Multi-opening V-die tooling offering flexible bending configurations for different sheet thicknesses and fabrication requirements.",
+    image: "/images/products/Multi V Die (2).avif",
+    primaryCTA: {
+      text: "Explore Products",
+      href: "/products",
+    },
+    secondaryCTA: {
+      text: "Enquire Now",
+      href: "/contact",
+    },
   },
   {
     id: 7,
-    name: "Press Brake Single V Die",
-    category: "Press Brake Die",
-    description: "Standard high-accuracy single V die designed for clean, precise angle bending operations across various sheet thicknesses.",
-    image: "/images/products/7.avif",
-    href: "/products",
+    title: "Flexible Tooling",
+    highlight: "Multi V Die",
+    description:
+      "Precision-machined multi V-dies designed for versatile sheet metal bending, repeatable results, and efficient tooling setups.",
+    image: "/images/products/Multi V Die.avif",
+    primaryCTA: {
+      text: "View Products",
+      href: "/products",
+    },
+    secondaryCTA: {
+      text: "Request a Quote",
+      href: "/contact",
+    },
   },
   {
     id: 8,
-    name: "Press Brake Special 3 Bend Die",
-    category: "Press Brake Die",
-    description: "Custom-engineered multi-bend die optimized for efficient production of 3-bend channels and profiles.",
-    image: "/images/products/8.avif",
-    href: "/products",
+    title: "Custom Forming",
+    highlight: "Profile Die",
+    description:
+      "Specialized profile dies engineered to produce accurate formed sections and support demanding industrial fabrication applications.",
+    image: "/images/products/Profile Die.avif",
+    primaryCTA: {
+      text: "Explore Products",
+      href: "/products",
+    },
+    secondaryCTA: {
+      text: "Contact Us",
+      href: "/contact",
+    },
   },
   {
     id: 9,
-    name: "Press Brake Special Door Frame Die",
-    category: "Press Brake Die",
-    description: "Specialized die configuration tailored specifically for precision manufacturing of metal door frames and casings.",
-    image: "/images/products/9.avif",
-    href: "/products",
+    title: "Engineered Profiles",
+    highlight: "Profile Type Die Punch",
+    description:
+      "Precision profile punches and dies developed for specialized bending geometries and consistent forming accuracy.",
+    image: "/images/products/Profile Type Die Punch.avif",
+    primaryCTA: {
+      text: "View Products",
+      href: "/products",
+    },
+    secondaryCTA: {
+      text: "Enquire Now",
+      href: "/contact",
+    },
   },
   {
     id: 10,
-    name: "Multi V-Dies / 4V Dies for Press Brake Tooling",
-    category: "Press Brake Die",
-    description: "Versatile multi-V (4-way V) dies offering multiple opening sizes for rapid setup changes and flexibility.",
-    image: "/images/products/10.avif",
-    href: "/products",
+    title: "Secure Tooling",
+    highlight: "Punch Clamps",
+    description:
+      "Reliable punch clamping solutions designed for secure tool retention, accurate alignment, and efficient press brake operations.",
+    image: "/images/products/Punch Clamps.avif",
+    primaryCTA: {
+      text: "Explore Products",
+      href: "/products",
+    },
+    secondaryCTA: {
+      text: "Request a Quote",
+      href: "/contact",
+    },
   },
   {
     id: 11,
-    name: "1000mm CNC Press Brake Hemming Tool",
-    category: "Press Brake Tools",
-    description: "1000mm precision CNC hemming tool engineered for tight flat hems and safe closing operations.",
-    image: "/images/products/11.avif",
-    href: "/products",
+    title: "Advanced Bending",
+    highlight: "Rolla Die",
+    description:
+      "Specialized rolling die solutions designed to support controlled sheet metal forming and reduce marking in suitable bending applications.",
+    image: "/images/products/Rolla Die.avif",
+    primaryCTA: {
+      text: "View Products",
+      href: "/products",
+    },
+    secondaryCTA: {
+      text: "Contact Us",
+      href: "/contact",
+    },
   },
   {
     id: 12,
-    name: "Press Brake Machine Back Gauge",
-    category: "Machine Accessories",
-    description: "High-precision automated or manual back gauge system ensuring accurate positioning and repeatable sheet dimensions.",
-    image: "/images/products/12.avif",
-    href: "/products",
+    title: "Precision Forming",
+    highlight: "Semi Gooseneck Punch",
+    description:
+      "Semi-gooseneck punches engineered to provide additional forming clearance and accurate bending for specialized sheet metal profiles.",
+    image: "/images/products/Semi Gooseneck Punch.avif",
+    primaryCTA: {
+      text: "Explore Tooling",
+      href: "/products",
+    },
+    secondaryCTA: {
+      text: "Enquire Now",
+      href: "/contact",
+    },
   },
   {
     id: 13,
-    name: "R8 to R100 Round Type Radius Inserts",
-    category: "Radius Tools",
-    description: "Versatile round-type radius inserts ranging from R8 to R100 for smooth, consistent radius bends without marking sheets.",
-    image: "/images/products/13.avif",
-    href: "/products",
+    title: "High Performance",
+    highlight: "Shearing Blades",
+    description:
+      "Precision-ground industrial shearing blades engineered for clean cutting, dependable wear resistance, and consistent production performance.",
+    image: "/images/products/Shearing Blades.avif",
+    primaryCTA: {
+      text: "View Shearing Blades",
+      href: "/products",
+    },
+    secondaryCTA: {
+      text: "Request a Quote",
+      href: "/contact",
+    },
   },
   {
     id: 14,
-    name: "Press Brake Die Punch",
-    category: "Press Brake Tools",
-    description: "Standard matched die and punch sets built for reliable daily bending operations and high wear resistance.",
-    image: "/images/products/14.avif",
-    href: "/products",
+    title: "Accurate Bending",
+    highlight: "Single V Die",
+    description:
+      "Precision-machined single V-dies developed for consistent bend angles, reliable sheet metal forming, and industrial applications.",
+    image: "/images/products/Single V Die.avif",
+    primaryCTA: {
+      text: "Explore Products",
+      href: "/products",
+    },
+    secondaryCTA: {
+      text: "Contact Us",
+      href: "/contact",
+    },
   },
   {
     id: 15,
-    name: "835mm Special Radius Press Brake Tool",
-    category: "Press Brake Tools",
-    description: "Standard length 835mm specialized radius tooling designed for consistent segment bending across long workpieces.",
-    image: "/images/products/15.avif",
-    href: "/products",
+    title: "Specialized Engineering",
+    highlight: "Special Die – Side View",
+    description:
+      "Custom-designed press brake dies with specialized profiles for complex bending requirements and precision fabrication.",
+    image: "/images/products/Special Die (Side View).avif",
+    primaryCTA: {
+      text: "View Products",
+      href: "/products",
+    },
+    secondaryCTA: {
+      text: "Request a Quote",
+      href: "/contact",
+    },
   },
   {
     id: 16,
-    name: "Press Brake Tools Stock",
-    category: "Press Brake Tools",
-    description: "Comprehensive inventory of ready-to-dispatch standard and custom press brake tooling solutions.",
-    image: "/images/products/16.avif",
-    href: "/products",
+    title: "Custom Precision",
+    highlight: "Special Die Punch",
+    description:
+      "Engineered punch and die tooling for specialized sheet metal forming applications requiring precise profiles and repeatable results.",
+    image: "/images/products/Special Die Punch.avif",
+    primaryCTA: {
+      text: "Explore Products",
+      href: "/products",
+    },
+    secondaryCTA: {
+      text: "Enquire Now",
+      href: "/contact",
+    },
   },
   {
     id: 17,
-    name: "Sheet Metal Bending Dies",
-    category: "Press Tools",
-    description: "High-quality bending dies built for industrial sheet metal fabrication and long tool life.",
-    image: "/images/products/17.avif",
-    href: "/products",
+    title: "Custom Tooling",
+    highlight: "Special Die",
+    description:
+      "Precision-manufactured special dies tailored for unique bending profiles, complex geometries, and demanding fabrication requirements.",
+    image: "/images/products/Special Die.avif",
+    primaryCTA: {
+      text: "View Products",
+      href: "/products",
+    },
+    secondaryCTA: {
+      text: "Request a Quote",
+      href: "/contact",
+    },
   },
   {
     id: 18,
-    name: "Sheet Metal Bending Tool",
-    category: "Press Tools",
-    description: "Robust general-purpose bending tooling designed for accurate angle formation in diverse industrial applications.",
-    image: "/images/products/18.avif",
-    href: "/products",
+    title: "Dependable Performance",
+    highlight: "Stock Semi Gooseneck Punch",
+    description:
+      "Versatile semi-gooseneck tooling designed for reliable bending performance, consistent accuracy, and practical forming applications.",
+    image: "/images/products/Stock Semi Gooseneck Punch.avif",
+    primaryCTA: {
+      text: "Explore Tooling",
+      href: "/products",
+    },
+    secondaryCTA: {
+      text: "Contact Us",
+      href: "/contact",
+    },
   },
   {
     id: 19,
-    name: "Press Brake Tools",
-    category: "Press Brake Tools",
-    description: "Complete line of industrial press brake tooling manufactured to tight tolerances for maximum reliability.",
-    image: "/images/products/19.avif",
-    href: "/products",
+    title: "Precision Engineered",
+    highlight: "Straight Punch – 6mm",
+    description:
+      "Precision-machined 6mm straight punches designed for accurate sheet metal bending and consistent industrial forming performance.",
+    image: "/images/products/Straight Punch - 6mm (Front View).avif",
+    primaryCTA: {
+      text: "View Products",
+      href: "/products",
+    },
+    secondaryCTA: {
+      text: "Enquire Now",
+      href: "/contact",
+    },
   },
   {
     id: 20,
-    name: "Rolla V-Dies CNC Press Brakes",
-    category: "Press Brake Tool",
-    description: "Advanced Rolla V-dies for CNC press brakes ensuring scratch-free bending on sensitive and pre-painted sheets.",
-    image: "/images/products/20.avif",
-    href: "/products",
+    title: "Reliable Bending",
+    highlight: "Straight Punch – 6mm",
+    description:
+      "High-quality straight punch tooling developed for dependable bending accuracy, durable operation, and precision fabrication.",
+    image: "/images/products/Straight Punch - 6mm SideView).avif",
+    primaryCTA: {
+      text: "Explore Products",
+      href: "/products",
+    },
+    secondaryCTA: {
+      text: "Request a Quote",
+      href: "/contact",
+    },
   },
   {
     id: 21,
-    name: "Metal Shearing Blades",
-    category: "Shear Blade",
-    description: "Heavy-duty industrial shearing blades offering superior wear resistance and burr-free clean cuts.",
-    image: "/images/products/21.avif",
-    href: "/products",
+    title: "High Productivity",
+    highlight: "Turret Punches",
+    description:
+      "Precision turret punching tools engineered for accurate sheet metal punching, consistent hole quality, and efficient production.",
+    image: "/images/products/Turret Punches.avif",
+    primaryCTA: {
+      text: "View Products",
+      href: "/products",
+    },
+    secondaryCTA: {
+      text: "Contact Us",
+      href: "/contact",
+    },
   },
   {
     id: 22,
-    name: "CNC Turret Punch Press",
-    category: "Turret Punch Press",
-    description: "High-performance CNC turret punch press tooling and machinery components for automated fabrication.",
-    image: "/images/products/22.avif",
-    href: "/products",
+    title: "Adjustable Precision",
+    highlight: "Variable V Type Inserts",
+    description:
+      "Versatile V-type inserts developed to support adjustable bending configurations, precision forming, and flexible tooling applications.",
+    image: "/images/products/Variable V Type Inserts.avif",
+    primaryCTA: {
+      text: "Explore Products",
+      href: "/products",
+    },
+    secondaryCTA: {
+      text: "Request a Quote",
+      href: "/contact",
+    },
   },
 ];
 
 export default function ProductsCarousel() {
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
 
-  // Auto-scroll effect
+  const nextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  }, []);
+
+  const prevSlide = useCallback(() => {
+    setCurrentSlide(
+      (prev) => (prev - 1 + slides.length) % slides.length
+    );
+  }, []);
+
+  const goToSlide = useCallback((index: number) => {
+    setCurrentSlide(index);
+  }, []);
+
   useEffect(() => {
     if (isPaused) return;
-    const interval = setInterval(() => {
-      if (scrollRef.current) {
-        const { scrollLeft: currentScrollLeft, scrollWidth, clientWidth } = scrollRef.current;
-        // If reached the end, loop back to start, else scroll right by 320px
-        if (currentScrollLeft + clientWidth >= scrollWidth - 10) {
-          scrollRef.current.scrollTo({ left: 0, behavior: "smooth" });
-        } else {
-          scrollRef.current.scrollBy({ left: 320, behavior: "smooth" });
-        }
-      }
-    }, 4000);
-    return () => clearInterval(interval);
+
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 6000);
+
+    return () => clearInterval(timer);
   }, [isPaused]);
 
-  const handleScrollLeft = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: -320, behavior: "smooth" });
-    }
-  };
-
-  const handleScrollRight = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: 320, behavior: "smooth" });
-    }
-  };
-
   return (
-    <div className="relative w-full">
-      {/* Carousel Controls */}
-      <div className="flex items-center justify-between mb-8">
-        <div>
-          <span className="text-amber-500 font-semibold text-sm uppercase tracking-wider">Catalog Preview</span>
-          <h2 className="text-3xl font-bold font-heading text-white tracking-tight">Explore Our Precision Range</h2>
-        </div>
-        <div className="hidden sm:flex space-x-3">
-          <button
-            onClick={handleScrollLeft}
-            aria-label="Scroll left"
-            className="p-3 rounded-full bg-slate-900 border border-slate-700 hover:bg-amber-500 hover:text-slate-950 text-white transition-colors"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          <button
-            onClick={handleScrollRight}
-            aria-label="Scroll right"
-            className="p-3 rounded-full bg-slate-900 border border-slate-700 hover:bg-amber-500 hover:text-slate-950 text-white transition-colors"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </div>
-      </div>
-
-      {/* Sliding Track */}
+    <section
+      className="relative overflow-hidden border-b border-slate-800 bg-slate-950 text-white"
+      aria-label="Autozone Tooling Product Showcase"
+      aria-roledescription="carousel"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onFocusCapture={() => setIsPaused(true)}
+      onBlurCapture={(event) => {
+        if (
+          !event.currentTarget.contains(
+            event.relatedTarget as Node | null
+          )
+        ) {
+          setIsPaused(false);
+        }
+      }}
+    >
+      {/* DECORATIVE BACKGROUND */}
       <div
-        ref={scrollRef}
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-        className="flex gap-6 overflow-x-auto pb-6 scrollbar-none snap-x snap-mandatory focus:outline-none"
-        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+        className="pointer-events-none absolute inset-0"
+        aria-hidden="true"
       >
-        {products.map((product) => (
-          <div
-            key={product.id}
-            className="flex-shrink-0 w-80 bg-slate-900 border border-slate-800 rounded-lg overflow-hidden group snap-start flex flex-col justify-between hover:border-amber-500/50 transition-all duration-300 shadow-xl"
-          >
-            {/* 1:1 Aspect Ratio Image Container */}
-            <div className="relative aspect-square w-full overflow-hidden bg-slate-950">
-              <Image
-                src={product.image}
-                alt={product.name}
-                fill
-                className="object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute top-3 left-3 bg-slate-950/80 backdrop-blur-sm text-amber-400 text-xs font-semibold px-2.5 py-1 rounded border border-slate-700">
-                {product.category}
-              </div>
-            </div>
-            <div className="p-6 flex flex-col flex-grow justify-between space-y-4">
-              <div>
-                <h3 className="text-xl font-bold font-heading text-white group-hover:text-amber-400 transition-colors line-clamp-1">
-                  {product.name}
-                </h3>
-                <p className="text-slate-400 text-sm mt-2 line-clamp-2">
-                  {product.description}
-                </p>
-              </div>
-              <Link
-                href={product.href}
-                className="inline-flex items-center text-sm font-semibold text-amber-500 hover:text-amber-400 transition-colors"
-              >
-                View Specifications
-                <svg className="w-4 h-4 ml-1 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
-            </div>
-          </div>
-        ))}
+        <div className="absolute -left-40 top-0 h-96 w-96 rounded-full bg-amber-500/5 blur-3xl" />
+
+        <div className="absolute -right-40 bottom-0 h-96 w-96 rounded-full bg-slate-700/20 blur-3xl" />
+
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-950 to-slate-900" />
       </div>
 
-      {/* Show More Products Button */}
-      <div className="text-center mt-10">
-        <Link
-          href="/products"
-          className="inline-flex items-center justify-center bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold px-8 py-3.5 rounded-md shadow-lg transition-colors text-base"
-        >
-          Show More Products
-          <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
-        </Link>
+      {/* MAIN CAROUSEL */}
+      <div className="relative mx-auto flex min-h-[680px] max-w-7xl items-center px-5 pb-24 pt-16 sm:px-8 lg:min-h-[650px] lg:px-12 lg:pb-20 lg:pt-16">
+        <div className="relative w-full">
+          {slides.map((slide, index) => {
+            const isActive = index === currentSlide;
+
+            return (
+              <div
+                key={slide.id}
+                aria-hidden={!isActive}
+                inert={!isActive}
+                className={`grid w-full grid-cols-1 items-center gap-10 transition-opacity duration-700 ease-in-out lg:grid-cols-2 lg:gap-14 ${
+                  isActive
+                    ? "relative z-10 opacity-100"
+                    : "pointer-events-none absolute inset-0 z-0 opacity-0"
+                }`}
+              >
+                {/* LEFT SIDE - TEXT CONTENT */}
+                <div className="order-1 space-y-6">
+                  {/* BRAND BADGE */}
+                  <div className="inline-flex items-center gap-3">
+                    <span className="h-px w-8 bg-amber-500" />
+
+                    <span className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-400 sm:text-sm">
+                      Autozone Tooling
+                    </span>
+                  </div>
+
+                  {/* HEADLINE */}
+                  <div className="space-y-4">
+                    <h1 className="font-display text-4xl font-bold leading-[1.12] tracking-tight text-white sm:text-5xl lg:text-6xl">
+                      {slide.title}
+
+                      <span className="mt-2 block text-amber-400">
+                        {slide.highlight}
+                      </span>
+                    </h1>
+
+                    <p className="max-w-xl text-sm leading-relaxed text-slate-300 sm:text-base lg:text-lg">
+                      {slide.description}
+                    </p>
+                  </div>
+
+                  {/* CTA BUTTONS */}
+                  <div className="flex flex-wrap gap-3 pt-3 sm:gap-4">
+                    <Link
+                      href={slide.primaryCTA.href}
+                      tabIndex={isActive ? 0 : -1}
+                      className="inline-flex items-center justify-center gap-2 rounded-md bg-amber-500 px-6 py-3.5 text-sm font-semibold text-slate-950 shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-amber-400 sm:text-base"
+                    >
+                      {slide.primaryCTA.text}
+
+                      <svg
+                        className="h-4 w-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M5 12h14m-6-6 6 6-6 6"
+                        />
+                      </svg>
+                    </Link>
+
+                    <Link
+                      href={slide.secondaryCTA.href}
+                      tabIndex={isActive ? 0 : -1}
+                      className="inline-flex items-center justify-center rounded-md border border-slate-600 bg-slate-800/70 px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:border-amber-500 hover:bg-slate-800 sm:text-base"
+                    >
+                      {slide.secondaryCTA.text}
+                    </Link>
+                  </div>
+
+                  {/* PRODUCT COUNTER */}
+                  <div className="flex items-center gap-4 pt-5">
+                    <span className="font-display text-2xl font-bold text-amber-400">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+
+                    <span className="h-px w-10 bg-slate-600" />
+
+                    <span className="text-sm font-medium tracking-wider text-slate-500">
+                      {String(slides.length).padStart(2, "0")}
+                    </span>
+
+                    <span className="ml-2 text-xs font-semibold uppercase tracking-widest text-slate-500">
+                      Product Showcase
+                    </span>
+                  </div>
+                </div>
+
+                {/* RIGHT SIDE - PRODUCT IMAGE */}
+                <div className="relative order-2 w-full">
+                  {/* SOFT BACKGROUND GLOW */}
+                  <div
+                    className="pointer-events-none absolute -inset-5 rounded-3xl bg-amber-500/5 blur-2xl"
+                    aria-hidden="true"
+                  />
+
+                  {/* PRODUCT IMAGE CONTAINER */}
+                  <div className="group relative overflow-hidden rounded-2xl border border-slate-700 bg-[#f1f3f5] shadow-2xl">
+                    <div className="relative aspect-[4/3] w-full sm:aspect-square lg:aspect-[5/4]">
+                      <Image
+                        src={slide.image}
+                        alt={slide.highlight}
+                        fill
+                        priority={index === 0}
+                        loading={index === 0 ? undefined : "lazy"}
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        className="object-contain p-5 transition-transform duration-700 group-hover:scale-105 sm:p-8"
+                      />
+                    </div>
+
+                    {/* PRODUCT LABEL */}
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950 via-slate-950/90 to-transparent px-5 pb-5 pt-16 sm:px-7 sm:pb-7">
+                      <span className="mb-2 block text-[10px] font-semibold uppercase tracking-[0.2em] text-amber-400 sm:text-xs">
+                        Precision Industrial Tooling
+                      </span>
+
+                      <h2 className="font-display text-lg font-bold text-white sm:text-2xl">
+                        {slide.highlight}
+                      </h2>
+                    </div>
+
+                    {/* IMAGE TOP LABEL */}
+                    <div className="absolute left-4 top-4 rounded-md border border-slate-200 bg-white/90 px-3 py-2 shadow-sm backdrop-blur-sm sm:left-6 sm:top-6">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-slate-800 sm:text-xs">
+                        Autozone Tooling
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* FLOATING FEATURE TAG */}
+                  <div className="absolute -bottom-4 right-4 flex items-center gap-3 rounded-xl border border-slate-700 bg-slate-900 px-4 py-3 shadow-xl sm:right-8">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber-500/10 text-amber-400">
+                      <svg
+                        className="h-5 w-5"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                        />
+                      </svg>
+                    </div>
+
+                    <div>
+                      <p className="text-xs font-bold text-white">
+                        Precision Engineered
+                      </p>
+
+                      <p className="text-[10px] text-slate-400">
+                        Industrial Tooling Solutions
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
-    </div>
+
+      {/* CAROUSEL CONTROLS */}
+      <div className="absolute bottom-6 left-0 right-0 z-20 sm:bottom-8">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 sm:px-8 lg:px-12">
+          {/* SLIDE INDICATORS */}
+          <div className="flex max-w-[70%] flex-wrap items-center gap-1.5 sm:gap-2">
+            {slides.map((slide, index) => (
+              <button
+                key={slide.id}
+                type="button"
+                onClick={() => goToSlide(index)}
+                aria-label={`Go to slide ${index + 1}: ${slide.highlight}`}
+                aria-current={
+                  index === currentSlide ? "true" : undefined
+                }
+                title={slide.highlight}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  index === currentSlide
+                    ? "w-7 bg-amber-500"
+                    : "w-2 bg-slate-600 hover:bg-slate-400"
+                }`}
+              />
+            ))}
+          </div>
+
+          {/* PREVIOUS AND NEXT BUTTONS */}
+          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+            <button
+              type="button"
+              onClick={prevSlide}
+              aria-label="Previous slide"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-700 bg-slate-900 text-white transition-all duration-300 hover:border-amber-500 hover:bg-amber-500 hover:text-slate-950 sm:h-12 sm:w-12"
+            >
+              <svg
+                className="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+            </button>
+
+            <button
+              type="button"
+              onClick={nextSlide}
+              aria-label="Next slide"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-slate-700 bg-slate-900 text-white transition-all duration-300 hover:border-amber-500 hover:bg-amber-500 hover:text-slate-950 sm:h-12 sm:w-12"
+            >
+              <svg
+                className="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* BOTTOM ACCENT */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-amber-500/50 to-transparent"
+        aria-hidden="true"
+      />
+    </section>
   );
 }

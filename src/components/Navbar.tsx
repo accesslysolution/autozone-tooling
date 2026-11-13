@@ -6,7 +6,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
-
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "Products", href: "/products" },
@@ -15,6 +14,32 @@ const navLinks = [
   { name: "Contact Us", href: "/contact" },
 ];
 
+const productCategories = [
+  {
+    name: "Press Brake Punches",
+    href: "/products#punches",
+  },
+  {
+    name: "Press Brake Dies",
+    href: "/products#dies",
+  },
+  {
+    name: "Hemming & Specialized Forming Tools",
+    href: "/products#forming",
+  },
+  {
+    name: "Tool Holders & Machine Accessories",
+    href: "/products#accessories",
+  },
+  {
+    name: "Industrial Shearing Blades",
+    href: "/products#blades",
+  },
+  {
+    name: "Turret Punching & Precision Inserts",
+    href: "/products#turret",
+  },
+];
 
 const company = {
   name: "Autozone Tooling",
@@ -30,6 +55,8 @@ const company = {
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] =
+    useState(false);
 
   const pathname = usePathname();
 
@@ -50,30 +77,42 @@ export default function Navbar() {
     };
   }, []);
 
-  // Close mobile menu when route changes
+  // Close mobile navigation when route changes
   useEffect(() => {
     setMobileMenuOpen(false);
+    setMobileProductsOpen(false);
   }, [pathname]);
+
+  const closeMobileMenu = () => {
+    setMobileMenuOpen(false);
+    setMobileProductsOpen(false);
+  };
+
+  const isActiveLink = (href: string) => {
+    return href === "/"
+      ? pathname === "/"
+      : pathname === href ||
+          pathname.startsWith(`${href}/`);
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full font-sans">
+      {/* ==========================================
+          TOP UTILITY BAR
+      ========================================== */}
 
-      {/* Top Utility Bar */}
-      <div className="bg-slate-950 text-slate-300 text-xs sm:text-sm border-b border-slate-800">
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 min-h-10 py-2 flex items-center justify-between gap-4">
-
+      <div className="border-b border-slate-800 bg-slate-950 text-xs text-slate-300 sm:text-sm">
+        <div className="mx-auto flex min-h-10 max-w-7xl items-center justify-between gap-4 px-4 py-2 sm:px-6 lg:px-8">
           {/* Left: Contact Information */}
           <div className="flex items-center gap-4 lg:gap-6">
-
             {/* Primary Phone */}
             <a
               href={`tel:${company.phoneLink1}`}
-              className="flex items-center gap-2 hover:text-amber-400 transition-colors whitespace-nowrap"
+              className="flex items-center gap-2 whitespace-nowrap transition-colors hover:text-amber-400"
               aria-label={`Call ${company.phone1}`}
             >
               <svg
-                className="w-4 h-4 text-amber-500 flex-shrink-0"
+                className="h-4 w-4 shrink-0 text-amber-500"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -87,7 +126,7 @@ export default function Navbar() {
                 />
               </svg>
 
-              <span className="hidden sm:inline text-slate-400">
+              <span className="hidden text-slate-400 sm:inline">
                 Call:
               </span>
 
@@ -97,7 +136,7 @@ export default function Navbar() {
             {/* Secondary Phone */}
             <a
               href={`tel:${company.phoneLink2}`}
-              className="hidden lg:flex items-center gap-2 hover:text-amber-400 transition-colors whitespace-nowrap"
+              className="hidden items-center gap-2 whitespace-nowrap transition-colors hover:text-amber-400 lg:flex"
               aria-label={`Call ${company.phone2}`}
             >
               <span className="text-slate-600">|</span>
@@ -107,10 +146,10 @@ export default function Navbar() {
             {/* Email */}
             <a
               href={`mailto:${company.email}`}
-              className="hidden xl:flex items-center gap-2 hover:text-amber-400 transition-colors"
+              className="hidden items-center gap-2 transition-colors hover:text-amber-400 xl:flex"
             >
               <svg
-                className="w-4 h-4 text-amber-500 flex-shrink-0"
+                className="h-4 w-4 shrink-0 text-amber-500"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -126,17 +165,14 @@ export default function Navbar() {
 
               <span>{company.email}</span>
             </a>
-
           </div>
 
           {/* Right: Location & WhatsApp */}
           <div className="flex items-center gap-4">
-
             {/* Location */}
-            <div className="hidden md:flex items-center gap-2 text-slate-400 font-medium whitespace-nowrap">
-
+            <div className="hidden items-center gap-2 whitespace-nowrap font-medium text-slate-400 md:flex">
               <svg
-                className="w-4 h-4 text-amber-500"
+                className="h-4 w-4 text-amber-500"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -165,10 +201,10 @@ export default function Navbar() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Contact Autozone Tooling on WhatsApp"
-              className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors font-medium whitespace-nowrap"
+              className="inline-flex items-center gap-2 whitespace-nowrap font-medium text-emerald-400 transition-colors hover:text-emerald-300"
             >
               <svg
-                className="w-4 h-4"
+                className="h-4 w-4"
                 viewBox="0 0 24 24"
                 fill="currentColor"
                 aria-hidden="true"
@@ -180,29 +216,30 @@ export default function Navbar() {
                 WhatsApp
               </span>
             </a>
-
           </div>
         </div>
       </div>
 
-      {/* Main Navbar */}
+      {/* ==========================================
+          MAIN NAVBAR
+      ========================================== */}
+
       <nav
+        aria-label="Main navigation"
         className={`relative transition-all duration-300 ${
           isScrolled
-            ? "bg-slate-900/95 backdrop-blur-md shadow-xl border-b border-slate-800 py-3"
-            : "bg-slate-900 border-b border-slate-800/80 py-4"
+            ? "border-b border-slate-800 bg-slate-900/95 py-3 shadow-xl backdrop-blur-md"
+            : "border-b border-slate-800/80 bg-slate-900 py-4"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
-
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
           {/* Brand Logo */}
           <Link
             href="/"
-            onClick={() => setMobileMenuOpen(false)}
-            className="inline-flex items-center gap-3 group min-w-0"
+            onClick={closeMobileMenu}
+            className="group inline-flex min-w-0 items-center gap-3"
           >
-            <div className="relative w-11 h-11 sm:w-12 sm:h-12 flex-shrink-0 flex items-center justify-center">
-
+            <div className="relative flex h-11 w-11 shrink-0 items-center justify-center sm:h-12 sm:w-12">
               <Image
                 src="/images/logo.png"
                 alt="Autozone Tooling Logo"
@@ -211,80 +248,187 @@ export default function Navbar() {
                 className="object-contain"
                 priority
               />
-
             </div>
 
-            <div className="flex flex-col min-w-0">
-
-              <span className="text-white font-heading font-bold text-lg sm:text-xl tracking-wide uppercase leading-tight group-hover:text-amber-400 transition-colors">
+            <div className="flex min-w-0 flex-col">
+              <span className="font-heading text-lg font-bold uppercase leading-tight tracking-wide text-white transition-colors group-hover:text-amber-400 sm:text-xl">
                 AUTOZONE
               </span>
 
-              <span className="text-amber-400 text-[10px] sm:text-xs tracking-[0.2em] font-semibold uppercase leading-tight mt-1">
+              <span className="mt-1 text-[10px] font-semibold uppercase leading-tight tracking-[0.2em] text-amber-400 sm:text-xs">
                 TOOLING
               </span>
-
             </div>
           </Link>
 
-          {/* Desktop Navigation Links */}
-          <div className="hidden lg:flex items-center gap-8">
+          {/* ==========================================
+              DESKTOP NAVIGATION
+          ========================================== */}
 
+          <div className="hidden items-center gap-8 lg:flex">
             {navLinks.map((link) => {
-              const isActive =
-                link.href === "/"
-                  ? pathname === "/"
-                  : pathname === link.href ||
-                    pathname.startsWith(`${link.href}/`);
+              const isActive = isActiveLink(link.href);
 
+              // Products Dropdown
+              if (link.name === "Products") {
+                return (
+                  <div
+                    key={link.name}
+                    className="group relative flex items-center"
+                  >
+                    <Link
+                      href="/products"
+                      aria-current={
+                        isActive ? "page" : undefined
+                      }
+                      className={`relative flex items-center gap-2 py-3 text-sm font-medium tracking-wide transition-colors ${
+                        isActive
+                          ? "font-semibold text-amber-400"
+                          : "text-slate-300 hover:text-white"
+                      }`}
+                    >
+                      Products
+
+                      <svg
+                        className="h-4 w-4 transition-transform duration-200 group-hover:rotate-180 group-focus-within:rotate-180"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M6 9l6 6 6-6"
+                        />
+                      </svg>
+
+                      {isActive && (
+                        <span className="absolute bottom-1 left-0 h-0.5 w-full rounded-full bg-amber-500" />
+                      )}
+                    </Link>
+
+                    {/* Products Dropdown Panel */}
+                    <div className="invisible absolute left-1/2 top-full z-50 w-[370px] -translate-x-1/2 translate-y-2 rounded-xl border border-slate-700 bg-slate-900 p-3 opacity-0 shadow-2xl transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+                      {/* Dropdown Header */}
+                      <div className="border-b border-slate-800 px-3 pb-3 pt-2">
+                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-400">
+                          Product Categories
+                        </p>
+
+                        <p className="mt-1 text-xs text-slate-400">
+                          Explore our precision tooling range
+                        </p>
+                      </div>
+
+                      {/* Category Links */}
+                      <div className="space-y-1 py-2">
+                        {productCategories.map(
+                          (category, index) => (
+                            <Link
+                              key={category.href}
+                              href={category.href}
+                              className="group/item flex items-center gap-3 rounded-lg px-3 py-3 transition-colors hover:bg-slate-800 focus-visible:bg-slate-800 focus-visible:outline-none"
+                            >
+                              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-amber-500/10 text-xs font-bold text-amber-400">
+                                {String(index + 1).padStart(
+                                  2,
+                                  "0"
+                                )}
+                              </span>
+
+                              <span className="flex-1 text-sm font-medium leading-snug text-slate-200 transition-colors group-hover/item:text-amber-400">
+                                {category.name}
+                              </span>
+
+                              <svg
+                                className="h-4 w-4 shrink-0 text-slate-500 transition-all group-hover/item:translate-x-1 group-hover/item:text-amber-400"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                                aria-hidden="true"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M9 5l7 7-7 7"
+                                />
+                              </svg>
+                            </Link>
+                          )
+                        )}
+                      </div>
+
+                      {/* View All Products */}
+                      <div className="border-t border-slate-800 pt-2">
+                        <Link
+                          href="/products"
+                          className="flex items-center justify-center rounded-lg bg-amber-500 px-4 py-3 text-sm font-bold text-slate-950 transition-colors hover:bg-amber-400"
+                        >
+                          View All Products
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+
+              // Other Navigation Links
               return (
                 <Link
                   key={link.name}
                   href={link.href}
-                  aria-current={isActive ? "page" : undefined}
-                  className={`text-sm font-medium tracking-wide transition-colors relative py-1 ${
+                  aria-current={
+                    isActive ? "page" : undefined
+                  }
+                  className={`relative py-1 text-sm font-medium tracking-wide transition-colors ${
                     isActive
-                      ? "text-amber-400 font-semibold"
+                      ? "font-semibold text-amber-400"
                       : "text-slate-300 hover:text-white"
                   }`}
                 >
                   {link.name}
 
                   {isActive && (
-                    <span className="absolute bottom-0 left-0 w-full h-0.5 bg-amber-500 rounded-full" />
+                    <span className="absolute bottom-0 left-0 h-0.5 w-full rounded-full bg-amber-500" />
                   )}
-
                 </Link>
               );
             })}
-
           </div>
 
           {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center gap-4">
-
+          <div className="hidden items-center gap-4 lg:flex">
             <Link
               href="/contact"
-              className="bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold text-sm px-5 py-2.5 rounded shadow-lg transition-all duration-200 transform hover:-translate-y-0.5"
+              className="transform rounded bg-amber-500 px-5 py-2.5 text-sm font-semibold text-slate-950 shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:bg-amber-400"
             >
               Request a Quote
             </Link>
-
           </div>
 
-          {/* Mobile Menu Toggle */}
+          {/* ==========================================
+              MOBILE MENU TOGGLE
+          ========================================== */}
+
           <button
             type="button"
-            onClick={() => setMobileMenuOpen((prev) => !prev)}
+            onClick={() =>
+              setMobileMenuOpen((prev) => !prev)
+            }
             aria-label={
-              mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"
+              mobileMenuOpen
+                ? "Close navigation menu"
+                : "Open navigation menu"
             }
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-navigation"
-            className="lg:hidden text-slate-300 hover:text-white p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-amber-500"
+            className="rounded-md p-2 text-slate-300 hover:text-white focus:outline-none focus:ring-2 focus:ring-amber-500 lg:hidden"
           >
             <svg
-              className="w-6 h-6"
+              className="h-6 w-6"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -307,33 +451,116 @@ export default function Navbar() {
               )}
             </svg>
           </button>
-
         </div>
 
-        {/* Mobile Navigation Menu */}
+        {/* ==========================================
+            MOBILE NAVIGATION MENU
+        ========================================== */}
+
         {mobileMenuOpen && (
           <div
             id="mobile-navigation"
-            className="lg:hidden absolute top-full left-0 w-full bg-slate-900 border-b border-slate-800 shadow-2xl py-6 px-6 space-y-4 animate-in slide-in-from-top duration-200"
+            className="absolute left-0 top-full max-h-[calc(100dvh-110px)] w-full space-y-4 overflow-y-auto border-b border-slate-800 bg-slate-900 px-6 py-6 shadow-2xl lg:hidden"
           >
-
             {/* Navigation Links */}
             {navLinks.map((link) => {
-              const isActive =
-                link.href === "/"
-                  ? pathname === "/"
-                  : pathname === link.href ||
-                    pathname.startsWith(`${link.href}/`);
+              const isActive = isActiveLink(link.href);
 
+              // Mobile Products Accordion
+              if (link.name === "Products") {
+                return (
+                  <div
+                    key={link.name}
+                    className="space-y-2"
+                  >
+                    <div
+                      className={`flex items-center rounded-lg ${
+                        isActive
+                          ? "bg-amber-500/10 text-amber-400"
+                          : "text-slate-300"
+                      }`}
+                    >
+                      <Link
+                        href="/products"
+                        onClick={closeMobileMenu}
+                        className="flex-1 px-3 py-3 text-base font-medium"
+                      >
+                        Products
+                      </Link>
+
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setMobileProductsOpen(
+                            (prev) => !prev
+                          )
+                        }
+                        aria-expanded={mobileProductsOpen}
+                        aria-controls="mobile-product-categories"
+                        aria-label={
+                          mobileProductsOpen
+                            ? "Collapse product categories"
+                            : "Expand product categories"
+                        }
+                        className="flex h-11 w-12 items-center justify-center rounded-r-lg transition-colors hover:bg-slate-800"
+                      >
+                        <svg
+                          className={`h-5 w-5 transition-transform duration-200 ${
+                            mobileProductsOpen
+                              ? "rotate-180"
+                              : ""
+                          }`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M6 9l6 6 6-6"
+                          />
+                        </svg>
+                      </button>
+                    </div>
+
+                    {/* Mobile Category Submenu */}
+                    {mobileProductsOpen && (
+                      <div
+                        id="mobile-product-categories"
+                        className="ml-3 space-y-1 border-l-2 border-amber-500/40 pl-3"
+                      >
+                        {productCategories.map(
+                          (category) => (
+                            <Link
+                              key={category.href}
+                              href={category.href}
+                              onClick={closeMobileMenu}
+                              className="block rounded-md px-3 py-2.5 text-sm leading-snug text-slate-400 transition-colors hover:bg-slate-800 hover:text-amber-400"
+                            >
+                              {category.name}
+                            </Link>
+                          )
+                        )}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
+              // Other Mobile Navigation Links
               return (
                 <Link
                   key={link.name}
                   href={link.href}
-                  aria-current={isActive ? "page" : undefined}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={`block text-base font-medium py-2 px-3 rounded transition-colors ${
+                  aria-current={
+                    isActive ? "page" : undefined
+                  }
+                  onClick={closeMobileMenu}
+                  className={`block rounded px-3 py-2 text-base font-medium transition-colors ${
                     isActive
-                      ? "bg-amber-500/10 text-amber-400 font-semibold"
+                      ? "bg-amber-500/10 font-semibold text-amber-400"
                       : "text-slate-300 hover:bg-slate-800 hover:text-white"
                   }`}
                 >
@@ -342,67 +569,69 @@ export default function Navbar() {
               );
             })}
 
-            {/* Mobile Contact Details */}
-            <div className="pt-4 border-t border-slate-800 space-y-4">
+            {/* ==========================================
+                MOBILE CONTACT DETAILS
+            ========================================== */}
 
-              <p className="text-xs text-slate-500 uppercase tracking-wider font-semibold">
+            <div className="space-y-4 border-t border-slate-800 pt-4">
+              <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">
                 Contact Autozone Tooling
               </p>
 
               <div className="space-y-3">
-
+                {/* Contact 1 */}
                 <div>
-                  <p className="text-xs text-amber-400 font-medium mb-1">
+                  <p className="mb-1 text-xs font-medium text-amber-400">
                     Mr. Santosh Hodage
                   </p>
 
                   <a
                     href={`tel:${company.phoneLink1}`}
-                    className="text-sm text-slate-300 hover:text-amber-400 transition-colors"
+                    className="text-sm text-slate-300 transition-colors hover:text-amber-400"
                   >
                     {company.phone1}
                   </a>
                 </div>
 
+                {/* Contact 2 */}
                 <div>
-                  <p className="text-xs text-amber-400 font-medium mb-1">
+                  <p className="mb-1 text-xs font-medium text-amber-400">
                     Mr. Baswaraj Hodage
                   </p>
 
                   <a
                     href={`tel:${company.phoneLink2}`}
-                    className="text-sm text-slate-300 hover:text-amber-400 transition-colors"
+                    className="text-sm text-slate-300 transition-colors hover:text-amber-400"
                   >
                     {company.phone2}
                   </a>
                 </div>
 
+                {/* Email */}
                 <a
                   href={`mailto:${company.email}`}
-                  className="block text-sm text-slate-300 hover:text-amber-400 transition-colors break-all"
+                  className="block break-all text-sm text-slate-300 transition-colors hover:text-amber-400"
                 >
                   {company.email}
                 </a>
 
+                {/* Location */}
                 <p className="text-xs text-slate-500">
                   Sector 07, Bhosari MIDC, Pune - 411026
                 </p>
-
               </div>
 
               {/* Mobile CTA */}
               <Link
                 href="/contact"
-                onClick={() => setMobileMenuOpen(false)}
-                className="block w-full text-center bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold py-3 rounded shadow transition-colors"
+                onClick={closeMobileMenu}
+                className="block w-full rounded bg-amber-500 py-3 text-center font-semibold text-slate-950 shadow transition-colors hover:bg-amber-400"
               >
                 Request a Quote
               </Link>
-
             </div>
           </div>
         )}
-
       </nav>
     </header>
   );
