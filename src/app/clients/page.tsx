@@ -20,59 +20,93 @@ export const metadata: Metadata = {
 const clients = [
   {
     name: "ADH Machine Tool",
-    image: "/clients/ADH Machine Tool Logo.png",
+    image: "/clients/ADH Machine Tool Logo.avif",
   },
   {
     name: "Sumeco Group of Companies",
-    image: "/clients/Sumeco Group Corporate Logo.png",
+    image: "/clients/Sumeco Group Corporate Logo.avif",
   },
   {
     name: "DC&T",
-    image: "/clients/DC&T Belo India Company Logo.png",
+    image: "/clients/DC&T Belo India Company Logo.avif",
   },
   {
     name: "PSR Toolings and Stampings Pvt. Ltd.",
-    image: "/clients/PSR Toolings and Stampings Logo.png",
+    image: "/clients/PSR Toolings and Stampings Logo.avif",
   },
   {
     name: "Rajesh Global",
-    image: "/clients/Rajesh Global Logo with Orange RG Icon.png",
+    image: "/clients/Rajesh Global Logo with Orange RG Icon.avif",
   },
   {
     name: "PAA",
-    image: "/clients/PAA Logo with Rising Blue Dots.png",
+    image: "/clients/PAA Logo with Rising Blue Dots.avif",
   },
   {
     name: "Dynamic",
-    image: "/clients/Dynamic Working Smarter Logo.png",
+    image: "/clients/Dynamic Working Smarter Logo.avif",
   },
   {
     name: "RSB",
-    image: "/clients/RSB Globe and House Logo.png",
+    image: "/clients/RSB Globe and House Logo.avif",
   },
   {
     name: "Finepac Structures",
-    image: "/clients/Finepac Structures Logo on White.png",
+    image: "/clients/Finepac Structures Logo on White.avif",
   },
   {
     name: "Sawant Group",
-    image: "/clients/Sawant Group Geometric Logo.png",
+    image: "/clients/Sawant Group Geometric Logo.avif",
   },
   {
     name: "Glatt",
-    image: "/clients/Glatt Logo with Red Swirl.png",
+    image: "/clients/Glatt Logo with Red Swirl.avif",
   },
   {
     name: "S&T Engineers",
-    image: "/clients/S&T Engineers Globe Logo.png",
+    image: "/clients/S&T Engineers Globe Logo.avif",
   },
   {
     name: "TRUMPF",
-    image: "/clients/TRUMPF Logo with Blue Square.png",
+    image: "/clients/TRUMPF Logo with Blue Square.avif",
   },
   {
     name: "Benninger",
-    image: "/clients/Benninger Blue and Orange Logo.png",
+    image: "/clients/Benninger Blue and Orange Logo.avif",
+  },
+
+  // Newly Added Clients
+  {
+    name: "AURA Signal",
+    image: "/clients/AURA Signal.avif",
+  },
+  {
+    name: "SAAKSHI",
+    image: "/clients/SAAKSHI.avif",
+  },
+  {
+    name: "KOTECH Infra Pvt. Ltd.",
+    image: "/clients/KOTECH.avif",
+  },
+  {
+    name: "KPEL Transformers",
+    image: "/clients/KPEL Transformers.avif",
+  },
+  {
+    name: "LeanFabLaser Engineering Pvt. Ltd.",
+    image: "/clients/LeanFabLaser.avif",
+  },
+  {
+    name: "PAI KANE GROUP",
+    image: "/clients/PAI KANE GROUP.avif",
+  },
+  {
+    name: "Proteck",
+    image: "/clients/Proteck.avif",
+  },
+  {
+    name: "Shree Refrigerations",
+    image: "/clients/Shree Refrigerations.avif",
   },
 ];
 
