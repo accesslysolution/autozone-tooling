@@ -1,0 +1,682 @@
+
+"use client";
+
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
+import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+/* ==========================================
+   NAVIGATION LINKS
+========================================== */
+
+const navLinks = [
+  { name: "Home", href: "/" },
+  { name: "Products", href: "/products" },
+  { name: "Clients", href: "/clients" },
+  { name: "About Us", href: "/about" },
+  { name: "Contact Us", href: "/contact" },
+];
+
+/* ==========================================
+   PRODUCT CATEGORIES
+
+   IDs match MobileProductsPage:
+   id={`mobile-${category.id}`}
+========================================== */
+
+const productCategories = [
+  {
+    name: "Press Brake Tool",
+    id: "press-brake-tool",
+  },
+  {
+    name: "Press Brake Punch",
+    id: "press-brake-punch",
+  },
+  {
+    name: "Press Brake Dies",
+    id: "press-brake-dies",
+  },
+  {
+    name: "Radius Tools Holder",
+    id: "radius-tools-holder",
+  },
+  {
+    name: "Radius Tools Insert",
+    id: "radius-tools-insert",
+  },
+  {
+    name: "Press Brake Hemming Tools",
+    id: "press-brake-hemming-tools",
+  },
+  {
+    name: "Self Centering 2V Die",
+    id: "self-centering-2v-die",
+  },
+  {
+    name: "Shear Blade",
+    id: "shear-blade",
+  },
+  {
+    name: "Joggle Tool & Insert",
+    id: "joggle-tool-insert",
+  },
+  {
+    name: "Amada Type Self Centering 1V Die",
+    id: "amada-self-centering-1v-die",
+  },
+  {
+    name: "Amada Type Self Centering 1V Die Holder",
+    id: "amada-self-centering-1v-die-holder",
+  },
+  {
+    name: "Single V Die",
+    id: "single-v-die",
+  },
+  {
+    name: "Multi V Die",
+    id: "multi-v-die",
+  },
+  {
+    name: "Special Application",
+    id: "special-application",
+  },
+];
+
+/* ==========================================
+   COMPANY INFORMATION
+========================================== */
+
+const company = {
+  name: "Autozone Tooling",
+  email: "autozone.tooling@gmail.com",
+  phone1: "+91 9011452458",
+  phone2: "+91 9922566974",
+  phoneLink1: "+919011452458",
+  phoneLink2: "+919922566974",
+  whatsapp: "919011452458",
+  location: "Bhosari MIDC, Pune",
+};
+
+/* ==========================================
+   MOBILE NAVBAR
+========================================== */
+
+export default function MobileNavbar() {
+  const pathname = usePathname();
+
+  const [mounted, setMounted] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  /* ==========================================
+     CLIENT MOUNT
+  ========================================== */
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  /* ==========================================
+     SCROLL EFFECT
+  ========================================== */
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 15);
+    };
+
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  /* ==========================================
+     CLOSE ON ROUTE CHANGE
+  ========================================== */
+
+  useEffect(() => {
+    setMenuOpen(false);
+    setProductsOpen(false);
+  }, [pathname]);
+
+  /* ==========================================
+     LOCK BACKGROUND SCROLL
+  ========================================== */
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [menuOpen]);
+
+  /* ==========================================
+     ESCAPE KEY
+  ========================================== */
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        setProductsOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [menuOpen]);
+
+  /* ==========================================
+     MENU HELPERS
+  ========================================== */
+
+  const closeMenu = () => {
+    setMenuOpen(false);
+    setProductsOpen(false);
+  };
+
+  const toggleMenu = () => {
+    setMenuOpen((previous) => !previous);
+  };
+
+  const isActiveLink = (href: string) => {
+    return href === "/"
+      ? pathname === "/"
+      : pathname === href ||
+          pathname.startsWith(`${href}/`);
+  };
+
+  const handleCategoryClick = (id: string) => {
+    closeMenu();
+
+    if (pathname !== "/products") return;
+
+    // The section already exists on this page.
+    // Close the drawer before scrolling to it.
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        const target = document.getElementById(
+          `mobile-${id}`
+        );
+
+        if (target) {
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      });
+    });
+  };
+
+  /* ==========================================
+     MOBILE DRAWER
+  ========================================== */
+
+  const mobileDrawer = (
+    <div className="fixed inset-0 z-[10000] md:hidden">
+      {/* BACKDROP */}
+      <button
+        type="button"
+        aria-label="Close navigation menu"
+        onClick={closeMenu}
+        className="absolute inset-0 bg-slate-950/75 backdrop-blur-sm"
+      />
+
+      {/* DRAWER */}
+      <nav
+        id="autozone-mobile-menu"
+        aria-label="Mobile navigation"
+        className="absolute inset-y-0 right-0 flex w-[min(88vw,380px)] flex-col overflow-hidden border-l border-slate-700 bg-slate-950 shadow-2xl"
+      >
+        {/* DRAWER HEADER */}
+        <div className="flex shrink-0 items-center justify-between border-b border-slate-800 px-5 py-5">
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-400">
+              Autozone Tooling
+            </p>
+
+            <h2 className="mt-1 font-heading text-xl font-bold text-white">
+              Navigation
+            </h2>
+          </div>
+
+          <button
+            type="button"
+            onClick={closeMenu}
+            aria-label="Close menu"
+            className="flex h-10 w-10 items-center justify-center rounded-lg border border-slate-700 bg-slate-900 text-white"
+          >
+            <svg
+              className="h-5 w-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+
+        {/* SCROLLABLE MENU */}
+        <div className="min-h-0 flex-1 space-y-2 overflow-y-auto overscroll-contain px-4 py-5">
+          {navLinks.map((link) => {
+            const isActive = isActiveLink(link.href);
+
+            if (link.name === "Products") {
+              return (
+                <div key={link.name}>
+                  <div
+                    className={`flex items-center rounded-xl border ${
+                      isActive
+                        ? "border-amber-500/30 bg-amber-500/10"
+                        : "border-transparent bg-slate-900"
+                    }`}
+                  >
+                    <Link
+                      href="/products"
+                      onClick={closeMenu}
+                      className={`flex-1 px-4 py-3.5 text-sm font-semibold ${
+                        isActive
+                          ? "text-amber-400"
+                          : "text-slate-200"
+                      }`}
+                    >
+                      Products
+                    </Link>
+
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setProductsOpen((previous) => !previous)
+                      }
+                      aria-expanded={productsOpen}
+                      aria-controls="mobile-product-list"
+                      aria-label="Toggle product categories"
+                      className="flex h-12 w-12 items-center justify-center border-l border-slate-700/50 text-slate-400"
+                    >
+                      <svg
+                        className={`h-4 w-4 transition-transform duration-300 ${
+                          productsOpen ? "rotate-180" : ""
+                        }`}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M6 9l6 6 6-6"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+
+                  {productsOpen && (
+                    <div
+                      id="mobile-product-list"
+                      className="mt-2 space-y-1 rounded-xl border border-slate-800 bg-slate-900/60 p-2"
+                    >
+                      <p className="px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-amber-400">
+                        Product Categories
+                      </p>
+
+                      {productCategories.map(
+                        (category, index) => (
+                          <Link
+                            key={category.id}
+                            href={`/products#mobile-${category.id}`}
+                            onClick={() =>
+                              handleCategoryClick(category.id)
+                            }
+                            className="flex items-center gap-3 rounded-lg px-3 py-3 transition-colors active:bg-slate-800"
+                          >
+                            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-amber-500/10 text-[10px] font-bold text-amber-400">
+                              {String(index + 1).padStart(
+                                2,
+                                "0"
+                              )}
+                            </span>
+
+                            <span className="flex-1 text-xs font-medium leading-relaxed text-slate-300">
+                              {category.name}
+                            </span>
+
+                            <svg
+                              className="h-3.5 w-3.5 shrink-0 text-slate-500"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                              aria-hidden="true"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M9 5l7 7-7 7"
+                              />
+                            </svg>
+                          </Link>
+                        )
+                      )}
+
+                      <Link
+                        href="/products"
+                        onClick={closeMenu}
+                        className="mt-2 block rounded-lg bg-amber-500 px-4 py-3 text-center text-xs font-bold text-slate-950"
+                      >
+                        View All Products
+                      </Link>
+                    </div>
+                  )}
+                </div>
+              );
+            }
+
+            return (
+              <Link
+                key={link.name}
+                href={link.href}
+                onClick={closeMenu}
+                aria-current={isActive ? "page" : undefined}
+                className={`flex items-center justify-between rounded-xl border px-4 py-3.5 text-sm font-semibold transition-colors ${
+                  isActive
+                    ? "border-amber-500/30 bg-amber-500/10 text-amber-400"
+                    : "border-transparent bg-slate-900 text-slate-200 active:bg-slate-800"
+                }`}
+              >
+                {link.name}
+
+                <svg
+                  className={`h-4 w-4 ${
+                    isActive
+                      ? "text-amber-400"
+                      : "text-slate-500"
+                  }`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 5l7 7-7 7"
+                  />
+                </svg>
+              </Link>
+            );
+          })}
+
+          {/* CONTACT DETAILS */}
+          <div className="mt-6 border-t border-slate-800 pt-6">
+            <p className="mb-4 px-1 text-[10px] font-bold uppercase tracking-[0.2em] text-amber-400">
+              Get in Touch
+            </p>
+
+            <div className="space-y-4 rounded-xl bg-slate-900 p-4">
+              <div>
+                <p className="text-xs text-slate-500">
+                  Mr. Santosh Hodage
+                </p>
+                <a
+                  href={`tel:${company.phoneLink1}`}
+                  className="mt-1 block text-sm font-medium text-white"
+                >
+                  {company.phone1}
+                </a>
+              </div>
+
+              <div>
+                <p className="text-xs text-slate-500">
+                  Mr. Baswaraj Hodage
+                </p>
+                <a
+                  href={`tel:${company.phoneLink2}`}
+                  className="mt-1 block text-sm font-medium text-white"
+                >
+                  {company.phone2}
+                </a>
+              </div>
+
+              <a
+                href={`mailto:${company.email}`}
+                className="block break-all text-xs text-slate-300"
+              >
+                {company.email}
+              </a>
+
+              <p className="text-xs text-slate-500">
+                {company.location}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* DRAWER FOOTER */}
+        <div className="shrink-0 border-t border-slate-800 bg-slate-950 p-4 pb-[max(16px,env(safe-area-inset-bottom))]">
+          <Link
+            href="/contact"
+            onClick={closeMenu}
+            className="flex min-h-12 items-center justify-center gap-2 rounded-lg bg-amber-500 px-4 py-3 text-sm font-bold text-slate-950 shadow-lg shadow-amber-500/10"
+          >
+            Request a Quote
+
+            <svg
+              className="h-4 w-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M5 12h14m-6-6 6 6-6 6"
+              />
+            </svg>
+          </Link>
+        </div>
+      </nav>
+    </div>
+  );
+
+  /* ==========================================
+     HEADER
+  ========================================== */
+
+  return (
+    <>
+      <header
+        className={`relative z-50 w-full bg-slate-950 font-sans transition-shadow duration-300 ${
+          isScrolled ? "shadow-xl" : ""
+        }`}
+      >
+        {/* TOP CONTACT STRIP */}
+        <div className="border-b border-white/10 bg-slate-900 px-4">
+          <div className="mx-auto flex h-9 max-w-lg items-center justify-between">
+            <a
+              href={`tel:${company.phoneLink1}`}
+              className="inline-flex items-center gap-2 text-[11px] font-medium text-slate-300"
+            >
+              <svg
+                className="h-3.5 w-3.5 text-amber-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                />
+              </svg>
+
+              {company.phone1}
+            </a>
+
+            <span className="inline-flex items-center gap-1.5 text-[10px] font-medium text-slate-400">
+              <svg
+                className="h-3.5 w-3.5 text-amber-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+              </svg>
+
+              Pune, India
+            </span>
+          </div>
+        </div>
+
+        {/* MAIN MOBILE HEADER */}
+        <div className="border-b border-white/10 px-4">
+          <div className="mx-auto flex h-[68px] max-w-lg items-center justify-between gap-3">
+            {/* LOGO */}
+            <Link
+              href="/"
+              onClick={closeMenu}
+              className="flex min-w-0 items-center gap-2.5"
+            >
+              <div className="relative h-11 w-11 shrink-0">
+                <Image
+                  src="/images/logo.png"
+                  alt="Autozone Tooling Logo"
+                  fill
+                  sizes="44px"
+                  className="object-contain"
+                  priority
+                />
+              </div>
+
+              <div className="flex flex-col">
+                <span className="font-heading text-[17px] font-extrabold leading-none tracking-wide text-white">
+                  AUTOZONE
+                </span>
+
+                <span className="mt-1.5 text-[10px] font-bold uppercase tracking-[0.24em] text-amber-400">
+                  TOOLING
+                </span>
+              </div>
+            </Link>
+
+            {/* HEADER ACTIONS */}
+            <div className="flex shrink-0 items-center gap-2">
+              {/* WHATSAPP */}
+              <a
+                href={`https://wa.me/${company.whatsapp}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Contact on WhatsApp"
+                className="flex h-10 w-10 items-center justify-center rounded-lg border border-emerald-500/20 bg-emerald-500/10 text-emerald-400 transition-colors active:bg-emerald-500/20"
+              >
+                <svg
+                  className="h-5 w-5"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
+                  <path d="M20.52 3.48A11.86 11.86 0 0012.05 0C5.48 0 .12 5.35.12 11.93c0 2.1.55 4.16 1.6 5.98L0 24l6.25-1.64a11.93 11.93 0 005.8 1.48h.01c6.58 0 11.94-5.35 11.94-11.93a11.86 11.86 0 00-3.48-8.43zM12.06 21.82a9.88 9.88 0 01-5.04-1.38l-.36-.21-3.74.98.99-3.64-.24-.37a9.9 9.9 0 01-1.52-5.27c0-5.47 4.45-9.92 9.92-9.92a9.86 9.86 0 017.02 2.91 9.86 9.86 0 012.9 7.02c0 5.47-4.45 9.92-9.93 9.92zm5.44-7.43c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.76-1.66-2.06-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.87 1.22 3.07c.15.2 2.1 3.2 5.09 4.49.71.31 1.27.49 1.7.63.71.23 1.36.2 1.87.12.57-.08 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35z" />
+                </svg>
+              </a>
+
+              {/* MENU BUTTON */}
+              <button
+                type="button"
+                onClick={toggleMenu}
+                aria-label={
+                  menuOpen ? "Close menu" : "Open menu"
+                }
+                aria-expanded={menuOpen}
+                aria-controls={
+                  menuOpen
+                    ? "autozone-mobile-menu"
+                    : undefined
+                }
+                className={`relative flex h-10 w-10 touch-manipulation items-center justify-center rounded-lg border transition-colors ${
+                  menuOpen
+                    ? "border-amber-500 bg-amber-500 text-slate-950"
+                    : "border-slate-700 bg-slate-800 text-white"
+                }`}
+              >
+                <svg
+                  className="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  {menuOpen ? (
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  ) : (
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 6h16M4 12h16M4 18h16"
+                    />
+                  )}
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      {/* PORTAL: DRAWER OUTSIDE NAVBAR STACKING CONTEXT */}
+      {mounted &&
+        menuOpen &&
+        createPortal(mobileDrawer, document.body)}
+    </>
+  );
+}
