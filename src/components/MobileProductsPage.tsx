@@ -2,6 +2,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -19,12 +20,12 @@ import {
 
 /* ==========================================
    BRAND COLORS
+   Amber-400: #FBBF24
 ========================================== */
 
 const BRAND = {
   navy: "#0B141E",
-  amber: "#F59E0B",
-  amberDark: "#B45309",
+  amber: "#FBBF24",
   body: "#334155",
   muted: "#CBD5E1",
 };
@@ -357,6 +358,7 @@ function ProductTile({
     <button
       type="button"
       onClick={() => onView(product)}
+      aria-label={`View details for ${product.name}`}
       className="group flex min-w-0 flex-col overflow-hidden rounded-[18px] border border-[#e6e9ed] bg-white text-left shadow-[0_4px_20px_rgba(15,23,42,0.035)] transition-transform active:scale-[0.98]"
     >
       <div className="relative aspect-square w-full overflow-hidden bg-[#f2f4f6]">
@@ -368,35 +370,22 @@ function ProductTile({
           className="object-contain p-3 transition-transform duration-500 group-hover:scale-105"
         />
 
-        <div
-          className="absolute right-2 top-2 flex h-7 w-7 items-center justify-center rounded-full bg-white/95 shadow-sm"
-          style={{ color: BRAND.navy }}
-        >
-          <FiPlus size={14} />
+        <div className="absolute right-2 top-2 flex h-8 w-8 items-center justify-center rounded-full bg-white/95 text-[#0B141E] shadow-sm">
+          <FiPlus size={17} />
         </div>
       </div>
 
-      <div className="flex w-full flex-1 flex-col items-center px-3 pb-4 pt-3 text-center">
-        <span
-          className="text-[9px] font-bold uppercase tracking-[0.14em]"
-          style={{ color: BRAND.amberDark }}
-        >
-          AT / {String(product.id).padStart(2, "0")}
-        </span>
-
+      <div className="flex w-full flex-1 flex-col items-center px-3 pb-5 pt-4 text-center">
         <h3
-          className="mt-2 text-[12px] font-bold leading-[1.45]"
+          className="text-[15px] font-bold leading-[1.45]"
           style={{ color: BRAND.navy }}
         >
           {product.name}
         </h3>
 
-        <span
-          className="mt-auto inline-flex items-center gap-1.5 pt-4 text-[10px] font-bold"
-          style={{ color: BRAND.amberDark }}
-        >
+        <span className="mt-auto inline-flex items-center gap-1.5 pt-4 text-[13px] font-bold text-amber-400">
           View Product
-          <FiArrowUpRight size={13} />
+          <FiArrowUpRight size={16} />
         </span>
       </div>
     </button>
@@ -422,83 +411,49 @@ function CategorySection({
 
   const primaryProduct = categoryProducts[0];
   const otherProducts = categoryProducts.slice(1);
-
   const isDark = index % 4 === 1;
 
   return (
     <section
       id={`mobile-${category.id}`}
       className={`scroll-mt-32 overflow-hidden py-12 ${
-        isDark
-          ? "bg-[#101923]"
-          : "bg-[#f7f8fa]"
+        isDark ? "bg-[#101923]" : "bg-[#f7f8fa]"
       }`}
     >
       <div className="px-5">
         {/* CATEGORY HEADING */}
         <div className="flex flex-col items-center text-center">
-          <div className="mb-5 flex items-center gap-3">
-            <span
-              className="text-[11px] font-bold tracking-[0.16em]"
-              style={{
-                color: isDark
-                  ? BRAND.amber
-                  : BRAND.amberDark,
-              }}
-            >
-              {String(index + 1).padStart(2, "0")} /{" "}
-              {String(categories.length).padStart(2, "0")}
-            </span>
-
-            <span
-              className={`h-px w-9 ${
-                isDark ? "bg-slate-600" : "bg-slate-300"
-              }`}
-            />
-
-            <span
-              className="text-[10px] font-semibold uppercase tracking-[0.14em]"
-              style={{
-                color: isDark
-                  ? BRAND.amber
-                  : BRAND.amberDark,
-              }}
-            >
-              {category.subtitle}
-            </span>
-          </div>
+          <span className="mb-4 text-[13px] font-bold uppercase tracking-[0.12em] text-amber-400">
+            {category.subtitle}
+          </span>
 
           <h2
-            className="font-heading text-[34px] font-bold leading-[1.06] tracking-[-0.035em]"
-            style={{
-              color: isDark
-                ? BRAND.amber
-                : BRAND.navy,
-            }}
+            className={`font-heading text-[36px] font-bold leading-[1.12] tracking-[-0.035em] ${
+              isDark ? "text-amber-400" : "text-[#0B141E]"
+            }`}
           >
             {category.title}
           </h2>
 
           <p
-            className="mx-auto mt-4 max-w-[330px] text-[13px] leading-[1.8]"
+            className="mx-auto mt-5 max-w-[340px] text-[15px] leading-[1.8]"
             style={{
-              color: isDark
-                ? BRAND.muted
-                : BRAND.body,
+              color: isDark ? BRAND.muted : BRAND.body,
             }}
           >
             {category.description}
           </p>
 
-          <div className="mt-6 h-[3px] w-12 rounded-full bg-amber-500" />
+          <div className="mt-7 h-[3px] w-12 rounded-full bg-amber-400" />
         </div>
 
         {/* MAIN PRODUCT SPOTLIGHT */}
         {primaryProduct ? (
-          <div className="mt-8">
+          <div className="mt-9">
             <button
               type="button"
               onClick={() => onView(primaryProduct)}
+              aria-label={`View details for ${primaryProduct.name}`}
               className="group block w-full overflow-hidden rounded-[22px] bg-white text-left shadow-[0_14px_40px_rgba(0,0,0,0.08)] transition-transform active:scale-[0.99]"
             >
               <div className="relative aspect-[5/4] bg-[#eef1f4]">
@@ -511,51 +466,39 @@ function CategorySection({
                 />
 
                 <span
-                  className="absolute left-4 top-4 rounded-full border border-slate-200 bg-white/95 px-3 py-1.5 text-[9px] font-bold uppercase tracking-[0.12em]"
+                  className="absolute left-4 top-4 rounded-full border border-slate-200 bg-white/95 px-3 py-2 text-[12px] font-bold uppercase tracking-[0.08em]"
                   style={{ color: BRAND.navy }}
                 >
                   Product Spotlight
                 </span>
 
-                <span
-                  className="absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center rounded-full shadow-md"
-                  style={{
-                    backgroundColor: BRAND.amber,
-                    color: BRAND.navy,
-                  }}
-                >
+                <span className="absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center rounded-full bg-amber-400 text-[#0B141E] shadow-md">
                   <FiArrowUpRight size={20} />
                 </span>
               </div>
 
-              <div className="px-5 pb-6 pt-5 text-center">
-                <p
-                  className="text-[10px] font-bold uppercase tracking-[0.16em]"
-                  style={{ color: BRAND.amberDark }}
-                >
+              <div className="px-5 pb-7 pt-6 text-center">
+                <p className="text-[13px] font-bold uppercase tracking-[0.1em] text-amber-400">
                   Precision Engineered
                 </p>
 
                 <h3
-                  className="mt-2 font-heading text-[23px] font-bold leading-tight"
+                  className="mt-3 font-heading text-[25px] font-bold leading-tight"
                   style={{ color: BRAND.navy }}
                 >
                   {primaryProduct.name}
                 </h3>
 
                 <p
-                  className="mx-auto mt-3 max-w-sm text-[12px] leading-[1.75]"
+                  className="mx-auto mt-4 max-w-sm text-[15px] leading-[1.8]"
                   style={{ color: BRAND.body }}
                 >
                   {primaryProduct.description}
                 </p>
 
-                <span
-                  className="mt-5 inline-flex items-center gap-2 text-[12px] font-bold"
-                  style={{ color: BRAND.amberDark }}
-                >
+                <span className="mt-6 inline-flex items-center gap-2 text-[15px] font-bold text-amber-400">
                   Explore Product
-                  <FiArrowRight size={15} />
+                  <FiArrowRight size={18} />
                 </span>
               </div>
             </button>
@@ -575,18 +518,16 @@ function CategorySection({
 
             {/* CATEGORY ENQUIRY */}
             <div
-              className={`mt-7 flex flex-col items-center border-t pt-6 text-center ${
+              className={`mt-8 flex flex-col items-center border-t pt-7 text-center ${
                 isDark
                   ? "border-slate-700"
                   : "border-slate-200"
               }`}
             >
               <p
-                className="text-[12px]"
+                className="text-[15px] leading-relaxed"
                 style={{
-                  color: isDark
-                    ? BRAND.muted
-                    : BRAND.body,
+                  color: isDark ? BRAND.muted : BRAND.body,
                 }}
               >
                 Looking for a custom configuration?
@@ -596,25 +537,21 @@ function CategorySection({
                 href={`/contact?category=${encodeURIComponent(
                   category.title
                 )}`}
-                className="mt-3 inline-flex min-h-11 items-center justify-center gap-2 rounded-full px-6 text-[11px] font-bold"
-                style={{
-                  backgroundColor: isDark
-                    ? BRAND.amber
-                    : BRAND.navy,
-                  color: isDark
-                    ? BRAND.navy
-                    : "#FFFFFF",
-                }}
+                className={`mt-4 inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 py-3 text-center text-[14px] font-bold ${
+                  isDark
+                    ? "bg-amber-400 text-[#0B141E]"
+                    : "bg-[#0B141E] text-white"
+                }`}
               >
                 Enquire About This Category
-                <FiArrowUpRight size={14} />
+                <FiArrowUpRight size={17} />
               </Link>
             </div>
           </div>
         ) : (
           /* CATEGORY WITHOUT PRODUCT IMAGES */
           <div
-            className={`mt-8 overflow-hidden rounded-[22px] border p-7 text-center ${
+            className={`mt-9 overflow-hidden rounded-[22px] border p-7 text-center ${
               isDark
                 ? "border-slate-700 bg-slate-800/60"
                 : "border-slate-200 bg-white"
@@ -622,24 +559,17 @@ function CategorySection({
           >
             <div
               className={`mx-auto flex h-16 w-16 items-center justify-center rounded-2xl ${
-                isDark ? "bg-slate-700" : "bg-amber-50"
+                isDark ? "bg-slate-700" : "bg-amber-400/10"
               }`}
-              style={{
-                color: isDark
-                  ? BRAND.amber
-                  : BRAND.amberDark,
-              }}
+              style={{ color: BRAND.amber }}
             >
               <FiTool size={28} />
             </div>
 
             <h3
-              className="mt-6 font-heading text-[23px] font-bold"
-              style={{
-                color: isDark
-                  ? BRAND.amber
-                  : BRAND.navy,
-              }}
+              className={`mt-6 font-heading text-[26px] font-bold leading-tight ${
+                isDark ? "text-amber-400" : "text-[#0B141E]"
+              }`}
             >
               Custom Tooling
               <br />
@@ -647,11 +577,9 @@ function CategorySection({
             </h3>
 
             <p
-              className="mx-auto mt-3 max-w-[290px] text-[12px] leading-[1.85]"
+              className="mx-auto mt-4 max-w-[310px] text-[15px] leading-[1.8]"
               style={{
-                color: isDark
-                  ? BRAND.muted
-                  : BRAND.body,
+                color: isDark ? BRAND.muted : BRAND.body,
               }}
             >
               Product images for this category are not yet
@@ -663,14 +591,10 @@ function CategorySection({
               href={`/contact?category=${encodeURIComponent(
                 category.title
               )}`}
-              className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 text-[12px] font-bold"
-              style={{
-                backgroundColor: BRAND.amber,
-                color: BRAND.navy,
-              }}
+              className="mt-7 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-amber-400 px-6 py-3 text-[14px] font-bold text-[#0B141E]"
             >
               Discuss Your Requirements
-              <FiArrowUpRight size={15} />
+              <FiArrowUpRight size={17} />
             </Link>
           </div>
         )}
@@ -687,7 +611,13 @@ export default function MobileProductsPage() {
   const [selectedProduct, setSelectedProduct] =
     useState<Product | null>(null);
 
+  const [mounted, setMounted] = useState(false);
+
   const featuredRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const scrollFeatured = (direction: number) => {
     featuredRef.current?.scrollBy({
@@ -696,10 +626,15 @@ export default function MobileProductsPage() {
     });
   };
 
+  /* ==========================================
+     LOCK SCROLL AND ESCAPE KEY
+  ========================================== */
+
   useEffect(() => {
     if (!selectedProduct) return;
 
     const previousOverflow = document.body.style.overflow;
+
     document.body.style.overflow = "hidden";
 
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -733,33 +668,30 @@ export default function MobileProductsPage() {
           <div className="absolute left-0 top-1/3 h-px w-full bg-white" />
         </div>
 
-        <div className="pointer-events-none absolute -right-28 top-20 h-72 w-72 rounded-full bg-amber-500/10 blur-[90px]" />
+        <div className="pointer-events-none absolute -right-28 top-20 h-72 w-72 rounded-full bg-amber-400/10 blur-[90px]" />
 
         <div className="relative flex flex-col items-center text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2">
-            <span
-              className="h-1.5 w-1.5 rounded-full"
-              style={{ backgroundColor: BRAND.amber }}
-            />
+            <span className="h-2 w-2 rounded-full bg-amber-400" />
 
             <span
-              className="text-[10px] font-bold uppercase tracking-[0.17em]"
+              className="text-[12px] font-bold uppercase tracking-[0.12em]"
               style={{ color: BRAND.muted }}
             >
               Autozone Tooling / Product Range
             </span>
           </div>
 
-          <h1 className="mt-8 font-heading text-[48px] font-bold leading-[0.99] tracking-[-0.045em] text-white">
+          <h1 className="mt-8 font-heading text-[48px] font-bold leading-[1.02] tracking-[-0.045em] text-white">
             ENGINEERED
             <br />
-            <span style={{ color: BRAND.amber }}>
+            <span className="text-amber-400">
               TO PERFORM.
             </span>
           </h1>
 
           <p
-            className="mx-auto mt-6 max-w-[340px] text-[13px] leading-[1.85]"
+            className="mx-auto mt-6 max-w-[350px] text-[16px] leading-[1.8]"
             style={{ color: BRAND.muted }}
           >
             Industrial-grade precision tooling for
@@ -780,67 +712,19 @@ export default function MobileProductsPage() {
             </div>
 
             <div
-              className="absolute bottom-4 left-4 rounded-full bg-white/95 px-4 py-2 text-[10px] font-bold uppercase tracking-[0.12em]"
+              className="absolute bottom-4 left-4 rounded-full bg-white/95 px-4 py-2 text-[12px] font-bold uppercase tracking-[0.08em]"
               style={{ color: BRAND.navy }}
             >
               Precision Press Brake Tooling
             </div>
           </div>
 
-          <div className="mt-8 grid w-full grid-cols-3 divide-x divide-slate-700 border-y border-slate-700 py-5">
-            <div className="text-center">
-              <p
-                className="font-heading text-[26px] font-bold"
-                style={{ color: BRAND.amber }}
-              >
-                {products.length}
-              </p>
-              <p
-                className="mt-1 text-[9px] uppercase tracking-wider"
-                style={{ color: BRAND.muted }}
-              >
-                Product Images
-              </p>
-            </div>
-
-            <div className="text-center">
-              <p
-                className="font-heading text-[26px] font-bold"
-                style={{ color: BRAND.amber }}
-              >
-                {categories.length}
-              </p>
-              <p
-                className="mt-1 text-[9px] uppercase tracking-wider"
-                style={{ color: BRAND.muted }}
-              >
-                Categories
-              </p>
-            </div>
-
-            <div className="text-center">
-              <p
-                className="font-heading text-[26px] font-bold"
-                style={{ color: BRAND.amber }}
-              >
-                CNC
-              </p>
-              <p
-                className="mt-1 text-[9px] uppercase tracking-wider"
-                style={{ color: BRAND.muted }}
-              >
-                Tooling
-              </p>
-            </div>
-          </div>
-
           <a
             href="#mobile-catalogue"
-            className="mt-8 inline-flex items-center gap-3 text-[11px] font-bold uppercase tracking-[0.15em]"
-            style={{ color: BRAND.amber }}
+            className="mt-9 inline-flex items-center gap-3 text-[14px] font-bold uppercase tracking-[0.1em] text-amber-400"
           >
             Explore Our Collection
-            <FiArrowDown size={16} />
+            <FiArrowDown size={18} />
           </a>
         </div>
       </section>
@@ -849,28 +733,25 @@ export default function MobileProductsPage() {
           FEATURED PRODUCTS GALLERY
       ========================================== */}
 
-      <section className="bg-white py-12">
+      <section className="bg-white py-14">
         <div className="px-5 text-center">
-          <span
-            className="text-[10px] font-bold uppercase tracking-[0.2em]"
-            style={{ color: BRAND.amberDark }}
-          >
+          <span className="text-[13px] font-bold uppercase tracking-[0.14em] text-amber-400">
             Selected Products
           </span>
 
           <h2
-            className="mt-3 font-heading text-[32px] font-bold leading-tight tracking-tight"
+            className="mt-4 font-heading text-[36px] font-bold leading-tight tracking-tight"
             style={{ color: BRAND.navy }}
           >
             Featured
             <br />
-            <span style={{ color: BRAND.amberDark }}>
+            <span className="text-amber-400">
               Engineering.
             </span>
           </h2>
 
           <p
-            className="mx-auto mt-3 max-w-[300px] text-[12px] leading-[1.8]"
+            className="mx-auto mt-4 max-w-[330px] text-[15px] leading-[1.8]"
             style={{ color: BRAND.body }}
           >
             Explore a selection from our industrial tooling
@@ -880,69 +761,54 @@ export default function MobileProductsPage() {
 
         <div
           ref={featuredRef}
-          className="mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 [scrollbar-width:none]"
+          className="mt-9 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 [scrollbar-width:none]"
         >
-          {featuredProducts.map((product, index) => (
+          {featuredProducts.map((product) => (
             <button
               key={product.id}
               type="button"
               onClick={() => setSelectedProduct(product)}
-              className="w-[250px] shrink-0 snap-center overflow-hidden rounded-[20px] border border-slate-200 bg-[#f5f6f8] text-left"
+              aria-label={`View details for ${product.name}`}
+              className="w-[260px] shrink-0 snap-center overflow-hidden rounded-[20px] border border-slate-200 bg-[#f5f6f8] text-left"
             >
               <div className="relative aspect-[4/3]">
                 <Image
                   src={product.image}
                   alt={product.name}
                   fill
-                  sizes="250px"
+                  sizes="260px"
                   className="object-contain p-5"
                 />
-
-                <span
-                  className="absolute left-3 top-3 rounded-full bg-white px-3 py-1 text-[9px] font-bold"
-                  style={{ color: BRAND.amberDark }}
-                >
-                  {String(index + 1).padStart(2, "0")}
-                </span>
               </div>
 
-              <div className="flex items-center justify-between gap-3 border-t border-slate-200 bg-white px-4 py-4">
+              <div className="flex items-center justify-between gap-3 border-t border-slate-200 bg-white px-4 py-5">
                 <span
-                  className="text-[13px] font-bold leading-snug"
+                  className="text-[16px] font-bold leading-snug"
                   style={{ color: BRAND.navy }}
                 >
                   {product.name}
                 </span>
 
-                <span
-                  className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full"
-                  style={{
-                    backgroundColor: BRAND.navy,
-                    color: BRAND.amber,
-                  }}
-                >
-                  <FiArrowUpRight size={15} />
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#0B141E] text-amber-400">
+                  <FiArrowUpRight size={18} />
                 </span>
               </div>
             </button>
           ))}
         </div>
 
-        <div className="mt-4 flex items-center justify-center gap-3">
+        <div className="mt-5 flex items-center justify-center gap-3">
           <button
             type="button"
             onClick={() => scrollFeatured(-1)}
             aria-label="Scroll featured products left"
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200"
+            className="flex h-12 w-12 items-center justify-center rounded-full border border-slate-200"
             style={{ color: BRAND.navy }}
           >
-            <FiChevronLeft size={20} />
+            <FiChevronLeft size={23} />
           </button>
 
-          <span
-            className="px-3 text-[10px] font-semibold uppercase tracking-wider"
-            style={{ color: BRAND.amberDark }}
-          >
+          <span className="px-3 text-[13px] font-semibold uppercase tracking-wider text-amber-400">
             Swipe to Explore
           </span>
 
@@ -950,10 +816,10 @@ export default function MobileProductsPage() {
             type="button"
             onClick={() => scrollFeatured(1)}
             aria-label="Scroll featured products right"
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-slate-200"
+            className="flex h-12 w-12 items-center justify-center rounded-full border border-slate-200"
             style={{ color: BRAND.navy }}
           >
-            <FiChevronRight size={20} />
+            <FiChevronRight size={23} />
           </button>
         </div>
       </section>
@@ -964,48 +830,36 @@ export default function MobileProductsPage() {
 
       <section
         id="mobile-catalogue"
-        className="scroll-mt-32 bg-[#f7f8fa] px-5 pb-11 pt-14 text-center"
+        className="scroll-mt-32 bg-[#f7f8fa] px-5 pb-12 pt-14 text-center"
       >
-        <div
-          className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl"
-          style={{
-            backgroundColor: BRAND.navy,
-            color: BRAND.amber,
-          }}
-        >
-          <FiLayers size={23} />
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-[#0B141E] text-amber-400">
+          <FiLayers size={27} />
         </div>
 
-        <span
-          className="mt-6 block text-[10px] font-bold uppercase tracking-[0.2em]"
-          style={{ color: BRAND.amberDark }}
-        >
+        <span className="mt-7 block text-[13px] font-bold uppercase tracking-[0.14em] text-amber-400">
           Complete Product Catalogue
         </span>
 
         <h2
-          className="mt-3 font-heading text-[38px] font-bold leading-[1.04] tracking-[-0.035em]"
+          className="mt-4 font-heading text-[40px] font-bold leading-[1.08] tracking-[-0.035em]"
           style={{ color: BRAND.navy }}
         >
           BUILT FOR
           <br />
-          <span style={{ color: BRAND.amberDark }}>
+          <span className="text-amber-400">
             EVERY BEND.
           </span>
         </h2>
 
         <p
-          className="mx-auto mt-5 max-w-[320px] text-[13px] leading-[1.85]"
+          className="mx-auto mt-6 max-w-[340px] text-[16px] leading-[1.8]"
           style={{ color: BRAND.body }}
         >
           Discover our complete range of precision tooling,
           organized by application and engineering requirements.
         </p>
 
-        <div
-          className="mx-auto mt-7 h-[3px] w-12 rounded-full"
-          style={{ backgroundColor: BRAND.amber }}
-        />
+        <div className="mx-auto mt-8 h-[3px] w-12 rounded-full bg-amber-400" />
       </section>
 
       {/* ==========================================
@@ -1029,33 +883,27 @@ export default function MobileProductsPage() {
         className="relative overflow-hidden px-5 py-16 text-white"
         style={{ backgroundColor: BRAND.navy }}
       >
-        <div className="pointer-events-none absolute -right-24 top-0 h-64 w-64 rounded-full bg-amber-500/10 blur-[80px]" />
+        <div className="pointer-events-none absolute -right-24 top-0 h-64 w-64 rounded-full bg-amber-400/10 blur-[80px]" />
 
         <div className="relative flex flex-col items-center text-center">
-          <div
-            className="flex h-14 w-14 items-center justify-center rounded-2xl border border-amber-500/25 bg-amber-500/10"
-            style={{ color: BRAND.amber }}
-          >
-            <FiTool size={25} />
+          <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-amber-400/25 bg-amber-400/10 text-amber-400">
+            <FiTool size={29} />
           </div>
 
-          <span
-            className="mt-7 text-[10px] font-bold uppercase tracking-[0.2em]"
-            style={{ color: BRAND.amber }}
-          >
+          <span className="mt-7 text-[13px] font-bold uppercase tracking-[0.14em] text-amber-400">
             Custom Tooling Solutions
           </span>
 
-          <h2 className="mt-4 font-heading text-[38px] font-bold leading-[1.08] tracking-tight text-white">
+          <h2 className="mt-5 font-heading text-[40px] font-bold leading-[1.1] tracking-tight text-white">
             YOUR DESIGN.
             <br />
-            <span style={{ color: BRAND.amber }}>
+            <span className="text-amber-400">
               OUR PRECISION.
             </span>
           </h2>
 
           <p
-            className="mx-auto mt-5 max-w-[330px] text-[13px] leading-[1.85]"
+            className="mx-auto mt-6 max-w-[340px] text-[16px] leading-[1.8]"
             style={{ color: BRAND.muted }}
           >
             Share your machine specifications, technical
@@ -1065,21 +913,17 @@ export default function MobileProductsPage() {
 
           <Link
             href="/contact"
-            className="mt-8 flex min-h-13 w-full items-center justify-center gap-3 rounded-xl px-6 py-4 text-[13px] font-bold"
-            style={{
-              backgroundColor: BRAND.amber,
-              color: BRAND.navy,
-            }}
+            className="mt-9 flex min-h-13 w-full items-center justify-center gap-3 rounded-xl bg-amber-400 px-6 py-4 text-[16px] font-bold text-[#0B141E]"
           >
             Request Custom Tooling
-            <FiArrowUpRight size={18} />
+            <FiArrowUpRight size={20} />
           </Link>
 
           <a
             href="tel:+919011452458"
-            className="mt-3 flex min-h-13 w-full items-center justify-center gap-3 rounded-xl border border-slate-700 px-6 py-4 text-[12px] font-semibold text-white"
+            className="mt-3 flex min-h-13 w-full items-center justify-center gap-3 rounded-xl border border-slate-700 px-6 py-4 text-[15px] font-semibold text-white"
           >
-            <FiPhone size={16} />
+            <FiPhone size={18} />
             Speak With Our Team
           </a>
         </div>
@@ -1087,100 +931,92 @@ export default function MobileProductsPage() {
 
       {/* ==========================================
           PRODUCT DETAILS MODAL
+          STARTS BELOW THE 104px NAVBAR
       ========================================== */}
 
-      {selectedProduct && (
-        <div
-          className="fixed inset-0 z-[100] flex items-end bg-black/75"
-          onClick={() => setSelectedProduct(null)}
-        >
+      {mounted &&
+        selectedProduct &&
+        createPortal(
           <div
-            role="dialog"
-            aria-modal="true"
-            aria-label={selectedProduct.name}
-            className="max-h-[92dvh] w-full overflow-y-auto rounded-t-[28px] bg-white pb-[max(24px,env(safe-area-inset-bottom))]"
-            onClick={(event) => event.stopPropagation()}
+            className="fixed inset-x-0 bottom-0 top-[104px] z-[100] flex items-end bg-black/75 md:hidden"
+            onClick={() => setSelectedProduct(null)}
           >
-            <div className="sticky top-0 z-10 flex items-center justify-between border-b border-slate-100 bg-white px-5 py-4">
-              <span
-                className="text-[10px] font-bold uppercase tracking-[0.18em]"
-                style={{ color: BRAND.amberDark }}
-              >
-                Autozone Tooling / Product Details
-              </span>
+            <div
+              role="dialog"
+              aria-modal="true"
+              aria-label={selectedProduct.name}
+              className="max-h-full w-full overflow-y-auto overscroll-contain rounded-t-[28px] bg-white pb-[max(24px,env(safe-area-inset-bottom))]"
+              onClick={(event) => event.stopPropagation()}
+            >
+              {/* STICKY MODAL HEADER */}
+              <div className="sticky top-0 z-10 flex items-center justify-between gap-3 border-b border-slate-100 bg-white px-5 py-4">
+                <span className="min-w-0 text-[12px] font-bold uppercase tracking-[0.1em] text-amber-400">
+                  Autozone Tooling / Product Details
+                </span>
 
-              <button
-                type="button"
-                onClick={() => setSelectedProduct(null)}
-                aria-label="Close product details"
-                className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-100"
-                style={{ color: BRAND.navy }}
-              >
-                <FiX size={19} />
-              </button>
-            </div>
-
-            <div className="px-5 pt-5 text-center">
-              <div className="relative aspect-[5/4] overflow-hidden rounded-[20px] bg-[#f1f3f5]">
-                <Image
-                  src={selectedProduct.image}
-                  alt={selectedProduct.name}
-                  fill
-                  sizes="100vw"
-                  className="object-contain p-6"
-                />
-              </div>
-
-              <p
-                className="mt-6 text-[10px] font-bold uppercase tracking-[0.18em]"
-                style={{ color: BRAND.amberDark }}
-              >
-                Product No.{" "}
-                {String(selectedProduct.id).padStart(2, "0")}
-              </p>
-
-              <h3
-                className="mt-3 font-heading text-[29px] font-bold leading-tight"
-                style={{ color: BRAND.navy }}
-              >
-                {selectedProduct.name}
-              </h3>
-
-              <p
-                className="mx-auto mt-4 max-w-sm text-[13px] leading-[1.85]"
-                style={{ color: BRAND.body }}
-              >
-                {selectedProduct.description}
-              </p>
-
-              <div className="mt-7 space-y-3">
-                <Link
-                  href={`/contact?product=${encodeURIComponent(
-                    selectedProduct.name
-                  )}`}
-                  className="flex min-h-12 items-center justify-center gap-2 rounded-xl px-5 text-[12px] font-bold"
-                  style={{
-                    backgroundColor: BRAND.amber,
-                    color: BRAND.navy,
-                  }}
-                >
-                  Enquire About This Product
-                  <FiArrowRight size={16} />
-                </Link>
-
-                <a
-                  href="tel:+919011452458"
-                  className="flex min-h-12 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-5 text-[12px] font-semibold"
+                <button
+                  type="button"
+                  onClick={() => setSelectedProduct(null)}
+                  aria-label="Close product details"
+                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-slate-100"
                   style={{ color: BRAND.navy }}
                 >
-                  <FiPhone size={15} />
-                  Call Our Engineering Team
-                </a>
+                  <FiX size={23} />
+                </button>
+              </div>
+
+              {/* MODAL CONTENT */}
+              <div className="px-5 pt-5 text-center">
+                <div className="relative aspect-[5/4] overflow-hidden rounded-[20px] bg-[#f1f3f5]">
+                  <Image
+                    src={selectedProduct.image}
+                    alt={selectedProduct.name}
+                    fill
+                    sizes="100vw"
+                    className="object-contain p-6"
+                  />
+                </div>
+
+                <h3
+                  className="mt-7 font-heading text-[31px] font-bold leading-tight"
+                  style={{ color: BRAND.navy }}
+                >
+                  {selectedProduct.name}
+                </h3>
+
+                <p
+                  className="mx-auto mt-5 max-w-sm text-[16px] leading-[1.8]"
+                  style={{ color: BRAND.body }}
+                >
+                  {selectedProduct.description}
+                </p>
+
+                <div className="mt-8 space-y-3">
+                  <Link
+                    href={`/contact?product=${encodeURIComponent(
+                      selectedProduct.name
+                    )}`}
+                    onClick={() => setSelectedProduct(null)}
+                    className="flex min-h-13 items-center justify-center gap-2 rounded-xl bg-amber-400 px-5 py-4 text-center text-[15px] font-bold text-[#0B141E]"
+                  >
+                    Enquire About This Product
+                    <FiArrowRight size={18} />
+                  </Link>
+
+                  <a
+                    href="tel:+919011452458"
+                    className="flex min-h-13 items-center justify-center gap-2 rounded-xl border border-slate-200 bg-slate-50 px-5 py-4 text-[15px] font-semibold"
+                    style={{ color: BRAND.navy }}
+                  >
+                    <FiPhone size={18} />
+                    Call Our Engineering Team
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body
+        )}
     </div>
   );
 }
