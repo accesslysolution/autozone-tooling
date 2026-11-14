@@ -133,7 +133,7 @@ export default function HomeCompanyOverview() {
               </h3>
 
               <p className="mt-1 text-xs leading-relaxed text-slate-400">
-                EN8, EN31 &amp; H13 grades.
+                42CrMo4, EN19, D2 (Indian/Imported), EN31 &amp; C45.
               </p>
             </div>
           </div>

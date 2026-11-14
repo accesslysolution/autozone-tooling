@@ -3,6 +3,10 @@
 
 import { useState } from "react";
 
+/* ==========================================
+   FEATURES
+========================================== */
+
 const features = [
   {
     id: "material",
@@ -10,9 +14,15 @@ const features = [
     eyebrow: "01 / MATERIAL ENGINEERING",
     title: "Hardened & Ground Steel",
     description:
-      "Manufactured using premium alloy steels with induction hardening for maximum wear resistance.",
+      "Precision-engineered alloy steel tooling with advanced heat treatment options for superior wear resistance, strength, and long-lasting durability.",
     shortLabel: "Superior Wear Resistance",
     icon: "shield",
+    hardeningMethods: [
+      "Full / Through Hardening",
+      "Induction Hardening",
+      "Laser Hardening",
+      "Flame Hardening",
+    ],
   },
   {
     id: "precision",
@@ -37,6 +47,10 @@ const features = [
 ] as const;
 
 type FeatureId = (typeof features)[number]["id"];
+
+/* ==========================================
+   FEATURE ICONS
+========================================== */
 
 function FeatureIcon({
   type,
@@ -100,6 +114,10 @@ function FeatureIcon({
   );
 }
 
+/* ==========================================
+   ENGINEERING ILLUSTRATIONS
+========================================== */
+
 function EngineeringIllustration({
   active,
 }: {
@@ -155,7 +173,12 @@ function EngineeringIllustration({
           />
         ))}
 
-        <circle cx="132" cy="78" r="4" fill="#fbbf24" />
+        <circle
+          cx="132"
+          cy="78"
+          r="4"
+          fill="#fbbf24"
+        />
 
         <path
           d="M132 78V34h76"
@@ -246,7 +269,12 @@ function EngineeringIllustration({
           strokeLinejoin="round"
         />
 
-        <circle cx="170" cy="103" r="5" fill="#fbbf24" />
+        <circle
+          cx="170"
+          cy="103"
+          r="5"
+          fill="#fbbf24"
+        />
 
         <path
           d="M170 103 230 43h52"
@@ -325,7 +353,12 @@ function EngineeringIllustration({
         strokeLinejoin="round"
       />
 
-      <circle cx="170" cy="98" r="6" fill="#fbbf24" />
+      <circle
+        cx="170"
+        cy="98"
+        r="6"
+        fill="#fbbf24"
+      />
 
       <path
         d="M170 98v-66h80"
@@ -363,6 +396,10 @@ function EngineeringIllustration({
   );
 }
 
+/* ==========================================
+   MOBILE HOME FEATURES
+========================================== */
+
 export default function MobileHomeFeatures() {
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -374,6 +411,7 @@ export default function MobileHomeFeatures() {
       className="relative overflow-hidden bg-amber-400 py-12 text-slate-950"
     >
       <div className="mx-auto max-w-lg px-5">
+
         {/* ==========================================
             TOP INDUSTRIAL LABEL
         ========================================== */}
@@ -428,6 +466,7 @@ export default function MobileHomeFeatures() {
         ========================================== */}
 
         <div className="overflow-hidden rounded-2xl border border-slate-950/20 bg-slate-950 text-white shadow-2xl">
+
           {/* PANEL TOP BAR */}
           <div className="flex items-center justify-between border-b border-slate-800 px-5 py-4">
             <span className="text-[10px] font-bold uppercase tracking-[0.13em] text-amber-400">
@@ -435,13 +474,23 @@ export default function MobileHomeFeatures() {
             </span>
 
             <div className="flex items-center gap-1.5">
-              <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
-              <span className="h-1.5 w-1.5 rounded-full bg-slate-700" />
-              <span className="h-1.5 w-1.5 rounded-full bg-slate-700" />
+              {features.map((feature, index) => (
+                <span
+                  key={feature.id}
+                  className={`h-1.5 w-1.5 rounded-full ${
+                    activeIndex === index
+                      ? "bg-amber-400"
+                      : "bg-slate-700"
+                  }`}
+                />
+              ))}
             </div>
           </div>
 
-          {/* ILLUSTRATION */}
+          {/* ==========================================
+              ILLUSTRATION
+          ========================================== */}
+
           <div
             key={`visual-${activeFeature.id}`}
             className="relative border-b border-slate-800 bg-slate-900 px-4 py-3"
@@ -462,7 +511,10 @@ export default function MobileHomeFeatures() {
             </div>
           </div>
 
-          {/* FEATURE CONTENT */}
+          {/* ==========================================
+              FEATURE CONTENT
+          ========================================== */}
+
           <div
             key={`content-${activeFeature.id}`}
             className="px-5 pb-6 pt-6"
@@ -488,7 +540,44 @@ export default function MobileHomeFeatures() {
               {activeFeature.description}
             </p>
 
-            {/* PROGRESS BARS */}
+            {/* ======================================
+                HARDENING METHODS - MATERIAL ONLY
+            ====================================== */}
+
+            {activeFeature.id === "material" && (
+              <div className="mt-6 border-t border-slate-800 pt-5">
+                <p className="mb-4 text-[10px] font-bold uppercase tracking-[0.16em] text-amber-400">
+                  Hardening Methods
+                </p>
+
+                <div className="grid grid-cols-2 gap-2">
+                  {features[0].hardeningMethods.map(
+                    (method, index) => (
+                      <div
+                        key={method}
+                        className="flex min-h-[54px] items-center gap-2 rounded-lg border border-slate-800 bg-slate-900 px-3 py-2.5"
+                      >
+                        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-md bg-amber-400/10 text-[10px] font-bold text-amber-400">
+                          {String(index + 1).padStart(
+                            2,
+                            "0"
+                          )}
+                        </span>
+
+                        <span className="text-[11px] font-medium leading-snug text-slate-300">
+                          {method}
+                        </span>
+                      </div>
+                    )
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* ======================================
+                PROGRESS BARS
+            ====================================== */}
+
             <div className="mt-6 grid grid-cols-3 gap-2">
               {features.map((feature, index) => (
                 <button

@@ -1,11 +1,36 @@
 
 import type { Metadata } from "next";
+import {
+  FiPhone,
+  FiMail,
+  FiMapPin,
+  FiFileText,
+  FiFacebook,
+  FiLinkedin,
+  FiArrowUpRight,
+  FiMessageCircle,
+  FiExternalLink,
+} from "react-icons/fi";
+
+/* ==========================================
+   SEO METADATA
+========================================== */
 
 export const metadata: Metadata = {
   title: "Contact Us | Autozone Tooling",
   description:
     "Contact Autozone Tooling in Bhosari MIDC, Pune for CNC press brake tooling, punches, dies, shearing blades, and custom tooling quotations.",
+  openGraph: {
+    title: "Contact Autozone Tooling | Pune",
+    description:
+      "Get in touch with Autozone Tooling for precision CNC press brake tooling, shearing blades, and custom industrial tooling solutions.",
+    type: "website",
+  },
 };
+
+/* ==========================================
+   CONTACT PERSONS
+========================================== */
 
 const contactPersons = [
   {
@@ -22,70 +47,101 @@ const contactPersons = [
   },
 ];
 
+/* ==========================================
+   BUSINESS INFORMATION
+========================================== */
+
 const business = {
   name: "Autozone Tooling",
   email: "autozone.tooling@gmail.com",
   gstin: "27ACWPH8035L1ZW",
+
   address:
     "Sector No. 07, Plot No. 256, PCNTDA, MIDC, Bhosari, Pune - 411026, Maharashtra, India",
+
   mapUrl:
-    "https://www.google.com/maps/search/?api=1&query=Plot+No+256+Sector+7+PCNTDA+MIDC+Bhosari+Pune+411026",
+    "https://www.google.com/maps/place/Autozone+Tooling/@18.6425895,73.8367515,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc2b94881f1ca1b:0xb68dfd77de68ec3c!8m2!3d18.6425895!4d73.8393264!16s%2Fg%2F11lw8q15fv?entry=ttu",
+
+  facebook:
+    "https://www.facebook.com/people/Autozone-Tooling/61593862056621/",
+
+  linkedin:
+    "https://www.linkedin.com/in/autozone-tooling-23721b291/",
 };
+
+/* ==========================================
+   SOCIAL MEDIA
+========================================== */
+
+const socialLinks = [
+  {
+    name: "Facebook",
+    href: business.facebook,
+    icon: FiFacebook,
+    hover:
+      "hover:border-blue-500 hover:bg-blue-500/10 hover:text-blue-400",
+  },
+  {
+    name: "LinkedIn",
+    href: business.linkedin,
+    icon: FiLinkedin,
+    hover:
+      "hover:border-sky-500 hover:bg-sky-500/10 hover:text-sky-400",
+  },
+];
+
+/* ==========================================
+   CONTACT PAGE
+========================================== */
 
 export default function ContactPage() {
   return (
-    <div className="bg-slate-950 text-white font-sans min-h-screen py-16 lg:py-24">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-slate-950 py-16 font-sans text-white lg:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
-        {/* Page Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <span className="text-amber-500 font-semibold text-sm uppercase tracking-wider">
+        {/* ==================================
+            PAGE HEADER
+        ================================== */}
+
+        <div className="mx-auto mb-16 max-w-3xl space-y-4 text-center">
+          <span className="text-sm font-semibold uppercase tracking-wider text-amber-500">
             Get In Touch
           </span>
 
-          <h1 className="text-4xl sm:text-5xl font-bold font-heading tracking-tight">
+          <h1 className="font-heading text-4xl font-bold tracking-tight sm:text-5xl">
             Contact Our Engineering Team
           </h1>
 
-          <p className="text-slate-400 text-base sm:text-lg">
-            Looking for precision CNC press brake tooling, punches,
-            dies, or shearing blades? Connect with Autozone Tooling
-            for product inquiries, technical requirements, and
-            customized tooling quotations.
+          <p className="text-base text-slate-400 sm:text-lg">
+            Looking for precision CNC press brake tooling,
+            punches, dies, or shearing blades? Connect with
+            Autozone Tooling for product inquiries, technical
+            requirements, and customized tooling quotations.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
 
-          {/* Left Column: Contact Information */}
-          <div className="lg:col-span-1 space-y-6">
+          {/* ==================================
+              LEFT COLUMN
+          ================================== */}
 
-            {/* Contact Persons */}
-            <div className="bg-slate-900 border border-slate-800 rounded-lg p-6 space-y-5 shadow-lg">
+          <div className="space-y-6 lg:col-span-1">
 
-              <div className="w-10 h-10 bg-amber-500/10 rounded-md flex items-center justify-center text-amber-400">
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                  />
-                </svg>
+            {/* CONTACT PERSONS */}
+            <div className="space-y-5 rounded-lg border border-slate-800 bg-slate-900 p-6 shadow-lg">
+
+              <div className="flex h-10 w-10 items-center justify-center rounded-md bg-amber-500/10 text-amber-400">
+                <FiPhone size={20} />
               </div>
 
-              <h3 className="text-lg font-heading font-bold text-white">
+              <h3 className="font-heading text-lg font-bold text-white">
                 Contact Details
               </h3>
 
               <p className="text-sm text-slate-400">
-                Speak directly with our team for tooling requirements,
-                technical assistance, and quotations.
+                Speak directly with our team for tooling
+                requirements, technical assistance, and quotations.
               </p>
 
               <div className="space-y-5">
@@ -98,13 +154,13 @@ export default function ContactPage() {
                         : ""
                     }
                   >
-                    <h4 className="text-white font-semibold text-base">
+                    <h4 className="text-base font-semibold text-white">
                       {person.name}
                     </h4>
 
                     <a
                       href={`tel:${person.phoneLink}`}
-                      className="block text-amber-400 hover:text-amber-300 font-semibold text-sm mt-2 transition-colors"
+                      className="mt-2 block text-sm font-semibold text-amber-400 transition-colors hover:text-amber-300"
                     >
                       {person.phone}
                     </a>
@@ -113,8 +169,9 @@ export default function ContactPage() {
                       href={`https://wa.me/${person.whatsapp}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-xs font-semibold bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-3 py-2 rounded-md hover:bg-emerald-500/20 transition-colors mt-3"
+                      className="mt-3 inline-flex items-center gap-2 rounded-md border border-emerald-500/20 bg-emerald-500/10 px-3 py-2 text-xs font-semibold text-emerald-400 transition-colors hover:bg-emerald-500/20"
                     >
+                      <FiMessageCircle size={15} />
                       Chat on WhatsApp
                     </a>
                   </div>
@@ -122,26 +179,14 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Email Card */}
-            <div className="bg-slate-900 border border-slate-800 rounded-lg p-6 space-y-3 shadow-lg">
+            {/* EMAIL CARD */}
+            <div className="space-y-3 rounded-lg border border-slate-800 bg-slate-900 p-6 shadow-lg">
 
-              <div className="w-10 h-10 bg-amber-500/10 rounded-md flex items-center justify-center text-amber-400">
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  />
-                </svg>
+              <div className="flex h-10 w-10 items-center justify-center rounded-md bg-amber-500/10 text-amber-400">
+                <FiMail size={20} />
               </div>
 
-              <h3 className="text-lg font-heading font-bold text-white">
+              <h3 className="font-heading text-lg font-bold text-white">
                 Email Us
               </h3>
 
@@ -152,42 +197,24 @@ export default function ContactPage() {
 
               <a
                 href={`mailto:${business.email}`}
-                className="inline-block text-amber-400 hover:text-amber-300 font-semibold text-sm pt-1 break-all transition-colors"
+                className="inline-block break-all pt-1 text-sm font-semibold text-amber-400 transition-colors hover:text-amber-300"
               >
                 {business.email}
               </a>
             </div>
 
-            {/* Business Address Card */}
-            <div className="bg-slate-900 border border-slate-800 rounded-lg p-6 space-y-3 shadow-lg">
+            {/* LOCATION CARD */}
+            <div className="space-y-3 rounded-lg border border-slate-800 bg-slate-900 p-6 shadow-lg">
 
-              <div className="w-10 h-10 bg-amber-500/10 rounded-md flex items-center justify-center text-amber-400">
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
+              <div className="flex h-10 w-10 items-center justify-center rounded-md bg-amber-500/10 text-amber-400">
+                <FiMapPin size={20} />
               </div>
 
-              <h3 className="text-lg font-heading font-bold text-white">
+              <h3 className="font-heading text-lg font-bold text-white">
                 Our Location
               </h3>
 
-              <p className="text-sm text-slate-400 leading-relaxed">
+              <address className="text-sm not-italic leading-relaxed text-slate-400">
                 <strong className="text-white">
                   Autozone Tooling
                 </strong>
@@ -199,39 +226,78 @@ export default function ContactPage() {
                 Pune - 411026,
                 <br />
                 Maharashtra, India.
-              </p>
+              </address>
 
               <a
                 href={business.mapUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-amber-400 hover:text-amber-300 font-semibold text-sm pt-2 transition-colors"
+                className="inline-flex items-center gap-2 pt-2 text-sm font-semibold text-amber-400 transition-colors hover:text-amber-300"
               >
                 Get Directions
-                <span aria-hidden="true">↗</span>
+                <FiArrowUpRight size={16} />
+              </a>
+
+              <a
+                href={business.mapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 flex w-full items-center justify-center gap-2 rounded-md border border-slate-700 bg-slate-800 px-4 py-3 text-xs font-semibold text-slate-300 transition-colors hover:border-amber-500 hover:text-amber-400"
+              >
+                <FiMapPin size={16} />
+                View on Google Maps
+                <FiExternalLink size={14} />
               </a>
             </div>
 
-            {/* GST Information Card */}
-            <div className="bg-slate-900 border border-slate-800 rounded-lg p-6 space-y-3 shadow-lg">
+            {/* SOCIAL MEDIA CARD */}
+            <div className="space-y-4 rounded-lg border border-slate-800 bg-slate-900 p-6 shadow-lg">
 
-              <div className="w-10 h-10 bg-amber-500/10 rounded-md flex items-center justify-center text-amber-400">
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12h6m-6 4h6M9 8h6M5 3h14a2 2 0 012 2v16l-4-2-5 2-5-2-4 2V5a2 2 0 012-2z"
-                  />
-                </svg>
+              <div className="flex h-10 w-10 items-center justify-center rounded-md bg-amber-500/10 text-amber-400">
+                <FiLinkedin size={20} />
               </div>
 
-              <h3 className="text-lg font-heading font-bold text-white">
+              <div>
+                <h3 className="font-heading text-lg font-bold text-white">
+                  Connect With Us
+                </h3>
+
+                <p className="mt-2 text-sm leading-relaxed text-slate-400">
+                  Follow Autozone Tooling for company updates,
+                  product information, and industry insights.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3">
+                {socialLinks.map((social) => {
+                  const Icon = social.icon;
+
+                  return (
+                    <a
+                      key={social.name}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Autozone Tooling on ${social.name}`}
+                      className={`flex min-h-12 items-center justify-center gap-2 rounded-lg border border-slate-700 bg-slate-950 px-3 text-xs font-semibold text-slate-300 transition-all ${social.hover}`}
+                    >
+                      <Icon size={17} />
+                      {social.name}
+                      <FiArrowUpRight size={13} />
+                    </a>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* BUSINESS INFORMATION CARD */}
+            <div className="space-y-3 rounded-lg border border-slate-800 bg-slate-900 p-6 shadow-lg">
+
+              <div className="flex h-10 w-10 items-center justify-center rounded-md bg-amber-500/10 text-amber-400">
+                <FiFileText size={20} />
+              </div>
+
+              <h3 className="font-heading text-lg font-bold text-white">
                 Business Information
               </h3>
 
@@ -239,14 +305,16 @@ export default function ContactPage() {
                 <p className="text-sm text-slate-400">
                   Registered Business Name
                 </p>
+
                 <p className="text-sm font-semibold text-white">
                   {business.name}
                 </p>
 
-                <p className="text-sm text-slate-400 pt-2">
+                <p className="pt-2 text-sm text-slate-400">
                   GST Identification Number
                 </p>
-                <p className="text-sm font-semibold text-amber-400 tracking-wide break-all">
+
+                <p className="break-all text-sm font-semibold tracking-wide text-amber-400">
                   {business.gstin}
                 </p>
               </div>
@@ -254,29 +322,33 @@ export default function ContactPage() {
 
           </div>
 
-          {/* Right Column: Contact / Quote Form */}
-          <div className="lg:col-span-2 bg-slate-900 border border-slate-800 rounded-lg p-8 sm:p-10 shadow-xl">
+          {/* ==================================
+              RIGHT COLUMN - QUOTE FORM
+          ================================== */}
 
-            <h2 className="text-2xl font-bold font-heading text-white mb-3">
+          <div className="rounded-lg border border-slate-800 bg-slate-900 p-6 shadow-xl sm:p-10 lg:col-span-2">
+
+            <h2 className="font-heading mb-3 text-2xl font-bold text-white">
               Request a Quote / Send an Inquiry
             </h2>
 
-            <p className="text-sm text-slate-400 mb-8">
+            <p className="mb-8 text-sm text-slate-400">
               Share your tooling requirements and specifications
               with our team. We will be happy to assist you.
             </p>
 
             <form className="space-y-6">
 
-              {/* Name & Company */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {/* NAME & COMPANY */}
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
 
                 <div className="space-y-2">
                   <label
                     htmlFor="fullName"
                     className="block text-sm font-medium text-slate-300"
                   >
-                    Full Name <span className="text-amber-500">*</span>
+                    Full Name
+                    <span className="text-amber-500"> *</span>
                   </label>
 
                   <input
@@ -285,7 +357,7 @@ export default function ContactPage() {
                     name="fullName"
                     required
                     placeholder="Enter your full name"
-                    className="w-full bg-slate-950 border border-slate-800 rounded-md px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-amber-500 transition-colors"
+                    className="w-full rounded-md border border-slate-800 bg-slate-950 px-4 py-3 text-white placeholder-slate-600 transition-colors focus:border-amber-500 focus:outline-none"
                   />
                 </div>
 
@@ -302,20 +374,21 @@ export default function ContactPage() {
                     id="companyName"
                     name="companyName"
                     placeholder="Enter company / workshop name"
-                    className="w-full bg-slate-950 border border-slate-800 rounded-md px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-amber-500 transition-colors"
+                    className="w-full rounded-md border border-slate-800 bg-slate-950 px-4 py-3 text-white placeholder-slate-600 transition-colors focus:border-amber-500 focus:outline-none"
                   />
                 </div>
               </div>
 
-              {/* Email & Phone */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {/* EMAIL & PHONE */}
+              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
 
                 <div className="space-y-2">
                   <label
                     htmlFor="email"
                     className="block text-sm font-medium text-slate-300"
                   >
-                    Email Address <span className="text-amber-500">*</span>
+                    Email Address
+                    <span className="text-amber-500"> *</span>
                   </label>
 
                   <input
@@ -324,7 +397,7 @@ export default function ContactPage() {
                     name="email"
                     required
                     placeholder="name@company.com"
-                    className="w-full bg-slate-950 border border-slate-800 rounded-md px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-amber-500 transition-colors"
+                    className="w-full rounded-md border border-slate-800 bg-slate-950 px-4 py-3 text-white placeholder-slate-600 transition-colors focus:border-amber-500 focus:outline-none"
                   />
                 </div>
 
@@ -333,7 +406,8 @@ export default function ContactPage() {
                     htmlFor="phone"
                     className="block text-sm font-medium text-slate-300"
                   >
-                    Phone Number <span className="text-amber-500">*</span>
+                    Phone Number
+                    <span className="text-amber-500"> *</span>
                   </label>
 
                   <input
@@ -342,12 +416,12 @@ export default function ContactPage() {
                     name="phone"
                     required
                     placeholder="Enter your mobile number"
-                    className="w-full bg-slate-950 border border-slate-800 rounded-md px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-amber-500 transition-colors"
+                    className="w-full rounded-md border border-slate-800 bg-slate-950 px-4 py-3 text-white placeholder-slate-600 transition-colors focus:border-amber-500 focus:outline-none"
                   />
                 </div>
               </div>
 
-              {/* Product Requirement */}
+              {/* PRODUCT REQUIREMENT */}
               <div className="space-y-2">
                 <label
                   htmlFor="productInterest"
@@ -360,36 +434,43 @@ export default function ContactPage() {
                   id="productInterest"
                   name="productInterest"
                   defaultValue=""
-                  className="w-full bg-slate-950 border border-slate-800 rounded-md px-4 py-3 text-white focus:outline-none focus:border-amber-500 transition-colors"
+                  className="w-full rounded-md border border-slate-800 bg-slate-950 px-4 py-3 text-white transition-colors focus:border-amber-500 focus:outline-none"
                 >
                   <option value="" disabled>
                     Select your tooling requirement
                   </option>
+
                   <option value="press-brake-punches">
                     CNC Press Brake Punches
                   </option>
+
                   <option value="press-brake-dies">
                     CNC Press Brake Dies
                   </option>
+
                   <option value="hemming-tools">
                     Hemming Tools
                   </option>
+
                   <option value="radius-tools">
                     Radius Forming Tools
                   </option>
+
                   <option value="shearing-blades">
                     Shearing Blades
                   </option>
+
                   <option value="custom-tooling">
                     Custom Tooling Solution
                   </option>
+
                   <option value="other">
                     Other Requirement
                   </option>
                 </select>
               </div>
 
-              {/* Message */}
+              {/* MESSAGE */}
               <div className="space-y-2">
                 <label
                   htmlFor="message"
@@ -405,32 +486,32 @@ export default function ContactPage() {
                   rows={5}
                   required
                   placeholder="Please describe your tooling requirement, machine make, material thickness, dimensions, quantity, or any other specifications..."
-                  className="w-full bg-slate-950 border border-slate-800 rounded-md px-4 py-3 text-white placeholder-slate-600 focus:outline-none focus:border-amber-500 transition-colors resize-none"
+                  className="w-full resize-none rounded-md border border-slate-800 bg-slate-950 px-4 py-3 text-white placeholder-slate-600 transition-colors focus:border-amber-500 focus:outline-none"
                 />
               </div>
 
-              {/* Submit Button */}
+              {/* SUBMIT */}
               <button
                 type="submit"
-                className="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold py-3.5 px-6 rounded-md shadow-lg transition-colors text-base"
+                className="w-full rounded-md bg-amber-500 px-6 py-3.5 text-base font-semibold text-slate-950 shadow-lg transition-colors hover:bg-amber-400"
               >
                 Submit Inquiry / Request Quote
               </button>
 
-              <p className="text-xs text-slate-500 text-center">
+              <p className="text-center text-xs text-slate-500">
                 For immediate assistance, call us at{" "}
                 <a
-                  href="tel:+919011452458"
+                  href={`tel:${contactPersons[0].phoneLink}`}
                   className="text-amber-400 hover:text-amber-300"
                 >
-                  +91 9011452458
+                  {contactPersons[0].phone}
                 </a>
                 {" "}or{" "}
                 <a
-                  href="tel:+919922566974"
+                  href={`tel:${contactPersons[1].phoneLink}`}
                   className="text-amber-400 hover:text-amber-300"
                 >
-                  +91 9922566974
+                  {contactPersons[1].phone}
                 </a>
                 .
               </p>

@@ -29,7 +29,9 @@ export default function MobileHomeCompanyOverview() {
 
   useEffect(() => {
     const interval = window.setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % products.length);
+      setActiveIndex(
+        (prev) => (prev + 1) % products.length
+      );
     }, 4500);
 
     return () => window.clearInterval(interval);
@@ -218,6 +220,7 @@ export default function MobileHomeCompanyOverview() {
         ========================================== */}
 
         <div className="mt-10 grid grid-cols-2 border-y border-[#29303a] py-7">
+          {/* TOOLING SERIES */}
           <div className="border-r border-[#29303a] pr-5">
             <p className="text-[37px] font-semibold leading-none tracking-[-0.05em] text-white">
               22<span className="text-amber-400">+</span>
@@ -228,6 +231,7 @@ export default function MobileHomeCompanyOverview() {
             </p>
           </div>
 
+          {/* ALLOY STEEL */}
           <div className="pl-6">
             <p className="text-[37px] font-semibold leading-none tracking-[-0.05em] text-white">
               100<span className="text-amber-400">%</span>
@@ -235,6 +239,12 @@ export default function MobileHomeCompanyOverview() {
 
             <p className="mt-3 text-[10px] font-semibold uppercase tracking-[0.13em] text-[#9da5b0]">
               Alloy Steel
+            </p>
+
+            {/* UPDATED MATERIAL GRADES */}
+            <p className="mt-2 text-[10px] leading-[1.7] text-[#89939f]">
+              42CrMo4, EN19, D2 (Indian/Imported),
+              EN31 &amp; C45
             </p>
           </div>
         </div>

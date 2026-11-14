@@ -15,7 +15,14 @@ import {
   FiArrowRight,
   FiFileText,
   FiBriefcase,
+  FiFacebook,
+  FiLinkedin,
+  FiExternalLink,
 } from "react-icons/fi";
+
+/* ==========================================
+   COMPANY CONTACT DETAILS
+========================================== */
 
 const contacts = [
   {
@@ -32,15 +39,31 @@ const contacts = [
   },
 ];
 
+/* ==========================================
+   COMPANY INFORMATION
+========================================== */
+
 const company = {
   name: "Autozone Tooling",
   email: "autozone.tooling@gmail.com",
   gstin: "27ACWPH8035L1ZW",
+
   address:
     "Sector No. 07, Plot No. 256, PCNTDA, MIDC, Bhosari, Pune - 411026, Maharashtra, India",
+
   mapUrl:
-    "https://www.google.com/maps/search/?api=1&query=Plot+No+256+Sector+7+PCNTDA+MIDC+Bhosari+Pune+411026",
+    "https://www.google.com/maps/place/Autozone+Tooling/@18.6425895,73.8367515,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc2b94881f1ca1b:0xb68dfd77de68ec3c!8m2!3d18.6425895!4d73.8393264!16s%2Fg%2F11lw8q15fv?entry=ttu",
+
+  facebook:
+    "https://www.facebook.com/people/Autozone-Tooling/61593862056621/",
+
+  linkedin:
+    "https://www.linkedin.com/in/autozone-tooling-23721b291/",
 };
+
+/* ==========================================
+   QUICK LINKS
+========================================== */
 
 const quickLinks = [
   { label: "Home", href: "/" },
@@ -50,7 +73,35 @@ const quickLinks = [
   { label: "Contact Us", href: "/contact" },
 ];
 
-type AccordionKey = "links" | "contacts" | "business";
+/* ==========================================
+   SOCIAL LINKS
+========================================== */
+
+const socialLinks = [
+  {
+    name: "Facebook",
+    href: company.facebook,
+    icon: FiFacebook,
+    hover:
+      "hover:bg-blue-600 hover:border-blue-600 hover:text-white",
+  },
+  {
+    name: "LinkedIn",
+    href: company.linkedin,
+    icon: FiLinkedin,
+    hover:
+      "hover:bg-[#0A66C2] hover:border-[#0A66C2] hover:text-white",
+  },
+];
+
+type AccordionKey =
+  | "links"
+  | "contacts"
+  | "business";
+
+/* ==========================================
+   MOBILE FOOTER COMPONENT
+========================================== */
 
 export default function MobileFooter() {
   const [openSection, setOpenSection] =
@@ -66,12 +117,17 @@ export default function MobileFooter() {
     "Hello Autozone Tooling, I would like to enquire about your press brake tooling products."
   );
 
-  const whatsappUrl = `https://wa.me/${contacts[0].whatsapp}?text=${whatsappMessage}`;
+  const whatsappUrl =
+    `https://wa.me/${contacts[0].whatsapp}?text=${whatsappMessage}`;
 
   return (
     <footer className="border-t border-slate-800 bg-slate-950 font-sans text-white">
       <div className="mx-auto max-w-lg px-5 pb-8 pt-12">
-        {/* BRAND */}
+
+        {/* ==================================
+            BRAND
+        ================================== */}
+
         <div>
           <Link
             href="/"
@@ -106,13 +162,17 @@ export default function MobileFooter() {
           </p>
         </div>
 
-        {/* PRIMARY CONTACT CTA */}
+        {/* ==================================
+            PRIMARY CONTACT CTA
+        ================================== */}
+
         <div className="mt-8 rounded-2xl border border-slate-700 bg-slate-900 p-5">
+
           <div className="flex items-center gap-2">
             <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
 
             <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-amber-400">
-              Let's Work Together
+              Let&apos;s Work Together
             </span>
           </div>
 
@@ -138,6 +198,7 @@ export default function MobileFooter() {
           </Link>
 
           <div className="mt-3 grid grid-cols-2 gap-3">
+
             <a
               href={whatsappUrl}
               target="_blank"
@@ -161,17 +222,23 @@ export default function MobileFooter() {
               />
               Call Us
             </a>
+
           </div>
         </div>
 
-        {/* LOCATION */}
+        {/* ==================================
+            LOCATION
+        ================================== */}
+
         <div className="mt-9">
           <div className="flex items-start gap-3">
+
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-900 text-amber-400">
               <FiMapPin size={19} />
             </span>
 
             <div className="min-w-0 flex-1">
+
               <h3 className="text-[13px] font-semibold text-white">
                 Visit Our Facility
               </h3>
@@ -189,12 +256,80 @@ export default function MobileFooter() {
                 Get Directions
                 <FiArrowUpRight size={15} />
               </a>
+
+              <a
+                href={company.mapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 flex min-h-11 w-fit items-center gap-2 rounded-lg border border-slate-700 bg-slate-900 px-4 text-[11px] font-semibold text-slate-300 transition-colors active:border-amber-400 active:text-amber-400"
+              >
+                <FiMapPin
+                  size={15}
+                  className="text-amber-400"
+                />
+
+                View on Google Maps
+
+                <FiExternalLink size={13} />
+              </a>
+
             </div>
           </div>
         </div>
 
-        {/* ACCORDION SECTIONS */}
+        {/* ==================================
+            SOCIAL MEDIA
+        ================================== */}
+
+        <div className="mt-9 rounded-xl border border-slate-800 bg-slate-900/60 p-5">
+
+          <div className="flex items-center justify-between gap-3">
+
+            <div>
+              <h3 className="text-[13px] font-semibold text-white">
+                Follow Autozone Tooling
+              </h3>
+
+              <p className="mt-1.5 text-[11px] leading-relaxed text-slate-400">
+                Stay connected for updates and industry insights.
+              </p>
+            </div>
+
+          </div>
+
+          <div className="mt-5 grid grid-cols-2 gap-3">
+
+            {socialLinks.map((social) => {
+              const Icon = social.icon;
+
+              return (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Autozone Tooling on ${social.name}`}
+                  className={`flex min-h-12 items-center justify-center gap-2 rounded-lg border border-slate-700 bg-slate-800 px-3 text-[12px] font-semibold text-slate-300 transition-all duration-200 active:scale-[0.98] ${social.hover}`}
+                >
+                  <Icon size={17} />
+                  {social.name}
+                  <FiArrowUpRight
+                    size={13}
+                    className="opacity-60"
+                  />
+                </a>
+              );
+            })}
+
+          </div>
+        </div>
+
+        {/* ==================================
+            ACCORDION SECTIONS
+        ================================== */}
+
         <div className="mt-8 divide-y divide-slate-800 border-y border-slate-800">
+
           {/* QUICK LINKS */}
           <div>
             <button
@@ -397,8 +532,12 @@ export default function MobileFooter() {
           </div>
         </div>
 
-        {/* LEGAL LINKS */}
+        {/* ==================================
+            LEGAL LINKS
+        ================================== */}
+
         <div className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+
           <Link
             href="/privacy"
             className="text-[11px] text-slate-400 transition-colors active:text-amber-400"
@@ -412,10 +551,15 @@ export default function MobileFooter() {
           >
             Terms of Service
           </Link>
+
         </div>
 
-        {/* COPYRIGHT */}
+        {/* ==================================
+            COPYRIGHT
+        ================================== */}
+
         <div className="mt-7 border-t border-slate-800 pt-6 text-center">
+
           <p className="text-[11px] leading-relaxed text-slate-500">
             © {new Date().getFullYear()} Autozone Tooling.
             <br />
@@ -425,6 +569,7 @@ export default function MobileFooter() {
           <p className="mt-3 text-[10px] font-medium uppercase tracking-[0.15em] text-slate-600">
             Precision Tooling. Reliable Partnerships.
           </p>
+
         </div>
       </div>
     </footer>

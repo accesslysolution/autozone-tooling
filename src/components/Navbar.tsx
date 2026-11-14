@@ -5,6 +5,15 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import {
+  FiFacebook,
+  FiLinkedin,
+  FiArrowUpRight,
+} from "react-icons/fi";
+
+/* ==========================================
+   NAVIGATION LINKS
+========================================== */
 
 const navLinks = [
   { name: "Home", href: "/" },
@@ -14,7 +23,10 @@ const navLinks = [
   { name: "Contact Us", href: "/contact" },
 ];
 
-  
+/* ==========================================
+   PRODUCT CATEGORIES
+========================================== */
+
 const productCategories = [
   {
     name: "Press Brake Tool",
@@ -74,26 +86,69 @@ const productCategories = [
   },
 ];
 
+/* ==========================================
+   COMPANY INFORMATION
+========================================== */
+
 const company = {
   name: "Autozone Tooling",
   email: "autozone.tooling@gmail.com",
+
   phone1: "+91 9011452458",
   phone2: "+91 9922566974",
+
   phoneLink1: "+919011452458",
   phoneLink2: "+919922566974",
+
   whatsapp: "919011452458",
+
   location: "Bhosari MIDC, Pune",
+
+  mapUrl:
+    "https://www.google.com/maps/place/Autozone+Tooling/@18.6425895,73.8367515,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc2b94881f1ca1b:0xb68dfd77de68ec3c!8m2!3d18.6425895!4d73.8393264!16s%2Fg%2F11lw8q15fv?entry=ttu",
+
+  facebook:
+    "https://www.facebook.com/people/Autozone-Tooling/61593862056621/",
+
+  linkedin:
+    "https://www.linkedin.com/in/autozone-tooling-23721b291/",
 };
+
+/* ==========================================
+   SOCIAL MEDIA LINKS
+========================================== */
+
+const socialLinks = [
+  {
+    name: "Facebook",
+    href: company.facebook,
+    icon: FiFacebook,
+    hover:
+      "hover:text-blue-400 hover:bg-blue-500/10",
+  },
+  {
+    name: "LinkedIn",
+    href: company.linkedin,
+    icon: FiLinkedin,
+    hover:
+      "hover:text-sky-400 hover:bg-sky-500/10",
+  },
+];
+
+/* ==========================================
+   NAVBAR COMPONENT
+========================================== */
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] =
+    useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] =
     useState(false);
 
   const pathname = usePathname();
 
-  // Scroll effect
+  /* Scroll Effect */
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -110,11 +165,26 @@ export default function Navbar() {
     };
   }, []);
 
-  // Close mobile navigation when route changes
+  /* Close Mobile Navigation on Route Change */
   useEffect(() => {
     setMobileMenuOpen(false);
     setMobileProductsOpen(false);
   }, [pathname]);
+
+  /* Prevent background scrolling when mobile menu opens */
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    const previousOverflow =
+      document.body.style.overflow;
+
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow =
+        previousOverflow;
+    };
+  }, [mobileMenuOpen]);
 
   const closeMobileMenu = () => {
     setMobileMenuOpen(false);
@@ -130,14 +200,17 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full font-sans">
+
       {/* ==========================================
           TOP UTILITY BAR
       ========================================== */}
 
       <div className="border-b border-slate-800 bg-slate-950 text-xs text-slate-300 sm:text-sm">
-        <div className="mx-auto flex min-h-10 max-w-7xl items-center justify-between gap-4 px-4 py-2 sm:px-6 lg:px-8">
-          {/* Left: Contact Information */}
-          <div className="flex items-center gap-4 lg:gap-6">
+        <div className="mx-auto flex min-h-10 max-w-7xl items-center justify-between gap-3 px-4 py-2 sm:px-6 lg:px-8">
+
+          {/* LEFT: CONTACT INFORMATION */}
+          <div className="flex min-w-0 items-center gap-4 lg:gap-6">
+
             {/* Primary Phone */}
             <a
               href={`tel:${company.phoneLink1}`}
@@ -179,7 +252,7 @@ export default function Navbar() {
             {/* Email */}
             <a
               href={`mailto:${company.email}`}
-              className="hidden items-center gap-2 transition-colors hover:text-amber-400 xl:flex"
+              className="hidden items-center gap-2 transition-colors hover:text-amber-400 2xl:flex"
             >
               <svg
                 className="h-4 w-4 shrink-0 text-amber-500"
@@ -192,7 +265,7 @@ export default function Navbar() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 00-2-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                 />
               </svg>
 
@@ -200,10 +273,17 @@ export default function Navbar() {
             </a>
           </div>
 
-          {/* Right: Location & WhatsApp */}
-          <div className="flex items-center gap-4">
-            {/* Location */}
-            <div className="hidden items-center gap-2 whitespace-nowrap font-medium text-slate-400 md:flex">
+          {/* RIGHT: LOCATION, SOCIALS & WHATSAPP */}
+          <div className="flex shrink-0 items-center gap-2 sm:gap-3 lg:gap-4">
+
+            {/* Google Maps Location */}
+            <a
+              href={company.mapUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="View Autozone Tooling on Google Maps"
+              className="hidden items-center gap-2 whitespace-nowrap font-medium text-slate-400 transition-colors hover:text-amber-400 xl:flex"
+            >
               <svg
                 className="h-4 w-4 text-amber-500"
                 fill="none"
@@ -226,6 +306,29 @@ export default function Navbar() {
               </svg>
 
               <span>{company.location}</span>
+            </a>
+
+            {/* Social Media Icons */}
+            <div className="flex items-center gap-1 border-r border-slate-700 pr-2 sm:gap-2 sm:pr-3">
+
+              {socialLinks.map((social) => {
+                const Icon = social.icon;
+
+                return (
+                  <a
+                    key={social.name}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Autozone Tooling on ${social.name}`}
+                    title={social.name}
+                    className={`flex h-8 w-8 items-center justify-center rounded-md text-slate-400 transition-all duration-200 ${social.hover}`}
+                  >
+                    <Icon size={16} />
+                  </a>
+                );
+              })}
+
             </div>
 
             {/* WhatsApp Button */}
@@ -266,6 +369,7 @@ export default function Navbar() {
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+
           {/* Brand Logo */}
           <Link
             href="/"
@@ -302,7 +406,6 @@ export default function Navbar() {
             {navLinks.map((link) => {
               const isActive = isActiveLink(link.href);
 
-              // Products Dropdown
               if (link.name === "Products") {
                 return (
                   <div
@@ -344,6 +447,7 @@ export default function Navbar() {
 
                     {/* Products Dropdown Panel */}
                     <div className="invisible absolute left-1/2 top-full z-50 w-[370px] -translate-x-1/2 translate-y-2 rounded-xl border border-slate-700 bg-slate-900 p-3 opacity-0 shadow-2xl transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
+
                       {/* Dropdown Header */}
                       <div className="border-b border-slate-800 px-3 pb-3 pt-2">
                         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-400">
@@ -356,7 +460,7 @@ export default function Navbar() {
                       </div>
 
                       {/* Category Links */}
-                      <div className="space-y-1 py-2">
+                      <div className="max-h-[60vh] space-y-1 overflow-y-auto py-2">
                         {productCategories.map(
                           (category, index) => (
                             <Link
@@ -408,7 +512,6 @@ export default function Navbar() {
                 );
               }
 
-              // Other Navigation Links
               return (
                 <Link
                   key={link.name}
@@ -499,7 +602,6 @@ export default function Navbar() {
             {navLinks.map((link) => {
               const isActive = isActiveLink(link.href);
 
-              // Mobile Products Accordion
               if (link.name === "Products") {
                 return (
                   <div
@@ -582,7 +684,6 @@ export default function Navbar() {
                 );
               }
 
-              // Other Mobile Navigation Links
               return (
                 <Link
                   key={link.name}
@@ -648,10 +749,16 @@ export default function Navbar() {
                   {company.email}
                 </a>
 
-                {/* Location */}
-                <p className="text-xs text-slate-500">
+                {/* Google Maps Location */}
+                <a
+                  href={company.mapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 text-xs text-slate-400 transition-colors hover:text-amber-400"
+                >
                   Sector 07, Bhosari MIDC, Pune - 411026
-                </p>
+                  <FiArrowUpRight size={13} />
+                </a>
               </div>
 
               {/* Mobile CTA */}
@@ -662,6 +769,42 @@ export default function Navbar() {
               >
                 Request a Quote
               </Link>
+            </div>
+
+            {/* ==========================================
+                MOBILE SOCIAL MEDIA LINKS
+            ========================================== */}
+
+            <div className="border-t border-slate-800 pt-5">
+              <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-slate-500">
+                Follow Autozone Tooling
+              </p>
+
+              <div className="grid grid-cols-2 gap-3">
+                {socialLinks.map((social) => {
+                  const Icon = social.icon;
+
+                  return (
+                    <a
+                      key={social.name}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Autozone Tooling on ${social.name}`}
+                      className={`flex min-h-12 items-center justify-center gap-2 rounded-lg border border-slate-700 bg-slate-800 px-3 text-sm font-medium text-slate-300 transition-all duration-200 ${social.hover}`}
+                    >
+                      <Icon size={17} />
+
+                      <span>{social.name}</span>
+
+                      <FiArrowUpRight
+                        size={13}
+                        className="opacity-60"
+                      />
+                    </a>
+                  );
+                })}
+              </div>
             </div>
           </div>
         )}

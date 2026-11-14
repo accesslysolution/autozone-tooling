@@ -58,12 +58,12 @@ const slides: Slide[] = [
   {
     id: 3,
     title: "Specialized Forming",
-    highlight: "Press Brake Joggle Tool",
+    highlight: "Press Brake Tooling",
     description:
-      "Precision-engineered joggle tooling for accurate offset bending and specialized sheet metal forming. Developed to deliver consistent profiles, efficient operation, and reliable forming accuracy.",
+      "Precision-engineered tooling for accurate offset bending and specialized sheet metal forming. Developed to deliver consistent profiles, efficient operation, and reliable forming accuracy.",
     image: "/images/hero/3.avif",
     primaryCTA: {
-      text: "Explore Joggle Tools",
+      text: "Explore Press Brake Tools",
       href: "/products#joggle-tool-insert",
     },
     secondaryCTA: {
@@ -90,12 +90,12 @@ const slides: Slide[] = [
   {
     id: 5,
     title: "Custom Engineered",
-    highlight: "Press Brake Special Toolings",
+    highlight: "Press Brake Special Radius Toolings",
     description:
-      "Specialized press brake tooling solutions developed for complex bending profiles and unique fabrication requirements. Precision-machined to support reliable forming, dimensional accuracy, and production efficiency.",
+      "Specialized press brake radius tooling solutions developed for complex bending profiles and unique fabrication requirements. Precision-machined to support reliable forming, dimensional accuracy, and production efficiency.",
     image: "/images/hero/5.avif",
     primaryCTA: {
-      text: "Explore Special Tooling",
+      text: "Explore Special Radius Tooling",
       href: "/products#special-application",
     },
     secondaryCTA: {

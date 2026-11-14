@@ -21,8 +21,24 @@ export const metadata: Metadata = {
 
 const clients = [
   {
+    name: "TRUMPF",
+    image: "/clients/TRUMPF.avif",
+  },
+  {
+    name: "S&T Engineers",
+    image: "/clients/S&T Engineers Globe.avif",
+  },
+  {
+    name: "Proteck",
+    image: "/clients/Proteck.avif",
+  },
+  {
     name: "ADH Machine Tool",
     image: "/clients/ADH Machine Tool.avif",
+  },
+  {
+    name: "Rajesh Global",
+    image: "/clients/Rajesh Global.avif",
   },
   {
     name: "AURA Signal",
@@ -69,24 +85,12 @@ const clients = [
     image: "/clients/PAI KANE GROUP.avif",
   },
   {
-    name: "Proteck",
-    image: "/clients/Proteck.avif",
-  },
-  {
     name: "PSR Toolings and Stampings Pvt. Ltd.",
     image: "/clients/PSR Toolings and Stampings.avif",
   },
   {
-    name: "Rajesh Global",
-    image: "/clients/Rajesh Global.avif",
-  },
-  {
     name: "RSB",
     image: "/clients/RSB Globe and House.avif",
-  },
-  {
-    name: "S&T Engineers",
-    image: "/clients/S&T Engineers Globe.avif",
   },
   {
     name: "SAAKSHI",
@@ -104,11 +108,8 @@ const clients = [
     name: "Sumeco Group of Companies",
     image: "/clients/Sumeco Group Corporate.avif",
   },
-  {
-    name: "TRUMPF",
-    image: "/clients/TRUMPF.avif",
-  },
 ];
+
 
 
 

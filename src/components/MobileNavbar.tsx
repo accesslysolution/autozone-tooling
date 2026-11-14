@@ -6,6 +6,12 @@ import { createPortal } from "react-dom";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import {
+  FiFacebook,
+  FiLinkedin,
+  FiArrowUpRight,
+  FiMapPin,
+} from "react-icons/fi";
 
 /* ==========================================
    NAVIGATION LINKS
@@ -21,9 +27,6 @@ const navLinks = [
 
 /* ==========================================
    PRODUCT CATEGORIES
-
-   IDs match MobileProductsPage:
-   id={`mobile-${category.id}`}
 ========================================== */
 
 const productCategories = [
@@ -92,13 +95,43 @@ const productCategories = [
 const company = {
   name: "Autozone Tooling",
   email: "autozone.tooling@gmail.com",
+
   phone1: "+91 9011452458",
   phone2: "+91 9922566974",
+
   phoneLink1: "+919011452458",
   phoneLink2: "+919922566974",
+
   whatsapp: "919011452458",
+
   location: "Bhosari MIDC, Pune",
+
+  mapUrl:
+    "https://www.google.com/maps/place/Autozone+Tooling/@18.6425895,73.8367515,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc2b94881f1ca1b:0xb68dfd77de68ec3c!8m2!3d18.6425895!4d73.8393264!16s%2Fg%2F11lw8q15fv?entry=ttu",
+
+  facebook:
+    "https://www.facebook.com/people/Autozone-Tooling/61593862056621/",
+
+  linkedin:
+    "https://www.linkedin.com/in/autozone-tooling-23721b291/",
 };
+
+/* ==========================================
+   SOCIAL LINKS
+========================================== */
+
+const socialLinks = [
+  {
+    name: "Facebook",
+    href: company.facebook,
+    icon: FiFacebook,
+  },
+  {
+    name: "LinkedIn",
+    href: company.linkedin,
+    icon: FiLinkedin,
+  },
+];
 
 /* ==========================================
    MOBILE NAVBAR
@@ -156,7 +189,8 @@ export default function MobileNavbar() {
   useEffect(() => {
     if (!menuOpen) return;
 
-    const previousOverflow = document.body.style.overflow;
+    const previousOverflow =
+      document.body.style.overflow;
 
     document.body.style.overflow = "hidden";
 
@@ -211,8 +245,6 @@ export default function MobileNavbar() {
 
     if (pathname !== "/products") return;
 
-    // The section already exists on this page.
-    // Close the drawer before scrolling to it.
     window.requestAnimationFrame(() => {
       window.requestAnimationFrame(() => {
         const target = document.getElementById(
@@ -235,6 +267,7 @@ export default function MobileNavbar() {
 
   const mobileDrawer = (
     <div className="fixed inset-0 z-[10000] md:hidden">
+
       {/* BACKDROP */}
       <button
         type="button"
@@ -249,6 +282,7 @@ export default function MobileNavbar() {
         aria-label="Mobile navigation"
         className="absolute inset-y-0 right-0 flex w-[min(88vw,380px)] flex-col overflow-hidden border-l border-slate-700 bg-slate-950 shadow-2xl"
       >
+
         {/* DRAWER HEADER */}
         <div className="flex shrink-0 items-center justify-between border-b border-slate-800 px-5 py-5">
           <div>
@@ -284,8 +318,12 @@ export default function MobileNavbar() {
           </button>
         </div>
 
-        {/* SCROLLABLE MENU */}
+        {/* ==================================
+            SCROLLABLE MENU
+        ================================== */}
+
         <div className="min-h-0 flex-1 space-y-2 overflow-y-auto overscroll-contain px-4 py-5">
+
           {navLinks.map((link) => {
             const isActive = isActiveLink(link.href);
 
@@ -314,7 +352,9 @@ export default function MobileNavbar() {
                     <button
                       type="button"
                       onClick={() =>
-                        setProductsOpen((previous) => !previous)
+                        setProductsOpen(
+                          (previous) => !previous
+                        )
                       }
                       aria-expanded={productsOpen}
                       aria-controls="mobile-product-list"
@@ -355,7 +395,9 @@ export default function MobileNavbar() {
                             key={category.id}
                             href={`/products#mobile-${category.id}`}
                             onClick={() =>
-                              handleCategoryClick(category.id)
+                              handleCategoryClick(
+                                category.id
+                              )
                             }
                             className="flex items-center gap-3 rounded-lg px-3 py-3 transition-colors active:bg-slate-800"
                           >
@@ -406,7 +448,9 @@ export default function MobileNavbar() {
                 key={link.name}
                 href={link.href}
                 onClick={closeMenu}
-                aria-current={isActive ? "page" : undefined}
+                aria-current={
+                  isActive ? "page" : undefined
+                }
                 className={`flex items-center justify-between rounded-xl border px-4 py-3.5 text-sm font-semibold transition-colors ${
                   isActive
                     ? "border-amber-500/30 bg-amber-500/10 text-amber-400"
@@ -437,7 +481,10 @@ export default function MobileNavbar() {
             );
           })}
 
-          {/* CONTACT DETAILS */}
+          {/* ==================================
+              CONTACT DETAILS
+          ================================== */}
+
           <div className="mt-6 border-t border-slate-800 pt-6">
             <p className="mb-4 px-1 text-[10px] font-bold uppercase tracking-[0.2em] text-amber-400">
               Get in Touch
@@ -448,6 +495,7 @@ export default function MobileNavbar() {
                 <p className="text-xs text-slate-500">
                   Mr. Santosh Hodage
                 </p>
+
                 <a
                   href={`tel:${company.phoneLink1}`}
                   className="mt-1 block text-sm font-medium text-white"
@@ -460,6 +508,7 @@ export default function MobileNavbar() {
                 <p className="text-xs text-slate-500">
                   Mr. Baswaraj Hodage
                 </p>
+
                 <a
                   href={`tel:${company.phoneLink2}`}
                   className="mt-1 block text-sm font-medium text-white"
@@ -475,14 +524,70 @@ export default function MobileNavbar() {
                 {company.email}
               </a>
 
-              <p className="text-xs text-slate-500">
-                {company.location}
-              </p>
+              {/* GOOGLE MAPS LINK */}
+              <a
+                href={company.mapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 text-xs text-slate-400 transition-colors hover:text-amber-400"
+              >
+                <FiMapPin
+                  size={15}
+                  className="shrink-0 text-amber-400"
+                />
+
+                <span>{company.location}</span>
+
+                <FiArrowUpRight
+                  size={13}
+                  className="shrink-0"
+                />
+              </a>
             </div>
           </div>
+
+          {/* ==================================
+              SOCIAL MEDIA SECTION
+          ================================== */}
+
+          <div className="mt-6 border-t border-slate-800 pt-6">
+            <p className="mb-4 px-1 text-[10px] font-bold uppercase tracking-[0.2em] text-amber-400">
+              Follow Autozone Tooling
+            </p>
+
+            <div className="grid grid-cols-2 gap-3">
+              {socialLinks.map((social) => {
+                const Icon = social.icon;
+
+                return (
+                  <a
+                    key={social.name}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Autozone Tooling on ${social.name}`}
+                    className="flex min-h-12 items-center justify-center gap-2 rounded-lg border border-slate-700 bg-slate-900 px-3 text-xs font-semibold text-slate-300 transition-all hover:border-amber-500/50 hover:text-amber-400 active:bg-slate-800"
+                  >
+                    <Icon size={17} />
+
+                    <span>{social.name}</span>
+
+                    <FiArrowUpRight
+                      size={13}
+                      className="opacity-60"
+                    />
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+
         </div>
 
-        {/* DRAWER FOOTER */}
+        {/* ==================================
+            DRAWER FOOTER
+        ================================== */}
+
         <div className="shrink-0 border-t border-slate-800 bg-slate-950 p-4 pb-[max(16px,env(safe-area-inset-bottom))]">
           <Link
             href="/contact"
@@ -522,12 +627,18 @@ export default function MobileNavbar() {
           isScrolled ? "shadow-xl" : ""
         }`}
       >
-        {/* TOP CONTACT STRIP */}
+
+        {/* ==================================
+            TOP CONTACT STRIP
+        ================================== */}
+
         <div className="border-b border-white/10 bg-slate-900 px-4">
-          <div className="mx-auto flex h-9 max-w-lg items-center justify-between">
+          <div className="mx-auto flex h-9 max-w-lg items-center justify-between gap-2">
+
+            {/* PHONE NUMBER */}
             <a
               href={`tel:${company.phoneLink1}`}
-              className="inline-flex items-center gap-2 text-[11px] font-medium text-slate-300"
+              className="inline-flex shrink-0 items-center gap-1.5 text-[11px] font-medium text-slate-300"
             >
               <svg
                 className="h-3.5 w-3.5 text-amber-400"
@@ -547,36 +658,52 @@ export default function MobileNavbar() {
               {company.phone1}
             </a>
 
-            <span className="inline-flex items-center gap-1.5 text-[10px] font-medium text-slate-400">
-              <svg
-                className="h-3.5 w-3.5 text-amber-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                />
-              </svg>
+            {/* SOCIAL ICONS */}
+            <div className="flex items-center gap-1">
 
-              Pune, India
-            </span>
+              <a
+                href={company.facebook}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Autozone Tooling Facebook"
+                className="flex h-7 w-7 items-center justify-center rounded-md text-slate-400 transition-colors hover:bg-blue-500/10 hover:text-blue-400"
+              >
+                <FiFacebook size={14} />
+              </a>
+
+              <a
+                href={company.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Autozone Tooling LinkedIn"
+                className="flex h-7 w-7 items-center justify-center rounded-md text-slate-400 transition-colors hover:bg-sky-500/10 hover:text-sky-400"
+              >
+                <FiLinkedin size={14} />
+              </a>
+
+              <span className="mx-1 h-4 w-px bg-slate-700" />
+
+              {/* LOCATION */}
+              <a
+                href={company.mapUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View Autozone Tooling on Google Maps"
+                className="flex h-7 w-7 items-center justify-center rounded-md text-amber-400 transition-colors hover:bg-amber-500/10"
+              >
+                <FiMapPin size={15} />
+              </a>
+            </div>
           </div>
         </div>
 
-        {/* MAIN MOBILE HEADER */}
+        {/* ==================================
+            MAIN MOBILE HEADER
+        ================================== */}
+
         <div className="border-b border-white/10 px-4">
           <div className="mx-auto flex h-[68px] max-w-lg items-center justify-between gap-3">
+
             {/* LOGO */}
             <Link
               href="/"
@@ -607,6 +734,7 @@ export default function MobileNavbar() {
 
             {/* HEADER ACTIONS */}
             <div className="flex shrink-0 items-center gap-2">
+
               {/* WHATSAPP */}
               <a
                 href={`https://wa.me/${company.whatsapp}`}
