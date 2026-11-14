@@ -18,6 +18,10 @@ import {
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "Products", href: "/products" },
+  {
+    name: "Design Services",
+    href: "/design-services",
+  },
   { name: "Clients", href: "/clients" },
   { name: "About Us", href: "/about" },
   { name: "Contact Us", href: "/contact" },
@@ -402,7 +406,7 @@ export default function Navbar() {
               DESKTOP NAVIGATION
           ========================================== */}
 
-          <div className="hidden items-center gap-8 lg:flex">
+          <div className="hidden items-center gap-5 xl:gap-8 lg:flex">
             {navLinks.map((link) => {
               const isActive = isActiveLink(link.href);
 
@@ -519,7 +523,7 @@ export default function Navbar() {
                   aria-current={
                     isActive ? "page" : undefined
                   }
-                  className={`relative py-1 text-sm font-medium tracking-wide transition-colors ${
+                  className={`relative whitespace-nowrap py-1 text-sm font-medium tracking-wide transition-colors ${
                     isActive
                       ? "font-semibold text-amber-400"
                       : "text-slate-300 hover:text-white"
@@ -539,7 +543,7 @@ export default function Navbar() {
           <div className="hidden items-center gap-4 lg:flex">
             <Link
               href="/contact"
-              className="transform rounded bg-amber-500 px-5 py-2.5 text-sm font-semibold text-slate-950 shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:bg-amber-400"
+              className="transform whitespace-nowrap rounded bg-amber-500 px-5 py-2.5 text-sm font-semibold text-slate-950 shadow-lg transition-all duration-200 hover:-translate-y-0.5 hover:bg-amber-400"
             >
               Request a Quote
             </Link>

@@ -31,13 +31,16 @@ const company = {
     "https://www.linkedin.com/in/autozone-tooling-23721b291/",
 };
 
+
 const quickLinks = [
   { label: "Home", href: "/" },
   { label: "Products", href: "/products" },
+  { label: "Design Services", href: "/design-services" },
   { label: "Clients", href: "/clients" },
   { label: "About Us", href: "/about" },
   { label: "Contact Us", href: "/contact" },
 ];
+
 
 function FacebookIcon({ className = "w-5 h-5" }) {
   return (

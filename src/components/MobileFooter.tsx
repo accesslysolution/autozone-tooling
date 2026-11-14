@@ -65,13 +65,16 @@ const company = {
    QUICK LINKS
 ========================================== */
 
+
 const quickLinks = [
   { label: "Home", href: "/" },
   { label: "Products", href: "/products" },
+  { label: "Design Services", href: "/design-services" },
   { label: "Clients", href: "/clients" },
   { label: "About Us", href: "/about" },
   { label: "Contact Us", href: "/contact" },
 ];
+
 
 /* ==========================================
    SOCIAL LINKS

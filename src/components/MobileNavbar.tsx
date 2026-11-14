@@ -20,6 +20,7 @@ import {
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "Products", href: "/products" },
+  { name: "Design Services", href: "/design-services" },
   { name: "Clients", href: "/clients" },
   { name: "About Us", href: "/about" },
   { name: "Contact Us", href: "/contact" },
