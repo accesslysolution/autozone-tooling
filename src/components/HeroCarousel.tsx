@@ -108,12 +108,12 @@ const slides: Slide[] = [
   {
     id: 5,
     title: "Custom Engineered",
-    highlight: "Press Brake Special Toolings",
+    highlight: "Press Brake Special Radius Toolings",
     description:
-      "Specialized press brake tooling solutions developed for complex bending profiles and unique fabrication requirements. Precision-machined to support reliable forming, dimensional accuracy, and production efficiency.",
+      "Specialized press brake radius tooling solutions developed for complex bending profiles and unique fabrication requirements. Precision-machined to support reliable forming, dimensional accuracy, and production efficiency.",
     image: "/images/hero/5.avif",
     primaryCTA: {
-      text: "Explore Special Tooling",
+      text: "Explore Special Radius Tooling",
       href: "/products",
     },
     secondaryCTA: {
