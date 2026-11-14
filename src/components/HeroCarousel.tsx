@@ -68,12 +68,12 @@ const slides: Slide[] = [
   {
     id: 3,
     title: "Specialized Forming",
-    highlight: "Press Brake Joggle Tool",
+    highlight: "Press Brake Tooling",
     description:
-      "Precision-engineered joggle tooling for accurate offset bending and specialized sheet metal forming. Developed to deliver consistent profiles, efficient operation, and reliable forming accuracy.",
+      "Precision-engineered tooling for accurate offset bending and specialized sheet metal forming. Developed to deliver consistent profiles, efficient operation, and reliable forming accuracy.",
     image: "/images/hero/3.avif",
     primaryCTA: {
-      text: "Explore Joggle Tools",
+      text: "Explore Tools",
       href: "/products",
     },
     secondaryCTA: {
