@@ -16,6 +16,8 @@ import {
    2. hero-2 — RIGHT
    3. hero-5 — LEFT
    4. hero-3 — LEFT
+   5. hero-7 — RIGHT (PLASTIC)
+   6. hero-8 — LEFT (RUBBER)
 ========================================== */
 
 const showcases = [
@@ -79,6 +81,46 @@ const showcases = [
     ],
     reverse: false,
   },
+
+  /* ==========================================
+     PLASTIC INJECTION MOULD & PRODUCT
+  ========================================== */
+
+  {
+    image: "/images/design/hero-7.avif",
+    alt: "Precision plastic injection mould die and finished injection moulded industrial plastic component",
+    eyebrow: "Plastic Mould Engineering",
+    title: "Precision Moulds.",
+    highlight: "Perfectly Formed Products.",
+    description:
+      "From precision-engineered injection mould dies to complex plastic components, our design solutions focus on dimensional accuracy, efficient moulding, and reliable manufacturing performance. We develop detailed tooling concepts that support consistent product quality and production efficiency.",
+    features: [
+      "Plastic Injection Mould Design",
+      "Precision Core & Cavity Engineering",
+      "Industrial Plastic Product Design",
+    ],
+    reverse: true,
+  },
+
+  /* ==========================================
+     RUBBER MOULD & PRODUCT
+  ========================================== */
+
+  {
+    image: "/images/design/hero-8.avif",
+    alt: "Precision rubber mould die and finished industrial rubber components",
+    eyebrow: "Rubber Mould Engineering",
+    title: "Engineered for Flexibility.",
+    highlight: "Designed for Performance.",
+    description:
+      "Our rubber mould design solutions support the development of precision-engineered rubber components for industrial applications. From complex mould cavities to functional rubber products, we focus on accurate geometry, practical tooling design, and manufacturing requirements.",
+    features: [
+      "Rubber Compression Mould Design",
+      "Precision Rubber Component Design",
+      "Custom Rubber Tooling Solutions",
+    ],
+    reverse: false,
+  },
 ];
 
 /* ==========================================
@@ -138,12 +180,11 @@ export default function DesignShowcase() {
 
           <div
             className={`relative z-10 mx-auto flex w-full max-w-7xl px-5 py-24 sm:px-6 md:py-28 lg:px-8 ${
-              item.reverse
-                ? "justify-end"
-                : "justify-start"
+              item.reverse ? "justify-end" : "justify-start"
             }`}
           >
             <div className="w-full max-w-[660px]">
+
               {/* EYEBROW */}
 
               <div className="mb-7 flex items-center gap-3">

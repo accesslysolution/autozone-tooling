@@ -16,9 +16,16 @@ import {
 
 /* ==========================================
    MOBILE DESIGN HERO
+
    Premium Editorial Layout
    Image Ratio: 16:9
    Visible Below 768px
+
+   TYPOGRAPHY:
+   - Center-aligned hero headlines
+   - Intentional two-line structure
+   - Responsive font sizing
+   - Left-aligned descriptions
 ========================================== */
 
 const capabilities = [
@@ -65,14 +72,12 @@ const designAdvantages = [
 export default function DesignHeroMobile() {
   return (
     <div className="block overflow-hidden bg-[#0B141E] text-white md:hidden">
-
       {/* ======================================
           HERO 01
           ENGINEERING INNOVATION
       ====================================== */}
 
       <section className="relative bg-[#0B141E]">
-
         {/* BREADCRUMB */}
 
         <div className="border-b border-white/[0.07] px-5 py-5">
@@ -100,9 +105,7 @@ export default function DesignHeroMobile() {
         ====================================== */}
 
         <div className="relative w-full overflow-hidden bg-[#101c29]">
-
           <div className="relative aspect-video w-full">
-
             <Image
               src="/images/design/hero-1.avif"
               alt="Precision engineering and industrial CAD design"
@@ -112,13 +115,11 @@ export default function DesignHeroMobile() {
               sizes="100vw"
               className="object-cover object-center"
             />
-
           </div>
 
           {/* IMAGE BOTTOM ACCENT */}
 
           <div className="absolute bottom-0 left-0 h-[3px] w-24 bg-amber-400" />
-
         </div>
 
         {/* ======================================
@@ -126,48 +127,52 @@ export default function DesignHeroMobile() {
         ====================================== */}
 
         <div className="relative px-5 pb-12 pt-10">
-
           {/* SUBTLE BACKGROUND GLOW */}
 
           <div className="pointer-events-none absolute -left-32 top-20 h-72 w-72 rounded-full bg-amber-400/[0.035] blur-[100px]" />
 
           <div className="relative mx-auto max-w-lg">
+            {/* ======================================
+                CENTERED EYEBROW
+            ====================================== */}
 
-            {/* EYEBROW */}
+            <div className="mb-5 flex items-center justify-center gap-3">
+              <span className="h-px w-6 shrink-0 bg-amber-400" />
 
-            <div className="mb-5 flex items-center gap-3">
-
-              <span className="h-px w-8 bg-amber-400" />
-
-              <span className="text-[10px] font-bold uppercase tracking-[0.17em] text-amber-400">
+              <span className="text-center text-[9px] font-bold uppercase tracking-[0.12em] text-amber-400 min-[375px]:text-[10px]">
                 Engineering Beyond Imagination
               </span>
 
+              <span className="h-px w-6 shrink-0 bg-amber-400" />
             </div>
 
-            {/* MAIN HEADING */}
+            {/* ======================================
+                MOBILE HERO HEADLINE
 
-            <h1 className="font-display text-[clamp(2.65rem,10vw,4.2rem)] font-bold leading-[1.08] tracking-[-0.05em]">
+                Intentional two-line structure.
+                Responsive typography.
+                Center alignment.
+            ====================================== */}
 
-              Every Great
-              <br />
+            <div className="mx-auto w-full text-center">
+              <h1 className="font-display text-[clamp(1.55rem,6.2vw,2.75rem)] font-bold leading-[1.18] tracking-[-0.04em] text-white">
+                <span className="block">
+                  Great Ideas.
+                </span>
 
-              Creation
-              <br />
+                <span className="mt-1.5 block text-amber-400">
+                  Engineered Precisely.
+                </span>
+              </h1>
 
-              <span className="text-amber-400">
-                Begins With
-              </span>
+              {/* CENTERED ACCENT */}
 
-              <br />
-
-              Precision.
-
-            </h1>
+              <div className="mx-auto mt-6 h-[2px] w-12 rounded-full bg-amber-400/70" />
+            </div>
 
             {/* DESCRIPTION */}
 
-            <p className="mt-6 max-w-md text-[14px] leading-[1.85] text-slate-400">
+            <p className="mt-7 max-w-md text-left text-[14px] leading-[1.85] text-slate-400">
               Transforming complex engineering challenges
               into intelligent designs. From product
               development to precision tooling, we create
@@ -178,31 +183,24 @@ export default function DesignHeroMobile() {
             {/* CTA BUTTONS */}
 
             <div className="mt-8 flex flex-col gap-3">
-
               <Link
                 href="/contact"
                 className="group flex min-h-[52px] w-full items-center justify-center gap-3 rounded-lg bg-amber-400 px-5 py-3 text-[13px] font-bold text-slate-950 transition-colors hover:bg-amber-300"
               >
-
                 Start Your Design Project
 
                 <FiArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-
               </Link>
 
               <a
                 href="#design-services"
                 className="group flex min-h-[52px] w-full items-center justify-center gap-3 rounded-lg border border-white/15 bg-white/[0.04] px-5 py-3 text-[13px] font-semibold text-white transition-all hover:border-amber-400 hover:text-amber-400"
               >
-
                 Explore Our Capabilities
 
                 <FiArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-
               </a>
-
             </div>
-
           </div>
         </div>
 
@@ -211,23 +209,17 @@ export default function DesignHeroMobile() {
         ====================================== */}
 
         <div className="border-y border-white/[0.07] bg-[#101c29] px-5 py-8">
-
           <div className="mx-auto max-w-lg">
-
             <div className="mb-5 flex items-center justify-between">
-
               <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-slate-400">
                 Our Core Expertise
               </span>
 
               <span className="h-px w-12 bg-amber-400/70" />
-
             </div>
 
             <div className="grid grid-cols-3 gap-2">
-
               {capabilities.map((item) => {
-
                 const Icon = item.icon;
 
                 return (
@@ -235,11 +227,8 @@ export default function DesignHeroMobile() {
                     key={item.title}
                     className="flex min-h-[130px] flex-col rounded-lg border border-white/[0.08] bg-[#0B141E] p-3"
                   >
-
                     <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-md border border-amber-400/20 bg-amber-400/[0.07] text-amber-400">
-
                       <Icon className="h-[17px] w-[17px]" />
-
                     </div>
 
                     <h3 className="text-[11px] font-bold leading-snug text-white">
@@ -249,16 +238,12 @@ export default function DesignHeroMobile() {
                     <p className="mt-1.5 text-[10px] leading-[1.5] text-slate-400">
                       {item.subtitle}
                     </p>
-
                   </div>
                 );
               })}
-
             </div>
-
           </div>
         </div>
-
       </section>
 
       {/* ======================================
@@ -267,27 +252,21 @@ export default function DesignHeroMobile() {
       ====================================== */}
 
       <section className="relative bg-[#0B141E]">
-
         {/* SECTION TOP LABEL */}
 
         <div className="px-5 pb-6 pt-12">
-
           <div className="mx-auto flex max-w-lg items-center justify-between">
-
             <div className="flex items-center gap-3">
-
               <span className="h-px w-8 bg-amber-400" />
 
               <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-amber-400">
                 Precision in Practice
               </span>
-
             </div>
 
             <span className="text-xs font-bold text-slate-500">
               02 / 02
             </span>
-
           </div>
         </div>
 
@@ -296,9 +275,7 @@ export default function DesignHeroMobile() {
         ====================================== */}
 
         <div className="relative w-full overflow-hidden bg-[#101c29]">
-
           <div className="relative aspect-video w-full">
-
             <Image
               src="/images/design/hero-4.avif"
               alt="Industrial precision tooling and engineering design"
@@ -307,11 +284,9 @@ export default function DesignHeroMobile() {
               sizes="100vw"
               className="object-cover object-center"
             />
-
           </div>
 
           <div className="absolute bottom-0 right-0 h-[3px] w-24 bg-amber-400" />
-
         </div>
 
         {/* ======================================
@@ -319,46 +294,44 @@ export default function DesignHeroMobile() {
         ====================================== */}
 
         <div className="relative px-5 pb-12 pt-10">
-
           <div className="pointer-events-none absolute -right-32 top-10 h-72 w-72 rounded-full bg-amber-400/[0.035] blur-[100px]" />
 
           <div className="relative mx-auto max-w-lg">
+            {/* CENTERED EYEBROW */}
 
-            {/* EYEBROW */}
+            <div className="mb-5 flex items-center justify-center gap-3">
+              <span className="h-px w-6 shrink-0 bg-amber-400" />
 
-            <div className="mb-5 flex items-center gap-3">
-
-              <span className="h-px w-8 bg-amber-400" />
-
-              <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-amber-400">
+              <span className="text-center text-[9px] font-bold uppercase tracking-[0.12em] text-amber-400 min-[375px]:text-[10px]">
                 From Concept to Manufacturing
               </span>
 
+              <span className="h-px w-6 shrink-0 bg-amber-400" />
             </div>
 
-            {/* HEADING */}
+            {/* ======================================
+                CENTERED SECOND HERO HEADLINE
+            ====================================== */}
 
-            <h2 className="font-display text-[clamp(2.55rem,9.5vw,4rem)] font-bold leading-[1.08] tracking-[-0.05em]">
+            <div className="mx-auto w-full text-center">
+              <h2 className="font-display text-[clamp(1.45rem,5.8vw,2.65rem)] font-bold leading-[1.18] tracking-[-0.04em] text-white">
+                <span className="block">
+                  Designed With Purpose.
+                </span>
 
-              Designed
-              <br />
+                <span className="mt-1.5 block text-amber-400">
+                  Built to Perform.
+                </span>
+              </h2>
 
-              With Purpose.
-              <br />
+              {/* CENTERED ACCENT */}
 
-              <span className="text-amber-400">
-                Engineered
-              </span>
-
-              <br />
-
-              To Perform.
-
-            </h2>
+              <div className="mx-auto mt-6 h-[2px] w-12 rounded-full bg-amber-400/70" />
+            </div>
 
             {/* DESCRIPTION */}
 
-            <p className="mt-6 max-w-md text-[14px] leading-[1.85] text-slate-400">
+            <p className="mt-7 max-w-md text-left text-[14px] leading-[1.85] text-slate-400">
               Exceptional manufacturing begins with
               exceptional engineering. Our design solutions
               combine technical expertise, dimensional
@@ -370,9 +343,7 @@ export default function DesignHeroMobile() {
             ====================================== */}
 
             <div className="mt-9 grid grid-cols-2 gap-3">
-
               {designAdvantages.map((item) => {
-
                 const Icon = item.icon;
 
                 return (
@@ -380,11 +351,8 @@ export default function DesignHeroMobile() {
                     key={item.title}
                     className="rounded-lg border border-white/[0.08] bg-[#101c29] p-4"
                   >
-
                     <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-md bg-amber-400/[0.08] text-amber-400">
-
                       <Icon className="h-[17px] w-[17px]" />
-
                     </div>
 
                     <h3 className="text-[12px] font-bold leading-snug text-white">
@@ -394,47 +362,36 @@ export default function DesignHeroMobile() {
                     <p className="mt-1.5 text-[10px] leading-relaxed text-slate-400">
                       {item.description}
                     </p>
-
                   </div>
                 );
               })}
-
             </div>
 
             {/* CTA */}
 
             <div className="mt-8">
-
               <a
                 href="#design-software"
                 className="group flex min-h-[52px] w-full items-center justify-center gap-3 rounded-lg border border-amber-400 bg-amber-400/[0.08] px-4 py-3 text-center text-[12px] font-bold text-amber-400 transition-all hover:bg-amber-400 hover:text-slate-950"
               >
-
                 Discover Our Design Technology
 
                 <FiArrowUpRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-
               </a>
-
             </div>
 
             {/* FOOTER LABEL */}
 
             <div className="mt-10 flex items-center gap-3 border-t border-white/10 pt-6">
-
               <FiCheck className="h-4 w-4 text-amber-400" />
 
               <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-400">
                 Autozone Tooling | Engineering Excellence
               </span>
-
             </div>
-
           </div>
         </div>
-
       </section>
-
     </div>
   );
 }

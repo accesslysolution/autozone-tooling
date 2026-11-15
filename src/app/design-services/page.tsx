@@ -50,10 +50,12 @@ const IMAGE_BASE = "/images/design";
 
 /* ==========================================
    DESIGN SERVICES
+   IDs MATCH NAVBAR DROPDOWN LINKS
 ========================================== */
 
 const services = [
   {
+    id: "product-design",
     title: "Product Design",
     category: "Product Engineering",
     description:
@@ -63,6 +65,7 @@ const services = [
     tags: ["3D Modelling", "Product Development"],
   },
   {
+    id: "die-design",
     title: "Die Design",
     category: "Tooling Engineering",
     description:
@@ -72,6 +75,7 @@ const services = [
     tags: ["Press Tooling", "Die Engineering"],
   },
   {
+    id: "fixture-design",
     title: "Fixture Design",
     category: "Manufacturing Solutions",
     description:
@@ -81,6 +85,7 @@ const services = [
     tags: ["Jigs & Fixtures", "Workholding"],
   },
   {
+    id: "mould-design",
     title: "Mould Design",
     category: "Precision Engineering",
     description:
@@ -90,6 +95,7 @@ const services = [
     tags: ["Mould Development", "CAD Design"],
   },
   {
+    id: "electrode-design",
     title: "Electrode Design",
     category: "EDM Engineering",
     description:
@@ -99,6 +105,7 @@ const services = [
     tags: ["EDM Electrodes", "Complex Profiles"],
   },
   {
+    id: "2d-to-3d-design",
     title: "2D to 3D Design",
     category: "CAD Conversion",
     description:
@@ -108,6 +115,7 @@ const services = [
     tags: ["CAD Conversion", "3D Modelling"],
   },
   {
+    id: "manufacturing-drawings",
     title: "Manufacturing Drawings",
     category: "Technical Documentation",
     description:
@@ -117,6 +125,7 @@ const services = [
     tags: ["Technical Drawings", "Production"],
   },
   {
+    id: "laser-cutting-drawings",
     title: "Laser Cutting Drawings",
     category: "Sheet Metal Engineering",
     description:
@@ -126,6 +135,7 @@ const services = [
     tags: ["Cutting Profiles", "Sheet Metal"],
   },
   {
+    id: "2d-drawing-creation",
     title: "2D Drawing Creation",
     category: "Drafting Services",
     description:
@@ -238,20 +248,21 @@ const benefits = [
 
 export default function DesignServicesPage() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#0B141E] text-white">
+    <main className="min-h-screen overflow-x-clip bg-[#0B141E] text-white">
 
       {/* ======================================
           RESPONSIVE HERO SECTIONS
-
-          Desktop / Tablet:
-          DesignHero
-
-          Mobile:
-          DesignHeroMobile
       ====================================== */}
 
-      <DesignHero />
-      <DesignHeroMobile />
+      {/* Desktop / Tablet Hero */}
+      <div className="hidden md:block">
+        <DesignHero />
+      </div>
+
+      {/* Mobile Hero */}
+      <div className="md:hidden">
+        <DesignHeroMobile />
+      </div>
 
       {/* ======================================
           CAPABILITY STRIP
@@ -280,7 +291,7 @@ export default function DesignServicesPage() {
 
       <section
         id="design-services"
-        className="scroll-mt-24 py-20 md:py-28"
+        className="scroll-mt-28 py-16 md:py-28"
       >
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
 
@@ -312,7 +323,10 @@ export default function DesignServicesPage() {
             </p>
           </div>
 
-          {/* SERVICE CARDS */}
+          {/* ======================================
+              SERVICE CARDS
+              EACH CARD HAS AN ANCHOR ID
+          ====================================== */}
 
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => {
@@ -320,8 +334,9 @@ export default function DesignServicesPage() {
 
               return (
                 <article
-                  key={service.title}
-                  className="group flex h-full flex-col overflow-hidden rounded-xl border border-slate-800 bg-[#111d2a] transition-all duration-300 hover:-translate-y-1 hover:border-amber-400/50 hover:shadow-xl hover:shadow-black/20"
+                  key={service.id}
+                  id={service.id}
+                  className="group flex h-full scroll-mt-32 flex-col overflow-hidden rounded-xl border border-slate-800 bg-[#111d2a] transition-all duration-300 hover:-translate-y-1 hover:border-amber-400/50 hover:shadow-xl hover:shadow-black/20"
                 >
 
                   {/* SERVICE IMAGE */}
@@ -375,7 +390,9 @@ export default function DesignServicesPage() {
             })}
           </div>
 
-          {/* SERVICES FOOTER */}
+          {/* ======================================
+              SERVICES FOOTER
+          ====================================== */}
 
           <div className="mt-12 flex flex-col items-start justify-between gap-5 rounded-xl border border-slate-800 bg-[#111d2a] p-6 sm:flex-row sm:items-center sm:p-8">
             <div>
@@ -406,7 +423,7 @@ export default function DesignServicesPage() {
 
       <section
         id="design-software"
-        className="scroll-mt-24 border-y border-white/10 bg-[#101c29] py-20 md:py-28"
+        className="scroll-mt-28 border-y border-white/10 bg-[#101c29] py-20 md:py-28"
       >
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
 
@@ -446,7 +463,9 @@ export default function DesignServicesPage() {
             </div>
           </div>
 
-          {/* SOFTWARE CARDS */}
+          {/* ======================================
+              SOFTWARE CARDS
+          ====================================== */}
 
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {softwares.map((software) => (
@@ -492,7 +511,9 @@ export default function DesignServicesPage() {
             ))}
           </div>
 
-          {/* SOFTWARE INFORMATION */}
+          {/* ======================================
+              SOFTWARE INFORMATION
+          ====================================== */}
 
           <div className="mt-8 flex items-start gap-4 rounded-xl border border-amber-400/20 bg-amber-400/[0.05] p-5 sm:p-6">
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-amber-400/10 text-amber-400">
@@ -517,16 +538,17 @@ export default function DesignServicesPage() {
 
       {/* ======================================
           RESPONSIVE ENGINEERING SHOWCASE
-
-          Desktop / Tablet:
-          DesignShowcase
-
-          Mobile:
-          DesignShowcaseMobile
       ====================================== */}
 
-      <DesignShowcase />
-      <DesignShowcaseMobile />
+      {/* Desktop / Tablet Showcase */}
+      <div className="hidden md:block">
+        <DesignShowcase />
+      </div>
+
+      {/* Mobile Showcase */}
+      <div className="md:hidden">
+        <DesignShowcaseMobile />
+      </div>
 
       {/* ======================================
           ENGINEERING WORKFLOW
@@ -561,7 +583,9 @@ export default function DesignServicesPage() {
             </p>
           </div>
 
-          {/* PROCESS CARDS */}
+          {/* ======================================
+              PROCESS CARDS
+          ====================================== */}
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             {process.map((step, index) => (
@@ -569,6 +593,7 @@ export default function DesignServicesPage() {
                 key={step.title}
                 className="group relative rounded-xl border border-slate-800 bg-[#111d2a] p-5 transition-colors hover:border-amber-400/30"
               >
+
                 {/* MINIMAL TOP ACCENT */}
 
                 <div className="mb-7 flex items-center justify-between">
@@ -621,7 +646,9 @@ export default function DesignServicesPage() {
               </p>
             </div>
 
-            {/* BENEFITS */}
+            {/* ======================================
+                BENEFITS
+            ====================================== */}
 
             <div className="grid gap-4 sm:grid-cols-2">
               {benefits.map((benefit) => (
@@ -666,7 +693,6 @@ export default function DesignServicesPage() {
             <h2 className="font-display mx-auto max-w-3xl text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-5xl">
               Have a Design Requirement?
               <br />
-
               <span className="text-amber-400">
                 Let&apos;s Discuss It.
               </span>
@@ -679,7 +705,9 @@ export default function DesignServicesPage() {
               to discuss your engineering requirements.
             </p>
 
-            {/* CTA BUTTONS */}
+            {/* ======================================
+                CTA BUTTONS
+            ====================================== */}
 
             <div className="mt-9 flex flex-wrap justify-center gap-4">
               <Link

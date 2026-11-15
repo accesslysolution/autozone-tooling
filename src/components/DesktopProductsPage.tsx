@@ -5,6 +5,10 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+/* ==========================================
+   TYPES
+========================================== */
+
 interface Product {
   id: number;
   name: string;
@@ -24,6 +28,7 @@ interface ProductCategory {
 
 /* ==========================================
    PRODUCT DATA
+   EXISTING PRODUCTS + 12 NEW IMAGES
 ========================================== */
 
 const products: Product[] = [
@@ -46,8 +51,7 @@ const products: Product[] = [
     name: "Stock Semi Gooseneck Punch",
     description:
       "Reliable semi-gooseneck tooling designed for repeatable bending accuracy.",
-    image:
-      "/images/products/Stock Semi Gooseneck Punch.avif",
+    image: "/images/products/Stock Semi Gooseneck Punch.avif",
   },
   {
     id: 4,
@@ -126,8 +130,7 @@ const products: Product[] = [
     name: "Profile Type Die Punch",
     description:
       "Specialized punch and die profile for custom bending geometries.",
-    image:
-      "/images/products/Profile Type Die Punch.avif",
+    image: "/images/products/Profile Type Die Punch.avif",
   },
   {
     id: 15,
@@ -184,8 +187,106 @@ const products: Product[] = [
     name: "Variable V Type Inserts",
     description:
       "Versatile V-type inserts for adjustable bending configurations.",
+    image: "/images/products/Variable V Type Inserts.avif",
+  },
+
+  /* ==========================================
+     NEW PRESS BRAKE PRODUCT IMAGES
+  ========================================== */
+
+  {
+    id: 23,
+    name: "Press Brake Tooling Storage Rack",
+    description:
+      "Organized industrial press brake tooling storage system designed for safe handling, identification and efficient access to bending tools.",
+    image: "/images/products/press-brake-2.avif",
+  },
+  {
+    id: 24,
+    name: "Press Brake Punch Storage System",
+    description:
+      "Heavy-duty tooling rack for organized storage of precision press brake punches and forming tools.",
+    image: "/images/products/press brake-1.avif",
+  },
+  {
+    id: 25,
+    name: "Press Brake Die Product Range",
+    description:
+      "Precision-engineered press brake die configurations supporting multiple bending profiles and industrial sheet metal applications.",
     image:
-      "/images/products/Variable V Type Inserts.avif",
+      "/images/products/Press Brake Die Product Showcase.avif",
+  },
+  {
+    id: 26,
+    name: "Press Brake Tooling Range",
+    description:
+      "Overview of precision press brake tooling configurations for different forming requirements and bending applications.",
+    image:
+      "/images/products/Press Brake Tooling Catalog Infographic.avif",
+  },
+  {
+    id: 27,
+    name: "R0.8 Straight Punch – 85°",
+    description:
+      "Precision straight press brake punch featuring an R0.8 tip radius and 85-degree profile for accurate sheet metal bending.",
+    image:
+      "/images/products/R0.8 Straight Punch Technical Showcase.avif",
+  },
+  {
+    id: 28,
+    name: "Single V Die – 6 to 100mm",
+    description:
+      "Single V-die tooling available in V-opening configurations from 6mm to 100mm, with specified angular profiles from 30° to 86°.",
+    image:
+      "/images/products/Press Brake Single V-Die Infographic.avif",
+  },
+  {
+    id: 29,
+    name: "R0.8 Gooseneck Punch – 85°",
+    description:
+      "Precision gooseneck press brake punch with an R0.8 tip radius and 85-degree profile, suitable for specialized bending and return flange operations.",
+    image:
+      "/images/products/Gooseneck Press Brake Punch Infographic.avif",
+  },
+  {
+    id: 30,
+    name: "Joggle Press Brake Tooling",
+    description:
+      "Specialized joggle tooling for creating offset bends and stepped sheet metal profiles with controlled forming geometry.",
+    image:
+      "/images/products/Joggle Tooling for Press Brakes.avif",
+  },
+  {
+    id: 31,
+    name: "Amada Type Self-Centering Die",
+    description:
+      "Self-centering press brake die configuration designed for precise alignment and consistent forming operations on compatible tooling systems.",
+    image:
+      "/images/products/Amada Self-Centering Die Infographic.avif",
+  },
+  {
+    id: 32,
+    name: "Press Brake Punch Specifications",
+    description:
+      "Technical overview of press brake punch profiles, tooling geometry and specifications for precision bending applications.",
+    image:
+      "/images/products/Press Brake Punch Specifications Infographic.avif",
+  },
+  {
+    id: 33,
+    name: "R0.8 Semi-Gooseneck Punch – 85°",
+    description:
+      "Semi-gooseneck press brake punch with an R0.8 tip radius and 85-degree profile for controlled bending of specialized sheet metal components.",
+    image:
+      "/images/products/Semi-Gooseneck Press Brake Punch.avif",
+  },
+  {
+    id: 34,
+    name: "R0.8 Acute Angle Punch",
+    description:
+      "Precision acute-angle press brake punch with an R0.8 tip radius for specialized angular bending operations.",
+    image:
+      "/images/products/Acute Angle Press Brake Punch Poster.avif",
   },
 ];
 
@@ -199,30 +300,30 @@ const categories: ProductCategory[] = [
     title: "Press Brake Tool",
     subtitle: "01 / GENERAL TOOLING",
     description:
-      "Precision tooling solutions for reliable CNC press brake operations and industrial sheet metal fabrication.",
+      "Explore precision press brake tooling systems, tooling ranges and organized storage solutions for industrial sheet metal fabrication.",
     background: "bg-[#f4f7fb]",
     accent: "bg-blue-600",
-    productIds: [21],
+    productIds: [23, 24, 26],
   },
   {
     id: "press-brake-punch",
     title: "Press Brake Punch",
     subtitle: "02 / PRECISION PUNCHES",
     description:
-      "Straight, gooseneck and semi-gooseneck punches for demanding bending applications.",
+      "Explore straight, gooseneck, semi-gooseneck and acute-angle punches engineered for accurate bending and complex forming applications.",
     background: "bg-[#edf4f7]",
     accent: "bg-cyan-700",
-    productIds: [1, 2, 3, 4, 5],
+    productIds: [27, 29, 33, 34, 32, 1, 2, 3, 4, 5],
   },
   {
     id: "press-brake-dies",
     title: "Press Brake Dies",
     subtitle: "03 / PRECISION DIES",
     description:
-      "Engineered bending dies designed for consistent forming accuracy and demanding fabrication requirements.",
+      "Engineered bending dies and precision tooling profiles designed for consistent forming accuracy and demanding fabrication requirements.",
     background: "bg-[#f7f4ed]",
     accent: "bg-amber-600",
-    productIds: [11, 12],
+    productIds: [25, 11, 12],
   },
   {
     id: "radius-tools-holder",
@@ -279,20 +380,20 @@ const categories: ProductCategory[] = [
     title: "Joggle Tool & Insert",
     subtitle: "09 / SPECIALIZED FORMING",
     description:
-      "Specialized tooling for offset forming and custom sheet metal profiles.",
+      "Specialized press brake tooling for offset forming, stepped profiles and custom sheet metal bending applications.",
     background: "bg-[#f8f3ef]",
     accent: "bg-orange-700",
-    productIds: [],
+    productIds: [30],
   },
   {
     id: "amada-self-centering-1v-die",
     title: "Amada Type Self Centering 1V Die",
     subtitle: "10 / MACHINE-SPECIFIC TOOLING",
     description:
-      "Machine-specific V-die tooling solutions for compatible press brake systems.",
+      "Self-centering V-die tooling configurations designed for accurate positioning and compatible press brake systems.",
     background: "bg-[#f0f4fa]",
     accent: "bg-sky-700",
-    productIds: [],
+    productIds: [31],
   },
   {
     id: "amada-self-centering-1v-die-holder",
@@ -309,10 +410,10 @@ const categories: ProductCategory[] = [
     title: "Single V Die",
     subtitle: "12 / SINGLE V TOOLING",
     description:
-      "Single V dies engineered for accurate angular bending and consistent production results.",
+      "Single V dies engineered for accurate angular bending, with V-opening configurations for different fabrication requirements.",
     background: "bg-[#f1f7f3]",
     accent: "bg-green-700",
-    productIds: [6],
+    productIds: [28, 6],
   },
   {
     id: "multi-v-die",
@@ -329,12 +430,27 @@ const categories: ProductCategory[] = [
     title: "Special Application",
     subtitle: "14 / CUSTOM ENGINEERING",
     description:
-      "Custom-engineered punches, dies and profiles for specialized industrial forming requirements.",
+      "Custom-engineered punches, dies, profiles and auxiliary tooling for specialized industrial forming requirements.",
     background: "bg-[#f3f5f8]",
     accent: "bg-slate-700",
-    productIds: [9, 10, 14, 15, 19],
+    productIds: [9, 10, 14, 15, 19, 21],
   },
 ];
+
+/* ==========================================
+   PRODUCT LOOKUP
+========================================== */
+
+const productMap = new Map(
+  products.map((product) => [product.id, product])
+);
+
+const getCategoryProducts = (
+  category: ProductCategory
+): Product[] =>
+  category.productIds
+    .map((id) => productMap.get(id))
+    .filter((product): product is Product => Boolean(product));
 
 /* ==========================================
    PRODUCT CARD
@@ -349,6 +465,8 @@ function ProductCard({
 }) {
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-amber-400 hover:shadow-xl">
+      {/* PRODUCT IMAGE */}
+
       <div className="relative aspect-square overflow-hidden bg-[#f8fafc]">
         <Image
           src={product.image}
@@ -358,10 +476,14 @@ function ProductCard({
           className="object-contain p-5 transition-transform duration-500 group-hover:scale-105"
         />
 
+        {/* CATEGORY LABEL */}
+
         <div className="absolute left-4 top-4 max-w-[85%] rounded-md border border-slate-200 bg-white/95 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-slate-700 shadow-sm">
           {category}
         </div>
       </div>
+
+      {/* PRODUCT DETAILS */}
 
       <div className="flex flex-1 flex-col p-6">
         <h3 className="font-heading text-xl font-bold leading-snug text-slate-900 transition-colors group-hover:text-amber-700">
@@ -396,12 +518,29 @@ function ProductCard({
 
 export default function DesktopProductsPage() {
   const [isPaused, setIsPaused] = useState(false);
+
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  const featuredIds = [1, 6, 7, 13, 17, 20, 21];
+  /* ==========================================
+     FEATURED PRODUCT SELECTION
+  ========================================== */
+
+  const featuredIds = [
+    27,
+    29,
+    33,
+    34,
+    25,
+    28,
+    30,
+    31,
+    7,
+    13,
+    20,
+  ];
 
   const featuredProducts = featuredIds
-    .map((id) => products.find((product) => product.id === id))
+    .map((id) => productMap.get(id))
     .filter((product): product is Product => Boolean(product));
 
   /* ==========================================
@@ -416,12 +555,13 @@ export default function DesktopProductsPage() {
 
       if (!container) return;
 
-      const { scrollLeft, scrollWidth, clientWidth } =
-        container;
+      const {
+        scrollLeft,
+        scrollWidth,
+        clientWidth,
+      } = container;
 
-      if (
-        scrollLeft + clientWidth >= scrollWidth - 10
-      ) {
+      if (scrollLeft + clientWidth >= scrollWidth - 10) {
         container.scrollTo({
           left: 0,
           behavior: "smooth",
@@ -437,12 +577,20 @@ export default function DesktopProductsPage() {
     return () => clearInterval(interval);
   }, [isPaused]);
 
+  /* ==========================================
+     CAROUSEL NAVIGATION
+  ========================================== */
+
   const scrollFeatured = (direction: number) => {
     scrollRef.current?.scrollBy({
       left: direction * 340,
       behavior: "smooth",
     });
   };
+
+  /* ==========================================
+     CATEGORY SCROLL
+  ========================================== */
 
   const scrollToCategory = (id: string) => {
     document.getElementById(id)?.scrollIntoView({
@@ -476,6 +624,8 @@ export default function DesktopProductsPage() {
               punches, bending dies, hemming tools,
               shear blades and specialized tooling solutions.
             </p>
+
+            {/* PRODUCT STATISTICS */}
 
             <div className="flex flex-wrap gap-10 border-t border-slate-800 pt-7">
               <div>
@@ -529,12 +679,14 @@ export default function DesktopProductsPage() {
               </h2>
             </div>
 
+            {/* CAROUSEL CONTROLS */}
+
             <div className="hidden gap-3 sm:flex">
               <button
                 type="button"
                 onClick={() => scrollFeatured(-1)}
                 aria-label="Previous products"
-                className="rounded-full border border-slate-700 bg-slate-800 px-5 py-3 text-white hover:bg-amber-500 hover:text-slate-950"
+                className="rounded-full border border-slate-700 bg-slate-800 px-5 py-3 text-white transition-colors hover:bg-amber-500 hover:text-slate-950"
               >
                 ←
               </button>
@@ -543,12 +695,14 @@ export default function DesktopProductsPage() {
                 type="button"
                 onClick={() => scrollFeatured(1)}
                 aria-label="Next products"
-                className="rounded-full border border-slate-700 bg-slate-800 px-5 py-3 text-white hover:bg-amber-500 hover:text-slate-950"
+                className="rounded-full border border-slate-700 bg-slate-800 px-5 py-3 text-white transition-colors hover:bg-amber-500 hover:text-slate-950"
               >
                 →
               </button>
             </div>
           </div>
+
+          {/* FEATURED CAROUSEL */}
 
           <div
             ref={scrollRef}
@@ -599,9 +753,7 @@ export default function DesktopProductsPage() {
               <button
                 key={category.id}
                 type="button"
-                onClick={() =>
-                  scrollToCategory(category.id)
-                }
+                onClick={() => scrollToCategory(category.id)}
                 className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-5 py-4 text-left text-sm font-semibold text-slate-800 transition-all hover:border-amber-400 hover:bg-amber-50"
               >
                 <span
@@ -626,14 +778,8 @@ export default function DesktopProductsPage() {
       ========================================== */}
 
       {categories.map((category, index) => {
-        const categoryProducts = category.productIds
-          .map((id) =>
-            products.find((product) => product.id === id)
-          )
-          .filter(
-            (product): product is Product =>
-              Boolean(product)
-          );
+        const categoryProducts =
+          getCategoryProducts(category);
 
         return (
           <section
@@ -642,6 +788,8 @@ export default function DesktopProductsPage() {
             className={`${category.background} scroll-mt-32 px-4 py-20 sm:px-6 lg:px-8 lg:py-24`}
           >
             <div className="mx-auto max-w-7xl">
+              {/* CATEGORY HEADER */}
+
               <div className="mb-12 flex flex-col justify-between gap-6 border-b border-slate-300/70 pb-8 lg:flex-row lg:items-end">
                 <div className="max-w-4xl">
                   <div className="mb-5 flex items-center gap-3">
@@ -663,12 +811,15 @@ export default function DesktopProductsPage() {
                   </p>
                 </div>
 
+                {/* CATEGORY PRODUCT COUNT */}
+
                 <div className="flex shrink-0 items-center gap-4">
                   <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-slate-200 bg-white shadow-sm">
                     <span className="text-2xl font-bold text-slate-900">
-                      {String(
-                        categoryProducts.length
-                      ).padStart(2, "0")}
+                      {String(categoryProducts.length).padStart(
+                        2,
+                        "0"
+                      )}
                     </span>
                   </div>
 
@@ -685,6 +836,8 @@ export default function DesktopProductsPage() {
                 </div>
               </div>
 
+              {/* CATEGORY PRODUCTS */}
+
               {categoryProducts.length > 0 ? (
                 <div className="grid grid-cols-1 gap-7 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                   {categoryProducts.map((product) => (
@@ -696,6 +849,8 @@ export default function DesktopProductsPage() {
                   ))}
                 </div>
               ) : (
+                /* EMPTY CATEGORY FALLBACK */
+
                 <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm sm:p-10">
                   <h3 className="text-2xl font-bold text-slate-900">
                     Enquire About {category.title}
@@ -716,6 +871,8 @@ export default function DesktopProductsPage() {
                   </Link>
                 </div>
               )}
+
+              {/* CATEGORY FOOTER */}
 
               <div className="mt-12 flex flex-col items-start justify-between gap-5 border-t border-slate-300/70 pt-7 sm:flex-row sm:items-center">
                 <p className="text-sm text-slate-600">
@@ -762,14 +919,14 @@ export default function DesktopProductsPage() {
           <div className="flex flex-wrap justify-center gap-4 pt-3">
             <Link
               href="/contact"
-              className="rounded-lg bg-amber-500 px-8 py-4 text-sm font-bold text-slate-950 hover:bg-amber-400"
+              className="rounded-lg bg-amber-500 px-8 py-4 text-sm font-bold text-slate-950 transition-colors hover:bg-amber-400"
             >
               Request a Quote
             </Link>
 
             <Link
               href="/about"
-              className="rounded-lg border border-slate-700 bg-slate-900 px-8 py-4 text-sm font-semibold text-white hover:border-amber-500"
+              className="rounded-lg border border-slate-700 bg-slate-900 px-8 py-4 text-sm font-semibold text-white transition-colors hover:border-amber-500"
             >
               About Autozone Tooling
             </Link>

@@ -17,19 +17,38 @@ import {
    Visible Below 768px
 
    IMAGE ORDER:
-   1. hero-6
-   2. hero-2
-   3. hero-5
-   4. hero-3
+   1. hero-6 — Engineering
+   2. hero-2 — CAD Design
+   3. hero-5 — Innovation
+   4. hero-3 — Precision Tooling
+   5. hero-7 — Plastic Die & Product
+   6. hero-8 — Rubber Die & Product
+
+   TYPOGRAPHY:
+   - Intentional two-line headlines
+   - Centered headline alignment
+   - Responsive font sizing
+   - Shortened mobile headlines
+   - Left-aligned descriptions
 ========================================== */
 
-const showcases = [
+interface Showcase {
+  image: string;
+  alt: string;
+  eyebrow: string;
+  title: string;
+  highlight: string;
+  description: string;
+  features: string[];
+}
+
+const showcases: Showcase[] = [
   {
     image: "/images/design/hero-6.avif",
     alt: "Industrial product engineering and manufacturing design",
     eyebrow: "Engineering in Focus",
-    title: "From Digital Design",
-    highlight: "to Real-World Results.",
+    title: "Digital Design.",
+    highlight: "Real-World Results.",
     description:
       "Our approach connects digital engineering with production requirements, helping turn complex components and tooling concepts into detailed designs ready for manufacturing.",
     features: [
@@ -42,7 +61,7 @@ const showcases = [
     image: "/images/design/hero-2.avif",
     alt: "Advanced industrial CAD design and precision engineering",
     eyebrow: "Advanced CAD Engineering",
-    title: "Where Ideas Become",
+    title: "Ideas Into",
     highlight: "Engineering Reality.",
     description:
       "From initial sketches to detailed three-dimensional models, we transform engineering concepts into practical, manufacturing-ready design solutions.",
@@ -78,6 +97,34 @@ const showcases = [
       "Precision Die Design",
       "Fixture Engineering",
       "Custom Tooling Development",
+    ],
+  },
+  {
+    image: "/images/design/hero-7.avif",
+    alt: "Precision plastic injection mould die and finished industrial plastic component",
+    eyebrow: "Plastic Mould Engineering",
+    title: "Precision Moulds.",
+    highlight: "Perfectly Formed.",
+    description:
+      "From precision-engineered injection mould dies to complex plastic components, our design solutions focus on dimensional accuracy, efficient moulding, and reliable manufacturing performance. We develop detailed tooling concepts that support consistent product quality and production efficiency.",
+    features: [
+      "Plastic Injection Mould Design",
+      "Precision Core & Cavity Engineering",
+      "Industrial Plastic Product Design",
+    ],
+  },
+  {
+    image: "/images/design/hero-8.avif",
+    alt: "Precision rubber mould die and finished industrial rubber components",
+    eyebrow: "Rubber Mould Engineering",
+    title: "Built for Flexibility.",
+    highlight: "Made to Perform.",
+    description:
+      "Our rubber mould design solutions support the development of precision-engineered rubber components for industrial applications. From complex mould cavities to functional rubber products, we focus on accurate geometry, practical tooling design, and manufacturing requirements.",
+    features: [
+      "Rubber Compression Mould Design",
+      "Precision Rubber Component Design",
+      "Custom Rubber Tooling Solutions",
     ],
   },
 ];
@@ -147,9 +194,7 @@ export default function DesignShowcaseMobile() {
 
             <div
               className={`absolute bottom-0 h-[3px] w-24 bg-amber-400 ${
-                index % 2 === 0
-                  ? "left-0"
-                  : "right-0"
+                index % 2 === 0 ? "left-0" : "right-0"
               }`}
             />
           </div>
@@ -170,30 +215,49 @@ export default function DesignShowcaseMobile() {
             />
 
             <div className="relative mx-auto max-w-lg">
-              {/* EYEBROW */}
+              {/* ======================================
+                  CENTERED EYEBROW
+              ====================================== */}
 
-              <div className="mb-5 flex items-center gap-3">
-                <span className="h-px w-7 bg-amber-400" />
+              <div className="mb-5 flex items-center justify-center gap-3">
+                <span className="h-px w-6 shrink-0 bg-amber-400" />
 
-                <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-amber-400">
+                <span className="text-center text-[9px] font-bold uppercase tracking-[0.13em] text-amber-400 min-[375px]:text-[10px]">
                   {item.eyebrow}
                 </span>
+
+                <span className="h-px w-6 shrink-0 bg-amber-400" />
               </div>
 
-              {/* HEADING */}
+              {/* ======================================
+                  MOBILE HEADLINE
 
-              <h2 className="font-display text-[clamp(2.4rem,9vw,4rem)] font-bold leading-[1.1] tracking-[-0.05em] text-white">
-                {item.title}
-                <br />
+                  Intentionally two lines.
+                  Center aligned.
+                  No awkward word wrapping.
+              ====================================== */}
 
-                <span className="text-amber-400">
-                  {item.highlight}
-                </span>
-              </h2>
+              <div className="mx-auto w-full text-center">
+                <h2 className="font-display text-[clamp(1.35rem,5.6vw,2.5rem)] font-bold leading-[1.18] tracking-[-0.04em] text-white">
+                  <span className="block text-center">
+                    {item.title}
+                  </span>
 
-              {/* DESCRIPTION */}
+                  <span className="mt-1.5 block text-center text-amber-400">
+                    {item.highlight}
+                  </span>
+                </h2>
 
-              <p className="mt-6 max-w-md text-[14px] leading-[1.85] text-slate-400">
+                {/* CENTERED ACCENT */}
+
+                <div className="mx-auto mt-6 h-[2px] w-12 rounded-full bg-amber-400/70" />
+              </div>
+
+              {/* ======================================
+                  DESCRIPTION
+              ====================================== */}
+
+              <p className="mt-7 max-w-md text-left text-[14px] leading-[1.85] text-slate-400">
                 {item.description}
               </p>
 
@@ -207,7 +271,7 @@ export default function DesignShowcaseMobile() {
                     key={feature}
                     className="flex min-h-[58px] items-center gap-3 rounded-lg border border-white/[0.07] bg-white/[0.035] px-4 py-3"
                   >
-                    {/* FEATURE NUMBER */}
+                    {/* FEATURE ICON */}
 
                     <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md border border-amber-400/20 bg-amber-400/[0.07] text-amber-400">
                       <FiCheck className="h-4 w-4" />
@@ -277,27 +341,33 @@ export default function DesignShowcaseMobile() {
         <div className="relative mx-auto max-w-lg">
           {/* EYEBROW */}
 
-          <div className="mb-5 flex items-center gap-3">
-            <span className="h-px w-8 bg-amber-400" />
+          <div className="mb-5 flex items-center justify-center gap-3">
+            <span className="h-px w-6 bg-amber-400" />
 
-            <span className="text-[10px] font-bold uppercase tracking-[0.17em] text-amber-400">
-              Let's Build Something Better
+            <span className="text-center text-[10px] font-bold uppercase tracking-[0.13em] text-amber-400">
+              Let&apos;s Build Something Better
             </span>
+
+            <span className="h-px w-6 bg-amber-400" />
           </div>
 
-          {/* HEADING */}
+          {/* CENTERED CTA HEADLINE */}
 
-          <h2 className="font-display text-[clamp(2rem,8vw,3rem)] font-bold leading-[1.12] tracking-[-0.04em] text-white">
-            Have a Complex
-            <br />
-            <span className="text-amber-400">
+          <h2 className="font-display text-center text-[clamp(1.5rem,6vw,2.65rem)] font-bold leading-[1.2] tracking-[-0.04em] text-white">
+            <span className="block">
+              Have a Complex
+            </span>
+
+            <span className="mt-1 block text-amber-400">
               Design Challenge?
             </span>
           </h2>
 
+          <div className="mx-auto mt-6 h-[2px] w-12 rounded-full bg-amber-400/70" />
+
           {/* DESCRIPTION */}
 
-          <p className="mt-5 max-w-md text-[14px] leading-[1.8] text-slate-400">
+          <p className="mt-6 max-w-md text-left text-[14px] leading-[1.8] text-slate-400">
             Let&apos;s explore the right engineering approach
             for your project. Our team is ready to help
             turn your requirements into practical,

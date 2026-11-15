@@ -6,11 +6,15 @@ import { createPortal } from "react-dom";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+
 import {
   FiFacebook,
   FiLinkedin,
   FiArrowUpRight,
   FiMapPin,
+  FiChevronDown,
+  FiChevronRight,
+  FiArrowRight,
 } from "react-icons/fi";
 
 /* ==========================================
@@ -31,26 +35,11 @@ const navLinks = [
 ========================================== */
 
 const productCategories = [
-  {
-    name: "Press Brake Tool",
-    id: "press-brake-tool",
-  },
-  {
-    name: "Press Brake Punch",
-    id: "press-brake-punch",
-  },
-  {
-    name: "Press Brake Dies",
-    id: "press-brake-dies",
-  },
-  {
-    name: "Radius Tools Holder",
-    id: "radius-tools-holder",
-  },
-  {
-    name: "Radius Tools Insert",
-    id: "radius-tools-insert",
-  },
+  { name: "Press Brake Tool", id: "press-brake-tool" },
+  { name: "Press Brake Punch", id: "press-brake-punch" },
+  { name: "Press Brake Dies", id: "press-brake-dies" },
+  { name: "Radius Tools Holder", id: "radius-tools-holder" },
+  { name: "Radius Tools Insert", id: "radius-tools-insert" },
   {
     name: "Press Brake Hemming Tools",
     id: "press-brake-hemming-tools",
@@ -59,14 +48,8 @@ const productCategories = [
     name: "Self Centering 2V Die",
     id: "self-centering-2v-die",
   },
-  {
-    name: "Shear Blade",
-    id: "shear-blade",
-  },
-  {
-    name: "Joggle Tool & Insert",
-    id: "joggle-tool-insert",
-  },
+  { name: "Shear Blade", id: "shear-blade" },
+  { name: "Joggle Tool & Insert", id: "joggle-tool-insert" },
   {
     name: "Amada Type Self Centering 1V Die",
     id: "amada-self-centering-1v-die",
@@ -75,17 +58,33 @@ const productCategories = [
     name: "Amada Type Self Centering 1V Die Holder",
     id: "amada-self-centering-1v-die-holder",
   },
+  { name: "Single V Die", id: "single-v-die" },
+  { name: "Multi V Die", id: "multi-v-die" },
+  { name: "Special Application", id: "special-application" },
+];
+
+/* ==========================================
+   DESIGN SERVICE CATEGORIES
+========================================== */
+
+const designCategories = [
+  { name: "Product Design", id: "product-design" },
+  { name: "Die Design", id: "die-design" },
+  { name: "Fixture Design", id: "fixture-design" },
+  { name: "Mould Design", id: "mould-design" },
+  { name: "Electrode Design", id: "electrode-design" },
+  { name: "2D to 3D Design", id: "2d-to-3d-design" },
   {
-    name: "Single V Die",
-    id: "single-v-die",
+    name: "Manufacturing Drawings",
+    id: "manufacturing-drawings",
   },
   {
-    name: "Multi V Die",
-    id: "multi-v-die",
+    name: "Laser Cutting Drawings",
+    id: "laser-cutting-drawings",
   },
   {
-    name: "Special Application",
-    id: "special-application",
+    name: "2D Drawing Creation",
+    id: "2d-drawing-creation",
   },
 ];
 
@@ -143,7 +142,10 @@ export default function MobileNavbar() {
 
   const [mounted, setMounted] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
   const [productsOpen, setProductsOpen] = useState(false);
+  const [designOpen, setDesignOpen] = useState(false);
+
   const [isScrolled, setIsScrolled] = useState(false);
 
   /* ==========================================
@@ -181,6 +183,7 @@ export default function MobileNavbar() {
   useEffect(() => {
     setMenuOpen(false);
     setProductsOpen(false);
+    setDesignOpen(false);
   }, [pathname]);
 
   /* ==========================================
@@ -190,8 +193,7 @@ export default function MobileNavbar() {
   useEffect(() => {
     if (!menuOpen) return;
 
-    const previousOverflow =
-      document.body.style.overflow;
+    const previousOverflow = document.body.style.overflow;
 
     document.body.style.overflow = "hidden";
 
@@ -211,6 +213,7 @@ export default function MobileNavbar() {
       if (event.key === "Escape") {
         setMenuOpen(false);
         setProductsOpen(false);
+        setDesignOpen(false);
       }
     };
 
@@ -228,10 +231,15 @@ export default function MobileNavbar() {
   const closeMenu = () => {
     setMenuOpen(false);
     setProductsOpen(false);
+    setDesignOpen(false);
   };
 
   const toggleMenu = () => {
-    setMenuOpen((previous) => !previous);
+    if (menuOpen) {
+      closeMenu();
+    } else {
+      setMenuOpen(true);
+    }
   };
 
   const isActiveLink = (href: string) => {
@@ -241,7 +249,11 @@ export default function MobileNavbar() {
           pathname.startsWith(`${href}/`);
   };
 
-  const handleCategoryClick = (id: string) => {
+  /* ==========================================
+     PRODUCT CATEGORY NAVIGATION
+  ========================================== */
+
+  const handleProductClick = (id: string) => {
     closeMenu();
 
     if (pathname !== "/products") return;
@@ -252,12 +264,31 @@ export default function MobileNavbar() {
           `mobile-${id}`
         );
 
-        if (target) {
-          target.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-          });
-        }
+        target?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      });
+    });
+  };
+
+  /* ==========================================
+     DESIGN CATEGORY NAVIGATION
+  ========================================== */
+
+  const handleDesignClick = (id: string) => {
+    closeMenu();
+
+    if (pathname !== "/design-services") return;
+
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        const target = document.getElementById(id);
+
+        target?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
       });
     });
   };
@@ -270,6 +301,7 @@ export default function MobileNavbar() {
     <div className="fixed inset-0 z-[10000] md:hidden">
 
       {/* BACKDROP */}
+
       <button
         type="button"
         aria-label="Close navigation menu"
@@ -278,13 +310,17 @@ export default function MobileNavbar() {
       />
 
       {/* DRAWER */}
+
       <nav
         id="autozone-mobile-menu"
         aria-label="Mobile navigation"
         className="absolute inset-y-0 right-0 flex w-[min(88vw,380px)] flex-col overflow-hidden border-l border-slate-700 bg-slate-950 shadow-2xl"
       >
 
-        {/* DRAWER HEADER */}
+        {/* ==================================
+            DRAWER HEADER
+        ================================== */}
+
         <div className="flex shrink-0 items-center justify-between border-b border-slate-800 px-5 py-5">
           <div>
             <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-400">
@@ -328,6 +364,10 @@ export default function MobileNavbar() {
           {navLinks.map((link) => {
             const isActive = isActiveLink(link.href);
 
+            /* ==================================
+               PRODUCTS DROPDOWN
+            ================================== */
+
             if (link.name === "Products") {
               return (
                 <div key={link.name}>
@@ -352,34 +392,28 @@ export default function MobileNavbar() {
 
                     <button
                       type="button"
-                      onClick={() =>
-                        setProductsOpen(
-                          (previous) => !previous
-                        )
-                      }
+                      onClick={() => {
+                        setProductsOpen((previous) => !previous);
+                        setDesignOpen(false);
+                      }}
                       aria-expanded={productsOpen}
                       aria-controls="mobile-product-list"
-                      aria-label="Toggle product categories"
+                      aria-label={
+                        productsOpen
+                          ? "Collapse product categories"
+                          : "Expand product categories"
+                      }
                       className="flex h-12 w-12 items-center justify-center border-l border-slate-700/50 text-slate-400"
                     >
-                      <svg
+                      <FiChevronDown
                         className={`h-4 w-4 transition-transform duration-300 ${
                           productsOpen ? "rotate-180" : ""
                         }`}
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        aria-hidden="true"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M6 9l6 6 6-6"
-                        />
-                      </svg>
+                      />
                     </button>
                   </div>
+
+                  {/* PRODUCT SUBMENU */}
 
                   {productsOpen && (
                     <div
@@ -390,46 +424,26 @@ export default function MobileNavbar() {
                         Product Categories
                       </p>
 
-                      {productCategories.map(
-                        (category, index) => (
-                          <Link
-                            key={category.id}
-                            href={`/products#mobile-${category.id}`}
-                            onClick={() =>
-                              handleCategoryClick(
-                                category.id
-                              )
-                            }
-                            className="flex items-center gap-3 rounded-lg px-3 py-3 transition-colors active:bg-slate-800"
-                          >
-                            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-amber-500/10 text-[10px] font-bold text-amber-400">
-                              {String(index + 1).padStart(
-                                2,
-                                "0"
-                              )}
-                            </span>
+                      {productCategories.map((category, index) => (
+                        <Link
+                          key={category.id}
+                          href={`/products#mobile-${category.id}`}
+                          onClick={() =>
+                            handleProductClick(category.id)
+                          }
+                          className="flex items-center gap-3 rounded-lg px-3 py-3 transition-colors hover:bg-slate-800 active:bg-slate-800"
+                        >
+                          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-amber-500/10 text-[10px] font-bold text-amber-400">
+                            {String(index + 1).padStart(2, "0")}
+                          </span>
 
-                            <span className="flex-1 text-xs font-medium leading-relaxed text-slate-300">
-                              {category.name}
-                            </span>
+                          <span className="flex-1 text-xs font-medium leading-relaxed text-slate-300">
+                            {category.name}
+                          </span>
 
-                            <svg
-                              className="h-3.5 w-3.5 shrink-0 text-slate-500"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                              aria-hidden="true"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M9 5l7 7-7 7"
-                              />
-                            </svg>
-                          </Link>
-                        )
-                      )}
+                          <FiChevronRight className="h-3.5 w-3.5 shrink-0 text-slate-500" />
+                        </Link>
+                      ))}
 
                       <Link
                         href="/products"
@@ -444,14 +458,116 @@ export default function MobileNavbar() {
               );
             }
 
+            /* ==================================
+               DESIGN SERVICES DROPDOWN
+            ================================== */
+
+            if (link.name === "Design Services") {
+              return (
+                <div key={link.name}>
+                  <div
+                    className={`flex items-center rounded-xl border ${
+                      isActive
+                        ? "border-amber-500/30 bg-amber-500/10"
+                        : "border-transparent bg-slate-900"
+                    }`}
+                  >
+                    <Link
+                      href="/design-services"
+                      onClick={closeMenu}
+                      className={`flex-1 px-4 py-3.5 text-sm font-semibold ${
+                        isActive
+                          ? "text-amber-400"
+                          : "text-slate-200"
+                      }`}
+                    >
+                      Design Services
+                    </Link>
+
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setDesignOpen((previous) => !previous);
+                        setProductsOpen(false);
+                      }}
+                      aria-expanded={designOpen}
+                      aria-controls="mobile-design-list"
+                      aria-label={
+                        designOpen
+                          ? "Collapse design services"
+                          : "Expand design services"
+                      }
+                      className="flex h-12 w-12 items-center justify-center border-l border-slate-700/50 text-slate-400"
+                    >
+                      <FiChevronDown
+                        className={`h-4 w-4 transition-transform duration-300 ${
+                          designOpen ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                  </div>
+
+                  {/* DESIGN SERVICES SUBMENU */}
+
+                  {designOpen && (
+                    <div
+                      id="mobile-design-list"
+                      className="mt-2 space-y-1 rounded-xl border border-slate-800 bg-slate-900/60 p-2"
+                    >
+                      <p className="px-3 py-2 text-[10px] font-bold uppercase tracking-widest text-amber-400">
+                        Engineering Design Services
+                      </p>
+
+                      <p className="px-3 pb-2 text-[11px] leading-relaxed text-slate-500">
+                        Precision CAD, tooling and manufacturing design
+                      </p>
+
+                      {designCategories.map((category, index) => (
+                        <Link
+                          key={category.id}
+                          href={`/design-services#${category.id}`}
+                          onClick={() =>
+                            handleDesignClick(category.id)
+                          }
+                          className="flex items-center gap-3 rounded-lg px-3 py-3 transition-colors hover:bg-slate-800 active:bg-slate-800"
+                        >
+                          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-amber-500/10 text-[10px] font-bold text-amber-400">
+                            {String(index + 1).padStart(2, "0")}
+                          </span>
+
+                          <span className="flex-1 text-xs font-medium leading-relaxed text-slate-300">
+                            {category.name}
+                          </span>
+
+                          <FiChevronRight className="h-3.5 w-3.5 shrink-0 text-slate-500" />
+                        </Link>
+                      ))}
+
+                      {/* VIEW ALL DESIGN SERVICES */}
+
+                      <Link
+                        href="/design-services"
+                        onClick={closeMenu}
+                        className="mt-2 block rounded-lg bg-amber-500 px-4 py-3 text-center text-xs font-bold text-slate-950"
+                      >
+                        View All Design Services
+                      </Link>
+                    </div>
+                  )}
+                </div>
+              );
+            }
+
+            /* ==================================
+               STANDARD NAVIGATION LINKS
+            ================================== */
+
             return (
               <Link
                 key={link.name}
                 href={link.href}
                 onClick={closeMenu}
-                aria-current={
-                  isActive ? "page" : undefined
-                }
+                aria-current={isActive ? "page" : undefined}
                 className={`flex items-center justify-between rounded-xl border px-4 py-3.5 text-sm font-semibold transition-colors ${
                   isActive
                     ? "border-amber-500/30 bg-amber-500/10 text-amber-400"
@@ -460,24 +576,13 @@ export default function MobileNavbar() {
               >
                 {link.name}
 
-                <svg
+                <FiChevronRight
                   className={`h-4 w-4 ${
                     isActive
                       ? "text-amber-400"
                       : "text-slate-500"
                   }`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 5l7 7-7 7"
-                  />
-                </svg>
+                />
               </Link>
             );
           })}
@@ -492,6 +597,9 @@ export default function MobileNavbar() {
             </p>
 
             <div className="space-y-4 rounded-xl bg-slate-900 p-4">
+
+              {/* CONTACT 1 */}
+
               <div>
                 <p className="text-xs text-slate-500">
                   Mr. Santosh Hodage
@@ -504,6 +612,8 @@ export default function MobileNavbar() {
                   {company.phone1}
                 </a>
               </div>
+
+              {/* CONTACT 2 */}
 
               <div>
                 <p className="text-xs text-slate-500">
@@ -518,6 +628,8 @@ export default function MobileNavbar() {
                 </a>
               </div>
 
+              {/* EMAIL */}
+
               <a
                 href={`mailto:${company.email}`}
                 className="block break-all text-xs text-slate-300"
@@ -525,7 +637,8 @@ export default function MobileNavbar() {
                 {company.email}
               </a>
 
-              {/* GOOGLE MAPS LINK */}
+              {/* GOOGLE MAPS */}
+
               <a
                 href={company.mapUrl}
                 target="_blank"
@@ -582,7 +695,6 @@ export default function MobileNavbar() {
               })}
             </div>
           </div>
-
         </div>
 
         {/* ==================================
@@ -597,20 +709,7 @@ export default function MobileNavbar() {
           >
             Request a Quote
 
-            <svg
-              className="h-4 w-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              aria-hidden="true"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M5 12h14m-6-6 6 6-6 6"
-              />
-            </svg>
+            <FiArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </nav>
@@ -618,7 +717,7 @@ export default function MobileNavbar() {
   );
 
   /* ==========================================
-     HEADER
+     MOBILE HEADER
   ========================================== */
 
   return (
@@ -636,7 +735,8 @@ export default function MobileNavbar() {
         <div className="border-b border-white/10 bg-slate-900 px-4">
           <div className="mx-auto flex h-9 max-w-lg items-center justify-between gap-2">
 
-            {/* PHONE NUMBER */}
+            {/* PHONE */}
+
             <a
               href={`tel:${company.phoneLink1}`}
               className="inline-flex shrink-0 items-center gap-1.5 text-[11px] font-medium text-slate-300"
@@ -660,6 +760,7 @@ export default function MobileNavbar() {
             </a>
 
             {/* SOCIAL ICONS */}
+
             <div className="flex items-center gap-1">
 
               <a
@@ -685,6 +786,7 @@ export default function MobileNavbar() {
               <span className="mx-1 h-4 w-px bg-slate-700" />
 
               {/* LOCATION */}
+
               <a
                 href={company.mapUrl}
                 target="_blank"
@@ -706,6 +808,7 @@ export default function MobileNavbar() {
           <div className="mx-auto flex h-[68px] max-w-lg items-center justify-between gap-3">
 
             {/* LOGO */}
+
             <Link
               href="/"
               onClick={closeMenu}
@@ -734,9 +837,11 @@ export default function MobileNavbar() {
             </Link>
 
             {/* HEADER ACTIONS */}
+
             <div className="flex shrink-0 items-center gap-2">
 
               {/* WHATSAPP */}
+
               <a
                 href={`https://wa.me/${company.whatsapp}`}
                 target="_blank"
@@ -755,6 +860,7 @@ export default function MobileNavbar() {
               </a>
 
               {/* MENU BUTTON */}
+
               <button
                 type="button"
                 onClick={toggleMenu}
@@ -802,7 +908,10 @@ export default function MobileNavbar() {
         </div>
       </header>
 
-      {/* PORTAL: DRAWER OUTSIDE NAVBAR STACKING CONTEXT */}
+      {/* ==========================================
+          PORTAL DRAWER
+      ========================================== */}
+
       {mounted &&
         menuOpen &&
         createPortal(mobileDrawer, document.body)}

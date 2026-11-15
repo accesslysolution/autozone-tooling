@@ -20,7 +20,6 @@ import {
 
 /* ==========================================
    BRAND COLORS
-   Amber-400: #FBBF24
 ========================================== */
 
 const BRAND = {
@@ -50,7 +49,8 @@ interface ProductCategory {
 }
 
 /* ==========================================
-   PRODUCTS
+   PRODUCT DATA
+   34 PRODUCTS
 ========================================== */
 
 const products: Product[] = [
@@ -124,8 +124,7 @@ const products: Product[] = [
     name: "Special Die – Side View",
     description:
       "Specialized die geometry for custom bending applications.",
-    image:
-      "/images/products/Special Die (Side View).avif",
+    image: "/images/products/Special Die (Side View).avif",
   },
   {
     id: 11,
@@ -212,10 +211,109 @@ const products: Product[] = [
       "Versatile V-type inserts for adjustable bending configurations.",
     image: "/images/products/Variable V Type Inserts.avif",
   },
+
+  /* ==========================================
+     NEW PRESS BRAKE PRODUCTS
+  ========================================== */
+
+  {
+    id: 23,
+    name: "Press Brake Tooling Storage Rack",
+    description:
+      "Organized industrial press brake tooling storage system designed for safe handling, identification and efficient access to bending tools.",
+    image: "/images/products/press-brake-2.avif",
+  },
+  {
+    id: 24,
+    name: "Press Brake Punch Storage System",
+    description:
+      "Heavy-duty tooling rack for organized storage of precision press brake punches and forming tools.",
+    image: "/images/products/press brake-1.avif",
+  },
+  {
+    id: 25,
+    name: "Press Brake Die Product Range",
+    description:
+      "Precision-engineered press brake die configurations supporting multiple bending profiles and industrial sheet metal applications.",
+    image:
+      "/images/products/Press Brake Die Product Showcase.avif",
+  },
+  {
+    id: 26,
+    name: "Press Brake Tooling Range",
+    description:
+      "Overview of precision press brake tooling configurations for different forming requirements and bending applications.",
+    image:
+      "/images/products/Press Brake Tooling Catalog Infographic.avif",
+  },
+  {
+    id: 27,
+    name: "R0.8 Straight Punch – 85°",
+    description:
+      "Precision straight press brake punch featuring an R0.8 tip radius and 85-degree profile for accurate sheet metal bending.",
+    image:
+      "/images/products/R0.8 Straight Punch Technical Showcase.avif",
+  },
+  {
+    id: 28,
+    name: "Single V Die – 6 to 100mm",
+    description:
+      "Single V-die tooling available in V-opening configurations from 6mm to 100mm, with specified angular profiles from 30° to 86°.",
+    image:
+      "/images/products/Press Brake Single V-Die Infographic.avif",
+  },
+  {
+    id: 29,
+    name: "R0.8 Gooseneck Punch – 85°",
+    description:
+      "Precision gooseneck press brake punch with an R0.8 tip radius and 85-degree profile, suitable for specialized bending and return flange operations.",
+    image:
+      "/images/products/Gooseneck Press Brake Punch Infographic.avif",
+  },
+  {
+    id: 30,
+    name: "Joggle Press Brake Tooling",
+    description:
+      "Specialized joggle tooling for creating offset bends and stepped sheet metal profiles with controlled forming geometry.",
+    image:
+      "/images/products/Joggle Tooling for Press Brakes.avif",
+  },
+  {
+    id: 31,
+    name: "Amada Type Self-Centering Die",
+    description:
+      "Self-centering press brake die configuration designed for precise alignment and consistent forming operations on compatible tooling systems.",
+    image:
+      "/images/products/Amada Self-Centering Die Infographic.avif",
+  },
+  {
+    id: 32,
+    name: "Press Brake Punch Specifications",
+    description:
+      "Technical overview of press brake punch profiles, tooling geometry and specifications for precision bending applications.",
+    image:
+      "/images/products/Press Brake Punch Specifications Infographic.avif",
+  },
+  {
+    id: 33,
+    name: "R0.8 Semi-Gooseneck Punch – 85°",
+    description:
+      "Semi-gooseneck press brake punch with an R0.8 tip radius and 85-degree profile for controlled bending of specialized sheet metal components.",
+    image:
+      "/images/products/Semi-Gooseneck Press Brake Punch.avif",
+  },
+  {
+    id: 34,
+    name: "R0.8 Acute Angle Punch",
+    description:
+      "Precision acute-angle press brake punch with an R0.8 tip radius for specialized angular bending operations.",
+    image:
+      "/images/products/Acute Angle Press Brake Punch Poster.avif",
+  },
 ];
 
 /* ==========================================
-   CATEGORIES
+   PRODUCT CATEGORIES
 ========================================== */
 
 const categories: ProductCategory[] = [
@@ -224,31 +322,31 @@ const categories: ProductCategory[] = [
     title: "Press Brake Tool",
     subtitle: "General Tooling",
     description:
-      "Precision tooling solutions for CNC press brake operations and industrial sheet metal fabrication.",
-    productIds: [21],
+      "Explore precision press brake tooling systems, tooling ranges and organized storage solutions for industrial sheet metal fabrication.",
+    productIds: [23, 24, 26],
   },
   {
     id: "press-brake-punch",
     title: "Press Brake Punch",
     subtitle: "Precision Punches",
     description:
-      "Straight, gooseneck and semi-gooseneck punches for demanding bending applications.",
-    productIds: [1, 2, 3, 4, 5],
+      "Explore straight, gooseneck, semi-gooseneck and acute-angle punches engineered for accurate bending and complex forming applications.",
+    productIds: [27, 29, 33, 34, 32, 1, 2, 3, 4, 5],
   },
   {
     id: "press-brake-dies",
     title: "Press Brake Dies",
     subtitle: "Precision Dies",
     description:
-      "Engineered bending dies for consistent forming accuracy.",
-    productIds: [11, 12],
+      "Engineered bending dies and precision tooling profiles designed for consistent forming accuracy and demanding fabrication requirements.",
+    productIds: [25, 11, 12],
   },
   {
     id: "radius-tools-holder",
     title: "Radius Tools Holder",
     subtitle: "Tool Holding",
     description:
-      "Tool holding solutions supporting secure positioning and alignment.",
+      "Tool holding solutions supporting secure positioning, alignment and specialized bending setups.",
     productIds: [17, 18],
   },
   {
@@ -256,7 +354,7 @@ const categories: ProductCategory[] = [
     title: "Radius Tools Insert",
     subtitle: "Precision Inserts",
     description:
-      "Specialized inserts for controlled bending profiles.",
+      "Specialized inserts for controlled bending profiles and adaptable tooling configurations.",
     productIds: [22],
   },
   {
@@ -264,7 +362,7 @@ const categories: ProductCategory[] = [
     title: "Press Brake Hemming Tools",
     subtitle: "Hemming Solutions",
     description:
-      "Precision hemming tools for clean folds and finished edges.",
+      "Precision hemming tools designed for folded edges, clean finishes and reliable sheet metal forming.",
     productIds: [13],
   },
   {
@@ -272,7 +370,7 @@ const categories: ProductCategory[] = [
     title: "Self Centering 2V Die",
     subtitle: "V-Die Systems",
     description:
-      "2-V die configurations for accurate alignment and bending.",
+      "Explore 2-V die configurations for accurate alignment and consistent bending operations.",
     productIds: [16],
   },
   {
@@ -280,7 +378,7 @@ const categories: ProductCategory[] = [
     title: "Shear Blade",
     subtitle: "Precision Cutting",
     description:
-      "Industrial shearing blades for clean, dependable cutting.",
+      "Industrial shearing blades engineered for clean cuts and dependable performance.",
     productIds: [20],
   },
   {
@@ -288,23 +386,23 @@ const categories: ProductCategory[] = [
     title: "Joggle Tool & Insert",
     subtitle: "Specialized Forming",
     description:
-      "Specialized tooling for offset forming and custom sheet metal profiles.",
-    productIds: [],
+      "Specialized press brake tooling for offset forming, stepped profiles and custom sheet metal bending applications.",
+    productIds: [30],
   },
   {
     id: "amada-self-centering-1v-die",
     title: "Amada Type Self Centering 1V Die",
     subtitle: "Machine-Specific Tooling",
     description:
-      "Machine-specific V-die tooling for compatible press brake systems.",
-    productIds: [],
+      "Self-centering V-die tooling configurations designed for accurate positioning and compatible press brake systems.",
+    productIds: [31],
   },
   {
     id: "amada-self-centering-1v-die-holder",
     title: "Amada Type Self Centering 1V Die Holder",
     subtitle: "Die Holding Systems",
     description:
-      "Specialized die holding configurations for secure installation.",
+      "Specialized die holding configurations for secure tooling installation and alignment.",
     productIds: [],
   },
   {
@@ -312,15 +410,15 @@ const categories: ProductCategory[] = [
     title: "Single V Die",
     subtitle: "Single V Tooling",
     description:
-      "Single V dies engineered for precise angular bending.",
-    productIds: [6],
+      "Single V dies engineered for accurate angular bending, with V-opening configurations for different fabrication requirements.",
+    productIds: [28, 6],
   },
   {
     id: "multi-v-die",
     title: "Multi V Die",
     subtitle: "Multi-Opening Dies",
     description:
-      "Versatile multi-opening dies for flexible bending operations.",
+      "Versatile multi-opening dies for flexible bending operations and varying material thicknesses.",
     productIds: [7, 8],
   },
   {
@@ -328,20 +426,26 @@ const categories: ProductCategory[] = [
     title: "Special Application",
     subtitle: "Custom Engineering",
     description:
-      "Custom-engineered punches, dies and profiles for specialized forming requirements.",
-    productIds: [9, 10, 14, 15, 19],
+      "Custom-engineered punches, dies, profiles and auxiliary tooling for specialized industrial forming requirements.",
+    productIds: [9, 10, 14, 15, 19, 21],
   },
 ];
 
-const featuredIds = [1, 6, 7, 13, 17, 20, 21];
+/* ==========================================
+   FEATURED PRODUCTS
+========================================== */
 
-const featuredProducts = featuredIds
-  .map((id) => products.find((product) => product.id === id))
-  .filter((product): product is Product => Boolean(product));
+const featuredIds = [
+  27, 29, 33, 34, 25, 28, 30, 31, 7, 13, 20,
+];
 
-const productMap = new Map(
+const productMap = new Map<number, Product>(
   products.map((product) => [product.id, product])
 );
+
+const featuredProducts = featuredIds
+  .map((id) => productMap.get(id))
+  .filter((product): product is Product => Boolean(product));
 
 /* ==========================================
    PRODUCT TILE
@@ -456,7 +560,7 @@ function CategorySection({
               aria-label={`View details for ${primaryProduct.name}`}
               className="group block w-full overflow-hidden rounded-[22px] bg-white text-left shadow-[0_14px_40px_rgba(0,0,0,0.08)] transition-transform active:scale-[0.99]"
             >
-              <div className="relative aspect-[5/4] bg-[#eef1f4]">
+              <div className="relative aspect-square bg-[#eef1f4]">
                 <Image
                   src={primaryProduct.image}
                   alt={primaryProduct.name}
@@ -700,7 +804,7 @@ export default function MobileProductsPage() {
 
           {/* HERO PRODUCT IMAGE */}
           <div className="relative mt-9 w-full overflow-hidden rounded-[24px] border border-white/10 bg-[#e9edf1]">
-            <div className="relative aspect-[5/4]">
+            <div className="relative aspect-square">
               <Image
                 src="/images/products/Gooseneck Punch.avif"
                 alt="Autozone Tooling precision gooseneck punch"
@@ -771,7 +875,7 @@ export default function MobileProductsPage() {
               aria-label={`View details for ${product.name}`}
               className="w-[260px] shrink-0 snap-center overflow-hidden rounded-[20px] border border-slate-200 bg-[#f5f6f8] text-left"
             >
-              <div className="relative aspect-[4/3]">
+              <div className="relative aspect-square">
                 <Image
                   src={product.image}
                   alt={product.name}
@@ -781,7 +885,7 @@ export default function MobileProductsPage() {
                 />
               </div>
 
-              <div className="flex items-center justify-between gap-3 border-t border-slate-200 bg-white px-4 py-5">
+              <div className="flex min-h-[100px] items-center justify-between gap-3 border-t border-slate-200 bg-white px-4 py-5">
                 <span
                   className="text-[16px] font-bold leading-snug"
                   style={{ color: BRAND.navy }}
@@ -931,7 +1035,7 @@ export default function MobileProductsPage() {
 
       {/* ==========================================
           PRODUCT DETAILS MODAL
-          STARTS BELOW THE 104px NAVBAR
+          BELOW 104px NAVBAR
       ========================================== */}
 
       {mounted &&
@@ -967,7 +1071,7 @@ export default function MobileProductsPage() {
 
               {/* MODAL CONTENT */}
               <div className="px-5 pt-5 text-center">
-                <div className="relative aspect-[5/4] overflow-hidden rounded-[20px] bg-[#f1f3f5]">
+                <div className="relative aspect-square overflow-hidden rounded-[20px] bg-[#f1f3f5]">
                   <Image
                     src={selectedProduct.image}
                     alt={selectedProduct.name}
