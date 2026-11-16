@@ -49,11 +49,31 @@ export const metadata: Metadata = {
 const IMAGE_BASE = "/images/design";
 
 /* ==========================================
+   TYPES
+========================================== */
+
+interface FixtureGalleryImage {
+  name: string;
+  image: string;
+}
+
+interface DesignService {
+  id: string;
+  title: string;
+  category: string;
+  description: string;
+  icon: typeof FiLayers;
+  image: string;
+  tags: string[];
+  gallery?: FixtureGalleryImage[];
+}
+
+/* ==========================================
    DESIGN SERVICES
    IDs MATCH NAVBAR DROPDOWN LINKS
 ========================================== */
 
-const services = [
+const services: DesignService[] = [
   {
     id: "product-design",
     title: "Product Design",
@@ -61,7 +81,7 @@ const services = [
     description:
       "Comprehensive product design solutions focused on functionality, manufacturability, precision, and performance.",
     icon: FiLayers,
-    image: `${IMAGE_BASE}/Precision Press Assembly.avif`,
+    image: `${IMAGE_BASE}/product design.avif`,
     tags: ["3D Modelling", "Product Development"],
   },
   {
@@ -74,36 +94,69 @@ const services = [
     image: `${IMAGE_BASE}/Precision Stamping Die Assembly.avif`,
     tags: ["Press Tooling", "Die Engineering"],
   },
+
+  /* ========================================
+     FIXTURE DESIGN - FOUR IMAGE GALLERY
+  ======================================== */
+
   {
     id: "fixture-design",
     title: "Fixture Design",
     category: "Manufacturing Solutions",
     description:
-      "Custom fixture design for accurate positioning, secure holding, and improved efficiency during manufacturing operations.",
+      "Custom fixture design solutions for precision checking, CNC machining, welding, and industrial workholding applications.",
     icon: FiCrosshair,
-    image: `${IMAGE_BASE}/Industrial Press Brake Tooling Render.avif`,
-    tags: ["Jigs & Fixtures", "Workholding"],
+
+    image: `${IMAGE_BASE}/Industrial Precision Checking Fixture CF-078.avif`,
+
+    gallery: [
+      {
+        name: "CNC Machining Fixture",
+        image: `${IMAGE_BASE}/Precision CNC Machining Fixture with Clamped Workpieces.avif`,
+      },
+      {
+        name: "Workholding Fixture",
+        image: `${IMAGE_BASE}/Precision Industrial Workholding Fixture.avif`,
+      },
+      {
+        name: "Checking Fixture",
+        image: `${IMAGE_BASE}/Industrial Precision Checking Fixture CF-078.avif`,
+      },
+      {
+        name: "Welding Fixture",
+        image: `${IMAGE_BASE}/Precision Welding Fixture Assembly.avif`,
+      },
+    ],
+
+    tags: [
+      "Checking Fixtures",
+      "Welding Fixtures",
+      "Machining Fixtures",
+      "Workholding Fixtures",
+    ],
   },
-  {
-    id: "mould-design",
-    title: "Mould Design",
-    category: "Precision Engineering",
-    description:
-      "Detailed mould design solutions developed around component geometry, tooling requirements, and production efficiency.",
-    icon: FiGrid,
-    image: `${IMAGE_BASE}/V-Groove Die Engineering Render.avif`,
-    tags: ["Mould Development", "CAD Design"],
-  },
-  {
-    id: "electrode-design",
-    title: "Electrode Design",
-    category: "EDM Engineering",
-    description:
-      "Accurate electrode design for EDM applications, supporting complex geometries and precision manufacturing requirements.",
-    icon: FiZap,
-    image: `${IMAGE_BASE}/Precision Stamping Die Assembly.avif`,
-    tags: ["EDM Electrodes", "Complex Profiles"],
-  },
+{
+  id: "mould-design",
+  title: "Mould Design",
+  category: "Precision Engineering",
+  description:
+    "Detailed mould design solutions developed around component geometry, tooling requirements, and production efficiency.",
+  icon: FiGrid,
+  image: `${IMAGE_BASE}/Precision Steel Injection Mold Set.avif`,
+  tags: ["Mould Development", "CAD Design"],
+},
+
+{
+  id: "electrode-design",
+  title: "Electrode Design",
+  category: "EDM Engineering",
+  description:
+    "Accurate electrode design for EDM applications, supporting complex geometries and precision manufacturing requirements.",
+  icon: FiZap,
+  image: `${IMAGE_BASE}/Precision Copper Electrode Assembly.avif`,
+  tags: ["EDM Electrodes", "Complex Profiles"],
+},
+
   {
     id: "2d-to-3d-design",
     title: "2D to 3D Design",
@@ -255,11 +308,13 @@ export default function DesignServicesPage() {
       ====================================== */}
 
       {/* Desktop / Tablet Hero */}
+
       <div className="hidden md:block">
         <DesignHero />
       </div>
 
       {/* Mobile Hero */}
+
       <div className="md:hidden">
         <DesignHeroMobile />
       </div>
@@ -339,27 +394,65 @@ export default function DesignServicesPage() {
                   className="group flex h-full scroll-mt-32 flex-col overflow-hidden rounded-xl border border-slate-800 bg-[#111d2a] transition-all duration-300 hover:-translate-y-1 hover:border-amber-400/50 hover:shadow-xl hover:shadow-black/20"
                 >
 
-                  {/* SERVICE IMAGE */}
+                  {/* ==================================
+                      SERVICE IMAGE OR GALLERY
+                  ================================== */}
 
-                  <div className="relative aspect-square overflow-hidden bg-[#172433]">
-                    <Image
-                      src={service.image}
-                      alt={`${service.title} engineering CAD visualization`}
-                      fill
-                      sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
+                  {service.gallery &&
+                  service.gallery.length > 0 ? (
 
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0B141E]/40 via-transparent to-transparent" />
+                    /* FIXTURE DESIGN IMAGE GALLERY */
 
-                    {/* SERVICE ICON */}
+                    <div className="grid aspect-square grid-cols-2 grid-rows-2 gap-1.5 overflow-hidden bg-[#172433] p-2">
+                      {service.gallery.map((fixture) => (
+                        <div
+                          key={fixture.name}
+                          className="group/fixture relative min-h-0 min-w-0 overflow-hidden rounded-md bg-white"
+                        >
+                          <Image
+                            src={fixture.image}
+                            alt={`${fixture.name} - Autozone Tooling`}
+                            fill
+                            sizes="(max-width: 767px) 50vw, (max-width: 1023px) 25vw, 17vw"
+                            className="object-contain p-2 transition-transform duration-500 group-hover/fixture:scale-105"
+                          />
 
-                    <div className="absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center rounded-lg border border-amber-400/30 bg-[#0B141E]/90 text-amber-400 backdrop-blur-md">
-                      <Icon className="h-5 w-5" />
+                          {/* FIXTURE LABEL */}
+
+                          <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0B141E]/95 via-[#0B141E]/70 to-transparent px-2 pb-2 pt-6">
+                            <p className="text-center text-[9px] font-semibold leading-snug text-white sm:text-[10px]">
+                              {fixture.name}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                  </div>
+                  ) : (
 
-                  {/* SERVICE CONTENT */}
+                    /* STANDARD SERVICE IMAGE */
+
+                    <div className="relative aspect-square overflow-hidden bg-[#172433]">
+                      <Image
+                        src={service.image}
+                        alt={`${service.title} engineering CAD visualization`}
+                        fill
+                        sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      />
+
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0B141E]/40 via-transparent to-transparent" />
+
+                      {/* SERVICE ICON */}
+
+                      <div className="absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center rounded-lg border border-amber-400/30 bg-[#0B141E]/90 text-amber-400 backdrop-blur-md">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                    </div>
+                  )}
+
+                  {/* ==================================
+                      SERVICE CONTENT
+                  ================================== */}
 
                   <div className="flex flex-1 flex-col p-6 sm:p-7">
                     <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.18em] text-amber-400">
@@ -541,11 +634,13 @@ export default function DesignServicesPage() {
       ====================================== */}
 
       {/* Desktop / Tablet Showcase */}
+
       <div className="hidden md:block">
         <DesignShowcase />
       </div>
 
       {/* Mobile Showcase */}
+
       <div className="md:hidden">
         <DesignShowcaseMobile />
       </div>
