@@ -31,15 +31,31 @@ const navLinks = [
 ];
 
 /* ==========================================
-   PRODUCT CATEGORIES
+   UPDATED PRODUCT CATEGORIES
+   MATCHES MOBILE PRODUCTS PAGE
 ========================================== */
 
 const productCategories = [
-  { name: "Press Brake Tool", id: "press-brake-tool" },
-  { name: "Press Brake Punch", id: "press-brake-punch" },
-  { name: "Press Brake Dies", id: "press-brake-dies" },
-  { name: "Radius Tools Holder", id: "radius-tools-holder" },
-  { name: "Radius Tools Insert", id: "radius-tools-insert" },
+  {
+    name: "Press Brake Tool",
+    id: "press-brake-tool",
+  },
+  {
+    name: "Press Brake Punch",
+    id: "press-brake-punch",
+  },
+  {
+    name: "Press Brake Dies",
+    id: "press-brake-dies",
+  },
+  {
+    name: "Radius Tools Holders & Inserts",
+    id: "radius-tools-holder-inserts",
+  },
+  {
+    name: "Punch Clamps",
+    id: "punch-clamps",
+  },
   {
     name: "Press Brake Hemming Tools",
     id: "press-brake-hemming-tools",
@@ -48,19 +64,22 @@ const productCategories = [
     name: "Self Centering 2V Die",
     id: "self-centering-2v-die",
   },
-  { name: "Shear Blade", id: "shear-blade" },
-  { name: "Joggle Tool & Insert", id: "joggle-tool-insert" },
+  {
+    name: "Shear Blade",
+    id: "shear-blade",
+  },
+  {
+    name: "Joggle Tool & Insert",
+    id: "joggle-tool-insert",
+  },
   {
     name: "Amada Type Self Centering 1V Die",
     id: "amada-self-centering-1v-die",
   },
   {
-    name: "Amada Type Self Centering 1V Die Holder",
-    id: "amada-self-centering-1v-die-holder",
+    name: "Special Application",
+    id: "special-application",
   },
-  { name: "Single V Die", id: "single-v-die" },
-  { name: "Multi V Die", id: "multi-v-die" },
-  { name: "Special Application", id: "special-application" },
 ];
 
 /* ==========================================
@@ -68,12 +87,30 @@ const productCategories = [
 ========================================== */
 
 const designCategories = [
-  { name: "Product Design", id: "product-design" },
-  { name: "Die Design", id: "die-design" },
-  { name: "Fixture Design", id: "fixture-design" },
-  { name: "Mould Design", id: "mould-design" },
-  { name: "Electrode Design", id: "electrode-design" },
-  { name: "2D to 3D Design", id: "2d-to-3d-design" },
+  {
+    name: "Product Design",
+    id: "product-design",
+  },
+  {
+    name: "Die Design",
+    id: "die-design",
+  },
+  {
+    name: "Fixture Design",
+    id: "fixture-design",
+  },
+  {
+    name: "Mould Design",
+    id: "mould-design",
+  },
+  {
+    name: "Electrode Design",
+    id: "electrode-design",
+  },
+  {
+    name: "2D to 3D Design",
+    id: "2d-to-3d-design",
+  },
   {
     name: "Manufacturing Drawings",
     id: "manufacturing-drawings",
@@ -143,10 +180,14 @@ export default function MobileNavbar() {
   const [mounted, setMounted] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const [productsOpen, setProductsOpen] = useState(false);
-  const [designOpen, setDesignOpen] = useState(false);
+  const [productsOpen, setProductsOpen] =
+    useState(false);
 
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [designOpen, setDesignOpen] =
+    useState(false);
+
+  const [isScrolled, setIsScrolled] =
+    useState(false);
 
   /* ==========================================
      CLIENT MOUNT
@@ -193,12 +234,14 @@ export default function MobileNavbar() {
   useEffect(() => {
     if (!menuOpen) return;
 
-    const previousOverflow = document.body.style.overflow;
+    const previousOverflow =
+      document.body.style.overflow;
 
     document.body.style.overflow = "hidden";
 
     return () => {
-      document.body.style.overflow = previousOverflow;
+      document.body.style.overflow =
+        previousOverflow;
     };
   }, [menuOpen]);
 
@@ -209,7 +252,9 @@ export default function MobileNavbar() {
   useEffect(() => {
     if (!menuOpen) return;
 
-    const handleKeyDown = (event: KeyboardEvent) => {
+    const handleKeyDown = (
+      event: KeyboardEvent
+    ) => {
       if (event.key === "Escape") {
         setMenuOpen(false);
         setProductsOpen(false);
@@ -217,10 +262,16 @@ export default function MobileNavbar() {
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener(
+      "keydown",
+      handleKeyDown
+    );
 
     return () => {
-      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener(
+        "keydown",
+        handleKeyDown
+      );
     };
   }, [menuOpen]);
 
@@ -279,11 +330,14 @@ export default function MobileNavbar() {
   const handleDesignClick = (id: string) => {
     closeMenu();
 
-    if (pathname !== "/design-services") return;
+    if (pathname !== "/design-services") {
+      return;
+    }
 
     window.requestAnimationFrame(() => {
       window.requestAnimationFrame(() => {
-        const target = document.getElementById(id);
+        const target =
+          document.getElementById(id);
 
         target?.scrollIntoView({
           behavior: "smooth",
@@ -299,7 +353,6 @@ export default function MobileNavbar() {
 
   const mobileDrawer = (
     <div className="fixed inset-0 z-[10000] md:hidden">
-
       {/* BACKDROP */}
 
       <button
@@ -316,7 +369,6 @@ export default function MobileNavbar() {
         aria-label="Mobile navigation"
         className="absolute inset-y-0 right-0 flex w-[min(88vw,380px)] flex-col overflow-hidden border-l border-slate-700 bg-slate-950 shadow-2xl"
       >
-
         {/* ==================================
             DRAWER HEADER
         ================================== */}
@@ -360,9 +412,10 @@ export default function MobileNavbar() {
         ================================== */}
 
         <div className="min-h-0 flex-1 space-y-2 overflow-y-auto overscroll-contain px-4 py-5">
-
           {navLinks.map((link) => {
-            const isActive = isActiveLink(link.href);
+            const isActive = isActiveLink(
+              link.href
+            );
 
             /* ==================================
                PRODUCTS DROPDOWN
@@ -393,7 +446,9 @@ export default function MobileNavbar() {
                     <button
                       type="button"
                       onClick={() => {
-                        setProductsOpen((previous) => !previous);
+                        setProductsOpen(
+                          (previous) => !previous
+                        );
                         setDesignOpen(false);
                       }}
                       aria-expanded={productsOpen}
@@ -407,7 +462,9 @@ export default function MobileNavbar() {
                     >
                       <FiChevronDown
                         className={`h-4 w-4 transition-transform duration-300 ${
-                          productsOpen ? "rotate-180" : ""
+                          productsOpen
+                            ? "rotate-180"
+                            : ""
                         }`}
                       />
                     </button>
@@ -424,26 +481,32 @@ export default function MobileNavbar() {
                         Product Categories
                       </p>
 
-                      {productCategories.map((category, index) => (
-                        <Link
-                          key={category.id}
-                          href={`/products#mobile-${category.id}`}
-                          onClick={() =>
-                            handleProductClick(category.id)
-                          }
-                          className="flex items-center gap-3 rounded-lg px-3 py-3 transition-colors hover:bg-slate-800 active:bg-slate-800"
-                        >
-                          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-amber-500/10 text-[10px] font-bold text-amber-400">
-                            {String(index + 1).padStart(2, "0")}
-                          </span>
+                      {productCategories.map(
+                        (category, index) => (
+                          <Link
+                            key={category.id}
+                            href={`/products#mobile-${category.id}`}
+                            onClick={() =>
+                              handleProductClick(
+                                category.id
+                              )
+                            }
+                            className="flex items-center gap-3 rounded-lg px-3 py-3 transition-colors hover:bg-slate-800 active:bg-slate-800"
+                          >
+                            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-amber-500/10 text-[10px] font-bold text-amber-400">
+                              {String(
+                                index + 1
+                              ).padStart(2, "0")}
+                            </span>
 
-                          <span className="flex-1 text-xs font-medium leading-relaxed text-slate-300">
-                            {category.name}
-                          </span>
+                            <span className="flex-1 text-xs font-medium leading-relaxed text-slate-300">
+                              {category.name}
+                            </span>
 
-                          <FiChevronRight className="h-3.5 w-3.5 shrink-0 text-slate-500" />
-                        </Link>
-                      ))}
+                            <FiChevronRight className="h-3.5 w-3.5 shrink-0 text-slate-500" />
+                          </Link>
+                        )
+                      )}
 
                       <Link
                         href="/products"
@@ -487,7 +550,9 @@ export default function MobileNavbar() {
                     <button
                       type="button"
                       onClick={() => {
-                        setDesignOpen((previous) => !previous);
+                        setDesignOpen(
+                          (previous) => !previous
+                        );
                         setProductsOpen(false);
                       }}
                       aria-expanded={designOpen}
@@ -501,7 +566,9 @@ export default function MobileNavbar() {
                     >
                       <FiChevronDown
                         className={`h-4 w-4 transition-transform duration-300 ${
-                          designOpen ? "rotate-180" : ""
+                          designOpen
+                            ? "rotate-180"
+                            : ""
                         }`}
                       />
                     </button>
@@ -519,31 +586,36 @@ export default function MobileNavbar() {
                       </p>
 
                       <p className="px-3 pb-2 text-[11px] leading-relaxed text-slate-500">
-                        Precision CAD, tooling and manufacturing design
+                        Precision CAD, tooling and
+                        manufacturing design
                       </p>
 
-                      {designCategories.map((category, index) => (
-                        <Link
-                          key={category.id}
-                          href={`/design-services#${category.id}`}
-                          onClick={() =>
-                            handleDesignClick(category.id)
-                          }
-                          className="flex items-center gap-3 rounded-lg px-3 py-3 transition-colors hover:bg-slate-800 active:bg-slate-800"
-                        >
-                          <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-amber-500/10 text-[10px] font-bold text-amber-400">
-                            {String(index + 1).padStart(2, "0")}
-                          </span>
+                      {designCategories.map(
+                        (category, index) => (
+                          <Link
+                            key={category.id}
+                            href={`/design-services#${category.id}`}
+                            onClick={() =>
+                              handleDesignClick(
+                                category.id
+                              )
+                            }
+                            className="flex items-center gap-3 rounded-lg px-3 py-3 transition-colors hover:bg-slate-800 active:bg-slate-800"
+                          >
+                            <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-amber-500/10 text-[10px] font-bold text-amber-400">
+                              {String(
+                                index + 1
+                              ).padStart(2, "0")}
+                            </span>
 
-                          <span className="flex-1 text-xs font-medium leading-relaxed text-slate-300">
-                            {category.name}
-                          </span>
+                            <span className="flex-1 text-xs font-medium leading-relaxed text-slate-300">
+                              {category.name}
+                            </span>
 
-                          <FiChevronRight className="h-3.5 w-3.5 shrink-0 text-slate-500" />
-                        </Link>
-                      ))}
-
-                      {/* VIEW ALL DESIGN SERVICES */}
+                            <FiChevronRight className="h-3.5 w-3.5 shrink-0 text-slate-500" />
+                          </Link>
+                        )
+                      )}
 
                       <Link
                         href="/design-services"
@@ -567,7 +639,9 @@ export default function MobileNavbar() {
                 key={link.name}
                 href={link.href}
                 onClick={closeMenu}
-                aria-current={isActive ? "page" : undefined}
+                aria-current={
+                  isActive ? "page" : undefined
+                }
                 className={`flex items-center justify-between rounded-xl border px-4 py-3.5 text-sm font-semibold transition-colors ${
                   isActive
                     ? "border-amber-500/30 bg-amber-500/10 text-amber-400"
@@ -597,7 +671,6 @@ export default function MobileNavbar() {
             </p>
 
             <div className="space-y-4 rounded-xl bg-slate-900 p-4">
-
               {/* CONTACT 1 */}
 
               <div>
@@ -650,7 +723,9 @@ export default function MobileNavbar() {
                   className="shrink-0 text-amber-400"
                 />
 
-                <span>{company.location}</span>
+                <span>
+                  {company.location}
+                </span>
 
                 <FiArrowUpRight
                   size={13}
@@ -684,7 +759,9 @@ export default function MobileNavbar() {
                   >
                     <Icon size={17} />
 
-                    <span>{social.name}</span>
+                    <span>
+                      {social.name}
+                    </span>
 
                     <FiArrowUpRight
                       size={13}
@@ -727,14 +804,12 @@ export default function MobileNavbar() {
           isScrolled ? "shadow-xl" : ""
         }`}
       >
-
         {/* ==================================
             TOP CONTACT STRIP
         ================================== */}
 
         <div className="border-b border-white/10 bg-slate-900 px-4">
           <div className="mx-auto flex h-9 max-w-lg items-center justify-between gap-2">
-
             {/* PHONE */}
 
             <a
@@ -762,7 +837,6 @@ export default function MobileNavbar() {
             {/* SOCIAL ICONS */}
 
             <div className="flex items-center gap-1">
-
               <a
                 href={company.facebook}
                 target="_blank"
@@ -806,7 +880,6 @@ export default function MobileNavbar() {
 
         <div className="border-b border-white/10 px-4">
           <div className="mx-auto flex h-[68px] max-w-lg items-center justify-between gap-3">
-
             {/* LOGO */}
 
             <Link
@@ -839,7 +912,6 @@ export default function MobileNavbar() {
             {/* HEADER ACTIONS */}
 
             <div className="flex shrink-0 items-center gap-2">
-
               {/* WHATSAPP */}
 
               <a
@@ -865,7 +937,9 @@ export default function MobileNavbar() {
                 type="button"
                 onClick={toggleMenu}
                 aria-label={
-                  menuOpen ? "Close menu" : "Open menu"
+                  menuOpen
+                    ? "Close menu"
+                    : "Open menu"
                 }
                 aria-expanded={menuOpen}
                 aria-controls={
@@ -914,7 +988,10 @@ export default function MobileNavbar() {
 
       {mounted &&
         menuOpen &&
-        createPortal(mobileDrawer, document.body)}
+        createPortal(
+          mobileDrawer,
+          document.body
+        )}
     </>
   );
 }

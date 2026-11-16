@@ -28,7 +28,6 @@ interface ProductCategory {
 
 /* ==========================================
    PRODUCT DATA
-   EXISTING PRODUCTS + 12 NEW IMAGES
 ========================================== */
 
 const products: Product[] = [
@@ -191,7 +190,7 @@ const products: Product[] = [
   },
 
   /* ==========================================
-     NEW PRESS BRAKE PRODUCT IMAGES
+     PRESS BRAKE PRODUCT RANGE
   ========================================== */
 
   {
@@ -236,7 +235,7 @@ const products: Product[] = [
     id: 28,
     name: "Single V Die – 6 to 100mm",
     description:
-      "Single V-die tooling available in V-opening configurations from 6mm to 100mm, with specified angular profiles from 30° to 86°.",
+      "Single V-die tooling with V-opening configurations from 6mm to 100mm and specified angular profiles from 30° to 86°.",
     image:
       "/images/products/Press Brake Single V-Die Infographic.avif",
   },
@@ -288,10 +287,55 @@ const products: Product[] = [
     image:
       "/images/products/Acute Angle Press Brake Punch Poster.avif",
   },
+
+  /* ==========================================
+     NEW PRODUCT IMAGES
+  ========================================== */
+
+  {
+    id: 35,
+    name: "Double Sided Punch Clamp",
+    description:
+      "Precision-engineered double-sided punch clamp designed for secure press brake punch retention, reliable alignment and efficient tooling operations.",
+    image:
+      "/images/products/Industrial Punch Clamp Product Shot.avif",
+  },
+  {
+    id: 36,
+    name: "Single Side Punch Clamp",
+    description:
+      "Industrial single-side punch clamp featuring a red locking lever for secure tool clamping and convenient handling during press brake operations.",
+    image:
+      "/images/products/Industrial Punch Clamp with Red Locking Lever.avif",
+  },
+  {
+    id: 37,
+    name: "Precision Hemming Dies in Parallel",
+    description:
+      "Precision-machined hemming dies arranged in parallel, engineered for consistent folding, accurate alignment and clean sheet metal edges.",
+    image:
+      "/images/products/Precision Hemming Dies in Parallel.avif",
+  },
+  {
+    id: 38,
+    name: "Three Hemming Die Assemblies",
+    description:
+      "Three specialized hemming punch and die assemblies illustrating different tooling profiles for precision sheet metal folding applications.",
+    image:
+      "/images/products/Three Hemming Die Assemblies.avif",
+  },
+  {
+    id: 39,
+    name: "Precision Metal Components Design Services",
+    description:
+      "Precision metal component design solutions for industrial applications, including engineered brackets, housings, mounting components and custom manufactured parts.",
+    image:
+      "/images/products/Precision Metal Components Design Services.avif",
+  },
 ];
 
 /* ==========================================
-   CATEGORY DATA
+   UPDATED PRODUCT CATEGORIES
 ========================================== */
 
 const categories: ProductCategory[] = [
@@ -320,47 +364,47 @@ const categories: ProductCategory[] = [
     title: "Press Brake Dies",
     subtitle: "03 / PRECISION DIES",
     description:
-      "Engineered bending dies and precision tooling profiles designed for consistent forming accuracy and demanding fabrication requirements.",
+      "Discover our complete range of press brake dies, including Single V Dies, Multi V Dies, profile dies and rolling dies for accurate sheet metal forming.",
     background: "bg-[#f7f4ed]",
     accent: "bg-amber-600",
-    productIds: [25, 11, 12],
+    productIds: [25, 28, 6, 7, 8, 11, 12],
   },
   {
-    id: "radius-tools-holder",
-    title: "Radius Tools Holder",
-    subtitle: "04 / TOOL HOLDING",
+    id: "radius-tools-holder-inserts",
+    title: "Radius Tools Holders & Inserts",
+    subtitle: "04 / TOOL HOLDING & INSERTS",
     description:
-      "Tool holding solutions supporting secure positioning, alignment and specialized bending setups.",
+      "Precision radius tool holders and specialized inserts designed for secure positioning, accurate alignment and adaptable bending configurations.",
     background: "bg-[#f1f3f8]",
     accent: "bg-indigo-600",
-    productIds: [17, 18],
+    productIds: [17, 22],
   },
   {
-    id: "radius-tools-insert",
-    title: "Radius Tools Insert",
-    subtitle: "05 / PRECISION INSERTS",
+    id: "punch-clamps",
+    title: "Punch Clamps",
+    subtitle: "05 / PRECISION CLAMPING",
     description:
-      "Specialized inserts for controlled bending profiles and adaptable tooling configurations.",
-    background: "bg-[#f1f7f3]",
-    accent: "bg-emerald-700",
-    productIds: [22],
+      "Explore double-sided and single-side punch clamps engineered for secure tooling retention, efficient setup and reliable press brake operations.",
+    background: "bg-[#f2f5f8]",
+    accent: "bg-slate-700",
+    productIds: [35, 36, 18],
   },
   {
     id: "press-brake-hemming-tools",
     title: "Press Brake Hemming Tools",
     subtitle: "06 / HEMMING SOLUTIONS",
     description:
-      "Precision hemming tools designed for folded edges, clean finishes and reliable sheet metal forming.",
+      "Explore precision hemming dies, punch and die assemblies, and specialized tooling for clean folded edges and reliable sheet metal forming.",
     background: "bg-[#f5f1f8]",
     accent: "bg-violet-700",
-    productIds: [13],
+    productIds: [37, 38, 13],
   },
   {
     id: "self-centering-2v-die",
     title: "Self Centering 2V Die",
     subtitle: "07 / V-DIE SYSTEMS",
     description:
-      "Explore 2-V die configurations for accurate alignment and consistent bending operations.",
+      "Explore self-centering 2-V die configurations designed for accurate tooling alignment and consistent bending operations.",
     background: "bg-[#f5f7ed]",
     accent: "bg-lime-700",
     productIds: [16],
@@ -370,7 +414,7 @@ const categories: ProductCategory[] = [
     title: "Shear Blade",
     subtitle: "08 / PRECISION CUTTING",
     description:
-      "Industrial shearing blades engineered for clean cuts and dependable performance.",
+      "Industrial shearing blades engineered for clean cuts, dimensional accuracy and dependable cutting performance.",
     background: "bg-[#eef6f5]",
     accent: "bg-teal-700",
     productIds: [20],
@@ -396,44 +440,14 @@ const categories: ProductCategory[] = [
     productIds: [31],
   },
   {
-    id: "amada-self-centering-1v-die-holder",
-    title: "Amada Type Self Centering 1V Die Holder",
-    subtitle: "11 / DIE HOLDING SYSTEMS",
-    description:
-      "Specialized die holding configurations for secure tooling installation and alignment.",
-    background: "bg-[#f5f3f9]",
-    accent: "bg-purple-700",
-    productIds: [],
-  },
-  {
-    id: "single-v-die",
-    title: "Single V Die",
-    subtitle: "12 / SINGLE V TOOLING",
-    description:
-      "Single V dies engineered for accurate angular bending, with V-opening configurations for different fabrication requirements.",
-    background: "bg-[#f1f7f3]",
-    accent: "bg-green-700",
-    productIds: [28, 6],
-  },
-  {
-    id: "multi-v-die",
-    title: "Multi V Die",
-    subtitle: "13 / MULTI-OPENING DIES",
-    description:
-      "Versatile multi-opening dies for flexible bending operations and varying material thicknesses.",
-    background: "bg-[#f7f5ed]",
-    accent: "bg-yellow-700",
-    productIds: [7, 8],
-  },
-  {
     id: "special-application",
     title: "Special Application",
-    subtitle: "14 / CUSTOM ENGINEERING",
+    subtitle: "11 / CUSTOM ENGINEERING",
     description:
-      "Custom-engineered punches, dies, profiles and auxiliary tooling for specialized industrial forming requirements.",
+      "Explore custom-engineered dies, specialized punches, precision metal component design and auxiliary tooling for industrial manufacturing applications.",
     background: "bg-[#f3f5f8]",
     accent: "bg-slate-700",
-    productIds: [9, 10, 14, 15, 19, 21],
+    productIds: [39, 9, 10, 14, 15, 19, 21],
   },
 ];
 
@@ -441,7 +455,7 @@ const categories: ProductCategory[] = [
    PRODUCT LOOKUP
 ========================================== */
 
-const productMap = new Map(
+const productMap = new Map<number, Product>(
   products.map((product) => [product.id, product])
 );
 
@@ -451,6 +465,29 @@ const getCategoryProducts = (
   category.productIds
     .map((id) => productMap.get(id))
     .filter((product): product is Product => Boolean(product));
+
+/* ==========================================
+   FEATURED PRODUCTS
+========================================== */
+
+const featuredIds = [
+  35,
+  36,
+  37,
+  38,
+  27,
+  29,
+  25,
+  28,
+  39,
+  30,
+  31,
+  20,
+];
+
+const featuredProducts = featuredIds
+  .map((id) => productMap.get(id))
+  .filter((product): product is Product => Boolean(product));
 
 /* ==========================================
    PRODUCT CARD
@@ -496,7 +533,9 @@ function ProductCard({
 
         <div className="mt-6 flex items-center justify-between gap-3 border-t border-slate-100 pt-5">
           <Link
-            href="/contact"
+            href={`/contact?product=${encodeURIComponent(
+              product.name
+            )}`}
             className="inline-flex items-center gap-2 text-sm font-semibold text-amber-700 transition-colors hover:text-amber-600"
           >
             Enquire Now
@@ -522,28 +561,6 @@ export default function DesktopProductsPage() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   /* ==========================================
-     FEATURED PRODUCT SELECTION
-  ========================================== */
-
-  const featuredIds = [
-    27,
-    29,
-    33,
-    34,
-    25,
-    28,
-    30,
-    31,
-    7,
-    13,
-    20,
-  ];
-
-  const featuredProducts = featuredIds
-    .map((id) => productMap.get(id))
-    .filter((product): product is Product => Boolean(product));
-
-  /* ==========================================
      FEATURED CAROUSEL AUTOPLAY
   ========================================== */
 
@@ -561,7 +578,10 @@ export default function DesktopProductsPage() {
         clientWidth,
       } = container;
 
-      if (scrollLeft + clientWidth >= scrollWidth - 10) {
+      if (
+        scrollLeft + clientWidth >=
+        scrollWidth - 10
+      ) {
         container.scrollTo({
           left: 0,
           behavior: "smooth",
@@ -622,7 +642,8 @@ export default function DesktopProductsPage() {
             <p className="max-w-2xl text-lg leading-relaxed text-slate-300">
               Explore precision-engineered press brake
               punches, bending dies, hemming tools,
-              shear blades and specialized tooling solutions.
+              punch clamps, shear blades and specialized
+              tooling solutions.
             </p>
 
             {/* PRODUCT STATISTICS */}
@@ -708,6 +729,16 @@ export default function DesktopProductsPage() {
             ref={scrollRef}
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
+            onFocusCapture={() => setIsPaused(true)}
+            onBlurCapture={(event) => {
+              if (
+                !event.currentTarget.contains(
+                  event.relatedTarget as Node | null
+                )
+              ) {
+                setIsPaused(false);
+              }
+            }}
             className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-5"
             style={{ scrollbarWidth: "none" }}
           >
@@ -753,7 +784,9 @@ export default function DesktopProductsPage() {
               <button
                 key={category.id}
                 type="button"
-                onClick={() => scrollToCategory(category.id)}
+                onClick={() =>
+                  scrollToCategory(category.id)
+                }
                 className="flex items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-5 py-4 text-left text-sm font-semibold text-slate-800 transition-all hover:border-amber-400 hover:bg-amber-50"
               >
                 <span
@@ -816,10 +849,9 @@ export default function DesktopProductsPage() {
                 <div className="flex shrink-0 items-center gap-4">
                   <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-slate-200 bg-white shadow-sm">
                     <span className="text-2xl font-bold text-slate-900">
-                      {String(categoryProducts.length).padStart(
-                        2,
-                        "0"
-                      )}
+                      {String(
+                        categoryProducts.length
+                      ).padStart(2, "0")}
                     </span>
                   </div>
 
@@ -830,7 +862,10 @@ export default function DesktopProductsPage() {
 
                     <p className="text-xs text-slate-500">
                       Category{" "}
-                      {String(index + 1).padStart(2, "0")}
+                      {String(index + 1).padStart(
+                        2,
+                        "0"
+                      )}
                     </p>
                   </div>
                 </div>
@@ -849,22 +884,24 @@ export default function DesktopProductsPage() {
                   ))}
                 </div>
               ) : (
-                /* EMPTY CATEGORY FALLBACK */
-
                 <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm sm:p-10">
                   <h3 className="text-2xl font-bold text-slate-900">
                     Enquire About {category.title}
                   </h3>
 
                   <p className="mt-3 max-w-2xl text-base leading-relaxed text-slate-600">
-                    Product imagery and detailed specifications
-                    are not currently listed in this catalog.
-                    Contact our team to discuss your tooling
-                    requirements and available configurations.
+                    Product imagery and detailed
+                    specifications are not currently
+                    listed in this catalog. Contact our
+                    engineering team to discuss your
+                    tooling requirements and available
+                    configurations.
                   </p>
 
                   <Link
-                    href="/contact"
+                    href={`/contact?category=${encodeURIComponent(
+                      category.title
+                    )}`}
                     className="mt-6 inline-flex rounded-lg bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
                   >
                     Contact Our Engineering Team →
@@ -881,7 +918,9 @@ export default function DesktopProductsPage() {
                 </p>
 
                 <Link
-                  href="/contact"
+                  href={`/contact?category=${encodeURIComponent(
+                    category.title
+                  )}`}
                   className="inline-flex items-center gap-2 rounded-lg bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-slate-800"
                 >
                   Request Custom Tooling →

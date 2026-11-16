@@ -28,65 +28,53 @@ const navLinks = [
 ];
 
 /* ==========================================
-   PRODUCT CATEGORIES
+   UPDATED PRODUCT CATEGORIES
 ========================================== */
 
 const productCategories = [
   {
     name: "Press Brake Tool",
-    href: "/products#press-brake-tool",
+    id: "press-brake-tool",
   },
   {
     name: "Press Brake Punch",
-    href: "/products#press-brake-punch",
+    id: "press-brake-punch",
   },
   {
-    name: "Press Break Dies",
-    href: "/products#press-brake-dies",
+    name: "Press Brake Dies",
+    id: "press-brake-dies",
   },
   {
-    name: "Radius Tools Holder",
-    href: "/products#radius-tools-holder",
+    name: "Radius Tools Holders & Inserts",
+    id: "radius-tools-holder-inserts",
   },
   {
-    name: "Radius Tools Insert",
-    href: "/products#radius-tools-insert",
+    name: "Punch Clamps",
+    id: "punch-clamps",
   },
   {
     name: "Press Brake Hemming Tools",
-    href: "/products#press-brake-hemming-tools",
+    id: "press-brake-hemming-tools",
   },
   {
     name: "Self Centering 2V Die",
-    href: "/products#self-centering-2v-die",
+    id: "self-centering-2v-die",
   },
   {
     name: "Shear Blade",
-    href: "/products#shear-blade",
+    id: "shear-blade",
   },
   {
     name: "Joggle Tool & Insert",
-    href: "/products#joggle-tool-insert",
+    id: "joggle-tool-insert",
   },
   {
     name: "Amada Type Self Centering 1V Die",
-    href: "/products#amada-self-centering-1v-die",
-  },
-  {
-    name: "Amada Type Self Centering 1V Die Holder",
-    href: "/products#amada-self-centering-1v-die-holder",
-  },
-  {
-    name: "Single V Die",
-    href: "/products#single-v-die",
-  },
-  {
-    name: "Multi V Die",
-    href: "/products#multi-v-die",
+    id: "amada-self-centering-1v-die",
   },
   {
     name: "Special Application",
-    href: "/products#special-application",
+    id: "special-application",
   },
 ];
 
@@ -97,39 +85,39 @@ const productCategories = [
 const designCategories = [
   {
     name: "Product Design",
-    href: "/design-services#product-design",
+    id: "product-design",
   },
   {
     name: "Die Design",
-    href: "/design-services#die-design",
+    id: "die-design",
   },
   {
     name: "Fixture Design",
-    href: "/design-services#fixture-design",
+    id: "fixture-design",
   },
   {
     name: "Mould Design",
-    href: "/design-services#mould-design",
+    id: "mould-design",
   },
   {
     name: "Electrode Design",
-    href: "/design-services#electrode-design",
+    id: "electrode-design",
   },
   {
     name: "2D to 3D Design",
-    href: "/design-services#2d-to-3d-design",
+    id: "2d-to-3d-design",
   },
   {
     name: "Manufacturing Drawings",
-    href: "/design-services#manufacturing-drawings",
+    id: "manufacturing-drawings",
   },
   {
     name: "Laser Cutting Drawings",
-    href: "/design-services#laser-cutting-drawings",
+    id: "laser-cutting-drawings",
   },
   {
     name: "2D Drawing Creation",
-    href: "/design-services#2d-drawing-creation",
+    id: "2d-drawing-creation",
   },
 ];
 
@@ -267,23 +255,45 @@ export default function Navbar() {
   };
 
   /* ==========================================
+     CATEGORY NAVIGATION
+  ========================================== */
+
+  const handleCategoryClick = (
+    page: string,
+    id: string
+  ) => {
+    closeMobileMenu();
+
+    if (pathname !== page) return;
+
+    window.requestAnimationFrame(() => {
+      window.requestAnimationFrame(() => {
+        const target =
+          document.getElementById(id);
+
+        target?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      });
+    });
+  };
+
+  /* ==========================================
      NAVIGATION RENDER
   ========================================== */
 
   return (
     <header className="sticky top-0 z-50 w-full font-sans">
-
       {/* ==========================================
           TOP UTILITY BAR
       ========================================== */}
 
       <div className="border-b border-slate-800 bg-slate-950 text-xs text-slate-300 sm:text-sm">
         <div className="mx-auto flex min-h-10 max-w-7xl items-center justify-between gap-3 px-4 py-2 sm:px-6 lg:px-8">
-
           {/* CONTACT INFORMATION */}
 
           <div className="flex min-w-0 items-center gap-4 lg:gap-6">
-
             {/* PRIMARY PHONE */}
 
             <a
@@ -352,7 +362,6 @@ export default function Navbar() {
           {/* LOCATION / SOCIALS / WHATSAPP */}
 
           <div className="flex shrink-0 items-center gap-2 sm:gap-3 lg:gap-4">
-
             {/* GOOGLE MAPS */}
 
             <a
@@ -447,7 +456,6 @@ export default function Navbar() {
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-
           {/* BRAND LOGO */}
 
           <Link
@@ -483,7 +491,9 @@ export default function Navbar() {
 
           <div className="hidden items-center gap-5 lg:flex xl:gap-8">
             {navLinks.map((link) => {
-              const isActive = isActiveLink(link.href);
+              const isActive = isActiveLink(
+                link.href
+              );
 
               /* ======================================
                  PRODUCTS DROPDOWN
@@ -497,7 +507,9 @@ export default function Navbar() {
                   >
                     <Link
                       href="/products"
-                      aria-current={isActive ? "page" : undefined}
+                      aria-current={
+                        isActive ? "page" : undefined
+                      }
                       className={`relative flex items-center gap-2 py-3 text-sm font-medium tracking-wide transition-colors ${
                         isActive
                           ? "font-semibold text-amber-400"
@@ -516,7 +528,6 @@ export default function Navbar() {
                     {/* PRODUCTS DROPDOWN PANEL */}
 
                     <div className="invisible absolute left-1/2 top-full z-50 w-[370px] -translate-x-1/2 translate-y-2 rounded-xl border border-slate-700 bg-slate-900 p-3 opacity-0 shadow-2xl transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
-
                       <div className="border-b border-slate-800 px-3 pb-3 pt-2">
                         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-400">
                           Product Categories
@@ -528,23 +539,33 @@ export default function Navbar() {
                       </div>
 
                       <div className="max-h-[60vh] space-y-1 overflow-y-auto py-2">
-                        {productCategories.map((category, index) => (
-                          <Link
-                            key={category.href}
-                            href={category.href}
-                            className="group/item flex items-center gap-3 rounded-lg px-3 py-3 transition-colors hover:bg-slate-800 focus-visible:bg-slate-800 focus-visible:outline-none"
-                          >
-                            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-amber-500/10 text-xs font-bold text-amber-400">
-                              {String(index + 1).padStart(2, "0")}
-                            </span>
+                        {productCategories.map(
+                          (category, index) => (
+                            <Link
+                              key={category.id}
+                              href={`/products#${category.id}`}
+                              onClick={() =>
+                                handleCategoryClick(
+                                  "/products",
+                                  category.id
+                                )
+                              }
+                              className="group/item flex items-center gap-3 rounded-lg px-3 py-3 transition-colors hover:bg-slate-800 focus-visible:bg-slate-800 focus-visible:outline-none"
+                            >
+                              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-amber-500/10 text-xs font-bold text-amber-400">
+                                {String(
+                                  index + 1
+                                ).padStart(2, "0")}
+                              </span>
 
-                            <span className="flex-1 text-sm font-medium leading-snug text-slate-200 transition-colors group-hover/item:text-amber-400">
-                              {category.name}
-                            </span>
+                              <span className="flex-1 text-sm font-medium leading-snug text-slate-200 transition-colors group-hover/item:text-amber-400">
+                                {category.name}
+                              </span>
 
-                            <FiChevronRight className="h-4 w-4 shrink-0 text-slate-500 transition-all group-hover/item:translate-x-1 group-hover/item:text-amber-400" />
-                          </Link>
-                        ))}
+                              <FiChevronRight className="h-4 w-4 shrink-0 text-slate-500 transition-all group-hover/item:translate-x-1 group-hover/item:text-amber-400" />
+                            </Link>
+                          )
+                        )}
                       </div>
 
                       <div className="border-t border-slate-800 pt-2">
@@ -564,7 +585,9 @@ export default function Navbar() {
                  DESIGN SERVICES DROPDOWN
               ====================================== */
 
-              if (link.name === "Design Services") {
+              if (
+                link.name === "Design Services"
+              ) {
                 return (
                   <div
                     key={link.name}
@@ -572,7 +595,9 @@ export default function Navbar() {
                   >
                     <Link
                       href="/design-services"
-                      aria-current={isActive ? "page" : undefined}
+                      aria-current={
+                        isActive ? "page" : undefined
+                      }
                       className={`relative flex items-center gap-2 whitespace-nowrap py-3 text-sm font-medium tracking-wide transition-colors ${
                         isActive
                           ? "font-semibold text-amber-400"
@@ -591,9 +616,6 @@ export default function Navbar() {
                     {/* DESIGN DROPDOWN PANEL */}
 
                     <div className="invisible absolute left-1/2 top-full z-50 w-[370px] -translate-x-1/2 translate-y-2 rounded-xl border border-slate-700 bg-slate-900 p-3 opacity-0 shadow-2xl transition-all duration-200 group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100">
-
-                      {/* DROPDOWN HEADER */}
-
                       <div className="border-b border-slate-800 px-3 pb-3 pt-2">
                         <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-400">
                           Engineering Design Services
@@ -604,29 +626,35 @@ export default function Navbar() {
                         </p>
                       </div>
 
-                      {/* DESIGN SERVICE LINKS */}
-
                       <div className="max-h-[60vh] space-y-1 overflow-y-auto py-2">
-                        {designCategories.map((category, index) => (
-                          <Link
-                            key={category.href}
-                            href={category.href}
-                            className="group/item flex items-center gap-3 rounded-lg px-3 py-3 transition-colors hover:bg-slate-800 focus-visible:bg-slate-800 focus-visible:outline-none"
-                          >
-                            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-amber-500/10 text-xs font-bold text-amber-400">
-                              {String(index + 1).padStart(2, "0")}
-                            </span>
+                        {designCategories.map(
+                          (category, index) => (
+                            <Link
+                              key={category.id}
+                              href={`/design-services#${category.id}`}
+                              onClick={() =>
+                                handleCategoryClick(
+                                  "/design-services",
+                                  category.id
+                                )
+                              }
+                              className="group/item flex items-center gap-3 rounded-lg px-3 py-3 transition-colors hover:bg-slate-800 focus-visible:bg-slate-800 focus-visible:outline-none"
+                            >
+                              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-amber-500/10 text-xs font-bold text-amber-400">
+                                {String(
+                                  index + 1
+                                ).padStart(2, "0")}
+                              </span>
 
-                            <span className="flex-1 text-sm font-medium leading-snug text-slate-200 transition-colors group-hover/item:text-amber-400">
-                              {category.name}
-                            </span>
+                              <span className="flex-1 text-sm font-medium leading-snug text-slate-200 transition-colors group-hover/item:text-amber-400">
+                                {category.name}
+                              </span>
 
-                            <FiChevronRight className="h-4 w-4 shrink-0 text-slate-500 transition-all group-hover/item:translate-x-1 group-hover/item:text-amber-400" />
-                          </Link>
-                        ))}
+                              <FiChevronRight className="h-4 w-4 shrink-0 text-slate-500 transition-all group-hover/item:translate-x-1 group-hover/item:text-amber-400" />
+                            </Link>
+                          )
+                        )}
                       </div>
-
-                      {/* VIEW ALL DESIGN SERVICES */}
 
                       <div className="border-t border-slate-800 pt-2">
                         <Link
@@ -649,7 +677,9 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  aria-current={isActive ? "page" : undefined}
+                  aria-current={
+                    isActive ? "page" : undefined
+                  }
                   className={`relative whitespace-nowrap py-1 text-sm font-medium tracking-wide transition-colors ${
                     isActive
                       ? "font-semibold text-amber-400"
@@ -684,7 +714,9 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => {
-              setMobileMenuOpen((prev) => !prev);
+              setMobileMenuOpen(
+                (prev) => !prev
+              );
             }}
             aria-label={
               mobileMenuOpen
@@ -730,11 +762,10 @@ export default function Navbar() {
             id="mobile-navigation"
             className="absolute left-0 top-full max-h-[calc(100dvh-110px)] w-full space-y-4 overflow-y-auto border-b border-slate-800 bg-slate-900 px-6 py-6 shadow-2xl lg:hidden"
           >
-
-            {/* MOBILE NAVIGATION LINKS */}
-
             {navLinks.map((link) => {
-              const isActive = isActiveLink(link.href);
+              const isActive = isActiveLink(
+                link.href
+              );
 
               /* ======================================
                  MOBILE PRODUCTS DROPDOWN
@@ -764,9 +795,13 @@ export default function Navbar() {
                       <button
                         type="button"
                         onClick={() =>
-                          setMobileProductsOpen((prev) => !prev)
+                          setMobileProductsOpen(
+                            (prev) => !prev
+                          )
                         }
-                        aria-expanded={mobileProductsOpen}
+                        aria-expanded={
+                          mobileProductsOpen
+                        }
                         aria-controls="mobile-product-categories"
                         aria-label={
                           mobileProductsOpen
@@ -777,7 +812,9 @@ export default function Navbar() {
                       >
                         <FiChevronDown
                           className={`h-5 w-5 transition-transform duration-200 ${
-                            mobileProductsOpen ? "rotate-180" : ""
+                            mobileProductsOpen
+                              ? "rotate-180"
+                              : ""
                           }`}
                         />
                       </button>
@@ -788,16 +825,23 @@ export default function Navbar() {
                         id="mobile-product-categories"
                         className="ml-3 space-y-1 border-l-2 border-amber-500/40 pl-3"
                       >
-                        {productCategories.map((category) => (
-                          <Link
-                            key={category.href}
-                            href={category.href}
-                            onClick={closeMobileMenu}
-                            className="block rounded-md px-3 py-2.5 text-sm leading-snug text-slate-400 transition-colors hover:bg-slate-800 hover:text-amber-400"
-                          >
-                            {category.name}
-                          </Link>
-                        ))}
+                        {productCategories.map(
+                          (category) => (
+                            <Link
+                              key={category.id}
+                              href={`/products#mobile-${category.id}`}
+                              onClick={() =>
+                                handleCategoryClick(
+                                  "/products",
+                                  `mobile-${category.id}`
+                                )
+                              }
+                              className="block rounded-md px-3 py-2.5 text-sm leading-snug text-slate-400 transition-colors hover:bg-slate-800 hover:text-amber-400"
+                            >
+                              {category.name}
+                            </Link>
+                          )
+                        )}
                       </div>
                     )}
                   </div>
@@ -808,7 +852,9 @@ export default function Navbar() {
                  MOBILE DESIGN SERVICES DROPDOWN
               ====================================== */
 
-              if (link.name === "Design Services") {
+              if (
+                link.name === "Design Services"
+              ) {
                 return (
                   <div
                     key={link.name}
@@ -832,9 +878,13 @@ export default function Navbar() {
                       <button
                         type="button"
                         onClick={() =>
-                          setMobileDesignOpen((prev) => !prev)
+                          setMobileDesignOpen(
+                            (prev) => !prev
+                          )
                         }
-                        aria-expanded={mobileDesignOpen}
+                        aria-expanded={
+                          mobileDesignOpen
+                        }
                         aria-controls="mobile-design-categories"
                         aria-label={
                           mobileDesignOpen
@@ -845,29 +895,36 @@ export default function Navbar() {
                       >
                         <FiChevronDown
                           className={`h-5 w-5 transition-transform duration-200 ${
-                            mobileDesignOpen ? "rotate-180" : ""
+                            mobileDesignOpen
+                              ? "rotate-180"
+                              : ""
                           }`}
                         />
                       </button>
                     </div>
-
-                    {/* MOBILE DESIGN SUBMENU */}
 
                     {mobileDesignOpen && (
                       <div
                         id="mobile-design-categories"
                         className="ml-3 space-y-1 border-l-2 border-amber-500/40 pl-3"
                       >
-                        {designCategories.map((category) => (
-                          <Link
-                            key={category.href}
-                            href={category.href}
-                            onClick={closeMobileMenu}
-                            className="block rounded-md px-3 py-2.5 text-sm leading-snug text-slate-400 transition-colors hover:bg-slate-800 hover:text-amber-400"
-                          >
-                            {category.name}
-                          </Link>
-                        ))}
+                        {designCategories.map(
+                          (category) => (
+                            <Link
+                              key={category.id}
+                              href={`/design-services#${category.id}`}
+                              onClick={() =>
+                                handleCategoryClick(
+                                  "/design-services",
+                                  category.id
+                                )
+                              }
+                              className="block rounded-md px-3 py-2.5 text-sm leading-snug text-slate-400 transition-colors hover:bg-slate-800 hover:text-amber-400"
+                            >
+                              {category.name}
+                            </Link>
+                          )
+                        )}
                       </div>
                     )}
                   </div>
@@ -882,7 +939,9 @@ export default function Navbar() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  aria-current={isActive ? "page" : undefined}
+                  aria-current={
+                    isActive ? "page" : undefined
+                  }
                   onClick={closeMobileMenu}
                   className={`block rounded px-3 py-2 text-base font-medium transition-colors ${
                     isActive
@@ -905,9 +964,6 @@ export default function Navbar() {
               </p>
 
               <div className="space-y-3">
-
-                {/* CONTACT 1 */}
-
                 <div>
                   <p className="mb-1 text-xs font-medium text-amber-400">
                     Mr. Santosh Hodage
@@ -920,8 +976,6 @@ export default function Navbar() {
                     {company.phone1}
                   </a>
                 </div>
-
-                {/* CONTACT 2 */}
 
                 <div>
                   <p className="mb-1 text-xs font-medium text-amber-400">
@@ -936,8 +990,6 @@ export default function Navbar() {
                   </a>
                 </div>
 
-                {/* EMAIL */}
-
                 <a
                   href={`mailto:${company.email}`}
                   className="block break-all text-sm text-slate-300 transition-colors hover:text-amber-400"
@@ -945,21 +997,18 @@ export default function Navbar() {
                   {company.email}
                 </a>
 
-                {/* GOOGLE MAPS */}
-
                 <a
                   href={company.mapUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-xs text-slate-400 transition-colors hover:text-amber-400"
                 >
-                  Sector 07, Bhosari MIDC, Pune - 411026
+                  Sector 07, Bhosari MIDC,
+                  Pune - 411026
 
                   <FiArrowUpRight size={13} />
                 </a>
               </div>
-
-              {/* MOBILE CTA */}
 
               <Link
                 href="/contact"
@@ -994,7 +1043,9 @@ export default function Navbar() {
                     >
                       <Icon size={17} />
 
-                      <span>{social.name}</span>
+                      <span>
+                        {social.name}
+                      </span>
 
                       <FiArrowUpRight
                         size={13}

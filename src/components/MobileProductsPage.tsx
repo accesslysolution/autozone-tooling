@@ -50,7 +50,7 @@ interface ProductCategory {
 
 /* ==========================================
    PRODUCT DATA
-   34 PRODUCTS
+   39 PRODUCTS
 ========================================== */
 
 const products: Product[] = [
@@ -213,7 +213,7 @@ const products: Product[] = [
   },
 
   /* ==========================================
-     NEW PRESS BRAKE PRODUCTS
+     PRESS BRAKE PRODUCT RANGE
   ========================================== */
 
   {
@@ -258,7 +258,7 @@ const products: Product[] = [
     id: 28,
     name: "Single V Die – 6 to 100mm",
     description:
-      "Single V-die tooling available in V-opening configurations from 6mm to 100mm, with specified angular profiles from 30° to 86°.",
+      "Single V-die tooling with V-opening configurations from 6mm to 100mm and specified angular profiles from 30° to 86°.",
     image:
       "/images/products/Press Brake Single V-Die Infographic.avif",
   },
@@ -310,10 +310,56 @@ const products: Product[] = [
     image:
       "/images/products/Acute Angle Press Brake Punch Poster.avif",
   },
+
+  /* ==========================================
+     NEW PRODUCT IMAGES
+  ========================================== */
+
+  {
+    id: 35,
+    name: "Double Sided Punch Clamp",
+    description:
+      "Precision-engineered double-sided punch clamp designed for secure press brake punch retention, reliable alignment and efficient tooling operations.",
+    image:
+      "/images/products/Industrial Punch Clamp Product Shot.avif",
+  },
+  {
+    id: 36,
+    name: "Single Side Punch Clamp",
+    description:
+      "Industrial single-side punch clamp featuring a red locking lever for secure tool clamping and convenient handling during press brake operations.",
+    image:
+      "/images/products/Industrial Punch Clamp with Red Locking Lever.avif",
+  },
+  {
+    id: 37,
+    name: "Precision Hemming Dies in Parallel",
+    description:
+      "Precision-machined hemming dies arranged in parallel, engineered for consistent folding, accurate alignment and clean sheet metal edges.",
+    image:
+      "/images/products/Precision Hemming Dies in Parallel.avif",
+  },
+  {
+    id: 38,
+    name: "Three Hemming Die Assemblies",
+    description:
+      "Three specialized hemming punch and die assemblies illustrating different tooling profiles for precision sheet metal folding applications.",
+    image:
+      "/images/products/Three Hemming Die Assemblies.avif",
+  },
+  {
+    id: 39,
+    name: "Precision Metal Components Design Services",
+    description:
+      "Precision metal component design solutions for industrial applications, including engineered brackets, housings, mounting components and custom manufactured parts.",
+    image:
+      "/images/products/Precision Metal Components Design Services.avif",
+  },
 ];
 
 /* ==========================================
-   PRODUCT CATEGORIES
+   UPDATED PRODUCT CATEGORIES
+   11 CATEGORIES
 ========================================== */
 
 const categories: ProductCategory[] = [
@@ -338,39 +384,39 @@ const categories: ProductCategory[] = [
     title: "Press Brake Dies",
     subtitle: "Precision Dies",
     description:
-      "Engineered bending dies and precision tooling profiles designed for consistent forming accuracy and demanding fabrication requirements.",
-    productIds: [25, 11, 12],
+      "Discover our complete range of press brake dies, including Single V Dies, Multi V Dies, profile dies and rolling dies for accurate sheet metal forming.",
+    productIds: [25, 28, 6, 7, 8, 11, 12],
   },
   {
-    id: "radius-tools-holder",
-    title: "Radius Tools Holder",
-    subtitle: "Tool Holding",
+    id: "radius-tools-holder-inserts",
+    title: "Radius Tools Holders & Inserts",
+    subtitle: "Tool Holding & Inserts",
     description:
-      "Tool holding solutions supporting secure positioning, alignment and specialized bending setups.",
-    productIds: [17, 18],
+      "Precision radius tool holders and specialized inserts designed for secure positioning, accurate alignment and adaptable bending configurations.",
+    productIds: [17, 22],
   },
   {
-    id: "radius-tools-insert",
-    title: "Radius Tools Insert",
-    subtitle: "Precision Inserts",
+    id: "punch-clamps",
+    title: "Punch Clamps",
+    subtitle: "Precision Clamping",
     description:
-      "Specialized inserts for controlled bending profiles and adaptable tooling configurations.",
-    productIds: [22],
+      "Explore double-sided and single-side punch clamps engineered for secure tooling retention, efficient setup and reliable press brake operations.",
+    productIds: [35, 36, 18],
   },
   {
     id: "press-brake-hemming-tools",
     title: "Press Brake Hemming Tools",
     subtitle: "Hemming Solutions",
     description:
-      "Precision hemming tools designed for folded edges, clean finishes and reliable sheet metal forming.",
-    productIds: [13],
+      "Explore precision hemming dies, punch and die assemblies, and specialized tooling for clean folded edges and reliable sheet metal forming.",
+    productIds: [37, 38, 13],
   },
   {
     id: "self-centering-2v-die",
     title: "Self Centering 2V Die",
     subtitle: "V-Die Systems",
     description:
-      "Explore 2-V die configurations for accurate alignment and consistent bending operations.",
+      "Explore self-centering 2-V die configurations designed for accurate tooling alignment and consistent bending operations.",
     productIds: [16],
   },
   {
@@ -378,7 +424,7 @@ const categories: ProductCategory[] = [
     title: "Shear Blade",
     subtitle: "Precision Cutting",
     description:
-      "Industrial shearing blades engineered for clean cuts and dependable performance.",
+      "Industrial shearing blades engineered for clean cuts, dimensional accuracy and dependable cutting performance.",
     productIds: [20],
   },
   {
@@ -398,50 +444,48 @@ const categories: ProductCategory[] = [
     productIds: [31],
   },
   {
-    id: "amada-self-centering-1v-die-holder",
-    title: "Amada Type Self Centering 1V Die Holder",
-    subtitle: "Die Holding Systems",
-    description:
-      "Specialized die holding configurations for secure tooling installation and alignment.",
-    productIds: [],
-  },
-  {
-    id: "single-v-die",
-    title: "Single V Die",
-    subtitle: "Single V Tooling",
-    description:
-      "Single V dies engineered for accurate angular bending, with V-opening configurations for different fabrication requirements.",
-    productIds: [28, 6],
-  },
-  {
-    id: "multi-v-die",
-    title: "Multi V Die",
-    subtitle: "Multi-Opening Dies",
-    description:
-      "Versatile multi-opening dies for flexible bending operations and varying material thicknesses.",
-    productIds: [7, 8],
-  },
-  {
     id: "special-application",
     title: "Special Application",
     subtitle: "Custom Engineering",
     description:
-      "Custom-engineered punches, dies, profiles and auxiliary tooling for specialized industrial forming requirements.",
-    productIds: [9, 10, 14, 15, 19, 21],
+      "Explore custom-engineered dies, specialized punches, precision metal component design and auxiliary tooling for industrial manufacturing applications.",
+    productIds: [39, 9, 10, 14, 15, 19, 21],
   },
 ];
+
+/* ==========================================
+   PRODUCT LOOKUP
+========================================== */
+
+const productMap = new Map<number, Product>(
+  products.map((product) => [product.id, product])
+);
+
+const getCategoryProducts = (
+  category: ProductCategory
+): Product[] =>
+  category.productIds
+    .map((id) => productMap.get(id))
+    .filter((product): product is Product => Boolean(product));
 
 /* ==========================================
    FEATURED PRODUCTS
 ========================================== */
 
 const featuredIds = [
-  27, 29, 33, 34, 25, 28, 30, 31, 7, 13, 20,
+  35,
+  36,
+  37,
+  38,
+  27,
+  29,
+  25,
+  28,
+  39,
+  30,
+  31,
+  20,
 ];
-
-const productMap = new Map<number, Product>(
-  products.map((product) => [product.id, product])
-);
 
 const featuredProducts = featuredIds
   .map((id) => productMap.get(id))
@@ -509,9 +553,8 @@ function CategorySection({
   index: number;
   onView: (product: Product) => void;
 }) {
-  const categoryProducts = category.productIds
-    .map((id) => productMap.get(id))
-    .filter((product): product is Product => Boolean(product));
+  const categoryProducts =
+    getCategoryProducts(category);
 
   const primaryProduct = categoryProducts[0];
   const otherProducts = categoryProducts.slice(1);
@@ -526,6 +569,7 @@ function CategorySection({
     >
       <div className="px-5">
         {/* CATEGORY HEADING */}
+
         <div className="flex flex-col items-center text-center">
           <span className="mb-4 text-[13px] font-bold uppercase tracking-[0.12em] text-amber-400">
             {category.subtitle}
@@ -533,7 +577,9 @@ function CategorySection({
 
           <h2
             className={`font-heading text-[36px] font-bold leading-[1.12] tracking-[-0.035em] ${
-              isDark ? "text-amber-400" : "text-[#0B141E]"
+              isDark
+                ? "text-amber-400"
+                : "text-[#0B141E]"
             }`}
           >
             {category.title}
@@ -542,7 +588,9 @@ function CategorySection({
           <p
             className="mx-auto mt-5 max-w-[340px] text-[15px] leading-[1.8]"
             style={{
-              color: isDark ? BRAND.muted : BRAND.body,
+              color: isDark
+                ? BRAND.muted
+                : BRAND.body,
             }}
           >
             {category.description}
@@ -552,6 +600,7 @@ function CategorySection({
         </div>
 
         {/* MAIN PRODUCT SPOTLIGHT */}
+
         {primaryProduct ? (
           <div className="mt-9">
             <button
@@ -608,6 +657,7 @@ function CategorySection({
             </button>
 
             {/* ADDITIONAL PRODUCTS */}
+
             {otherProducts.length > 0 && (
               <div className="mt-4 grid grid-cols-2 gap-3">
                 {otherProducts.map((product) => (
@@ -621,6 +671,7 @@ function CategorySection({
             )}
 
             {/* CATEGORY ENQUIRY */}
+
             <div
               className={`mt-8 flex flex-col items-center border-t pt-7 text-center ${
                 isDark
@@ -631,7 +682,9 @@ function CategorySection({
               <p
                 className="text-[15px] leading-relaxed"
                 style={{
-                  color: isDark ? BRAND.muted : BRAND.body,
+                  color: isDark
+                    ? BRAND.muted
+                    : BRAND.body,
                 }}
               >
                 Looking for a custom configuration?
@@ -654,6 +707,7 @@ function CategorySection({
           </div>
         ) : (
           /* CATEGORY WITHOUT PRODUCT IMAGES */
+
           <div
             className={`mt-9 overflow-hidden rounded-[22px] border p-7 text-center ${
               isDark
@@ -663,7 +717,9 @@ function CategorySection({
           >
             <div
               className={`mx-auto flex h-16 w-16 items-center justify-center rounded-2xl ${
-                isDark ? "bg-slate-700" : "bg-amber-400/10"
+                isDark
+                  ? "bg-slate-700"
+                  : "bg-amber-400/10"
               }`}
               style={{ color: BRAND.amber }}
             >
@@ -672,7 +728,9 @@ function CategorySection({
 
             <h3
               className={`mt-6 font-heading text-[26px] font-bold leading-tight ${
-                isDark ? "text-amber-400" : "text-[#0B141E]"
+                isDark
+                  ? "text-amber-400"
+                  : "text-[#0B141E]"
               }`}
             >
               Custom Tooling
@@ -683,7 +741,9 @@ function CategorySection({
             <p
               className="mx-auto mt-4 max-w-[310px] text-[15px] leading-[1.8]"
               style={{
-                color: isDark ? BRAND.muted : BRAND.body,
+                color: isDark
+                  ? BRAND.muted
+                  : BRAND.body,
               }}
             >
               Product images for this category are not yet
@@ -719,9 +779,16 @@ export default function MobileProductsPage() {
 
   const featuredRef = useRef<HTMLDivElement>(null);
 
+  const closeButtonRef =
+    useRef<HTMLButtonElement>(null);
+
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  /* ==========================================
+     FEATURED CAROUSEL NAVIGATION
+  ========================================== */
 
   const scrollFeatured = (direction: number) => {
     featuredRef.current?.scrollBy({
@@ -737,7 +804,13 @@ export default function MobileProductsPage() {
   useEffect(() => {
     if (!selectedProduct) return;
 
-    const previousOverflow = document.body.style.overflow;
+    const previousOverflow =
+      document.body.style.overflow;
+
+    const previouslyFocused =
+      document.activeElement instanceof HTMLElement
+        ? document.activeElement
+        : null;
 
     document.body.style.overflow = "hidden";
 
@@ -747,11 +820,23 @@ export default function MobileProductsPage() {
       }
     };
 
-    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener(
+      "keydown",
+      handleKeyDown
+    );
+
+    closeButtonRef.current?.focus();
 
     return () => {
-      document.body.style.overflow = previousOverflow;
-      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow =
+        previousOverflow;
+
+      window.removeEventListener(
+        "keydown",
+        handleKeyDown
+      );
+
+      previouslyFocused?.focus();
     };
   }, [selectedProduct]);
 
@@ -766,6 +851,7 @@ export default function MobileProductsPage() {
         style={{ backgroundColor: BRAND.navy }}
       >
         {/* BACKGROUND DETAIL */}
+
         <div className="pointer-events-none absolute inset-0 opacity-[0.08]">
           <div className="absolute left-1/4 top-0 h-full w-px bg-white" />
           <div className="absolute right-1/4 top-0 h-full w-px bg-white" />
@@ -803,6 +889,7 @@ export default function MobileProductsPage() {
           </p>
 
           {/* HERO PRODUCT IMAGE */}
+
           <div className="relative mt-9 w-full overflow-hidden rounded-[24px] border border-white/10 bg-[#e9edf1]">
             <div className="relative aspect-square">
               <Image
@@ -863,6 +950,8 @@ export default function MobileProductsPage() {
           </p>
         </div>
 
+        {/* FEATURED PRODUCT CAROUSEL */}
+
         <div
           ref={featuredRef}
           className="mt-9 flex snap-x snap-mandatory gap-4 overflow-x-auto px-5 pb-4 [scrollbar-width:none]"
@@ -871,7 +960,9 @@ export default function MobileProductsPage() {
             <button
               key={product.id}
               type="button"
-              onClick={() => setSelectedProduct(product)}
+              onClick={() =>
+                setSelectedProduct(product)
+              }
               aria-label={`View details for ${product.name}`}
               className="w-[260px] shrink-0 snap-center overflow-hidden rounded-[20px] border border-slate-200 bg-[#f5f6f8] text-left"
             >
@@ -900,6 +991,8 @@ export default function MobileProductsPage() {
             </button>
           ))}
         </div>
+
+        {/* CAROUSEL CONTROLS */}
 
         <div className="mt-5 flex items-center justify-center gap-3">
           <button
@@ -1043,24 +1136,32 @@ export default function MobileProductsPage() {
         createPortal(
           <div
             className="fixed inset-x-0 bottom-0 top-[104px] z-[100] flex items-end bg-black/75 md:hidden"
-            onClick={() => setSelectedProduct(null)}
+            onClick={() =>
+              setSelectedProduct(null)
+            }
           >
             <div
               role="dialog"
               aria-modal="true"
               aria-label={selectedProduct.name}
               className="max-h-full w-full overflow-y-auto overscroll-contain rounded-t-[28px] bg-white pb-[max(24px,env(safe-area-inset-bottom))]"
-              onClick={(event) => event.stopPropagation()}
+              onClick={(event) =>
+                event.stopPropagation()
+              }
             >
               {/* STICKY MODAL HEADER */}
+
               <div className="sticky top-0 z-10 flex items-center justify-between gap-3 border-b border-slate-100 bg-white px-5 py-4">
                 <span className="min-w-0 text-[12px] font-bold uppercase tracking-[0.1em] text-amber-400">
                   Autozone Tooling / Product Details
                 </span>
 
                 <button
+                  ref={closeButtonRef}
                   type="button"
-                  onClick={() => setSelectedProduct(null)}
+                  onClick={() =>
+                    setSelectedProduct(null)
+                  }
                   aria-label="Close product details"
                   className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-slate-100"
                   style={{ color: BRAND.navy }}
@@ -1070,6 +1171,7 @@ export default function MobileProductsPage() {
               </div>
 
               {/* MODAL CONTENT */}
+
               <div className="px-5 pt-5 text-center">
                 <div className="relative aspect-square overflow-hidden rounded-[20px] bg-[#f1f3f5]">
                   <Image
@@ -1100,7 +1202,9 @@ export default function MobileProductsPage() {
                     href={`/contact?product=${encodeURIComponent(
                       selectedProduct.name
                     )}`}
-                    onClick={() => setSelectedProduct(null)}
+                    onClick={() =>
+                      setSelectedProduct(null)
+                    }
                     className="flex min-h-13 items-center justify-center gap-2 rounded-xl bg-amber-400 px-5 py-4 text-center text-[15px] font-bold text-[#0B141E]"
                   >
                     Enquire About This Product
