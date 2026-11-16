@@ -52,11 +52,6 @@ const IMAGE_BASE = "/images/design";
    TYPES
 ========================================== */
 
-interface FixtureGalleryImage {
-  name: string;
-  image: string;
-}
-
 interface DesignService {
   id: string;
   title: string;
@@ -65,137 +60,330 @@ interface DesignService {
   icon: typeof FiLayers;
   image: string;
   tags: string[];
-  gallery?: FixtureGalleryImage[];
+}
+
+interface DesignCategory {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  services: DesignService[];
 }
 
 /* ==========================================
-   DESIGN SERVICES
-   IDs MATCH NAVBAR DROPDOWN LINKS
+   DESIGN CATEGORIES
+
+   EACH CATEGORY HAS ITS OWN SECTION
+
+   EACH PRODUCT / SERVICE IS DISPLAYED
+   AS AN INDIVIDUAL CARD
+
+   IDS MATCH NAVBAR DROPDOWN LINKS
 ========================================== */
 
-const services: DesignService[] = [
+const designCategories: DesignCategory[] = [
+  /* ========================================
+     01. PRODUCT DESIGN
+  ======================================== */
+
   {
     id: "product-design",
     title: "Product Design",
-    category: "Product Engineering",
+    subtitle: "01 / PRODUCT ENGINEERING",
     description:
-      "Comprehensive product design solutions focused on functionality, manufacturability, precision, and performance.",
-    icon: FiLayers,
-    image: `${IMAGE_BASE}/product design.avif`,
-    tags: ["3D Modelling", "Product Development"],
-  },
-  {
-    id: "die-design",
-    title: "Die Design",
-    category: "Tooling Engineering",
-    description:
-      "Precision die design solutions developed for sheet metal forming, bending, and industrial manufacturing applications.",
-    icon: FiTool,
-    image: `${IMAGE_BASE}/Precision Stamping Die Assembly.avif`,
-    tags: ["Press Tooling", "Die Engineering"],
+      "Engineering-focused product development and 3D modelling solutions designed around functionality, precision, and manufacturing requirements.",
+
+    services: [
+      {
+        id: "product-design-service",
+        title: "Product Design",
+        category: "Product Engineering",
+        description:
+          "Comprehensive product design solutions focused on functionality, manufacturability, precision, and performance.",
+        icon: FiLayers,
+        image: `${IMAGE_BASE}/product design.avif`,
+        tags: [
+          "3D Modelling",
+          "Product Development",
+        ],
+      },
+    ],
   },
 
   /* ========================================
-     FIXTURE DESIGN - FOUR IMAGE GALLERY
+     02. DIE DESIGN
+  ======================================== */
+
+  {
+    id: "die-design",
+    title: "Die Design",
+    subtitle: "02 / TOOLING ENGINEERING",
+    description:
+      "Precision die engineering solutions developed for industrial tooling, forming, bending, and manufacturing applications.",
+
+    services: [
+      {
+        id: "die-design-service",
+        title: "Die Design",
+        category: "Tooling Engineering",
+        description:
+          "Precision die design solutions developed for sheet metal forming, bending, and industrial manufacturing applications.",
+        icon: FiTool,
+        image: `${IMAGE_BASE}/Precision Stamping Die Assembly.avif`,
+        tags: [
+          "Press Tooling",
+          "Die Engineering",
+        ],
+      },
+    ],
+  },
+
+  /* ========================================
+     03. FIXTURE DESIGN
+
+     FOUR INDIVIDUAL FIXTURE CARDS
   ======================================== */
 
   {
     id: "fixture-design",
     title: "Fixture Design",
-    category: "Manufacturing Solutions",
+    subtitle: "03 / MANUFACTURING FIXTURES",
     description:
-      "Custom fixture design solutions for precision checking, CNC machining, welding, and industrial workholding applications.",
-    icon: FiCrosshair,
+      "Specialized fixture design solutions for inspection, welding, CNC machining, and industrial workholding applications.",
 
-    image: `${IMAGE_BASE}/Industrial Precision Checking Fixture CF-078.avif`,
+    services: [
+      /* CHECKING FIXTURE */
 
-    gallery: [
       {
-        name: "CNC Machining Fixture",
-        image: `${IMAGE_BASE}/Precision CNC Machining Fixture with Clamped Workpieces.avif`,
-      },
-      {
-        name: "Workholding Fixture",
-        image: `${IMAGE_BASE}/Precision Industrial Workholding Fixture.avif`,
-      },
-      {
-        name: "Checking Fixture",
+        id: "checking-fixture",
+        title: "Checking Fixture",
+        category: "Inspection & Quality",
+        description:
+          "Precision checking fixtures designed for accurate component positioning, dimensional verification, repeatable inspection, and quality control applications.",
+        icon: FiCrosshair,
         image: `${IMAGE_BASE}/Industrial Precision Checking Fixture CF-078.avif`,
+        tags: [
+          "Inspection Fixtures",
+          "Component Checking",
+        ],
       },
-      {
-        name: "Welding Fixture",
-        image: `${IMAGE_BASE}/Precision Welding Fixture Assembly.avif`,
-      },
-    ],
 
-    tags: [
-      "Checking Fixtures",
-      "Welding Fixtures",
-      "Machining Fixtures",
-      "Workholding Fixtures",
+      /* WELDING FIXTURE */
+
+      {
+        id: "welding-fixture",
+        title: "Welding Fixture",
+        category: "Welding Engineering",
+        description:
+          "Custom welding fixtures developed to securely locate, position, and support components during welding and fabrication operations.",
+        icon: FiTool,
+        image: `${IMAGE_BASE}/Precision Welding Fixture Assembly.avif`,
+        tags: [
+          "Welding Fixtures",
+          "Component Positioning",
+        ],
+      },
+
+      /* MACHINING FIXTURE */
+
+      {
+        id: "machining-fixture",
+        title: "CNC Machining Fixture",
+        category: "Machining Engineering",
+        description:
+          "Precision machining fixtures engineered for accurate workpiece positioning, secure clamping, repeatability, and efficient CNC machining operations.",
+        icon: FiSettings,
+        image: `${IMAGE_BASE}/Precision CNC Machining Fixture with Clamped Workpieces.avif`,
+        tags: [
+          "CNC Machining",
+          "Precision Clamping",
+        ],
+      },
+
+      /* WORKHOLDING FIXTURE */
+
+      {
+        id: "workholding-fixture",
+        title: "Workholding Fixture",
+        category: "Industrial Workholding",
+        description:
+          "Industrial workholding fixture solutions designed for secure component clamping, accurate positioning, and reliable manufacturing processes.",
+        icon: FiCrosshair,
+        image: `${IMAGE_BASE}/Precision Industrial Workholding Fixture.avif`,
+        tags: [
+          "Workholding",
+          "Clamping Systems",
+        ],
+      },
     ],
   },
-{
-  id: "mould-design",
-  title: "Mould Design",
-  category: "Precision Engineering",
-  description:
-    "Detailed mould design solutions developed around component geometry, tooling requirements, and production efficiency.",
-  icon: FiGrid,
-  image: `${IMAGE_BASE}/Precision Steel Injection Mold Set.avif`,
-  tags: ["Mould Development", "CAD Design"],
-},
 
-{
-  id: "electrode-design",
-  title: "Electrode Design",
-  category: "EDM Engineering",
-  description:
-    "Accurate electrode design for EDM applications, supporting complex geometries and precision manufacturing requirements.",
-  icon: FiZap,
-  image: `${IMAGE_BASE}/Precision Copper Electrode Assembly.avif`,
-  tags: ["EDM Electrodes", "Complex Profiles"],
-},
+  /* ========================================
+     04. MOULD DESIGN
+  ======================================== */
+
+  {
+    id: "mould-design",
+    title: "Mould Design",
+    subtitle: "04 / PRECISION ENGINEERING",
+    description:
+      "Detailed mould development solutions for precision components, industrial tooling, and production requirements.",
+
+    services: [
+      {
+        id: "mould-design-service",
+        title: "Mould Design",
+        category: "Precision Engineering",
+        description:
+          "Detailed mould design solutions developed around component geometry, tooling requirements, and production efficiency.",
+        icon: FiGrid,
+        image: `${IMAGE_BASE}/Precision Steel Injection Mold Set.avif`,
+        tags: [
+          "Mould Development",
+          "CAD Design",
+        ],
+      },
+    ],
+  },
+
+  /* ========================================
+     05. ELECTRODE DESIGN
+  ======================================== */
+
+  {
+    id: "electrode-design",
+    title: "Electrode Design",
+    subtitle: "05 / EDM ENGINEERING",
+    description:
+      "Precision electrode design solutions supporting complex geometries and specialized EDM manufacturing applications.",
+
+    services: [
+      {
+        id: "electrode-design-service",
+        title: "Electrode Design",
+        category: "EDM Engineering",
+        description:
+          "Accurate electrode design for EDM applications, supporting complex geometries and precision manufacturing requirements.",
+        icon: FiZap,
+        image: `${IMAGE_BASE}/Precision Copper Electrode Assembly.avif`,
+        tags: [
+          "EDM Electrodes",
+          "Complex Profiles",
+        ],
+      },
+    ],
+  },
+
+  /* ========================================
+     06. 2D TO 3D DESIGN
+  ======================================== */
 
   {
     id: "2d-to-3d-design",
     title: "2D to 3D Design",
-    category: "CAD Conversion",
+    subtitle: "06 / CAD CONVERSION",
     description:
-      "Transformation of existing 2D engineering drawings into detailed 3D CAD models for visualization and manufacturing.",
-    icon: FiCpu,
-    image: `${IMAGE_BASE}/Mechanical CAD Drawing Workstation.avif`,
-    tags: ["CAD Conversion", "3D Modelling"],
+      "Professional CAD conversion services for transforming engineering drawings into detailed three-dimensional models.",
+
+    services: [
+      {
+        id: "2d-to-3d-service",
+        title: "2D to 3D Design",
+        category: "CAD Conversion",
+        description:
+          "Transformation of existing 2D engineering drawings into detailed 3D CAD models for visualization and manufacturing.",
+        icon: FiCpu,
+        image: `${IMAGE_BASE}/Mechanical CAD Drawing Workstation.avif`,
+        tags: [
+          "CAD Conversion",
+          "3D Modelling",
+        ],
+      },
+    ],
   },
+
+  /* ========================================
+     07. MANUFACTURING DRAWINGS
+  ======================================== */
+
   {
     id: "manufacturing-drawings",
     title: "Manufacturing Drawings",
-    category: "Technical Documentation",
+    subtitle: "07 / TECHNICAL DOCUMENTATION",
     description:
-      "Production-ready engineering drawings with dimensions, tolerances, and technical details to support manufacturing.",
-    icon: FiFileText,
-    image: `${IMAGE_BASE}/Mechanical CAD Drawing Workstation.avif`,
-    tags: ["Technical Drawings", "Production"],
+      "Production-focused engineering documentation supporting accurate component manufacturing and fabrication.",
+
+    services: [
+      {
+        id: "manufacturing-drawings-service",
+        title: "Manufacturing Drawings",
+        category: "Technical Documentation",
+        description:
+          "Production-ready engineering drawings with dimensions, tolerances, and technical details to support manufacturing.",
+        icon: FiFileText,
+        image: `${IMAGE_BASE}/Mechanical CAD Drawing Workstation.avif`,
+        tags: [
+          "Technical Drawings",
+          "Production",
+        ],
+      },
+    ],
   },
+
+  /* ========================================
+     08. LASER CUTTING DRAWINGS
+  ======================================== */
+
   {
     id: "laser-cutting-drawings",
     title: "Laser Cutting Drawings",
-    category: "Sheet Metal Engineering",
+    subtitle: "08 / SHEET METAL ENGINEERING",
     description:
-      "Accurate 2D profiles and cutting layouts prepared for laser cutting and sheet metal fabrication processes.",
-    icon: FiPenTool,
-    image: `${IMAGE_BASE}/CAD Pattern.avif`,
-    tags: ["Cutting Profiles", "Sheet Metal"],
+      "Accurate cutting profiles and technical layouts developed for laser cutting and sheet metal fabrication.",
+
+    services: [
+      {
+        id: "laser-cutting-service",
+        title: "Laser Cutting Drawings",
+        category: "Sheet Metal Engineering",
+        description:
+          "Accurate 2D profiles and cutting layouts prepared for laser cutting and sheet metal fabrication processes.",
+        icon: FiPenTool,
+        image: `${IMAGE_BASE}/CAD Pattern.avif`,
+        tags: [
+          "Cutting Profiles",
+          "Sheet Metal",
+        ],
+      },
+    ],
   },
+
+  /* ========================================
+     09. 2D DRAWING CREATION
+  ======================================== */
+
   {
     id: "2d-drawing-creation",
     title: "2D Drawing Creation",
-    category: "Drafting Services",
+    subtitle: "09 / DRAFTING SERVICES",
     description:
-      "Professional 2D CAD drafting for components, assemblies, fabrication details, and engineering documentation.",
-    icon: FiSettings,
-    image: `${IMAGE_BASE}/CAD Pattern.avif`,
-    tags: ["CAD Drafting", "Engineering"],
+      "Detailed two-dimensional engineering drawings for mechanical components, assemblies, and industrial applications.",
+
+    services: [
+      {
+        id: "2d-drawing-service",
+        title: "2D Drawing Creation",
+        category: "Drafting Services",
+        description:
+          "Professional 2D CAD drafting for components, assemblies, fabrication details, and engineering documentation.",
+        icon: FiSettings,
+        image: `${IMAGE_BASE}/CAD Pattern.avif`,
+        tags: [
+          "CAD Drafting",
+          "Engineering",
+        ],
+      },
+    ],
   },
 ];
 
@@ -307,13 +495,9 @@ export default function DesignServicesPage() {
           RESPONSIVE HERO SECTIONS
       ====================================== */}
 
-      {/* Desktop / Tablet Hero */}
-
       <div className="hidden md:block">
         <DesignHero />
       </div>
-
-      {/* Mobile Hero */}
 
       <div className="md:hidden">
         <DesignHeroMobile />
@@ -341,7 +525,7 @@ export default function DesignServicesPage() {
       </section>
 
       {/* ======================================
-          DESIGN SERVICES
+          DESIGN SERVICES SECTION
       ====================================== */}
 
       <section
@@ -352,7 +536,8 @@ export default function DesignServicesPage() {
 
           {/* SECTION HEADING */}
 
-          <div className="mb-12 flex flex-col justify-between gap-7 md:mb-16 md:flex-row md:items-end">
+          <div className="mb-14 flex flex-col justify-between gap-7 md:mb-20 md:flex-row md:items-end">
+
             <div>
               <div className="mb-5 flex items-center gap-3">
                 <span className="h-px w-8 bg-amber-400" />
@@ -372,130 +557,168 @@ export default function DesignServicesPage() {
             </div>
 
             <p className="max-w-md text-sm leading-[1.9] text-slate-400 md:text-base">
-              Engineering-focused design services for
-              components, tooling systems, fabrication,
-              and industrial manufacturing requirements.
+              Explore our engineering design services,
+              organized by category, with individual
+              solutions for different industrial and
+              manufacturing applications.
             </p>
           </div>
 
           {/* ======================================
-              SERVICE CARDS
-              EACH CARD HAS AN ANCHOR ID
+              CATEGORY-WISE SERVICE SECTIONS
           ====================================== */}
 
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {services.map((service) => {
-              const Icon = service.icon;
+          <div className="space-y-20 md:space-y-28">
 
-              return (
-                <article
-                  key={service.id}
-                  id={service.id}
-                  className="group flex h-full scroll-mt-32 flex-col overflow-hidden rounded-xl border border-slate-800 bg-[#111d2a] transition-all duration-300 hover:-translate-y-1 hover:border-amber-400/50 hover:shadow-xl hover:shadow-black/20"
+            {designCategories.map(
+              (category, categoryIndex) => (
+                <section
+                  key={category.id}
+                  id={category.id}
+                  className="scroll-mt-32"
                 >
 
                   {/* ==================================
-                      SERVICE IMAGE OR GALLERY
+                      CATEGORY HEADER
                   ================================== */}
 
-                  {service.gallery &&
-                  service.gallery.length > 0 ? (
+                  <div className="mb-8 flex flex-col justify-between gap-5 border-b border-slate-700/70 pb-7 md:mb-10 md:flex-row md:items-end">
 
-                    /* FIXTURE DESIGN IMAGE GALLERY */
+                    <div>
 
-                    <div className="grid aspect-square grid-cols-2 grid-rows-2 gap-1.5 overflow-hidden bg-[#172433] p-2">
-                      {service.gallery.map((fixture) => (
-                        <div
-                          key={fixture.name}
-                          className="group/fixture relative min-h-0 min-w-0 overflow-hidden rounded-md bg-white"
-                        >
-                          <Image
-                            src={fixture.image}
-                            alt={`${fixture.name} - Autozone Tooling`}
-                            fill
-                            sizes="(max-width: 767px) 50vw, (max-width: 1023px) 25vw, 17vw"
-                            className="object-contain p-2 transition-transform duration-500 group-hover/fixture:scale-105"
-                          />
+                      {/* CATEGORY NUMBER */}
 
-                          {/* FIXTURE LABEL */}
+                      <div className="mb-4 flex items-center gap-3">
+                        <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-amber-400/10 text-xs font-bold text-amber-400">
+                          {String(
+                            categoryIndex + 1
+                          ).padStart(2, "0")}
+                        </span>
 
-                          <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#0B141E]/95 via-[#0B141E]/70 to-transparent px-2 pb-2 pt-6">
-                            <p className="text-center text-[9px] font-semibold leading-snug text-white sm:text-[10px]">
-                              {fixture.name}
-                            </p>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-
-                    /* STANDARD SERVICE IMAGE */
-
-                    <div className="relative aspect-square overflow-hidden bg-[#172433]">
-                      <Image
-                        src={service.image}
-                        alt={`${service.title} engineering CAD visualization`}
-                        fill
-                        sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-
-                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0B141E]/40 via-transparent to-transparent" />
-
-                      {/* SERVICE ICON */}
-
-                      <div className="absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center rounded-lg border border-amber-400/30 bg-[#0B141E]/90 text-amber-400 backdrop-blur-md">
-                        <Icon className="h-5 w-5" />
+                        <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-amber-400">
+                          {category.subtitle}
+                        </span>
                       </div>
+
+                      {/* CATEGORY TITLE */}
+
+                      <h3 className="font-display text-2xl font-bold tracking-tight text-white sm:text-3xl lg:text-4xl">
+                        {category.title}
+                      </h3>
                     </div>
-                  )}
+
+                    {/* CATEGORY DESCRIPTION */}
+
+                    <p className="max-w-md text-sm leading-[1.8] text-slate-400">
+                      {category.description}
+                    </p>
+                  </div>
 
                   {/* ==================================
-                      SERVICE CONTENT
+                      INDIVIDUAL SERVICE CARDS
                   ================================== */}
 
-                  <div className="flex flex-1 flex-col p-6 sm:p-7">
-                    <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.18em] text-amber-400">
-                      {service.category}
-                    </p>
+                  <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
 
-                    <h3 className="font-display text-xl font-bold tracking-tight text-white sm:text-2xl">
-                      {service.title}
-                    </h3>
+                    {category.services.map(
+                      (service) => {
+                        const Icon = service.icon;
 
-                    <p className="mt-4 flex-1 text-sm leading-[1.85] text-slate-400">
-                      {service.description}
-                    </p>
+                        return (
+                          <article
+                            key={service.id}
+                            id={service.id}
+                            className="group flex h-full scroll-mt-32 flex-col overflow-hidden rounded-xl border border-slate-800 bg-[#111d2a] transition-all duration-300 hover:-translate-y-1 hover:border-amber-400/50 hover:shadow-xl hover:shadow-black/20"
+                          >
 
-                    <div className="mt-7 flex flex-wrap gap-2 border-t border-white/10 pt-5">
-                      {service.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded border border-slate-700 px-2.5 py-1.5 text-[10px] font-medium text-slate-300"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+                            {/* SERVICE IMAGE */}
+
+                            <div className="relative aspect-square overflow-hidden bg-[#172433]">
+
+                              <Image
+                                src={service.image}
+                                alt={`${service.title} - Autozone Tooling`}
+                                fill
+                                sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
+                                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                              />
+
+                              {/* IMAGE GRADIENT */}
+
+                              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0B141E]/40 via-transparent to-transparent" />
+
+                              {/* SERVICE ICON */}
+
+                              <div className="absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center rounded-lg border border-amber-400/30 bg-[#0B141E]/90 text-amber-400 backdrop-blur-md">
+                                <Icon className="h-5 w-5" />
+                              </div>
+                            </div>
+
+                            {/* ==================================
+                                SERVICE CONTENT
+                            ================================== */}
+
+                            <div className="flex flex-1 flex-col p-6 sm:p-7">
+
+                              {/* SERVICE CATEGORY */}
+
+                              <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.18em] text-amber-400">
+                                {service.category}
+                              </p>
+
+                              {/* SERVICE NAME */}
+
+                              <h4 className="font-display text-xl font-bold tracking-tight text-white sm:text-2xl">
+                                {service.title}
+                              </h4>
+
+                              {/* SERVICE DESCRIPTION */}
+
+                              <p className="mt-4 flex-1 text-sm leading-[1.85] text-slate-400">
+                                {service.description}
+                              </p>
+
+                              {/* SERVICE TAGS */}
+
+                              <div className="mt-7 flex flex-wrap gap-2 border-t border-white/10 pt-5">
+
+                                {service.tags.map(
+                                  (tag) => (
+                                    <span
+                                      key={tag}
+                                      className="rounded border border-slate-700 px-2.5 py-1.5 text-[10px] font-medium text-slate-300"
+                                    >
+                                      {tag}
+                                    </span>
+                                  )
+                                )}
+                              </div>
+                            </div>
+                          </article>
+                        );
+                      }
+                    )}
                   </div>
-                </article>
-              );
-            })}
+                </section>
+              )
+            )}
           </div>
 
           {/* ======================================
               SERVICES FOOTER
           ====================================== */}
 
-          <div className="mt-12 flex flex-col items-start justify-between gap-5 rounded-xl border border-slate-800 bg-[#111d2a] p-6 sm:flex-row sm:items-center sm:p-8">
+          <div className="mt-20 flex flex-col items-start justify-between gap-5 rounded-xl border border-slate-800 bg-[#111d2a] p-6 sm:flex-row sm:items-center sm:p-8">
+
             <div>
               <h3 className="font-display text-lg font-bold text-white">
                 Need a Custom Design Solution?
               </h3>
 
               <p className="mt-2 max-w-xl text-sm leading-relaxed text-slate-400">
-                Share your engineering requirements with
-                our team to discuss a suitable design approach.
+                Share your engineering requirements
+                with our team to discuss a suitable
+                design approach.
               </p>
             </div>
 
@@ -504,6 +727,7 @@ export default function DesignServicesPage() {
               className="inline-flex shrink-0 items-center gap-2 rounded-lg bg-amber-400 px-5 py-3 text-sm font-bold text-slate-950 transition-colors hover:bg-amber-300"
             >
               Get in Touch
+
               <FiArrowUpRight className="h-4 w-4" />
             </Link>
           </div>
@@ -523,6 +747,7 @@ export default function DesignServicesPage() {
           {/* SECTION INTRO */}
 
           <div className="mb-12 grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end lg:gap-16">
+
             <div>
               <div className="mb-5 flex items-center gap-3">
                 <span className="h-px w-8 bg-amber-400" />
@@ -551,6 +776,7 @@ export default function DesignServicesPage() {
 
               <div className="mt-5 flex items-center gap-3 text-sm font-semibold text-slate-300">
                 <FiCpu className="h-5 w-5 text-amber-400" />
+
                 CAD-Driven Engineering
               </div>
             </div>
@@ -561,6 +787,7 @@ export default function DesignServicesPage() {
           ====================================== */}
 
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+
             {softwares.map((software) => (
               <article
                 key={software.name}
@@ -570,6 +797,7 @@ export default function DesignServicesPage() {
                 {/* SOFTWARE IMAGE */}
 
                 <div className="relative aspect-square overflow-hidden bg-[#172433]">
+
                   <Image
                     src={software.image}
                     alt={`${software.name} engineering design visualization`}
@@ -584,7 +812,9 @@ export default function DesignServicesPage() {
                 {/* SOFTWARE CONTENT */}
 
                 <div className="p-6 sm:p-7">
+
                   <div className="flex items-start justify-between gap-3">
+
                     <h3 className="font-display text-2xl font-bold tracking-tight text-white transition-colors group-hover:text-amber-400">
                       {software.name}
                     </h3>
@@ -609,6 +839,7 @@ export default function DesignServicesPage() {
           ====================================== */}
 
           <div className="mt-8 flex items-start gap-4 rounded-xl border border-amber-400/20 bg-amber-400/[0.05] p-5 sm:p-6">
+
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-amber-400/10 text-amber-400">
               <FiCpu className="h-5 w-5" />
             </div>
@@ -633,13 +864,9 @@ export default function DesignServicesPage() {
           RESPONSIVE ENGINEERING SHOWCASE
       ====================================== */}
 
-      {/* Desktop / Tablet Showcase */}
-
       <div className="hidden md:block">
         <DesignShowcase />
       </div>
-
-      {/* Mobile Showcase */}
 
       <div className="md:hidden">
         <DesignShowcaseMobile />
@@ -655,7 +882,9 @@ export default function DesignServicesPage() {
           {/* SECTION HEADING */}
 
           <div className="mb-14 text-center">
+
             <div className="mb-5 flex items-center justify-center gap-3">
+
               <span className="h-px w-8 bg-amber-400" />
 
               <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-amber-400">
@@ -683,15 +912,17 @@ export default function DesignServicesPage() {
           ====================================== */}
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+
             {process.map((step, index) => (
               <div
                 key={step.title}
                 className="group relative rounded-xl border border-slate-800 bg-[#111d2a] p-5 transition-colors hover:border-amber-400/30"
               >
 
-                {/* MINIMAL TOP ACCENT */}
+                {/* TOP ACCENT */}
 
                 <div className="mb-7 flex items-center justify-between">
+
                   <span className="h-1 w-10 rounded-full bg-amber-400" />
 
                   {index < process.length - 1 && (
@@ -717,7 +948,9 @@ export default function DesignServicesPage() {
       ====================================== */}
 
       <section className="border-y border-white/10 bg-[#101c29] py-16 md:py-20">
+
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+
           <div className="grid items-center gap-10 lg:grid-cols-2">
 
             {/* LEFT CONTENT */}
@@ -741,16 +974,16 @@ export default function DesignServicesPage() {
               </p>
             </div>
 
-            {/* ======================================
-                BENEFITS
-            ====================================== */}
+            {/* BENEFITS */}
 
             <div className="grid gap-4 sm:grid-cols-2">
+
               {benefits.map((benefit) => (
                 <div
                   key={benefit}
                   className="flex min-h-[88px] items-center gap-3 rounded-lg border border-slate-700/70 bg-[#0B141E] p-5"
                 >
+
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-amber-400/10 text-amber-400">
                     <FiCheck className="h-4 w-4" />
                   </span>
@@ -770,9 +1003,11 @@ export default function DesignServicesPage() {
       ====================================== */}
 
       <section className="relative overflow-hidden py-20 md:py-28">
+
         <div className="pointer-events-none absolute left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-amber-400/[0.06] blur-[100px]" />
 
         <div className="relative mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
+
           <div className="overflow-hidden rounded-2xl border border-amber-400/20 bg-gradient-to-br from-[#1b2b3b] via-[#111e2b] to-[#0B141E] px-6 py-12 text-center sm:px-10 md:py-16">
 
             {/* CTA ICON */}
@@ -794,17 +1029,16 @@ export default function DesignServicesPage() {
             </h2>
 
             <p className="mx-auto mt-6 max-w-xl text-sm leading-[1.9] text-slate-400 md:text-base">
-              Whether you need product modelling, tooling
-              design, manufacturing drawings, or CAD
-              conversion, connect with Autozone Tooling
-              to discuss your engineering requirements.
+              Whether you need product modelling,
+              tooling design, manufacturing drawings,
+              or CAD conversion, connect with Autozone
+              Tooling to discuss your engineering requirements.
             </p>
 
-            {/* ======================================
-                CTA BUTTONS
-            ====================================== */}
+            {/* CTA BUTTONS */}
 
             <div className="mt-9 flex flex-wrap justify-center gap-4">
+
               <Link
                 href="/contact"
                 className="inline-flex min-h-12 items-center justify-center gap-3 rounded-lg bg-amber-400 px-7 py-3 text-sm font-bold text-slate-950 transition-colors hover:bg-amber-300"

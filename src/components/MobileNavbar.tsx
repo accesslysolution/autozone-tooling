@@ -32,7 +32,7 @@ const navLinks = [
 
 /* ==========================================
    UPDATED PRODUCT CATEGORIES
-   MATCHES MOBILE PRODUCTS PAGE
+   MATCHES PRODUCTS PAGE
 ========================================== */
 
 const productCategories = [
@@ -256,9 +256,7 @@ export default function MobileNavbar() {
       event: KeyboardEvent
     ) => {
       if (event.key === "Escape") {
-        setMenuOpen(false);
-        setProductsOpen(false);
-        setDesignOpen(false);
+        closeMenu();
       }
     };
 
@@ -301,21 +299,29 @@ export default function MobileNavbar() {
   };
 
   /* ==========================================
-     PRODUCT CATEGORY NAVIGATION
+     CATEGORY NAVIGATION HELPER
   ========================================== */
 
-  const handleProductClick = (id: string) => {
+  const handleCategoryClick = (
+    page: string,
+    id: string
+  ) => {
     closeMenu();
 
-    if (pathname !== "/products") return;
+    // On another page, Next.js handles
+    // navigation using the URL hash.
+    if (pathname !== page) return;
 
+    // On the same page, scroll smoothly
+    // to the matching category section.
     window.requestAnimationFrame(() => {
       window.requestAnimationFrame(() => {
-        const target = document.getElementById(
-          `mobile-${id}`
-        );
+        const target =
+          document.getElementById(id);
 
-        target?.scrollIntoView({
+        if (!target) return;
+
+        target.scrollIntoView({
           behavior: "smooth",
           block: "start",
         });
@@ -324,27 +330,25 @@ export default function MobileNavbar() {
   };
 
   /* ==========================================
+     PRODUCT CATEGORY NAVIGATION
+  ========================================== */
+
+  const handleProductClick = (id: string) => {
+    handleCategoryClick(
+      "/products",
+      `mobile-${id}`
+    );
+  };
+
+  /* ==========================================
      DESIGN CATEGORY NAVIGATION
   ========================================== */
 
   const handleDesignClick = (id: string) => {
-    closeMenu();
-
-    if (pathname !== "/design-services") {
-      return;
-    }
-
-    window.requestAnimationFrame(() => {
-      window.requestAnimationFrame(() => {
-        const target =
-          document.getElementById(id);
-
-        target?.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      });
-    });
+    handleCategoryClick(
+      "/design-services",
+      id
+    );
   };
 
   /* ==========================================
@@ -353,6 +357,7 @@ export default function MobileNavbar() {
 
   const mobileDrawer = (
     <div className="fixed inset-0 z-[10000] md:hidden">
+
       {/* BACKDROP */}
 
       <button
@@ -369,6 +374,7 @@ export default function MobileNavbar() {
         aria-label="Mobile navigation"
         className="absolute inset-y-0 right-0 flex w-[min(88vw,380px)] flex-col overflow-hidden border-l border-slate-700 bg-slate-950 shadow-2xl"
       >
+
         {/* ==================================
             DRAWER HEADER
         ================================== */}
@@ -413,9 +419,8 @@ export default function MobileNavbar() {
 
         <div className="min-h-0 flex-1 space-y-2 overflow-y-auto overscroll-contain px-4 py-5">
           {navLinks.map((link) => {
-            const isActive = isActiveLink(
-              link.href
-            );
+            const isActive =
+              isActiveLink(link.href);
 
             /* ==================================
                PRODUCTS DROPDOWN
@@ -449,6 +454,7 @@ export default function MobileNavbar() {
                         setProductsOpen(
                           (previous) => !previous
                         );
+
                         setDesignOpen(false);
                       }}
                       aria-expanded={productsOpen}
@@ -553,6 +559,7 @@ export default function MobileNavbar() {
                         setDesignOpen(
                           (previous) => !previous
                         );
+
                         setProductsOpen(false);
                       }}
                       aria-expanded={designOpen}
@@ -671,6 +678,7 @@ export default function MobileNavbar() {
             </p>
 
             <div className="space-y-4 rounded-xl bg-slate-900 p-4">
+
               {/* CONTACT 1 */}
 
               <div>
@@ -723,9 +731,7 @@ export default function MobileNavbar() {
                   className="shrink-0 text-amber-400"
                 />
 
-                <span>
-                  {company.location}
-                </span>
+                <span>{company.location}</span>
 
                 <FiArrowUpRight
                   size={13}
@@ -759,9 +765,7 @@ export default function MobileNavbar() {
                   >
                     <Icon size={17} />
 
-                    <span>
-                      {social.name}
-                    </span>
+                    <span>{social.name}</span>
 
                     <FiArrowUpRight
                       size={13}
@@ -804,12 +808,14 @@ export default function MobileNavbar() {
           isScrolled ? "shadow-xl" : ""
         }`}
       >
+
         {/* ==================================
             TOP CONTACT STRIP
         ================================== */}
 
         <div className="border-b border-white/10 bg-slate-900 px-4">
           <div className="mx-auto flex h-9 max-w-lg items-center justify-between gap-2">
+
             {/* PHONE */}
 
             <a
@@ -880,6 +886,7 @@ export default function MobileNavbar() {
 
         <div className="border-b border-white/10 px-4">
           <div className="mx-auto flex h-[68px] max-w-lg items-center justify-between gap-3">
+
             {/* LOGO */}
 
             <Link
@@ -912,6 +919,7 @@ export default function MobileNavbar() {
             {/* HEADER ACTIONS */}
 
             <div className="flex shrink-0 items-center gap-2">
+
               {/* WHATSAPP */}
 
               <a

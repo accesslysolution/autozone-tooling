@@ -50,7 +50,7 @@ interface ProductCategory {
 
 /* ==========================================
    PRODUCT DATA
-   39 PRODUCTS
+   38 PRODUCTS
 ========================================== */
 
 const products: Product[] = [
@@ -239,14 +239,6 @@ const products: Product[] = [
       "/images/products/Press Brake Die Product Showcase.avif",
   },
   {
-    id: 26,
-    name: "Press Brake Tooling Range",
-    description:
-      "Overview of precision press brake tooling configurations for different forming requirements and bending applications.",
-    image:
-      "/images/products/Press Brake Tooling Catalog Infographic.avif",
-  },
-  {
     id: 27,
     name: "R0.8 Straight Punch – 85°",
     description:
@@ -312,7 +304,7 @@ const products: Product[] = [
   },
 
   /* ==========================================
-     NEW PRODUCT IMAGES
+     ADDITIONAL PRODUCT IMAGES
   ========================================== */
 
   {
@@ -358,7 +350,7 @@ const products: Product[] = [
 ];
 
 /* ==========================================
-   UPDATED PRODUCT CATEGORIES
+   PRODUCT CATEGORIES
    11 CATEGORIES
 ========================================== */
 
@@ -368,8 +360,8 @@ const categories: ProductCategory[] = [
     title: "Press Brake Tool",
     subtitle: "General Tooling",
     description:
-      "Explore precision press brake tooling systems, tooling ranges and organized storage solutions for industrial sheet metal fabrication.",
-    productIds: [23, 24, 26],
+      "Explore precision press brake tooling storage solutions designed for organized handling and efficient industrial sheet metal fabrication.",
+    productIds: [23, 24],
   },
   {
     id: "press-brake-punch",
@@ -509,6 +501,8 @@ function ProductTile({
       aria-label={`View details for ${product.name}`}
       className="group flex min-w-0 flex-col overflow-hidden rounded-[18px] border border-[#e6e9ed] bg-white text-left shadow-[0_4px_20px_rgba(15,23,42,0.035)] transition-transform active:scale-[0.98]"
     >
+      {/* PRODUCT IMAGE */}
+
       <div className="relative aspect-square w-full overflow-hidden bg-[#f2f4f6]">
         <Image
           src={product.image}
@@ -522,6 +516,8 @@ function ProductTile({
           <FiPlus size={17} />
         </div>
       </div>
+
+      {/* PRODUCT DETAILS */}
 
       <div className="flex w-full flex-1 flex-col items-center px-3 pb-5 pt-4 text-center">
         <h3
@@ -553,8 +549,7 @@ function CategorySection({
   index: number;
   onView: (product: Product) => void;
 }) {
-  const categoryProducts =
-    getCategoryProducts(category);
+  const categoryProducts = getCategoryProducts(category);
 
   const primaryProduct = categoryProducts[0];
   const otherProducts = categoryProducts.slice(1);
@@ -577,9 +572,7 @@ function CategorySection({
 
           <h2
             className={`font-heading text-[36px] font-bold leading-[1.12] tracking-[-0.035em] ${
-              isDark
-                ? "text-amber-400"
-                : "text-[#0B141E]"
+              isDark ? "text-amber-400" : "text-[#0B141E]"
             }`}
           >
             {category.title}
@@ -588,9 +581,7 @@ function CategorySection({
           <p
             className="mx-auto mt-5 max-w-[340px] text-[15px] leading-[1.8]"
             style={{
-              color: isDark
-                ? BRAND.muted
-                : BRAND.body,
+              color: isDark ? BRAND.muted : BRAND.body,
             }}
           >
             {category.description}
@@ -674,17 +665,13 @@ function CategorySection({
 
             <div
               className={`mt-8 flex flex-col items-center border-t pt-7 text-center ${
-                isDark
-                  ? "border-slate-700"
-                  : "border-slate-200"
+                isDark ? "border-slate-700" : "border-slate-200"
               }`}
             >
               <p
                 className="text-[15px] leading-relaxed"
                 style={{
-                  color: isDark
-                    ? BRAND.muted
-                    : BRAND.body,
+                  color: isDark ? BRAND.muted : BRAND.body,
                 }}
               >
                 Looking for a custom configuration?
@@ -717,9 +704,7 @@ function CategorySection({
           >
             <div
               className={`mx-auto flex h-16 w-16 items-center justify-center rounded-2xl ${
-                isDark
-                  ? "bg-slate-700"
-                  : "bg-amber-400/10"
+                isDark ? "bg-slate-700" : "bg-amber-400/10"
               }`}
               style={{ color: BRAND.amber }}
             >
@@ -728,9 +713,7 @@ function CategorySection({
 
             <h3
               className={`mt-6 font-heading text-[26px] font-bold leading-tight ${
-                isDark
-                  ? "text-amber-400"
-                  : "text-[#0B141E]"
+                isDark ? "text-amber-400" : "text-[#0B141E]"
               }`}
             >
               Custom Tooling
@@ -741,9 +724,7 @@ function CategorySection({
             <p
               className="mx-auto mt-4 max-w-[310px] text-[15px] leading-[1.8]"
               style={{
-                color: isDark
-                  ? BRAND.muted
-                  : BRAND.body,
+                color: isDark ? BRAND.muted : BRAND.body,
               }}
             >
               Product images for this category are not yet
@@ -778,9 +759,7 @@ export default function MobileProductsPage() {
   const [mounted, setMounted] = useState(false);
 
   const featuredRef = useRef<HTMLDivElement>(null);
-
-  const closeButtonRef =
-    useRef<HTMLButtonElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -804,8 +783,7 @@ export default function MobileProductsPage() {
   useEffect(() => {
     if (!selectedProduct) return;
 
-    const previousOverflow =
-      document.body.style.overflow;
+    const previousOverflow = document.body.style.overflow;
 
     const previouslyFocused =
       document.activeElement instanceof HTMLElement
@@ -820,28 +798,20 @@ export default function MobileProductsPage() {
       }
     };
 
-    window.addEventListener(
-      "keydown",
-      handleKeyDown
-    );
+    window.addEventListener("keydown", handleKeyDown);
 
     closeButtonRef.current?.focus();
 
     return () => {
-      document.body.style.overflow =
-        previousOverflow;
-
-      window.removeEventListener(
-        "keydown",
-        handleKeyDown
-      );
-
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", handleKeyDown);
       previouslyFocused?.focus();
     };
   }, [selectedProduct]);
 
   return (
     <div className="min-h-screen overflow-x-clip bg-[#f7f8fa] font-sans">
+
       {/* ==========================================
           INDUSTRIAL HERO
       ========================================== */}
@@ -960,9 +930,7 @@ export default function MobileProductsPage() {
             <button
               key={product.id}
               type="button"
-              onClick={() =>
-                setSelectedProduct(product)
-              }
+              onClick={() => setSelectedProduct(product)}
               aria-label={`View details for ${product.name}`}
               className="w-[260px] shrink-0 snap-center overflow-hidden rounded-[20px] border border-slate-200 bg-[#f5f6f8] text-left"
             >
@@ -1136,18 +1104,14 @@ export default function MobileProductsPage() {
         createPortal(
           <div
             className="fixed inset-x-0 bottom-0 top-[104px] z-[100] flex items-end bg-black/75 md:hidden"
-            onClick={() =>
-              setSelectedProduct(null)
-            }
+            onClick={() => setSelectedProduct(null)}
           >
             <div
               role="dialog"
               aria-modal="true"
               aria-label={selectedProduct.name}
               className="max-h-full w-full overflow-y-auto overscroll-contain rounded-t-[28px] bg-white pb-[max(24px,env(safe-area-inset-bottom))]"
-              onClick={(event) =>
-                event.stopPropagation()
-              }
+              onClick={(event) => event.stopPropagation()}
             >
               {/* STICKY MODAL HEADER */}
 
@@ -1159,9 +1123,7 @@ export default function MobileProductsPage() {
                 <button
                   ref={closeButtonRef}
                   type="button"
-                  onClick={() =>
-                    setSelectedProduct(null)
-                  }
+                  onClick={() => setSelectedProduct(null)}
                   aria-label="Close product details"
                   className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-slate-100"
                   style={{ color: BRAND.navy }}
@@ -1202,9 +1164,7 @@ export default function MobileProductsPage() {
                     href={`/contact?product=${encodeURIComponent(
                       selectedProduct.name
                     )}`}
-                    onClick={() =>
-                      setSelectedProduct(null)
-                    }
+                    onClick={() => setSelectedProduct(null)}
                     className="flex min-h-13 items-center justify-center gap-2 rounded-xl bg-amber-400 px-5 py-4 text-center text-[15px] font-bold text-[#0B141E]"
                   >
                     Enquire About This Product

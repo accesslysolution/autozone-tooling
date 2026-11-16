@@ -216,14 +216,6 @@ const products: Product[] = [
       "/images/products/Press Brake Die Product Showcase.avif",
   },
   {
-    id: 26,
-    name: "Press Brake Tooling Range",
-    description:
-      "Overview of precision press brake tooling configurations for different forming requirements and bending applications.",
-    image:
-      "/images/products/Press Brake Tooling Catalog Infographic.avif",
-  },
-  {
     id: 27,
     name: "R0.8 Straight Punch – 85°",
     description:
@@ -289,7 +281,7 @@ const products: Product[] = [
   },
 
   /* ==========================================
-     NEW PRODUCT IMAGES
+     ADDITIONAL PRODUCT IMAGES
   ========================================== */
 
   {
@@ -323,7 +315,7 @@ const products: Product[] = [
       "Three specialized hemming punch and die assemblies illustrating different tooling profiles for precision sheet metal folding applications.",
     image:
       "/images/products/Three Hemming Die Assemblies.avif",
-  }
+  },
 ];
 
 /* ==========================================
@@ -336,10 +328,10 @@ const categories: ProductCategory[] = [
     title: "Press Brake Tool",
     subtitle: "01 / GENERAL TOOLING",
     description:
-      "Explore precision press brake tooling systems, tooling ranges and organized storage solutions for industrial sheet metal fabrication.",
+      "Explore precision press brake tooling storage solutions designed for organized handling and efficient industrial sheet metal fabrication.",
     background: "bg-[#f4f7fb]",
     accent: "bg-blue-600",
-    productIds: [23, 24, 26],
+    productIds: [23, 24],
   },
   {
     id: "press-brake-punch",
@@ -436,10 +428,10 @@ const categories: ProductCategory[] = [
     title: "Special Application",
     subtitle: "11 / CUSTOM ENGINEERING",
     description:
-      "Explore custom-engineered dies, specialized punches, precision metal component design and auxiliary tooling for industrial manufacturing applications.",
+      "Explore custom-engineered dies, specialized punches and auxiliary tooling for industrial manufacturing applications.",
     background: "bg-[#f3f5f8]",
     accent: "bg-slate-700",
-    productIds: [39, 9, 10, 14, 15, 19, 21],
+    productIds: [9, 10, 14, 15, 19, 21],
   },
 ];
 
@@ -471,7 +463,6 @@ const featuredIds = [
   29,
   25,
   28,
-  39,
   30,
   31,
   20,

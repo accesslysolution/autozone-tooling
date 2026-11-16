@@ -28,7 +28,8 @@ const navLinks = [
 ];
 
 /* ==========================================
-   UPDATED PRODUCT CATEGORIES
+   PRODUCT CATEGORIES
+   SYNCHRONIZED WITH PRODUCTS PAGE
 ========================================== */
 
 const productCategories = [
@@ -223,8 +224,7 @@ export default function Navbar() {
   useEffect(() => {
     if (!mobileMenuOpen) return;
 
-    const previousOverflow =
-      document.body.style.overflow;
+    const previousOverflow = document.body.style.overflow;
 
     document.body.style.overflow = "hidden";
 
@@ -256,6 +256,7 @@ export default function Navbar() {
 
   /* ==========================================
      CATEGORY NAVIGATION
+     DESKTOP + MOBILE
   ========================================== */
 
   const handleCategoryClick = (
@@ -264,14 +265,19 @@ export default function Navbar() {
   ) => {
     closeMobileMenu();
 
+    // When navigating from another page, Next.js
+    // handles the route and hash navigation.
     if (pathname !== page) return;
 
+    // When already on the destination page,
+    // scroll directly to the selected section.
     window.requestAnimationFrame(() => {
       window.requestAnimationFrame(() => {
-        const target =
-          document.getElementById(id);
+        const target = document.getElementById(id);
 
-        target?.scrollIntoView({
+        if (!target) return;
+
+        target.scrollIntoView({
           behavior: "smooth",
           block: "start",
         });
@@ -285,15 +291,18 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full font-sans">
+
       {/* ==========================================
           TOP UTILITY BAR
       ========================================== */}
 
       <div className="border-b border-slate-800 bg-slate-950 text-xs text-slate-300 sm:text-sm">
         <div className="mx-auto flex min-h-10 max-w-7xl items-center justify-between gap-3 px-4 py-2 sm:px-6 lg:px-8">
+
           {/* CONTACT INFORMATION */}
 
           <div className="flex min-w-0 items-center gap-4 lg:gap-6">
+
             {/* PRIMARY PHONE */}
 
             <a
@@ -362,6 +371,7 @@ export default function Navbar() {
           {/* LOCATION / SOCIALS / WHATSAPP */}
 
           <div className="flex shrink-0 items-center gap-2 sm:gap-3 lg:gap-4">
+
             {/* GOOGLE MAPS */}
 
             <a
@@ -456,6 +466,7 @@ export default function Navbar() {
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
+
           {/* BRAND LOGO */}
 
           <Link
@@ -491,9 +502,7 @@ export default function Navbar() {
 
           <div className="hidden items-center gap-5 lg:flex xl:gap-8">
             {navLinks.map((link) => {
-              const isActive = isActiveLink(
-                link.href
-              );
+              const isActive = isActiveLink(link.href);
 
               /* ======================================
                  PRODUCTS DROPDOWN
@@ -553,9 +562,7 @@ export default function Navbar() {
                               className="group/item flex items-center gap-3 rounded-lg px-3 py-3 transition-colors hover:bg-slate-800 focus-visible:bg-slate-800 focus-visible:outline-none"
                             >
                               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-amber-500/10 text-xs font-bold text-amber-400">
-                                {String(
-                                  index + 1
-                                ).padStart(2, "0")}
+                                {String(index + 1).padStart(2, "0")}
                               </span>
 
                               <span className="flex-1 text-sm font-medium leading-snug text-slate-200 transition-colors group-hover/item:text-amber-400">
@@ -585,9 +592,7 @@ export default function Navbar() {
                  DESIGN SERVICES DROPDOWN
               ====================================== */
 
-              if (
-                link.name === "Design Services"
-              ) {
+              if (link.name === "Design Services") {
                 return (
                   <div
                     key={link.name}
@@ -641,9 +646,7 @@ export default function Navbar() {
                               className="group/item flex items-center gap-3 rounded-lg px-3 py-3 transition-colors hover:bg-slate-800 focus-visible:bg-slate-800 focus-visible:outline-none"
                             >
                               <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-amber-500/10 text-xs font-bold text-amber-400">
-                                {String(
-                                  index + 1
-                                ).padStart(2, "0")}
+                                {String(index + 1).padStart(2, "0")}
                               </span>
 
                               <span className="flex-1 text-sm font-medium leading-snug text-slate-200 transition-colors group-hover/item:text-amber-400">
@@ -714,9 +717,7 @@ export default function Navbar() {
           <button
             type="button"
             onClick={() => {
-              setMobileMenuOpen(
-                (prev) => !prev
-              );
+              setMobileMenuOpen((prev) => !prev);
             }}
             aria-label={
               mobileMenuOpen
@@ -763,9 +764,7 @@ export default function Navbar() {
             className="absolute left-0 top-full max-h-[calc(100dvh-110px)] w-full space-y-4 overflow-y-auto border-b border-slate-800 bg-slate-900 px-6 py-6 shadow-2xl lg:hidden"
           >
             {navLinks.map((link) => {
-              const isActive = isActiveLink(
-                link.href
-              );
+              const isActive = isActiveLink(link.href);
 
               /* ======================================
                  MOBILE PRODUCTS DROPDOWN
@@ -795,13 +794,9 @@ export default function Navbar() {
                       <button
                         type="button"
                         onClick={() =>
-                          setMobileProductsOpen(
-                            (prev) => !prev
-                          )
+                          setMobileProductsOpen((prev) => !prev)
                         }
-                        aria-expanded={
-                          mobileProductsOpen
-                        }
+                        aria-expanded={mobileProductsOpen}
                         aria-controls="mobile-product-categories"
                         aria-label={
                           mobileProductsOpen
@@ -812,9 +807,7 @@ export default function Navbar() {
                       >
                         <FiChevronDown
                           className={`h-5 w-5 transition-transform duration-200 ${
-                            mobileProductsOpen
-                              ? "rotate-180"
-                              : ""
+                            mobileProductsOpen ? "rotate-180" : ""
                           }`}
                         />
                       </button>
@@ -825,23 +818,21 @@ export default function Navbar() {
                         id="mobile-product-categories"
                         className="ml-3 space-y-1 border-l-2 border-amber-500/40 pl-3"
                       >
-                        {productCategories.map(
-                          (category) => (
-                            <Link
-                              key={category.id}
-                              href={`/products#mobile-${category.id}`}
-                              onClick={() =>
-                                handleCategoryClick(
-                                  "/products",
-                                  `mobile-${category.id}`
-                                )
-                              }
-                              className="block rounded-md px-3 py-2.5 text-sm leading-snug text-slate-400 transition-colors hover:bg-slate-800 hover:text-amber-400"
-                            >
-                              {category.name}
-                            </Link>
-                          )
-                        )}
+                        {productCategories.map((category) => (
+                          <Link
+                            key={category.id}
+                            href={`/products#mobile-${category.id}`}
+                            onClick={() =>
+                              handleCategoryClick(
+                                "/products",
+                                `mobile-${category.id}`
+                              )
+                            }
+                            className="block rounded-md px-3 py-2.5 text-sm leading-snug text-slate-400 transition-colors hover:bg-slate-800 hover:text-amber-400"
+                          >
+                            {category.name}
+                          </Link>
+                        ))}
                       </div>
                     )}
                   </div>
@@ -852,9 +843,7 @@ export default function Navbar() {
                  MOBILE DESIGN SERVICES DROPDOWN
               ====================================== */
 
-              if (
-                link.name === "Design Services"
-              ) {
+              if (link.name === "Design Services") {
                 return (
                   <div
                     key={link.name}
@@ -878,13 +867,9 @@ export default function Navbar() {
                       <button
                         type="button"
                         onClick={() =>
-                          setMobileDesignOpen(
-                            (prev) => !prev
-                          )
+                          setMobileDesignOpen((prev) => !prev)
                         }
-                        aria-expanded={
-                          mobileDesignOpen
-                        }
+                        aria-expanded={mobileDesignOpen}
                         aria-controls="mobile-design-categories"
                         aria-label={
                           mobileDesignOpen
@@ -895,9 +880,7 @@ export default function Navbar() {
                       >
                         <FiChevronDown
                           className={`h-5 w-5 transition-transform duration-200 ${
-                            mobileDesignOpen
-                              ? "rotate-180"
-                              : ""
+                            mobileDesignOpen ? "rotate-180" : ""
                           }`}
                         />
                       </button>
@@ -908,23 +891,21 @@ export default function Navbar() {
                         id="mobile-design-categories"
                         className="ml-3 space-y-1 border-l-2 border-amber-500/40 pl-3"
                       >
-                        {designCategories.map(
-                          (category) => (
-                            <Link
-                              key={category.id}
-                              href={`/design-services#${category.id}`}
-                              onClick={() =>
-                                handleCategoryClick(
-                                  "/design-services",
-                                  category.id
-                                )
-                              }
-                              className="block rounded-md px-3 py-2.5 text-sm leading-snug text-slate-400 transition-colors hover:bg-slate-800 hover:text-amber-400"
-                            >
-                              {category.name}
-                            </Link>
-                          )
-                        )}
+                        {designCategories.map((category) => (
+                          <Link
+                            key={category.id}
+                            href={`/design-services#${category.id}`}
+                            onClick={() =>
+                              handleCategoryClick(
+                                "/design-services",
+                                category.id
+                              )
+                            }
+                            className="block rounded-md px-3 py-2.5 text-sm leading-snug text-slate-400 transition-colors hover:bg-slate-800 hover:text-amber-400"
+                          >
+                            {category.name}
+                          </Link>
+                        ))}
                       </div>
                     )}
                   </div>
@@ -1003,9 +984,7 @@ export default function Navbar() {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-xs text-slate-400 transition-colors hover:text-amber-400"
                 >
-                  Sector 07, Bhosari MIDC,
-                  Pune - 411026
-
+                  Sector 07, Bhosari MIDC, Pune - 411026
                   <FiArrowUpRight size={13} />
                 </a>
               </div>
@@ -1043,9 +1022,7 @@ export default function Navbar() {
                     >
                       <Icon size={17} />
 
-                      <span>
-                        {social.name}
-                      </span>
+                      <span>{social.name}</span>
 
                       <FiArrowUpRight
                         size={13}
