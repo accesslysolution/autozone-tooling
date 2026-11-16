@@ -323,15 +323,7 @@ const products: Product[] = [
       "Three specialized hemming punch and die assemblies illustrating different tooling profiles for precision sheet metal folding applications.",
     image:
       "/images/products/Three Hemming Die Assemblies.avif",
-  },
-  {
-    id: 39,
-    name: "Precision Metal Components Design Services",
-    description:
-      "Precision metal component design solutions for industrial applications, including engineered brackets, housings, mounting components and custom manufactured parts.",
-    image:
-      "/images/products/Precision Metal Components Design Services.avif",
-  },
+  }
 ];
 
 /* ==========================================
