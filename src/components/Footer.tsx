@@ -2,6 +2,10 @@
 import Link from "next/link";
 import Image from "next/image";
 
+/* ==========================================
+   CONTACT DETAILS
+========================================== */
+
 const contacts = [
   {
     name: "Mr. Santosh Hodage",
@@ -17,20 +21,34 @@ const contacts = [
   },
 ];
 
+/* ==========================================
+   COMPANY INFORMATION
+========================================== */
+
 const company = {
   name: "Autozone Tooling",
   email: "autozone.tooling@gmail.com",
   gstin: "27ACWPH8035L1ZW",
+
   address:
     "Sector No. 07, Plot No. 256, PCNTDA, MIDC, Bhosari, Pune - 411026, Maharashtra, India",
+
   mapUrl:
     "https://www.google.com/maps/place/Autozone+Tooling/@18.6425895,73.8367515,17z/data=!3m1!4b1!4m6!3m5!1s0x3bc2b94881f1ca1b:0xb68dfd77de68ec3c!8m2!3d18.6425895!4d73.8393264!16s%2Fg%2F11lw8q15fv?entry=ttu",
+
   facebook:
     "https://www.facebook.com/people/Autozone-Tooling/61593862056621/",
+
   linkedin:
     "https://www.linkedin.com/in/autozone-tooling-23721b291/",
+
+  indiamart:
+    "https://www.indiamart.com/autozonetooling/profile.html",
 };
 
+/* ==========================================
+   QUICK LINKS
+========================================== */
 
 const quickLinks = [
   { label: "Home", href: "/" },
@@ -41,8 +59,15 @@ const quickLinks = [
   { label: "Contact Us", href: "/contact" },
 ];
 
+/* ==========================================
+   FACEBOOK ICON
+========================================== */
 
-function FacebookIcon({ className = "w-5 h-5" }) {
+function FacebookIcon({
+  className = "w-5 h-5",
+}: {
+  className?: string;
+}) {
   return (
     <svg
       className={className}
@@ -55,7 +80,15 @@ function FacebookIcon({ className = "w-5 h-5" }) {
   );
 }
 
-function LinkedInIcon({ className = "w-5 h-5" }) {
+/* ==========================================
+   LINKEDIN ICON
+========================================== */
+
+function LinkedInIcon({
+  className = "w-5 h-5",
+}: {
+  className?: string;
+}) {
   return (
     <svg
       className={className}
@@ -68,7 +101,53 @@ function LinkedInIcon({ className = "w-5 h-5" }) {
   );
 }
 
-function WhatsAppIcon({ className = "w-4 h-4" }) {
+/* ==========================================
+   INDIAMART ICON
+
+   MARKETPLACE SYMBOL
+   NO EXTERNAL ICON PACKAGE REQUIRED
+========================================== */
+
+function IndiaMartIcon({
+  className = "w-5 h-5",
+}: {
+  className?: string;
+}) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <rect
+        x="3"
+        y="7"
+        width="18"
+        height="14"
+        rx="2"
+      />
+
+      <path d="M8 7V5a4 4 0 0 1 8 0v2" />
+
+      <path d="M7 12h10M7 16h6" />
+    </svg>
+  );
+}
+
+/* ==========================================
+   WHATSAPP ICON
+========================================== */
+
+function WhatsAppIcon({
+  className = "w-4 h-4",
+}: {
+  className?: string;
+}) {
   return (
     <svg
       className={className}
@@ -81,7 +160,15 @@ function WhatsAppIcon({ className = "w-4 h-4" }) {
   );
 }
 
-function LocationIcon({ className = "w-4 h-4" }) {
+/* ==========================================
+   LOCATION ICON
+========================================== */
+
+function LocationIcon({
+  className = "w-4 h-4",
+}: {
+  className?: string;
+}) {
   return (
     <svg
       className={className}
@@ -94,10 +181,15 @@ function LocationIcon({ className = "w-4 h-4" }) {
       aria-hidden="true"
     >
       <path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" />
+
       <circle cx="12" cy="10" r="2.5" />
     </svg>
   );
 }
+
+/* ==========================================
+   SOCIAL LINKS
+========================================== */
 
 const socialLinks = [
   {
@@ -114,22 +206,45 @@ const socialLinks = [
     hoverClass:
       "hover:bg-[#0A66C2] hover:border-[#0A66C2] hover:text-white",
   },
+  {
+    name: "IndiaMART",
+    href: company.indiamart,
+    Icon: IndiaMartIcon,
+    hoverClass:
+      "hover:bg-[#2563EB] hover:border-[#2563EB] hover:text-white",
+  },
 ];
+
+/* ==========================================
+   FOOTER COMPONENT
+========================================== */
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-950 text-slate-300 font-sans border-t border-slate-800">
-      {/* Main Footer */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8">
-          {/* Column 1 & 2: Brand Information */}
-          <div className="lg:col-span-2 space-y-6">
-            {/* Logo & Brand Name */}
+    <footer className="border-t border-slate-800 bg-slate-950 font-sans text-slate-300">
+
+      {/* ======================================
+          MAIN FOOTER
+      ====================================== */}
+
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-5 lg:gap-8">
+
+          {/* ==================================
+              COLUMN 1 & 2
+              BRAND INFORMATION
+          ================================== */}
+
+          <div className="space-y-6 lg:col-span-2">
+
+            {/* LOGO & BRAND NAME */}
+
             <Link
               href="/"
-              className="inline-flex items-center gap-3 group"
+              className="group inline-flex items-center gap-3"
             >
-              <div className="relative w-12 h-12 flex-shrink-0">
+              <div className="relative h-12 w-12 flex-shrink-0">
                 <Image
                   src="/images/logo.png"
                   alt="Autozone Tooling Logo"
@@ -140,18 +255,20 @@ export default function Footer() {
               </div>
 
               <div className="flex flex-col">
-                <span className="text-white font-heading font-bold text-xl tracking-wide uppercase">
+
+                <span className="font-heading text-xl font-bold uppercase tracking-wide text-white">
                   AUTOZONE
                 </span>
 
-                <span className="text-amber-400 text-xs tracking-[0.2em] font-semibold uppercase">
+                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-400">
                   TOOLING
                 </span>
               </div>
             </Link>
 
-            {/* Company Description */}
-            <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
+            {/* COMPANY DESCRIPTION */}
+
+            <p className="max-w-sm text-sm leading-relaxed text-slate-400">
               Autozone Tooling specializes in CNC press brake
               tooling and shearing blades for the sheet metal
               fabrication industry. We provide precision tooling
@@ -159,22 +276,28 @@ export default function Footer() {
               cutting, and industrial manufacturing operations.
             </p>
 
-            {/* Specialization Card */}
-            <div className="bg-slate-900/80 border border-slate-800/80 p-4 rounded-lg space-y-2">
-              <span className="text-amber-400 text-xs font-semibold uppercase tracking-wider block">
+            {/* SPECIALIZATION CARD */}
+
+            <div className="space-y-2 rounded-lg border border-slate-800/80 bg-slate-900/80 p-4">
+
+              <span className="block text-xs font-semibold uppercase tracking-wider text-amber-400">
                 Our Specialization
               </span>
 
-              <p className="text-xs text-slate-400 leading-relaxed">
+              <p className="text-xs leading-relaxed text-slate-400">
                 CNC Press Brake Tooling, Press Brake Punches,
                 Press Brake Dies, Shearing Blades, and
                 Custom Tooling Solutions.
               </p>
             </div>
 
-            {/* Contact Details */}
-            <div className="pt-2 text-sm space-y-4">
-              <h3 className="text-white font-semibold">
+            {/* ==================================
+                CONTACT DETAILS
+            ================================== */}
+
+            <div className="space-y-4 pt-2 text-sm">
+
+              <h3 className="font-semibold text-white">
                 Contact Details
               </h3>
 
@@ -183,13 +306,14 @@ export default function Footer() {
                   key={contact.phoneLink}
                   className="space-y-1.5"
                 >
-                  <p className="text-xs text-amber-400 font-semibold">
+
+                  <p className="text-xs font-semibold text-amber-400">
                     {contact.name}
                   </p>
 
                   <a
                     href={`tel:${contact.phoneLink}`}
-                    className="block text-slate-300 hover:text-amber-400 transition-colors font-semibold"
+                    className="block font-semibold text-slate-300 transition-colors hover:text-amber-400"
                   >
                     {contact.phone}
                   </a>
@@ -198,27 +322,34 @@ export default function Footer() {
                     href={`https://wa.me/${contact.whatsapp}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs text-emerald-400 hover:text-emerald-300 transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs text-emerald-400 transition-colors hover:text-emerald-300"
                   >
                     <WhatsAppIcon />
+
                     WhatsApp
                   </a>
                 </div>
               ))}
 
+              {/* EMAIL */}
+
               <div className="pt-2">
                 <a
                   href={`mailto:${company.email}`}
-                  className="block text-slate-300 hover:text-amber-400 transition-colors break-all"
+                  className="block break-all text-slate-300 transition-colors hover:text-amber-400"
                 >
                   {company.email}
                 </a>
               </div>
             </div>
 
-            {/* Social Media */}
-            <div className="pt-3 space-y-3">
-              <h3 className="text-white font-semibold text-sm">
+            {/* ==================================
+                FOLLOW AUTOZONE TOOLING
+            ================================== */}
+
+            <div className="space-y-3 pt-3">
+
+              <h3 className="text-sm font-semibold text-white">
                 Follow Autozone Tooling
               </h3>
 
@@ -227,7 +358,10 @@ export default function Footer() {
                 insights, and tooling solutions.
               </p>
 
+              {/* SOCIAL ICONS */}
+
               <div className="flex items-center gap-3">
+
                 {socialLinks.map((social) => {
                   const Icon = social.Icon;
 
@@ -239,7 +373,7 @@ export default function Footer() {
                       rel="noopener noreferrer"
                       aria-label={`Autozone Tooling on ${social.name}`}
                       title={social.name}
-                      className={`w-10 h-10 flex items-center justify-center rounded-lg bg-slate-900 border border-slate-700 text-slate-300 transition-all duration-300 hover:-translate-y-1 ${social.hoverClass}`}
+                      className={`flex h-10 w-10 items-center justify-center rounded-lg border border-slate-700 bg-slate-900 text-slate-300 transition-all duration-300 hover:-translate-y-1 ${social.hoverClass}`}
                     >
                       <Icon />
                     </a>
@@ -249,18 +383,25 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 3: Quick Links */}
+          {/* ==================================
+              COLUMN 3
+              QUICK LINKS
+          ================================== */}
+
           <div className="space-y-4">
-            <h3 className="text-white font-heading font-semibold text-sm uppercase tracking-wider border-l-2 border-amber-500 pl-3">
+
+            <h3 className="border-l-2 border-amber-500 pl-3 font-heading text-sm font-semibold uppercase tracking-wider text-white">
               Quick Links
             </h3>
 
             <ul className="space-y-3 text-sm">
+
               {quickLinks.map((link) => (
                 <li key={link.href}>
+
                   <Link
                     href={link.href}
-                    className="hover:text-amber-400 transition-colors"
+                    className="transition-colors hover:text-amber-400"
                   >
                     {link.label}
                   </Link>
@@ -269,14 +410,20 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 4: Business Address */}
+          {/* ==================================
+              COLUMN 4
+              BUSINESS ADDRESS
+          ================================== */}
+
           <div className="space-y-4">
-            <h3 className="text-white font-heading font-semibold text-sm uppercase tracking-wider border-l-2 border-amber-500 pl-3">
+
+            <h3 className="border-l-2 border-amber-500 pl-3 font-heading text-sm font-semibold uppercase tracking-wider text-white">
               Our Location
             </h3>
 
-            <div className="text-sm space-y-3 text-slate-400 leading-relaxed">
-              <p className="text-white font-semibold">
+            <div className="space-y-3 text-sm leading-relaxed text-slate-400">
+
+              <p className="font-semibold text-white">
                 Autozone Tooling
               </p>
 
@@ -294,180 +441,247 @@ export default function Footer() {
                 Maharashtra, India.
               </address>
 
-              {/* Exact Google Maps Location */}
+              {/* GOOGLE MAPS LOCATION */}
+
               <a
                 href={company.mapUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-amber-400 hover:text-amber-300 font-medium text-sm transition-colors pt-2"
+                className="inline-flex items-center gap-2 pt-2 text-sm font-medium text-amber-400 transition-colors hover:text-amber-300"
               >
                 <LocationIcon />
+
                 Get Directions
+
                 <span aria-hidden="true">↗</span>
               </a>
 
-              {/* Google Maps CTA */}
+              {/* GOOGLE MAPS CTA */}
+
               <a
                 href={company.mapUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-slate-900 border border-slate-700 hover:border-amber-500 hover:text-amber-400 text-slate-300 text-xs font-semibold px-4 py-3 rounded-md transition-all mt-4"
+                className="mt-4 flex items-center justify-center gap-2 rounded-md border border-slate-700 bg-slate-900 px-4 py-3 text-xs font-semibold text-slate-300 transition-all hover:border-amber-500 hover:text-amber-400"
               >
                 <LocationIcon />
+
                 View on Google Maps
               </a>
             </div>
           </div>
 
-          {/* Column 5: Business Details & Connect */}
+          {/* ==================================
+              COLUMN 5
+              BUSINESS DETAILS & CONNECT
+          ================================== */}
+
           <div className="space-y-6">
-            {/* Business Information */}
+
+            {/* BUSINESS INFORMATION */}
+
             <div className="space-y-4">
-              <h3 className="text-white font-heading font-semibold text-sm uppercase tracking-wider border-l-2 border-amber-500 pl-3">
+
+              <h3 className="border-l-2 border-amber-500 pl-3 font-heading text-sm font-semibold uppercase tracking-wider text-white">
                 Business Details
               </h3>
 
-              <div className="text-sm space-y-3 text-slate-400">
+              <div className="space-y-3 text-sm text-slate-400">
+
+                {/* BUSINESS NAME */}
+
                 <div>
-                  <p className="text-xs text-slate-500 mb-1">
+                  <p className="mb-1 text-xs text-slate-500">
                     Business Name
                   </p>
-                  <p className="text-white font-medium">
+
+                  <p className="font-medium text-white">
                     {company.name}
                   </p>
                 </div>
 
+                {/* GSTIN */}
+
                 <div>
-                  <p className="text-xs text-slate-500 mb-1">
+                  <p className="mb-1 text-xs text-slate-500">
                     GSTIN
                   </p>
-                  <p className="text-amber-400 font-semibold text-xs tracking-wide break-all">
+
+                  <p className="break-all text-xs font-semibold tracking-wide text-amber-400">
                     {company.gstin}
                   </p>
                 </div>
 
+                {/* SPECIALIZATION */}
+
                 <div>
-                  <p className="text-xs text-slate-500 mb-1">
+                  <p className="mb-1 text-xs text-slate-500">
                     Specialization
                   </p>
-                  <p className="text-slate-300 text-sm leading-relaxed">
+
+                  <p className="text-sm leading-relaxed text-slate-300">
                     CNC Press Brake Tooling & Shearing Blades
                   </p>
                 </div>
               </div>
             </div>
 
-            {/* Direct Contact Actions */}
+            {/* ==================================
+                CONNECT WITH US
+            ================================== */}
+
             <div className="space-y-3">
-              <h3 className="text-white font-heading font-semibold text-sm uppercase tracking-wider border-l-2 border-amber-500 pl-3">
+
+              <h3 className="border-l-2 border-amber-500 pl-3 font-heading text-sm font-semibold uppercase tracking-wider text-white">
                 Connect With Us
               </h3>
 
-              <p className="text-xs text-slate-400 leading-relaxed">
+              <p className="text-xs leading-relaxed text-slate-400">
                 Have a tooling requirement? Contact our team
                 for product information and quotations.
               </p>
+
+              {/* WHATSAPP */}
 
               <a
                 href={`https://wa.me/${contacts[0].whatsapp}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold px-4 py-3 rounded-md transition-colors"
+                className="flex items-center justify-center gap-2 rounded-md bg-emerald-600 px-4 py-3 text-xs font-semibold text-white transition-colors hover:bg-emerald-500"
               >
                 <WhatsAppIcon />
+
                 WhatsApp Inquiry
               </a>
 
+              {/* REQUEST QUOTE */}
+
               <Link
                 href="/contact"
-                className="flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-semibold px-4 py-3 rounded-md transition-colors"
+                className="flex items-center justify-center gap-2 rounded-md bg-amber-500 px-4 py-3 text-xs font-semibold text-slate-950 transition-colors hover:bg-amber-400"
               >
                 Request a Quote
               </Link>
 
+              {/* EMAIL */}
+
               <a
                 href={`mailto:${company.email}`}
-                className="flex items-center justify-center gap-2 border border-slate-700 hover:border-amber-500 text-slate-300 hover:text-amber-400 text-xs font-semibold px-4 py-3 rounded-md transition-colors"
+                className="flex items-center justify-center gap-2 rounded-md border border-slate-700 px-4 py-3 text-xs font-semibold text-slate-300 transition-colors hover:border-amber-500 hover:text-amber-400"
               >
                 Send an Email
               </a>
+
+              {/* ==================================
+                  INDIAMART PROFILE BUTTON
+              ================================== */}
+
+              <a
+                href={company.indiamart}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="View Autozone Tooling IndiaMART Profile"
+                className="flex items-center justify-center gap-2 rounded-md border border-blue-500/40 bg-blue-500/10 px-4 py-3 text-xs font-semibold text-blue-300 transition-all hover:border-blue-400 hover:bg-blue-500/20 hover:text-white"
+              >
+                <IndiaMartIcon className="h-4 w-4" />
+
+                View Our IndiaMART Profile
+
+                <span aria-hidden="true">↗</span>
+              </a>
             </div>
 
-            {/* Social Links */}
+            {/* ==================================
+                SOCIAL NETWORK LINKS
+            ================================== */}
+
             <div className="space-y-3 pt-2">
-              <h4 className="text-white text-xs font-semibold uppercase tracking-wider">
+
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-white">
                 Our Social Networks
               </h4>
 
-              <a
-                href={company.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 text-xs text-slate-400 hover:text-amber-400 transition-colors"
-              >
-                <FacebookIcon className="w-4 h-4" />
-                Facebook
-                <span aria-hidden="true">↗</span>
-              </a>
+              {socialLinks.map((social) => {
+                const Icon = social.Icon;
 
-              <a
-                href={company.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 text-xs text-slate-400 hover:text-amber-400 transition-colors"
-              >
-                <LinkedInIcon className="w-4 h-4" />
-                LinkedIn
-                <span aria-hidden="true">↗</span>
-              </a>
+                return (
+                  <a
+                    key={social.name}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 text-xs text-slate-400 transition-colors hover:text-amber-400"
+                  >
+                    <Icon className="h-4 w-4" />
+
+                    {social.name}
+
+                    <span aria-hidden="true">↗</span>
+                  </a>
+                );
+              })}
             </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom Copyright & Legal Bar */}
+      {/* ======================================
+          BOTTOM COPYRIGHT & LEGAL BAR
+      ====================================== */}
+
       <div className="border-t border-slate-800 bg-slate-950/80 py-6">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 text-xs text-slate-500 sm:flex-row sm:px-6 lg:px-8">
+
+          {/* COPYRIGHT */}
+
           <p className="text-center sm:text-left">
             &copy; {new Date().getFullYear()} Autozone Tooling.
             All rights reserved.
           </p>
 
-          <div className="flex flex-wrap justify-center items-center gap-5">
-            {/* Facebook */}
-            <a
-              href={company.facebook}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-              className="hover:text-amber-400 transition-colors"
-            >
-              <FacebookIcon className="w-4 h-4" />
-            </a>
+          {/* SOCIAL & LEGAL LINKS */}
 
-            {/* LinkedIn */}
-            <a
-              href={company.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-              className="hover:text-amber-400 transition-colors"
-            >
-              <LinkedInIcon className="w-4 h-4" />
-            </a>
+          <div className="flex flex-wrap items-center justify-center gap-5">
 
-            <span className="hidden sm:block w-px h-4 bg-slate-800" />
+            {/* SOCIAL ICONS */}
+
+            {socialLinks.map((social) => {
+              const Icon = social.Icon;
+
+              return (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.name}
+                  title={social.name}
+                  className="transition-colors hover:text-amber-400"
+                >
+                  <Icon className="h-4 w-4" />
+                </a>
+              );
+            })}
+
+            {/* DIVIDER */}
+
+            <span className="hidden h-4 w-px bg-slate-800 sm:block" />
+
+            {/* PRIVACY POLICY */}
 
             <Link
               href="/privacy"
-              className="hover:text-slate-300 transition-colors"
+              className="transition-colors hover:text-slate-300"
             >
               Privacy Policy
             </Link>
 
+            {/* TERMS OF SERVICE */}
+
             <Link
               href="/terms"
-              className="hover:text-slate-300 transition-colors"
+              className="transition-colors hover:text-slate-300"
             >
               Terms of Service
             </Link>

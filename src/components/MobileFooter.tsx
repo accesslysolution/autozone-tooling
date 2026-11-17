@@ -18,6 +18,7 @@ import {
   FiFacebook,
   FiLinkedin,
   FiExternalLink,
+  FiShoppingBag,
 } from "react-icons/fi";
 
 /* ==========================================
@@ -59,12 +60,14 @@ const company = {
 
   linkedin:
     "https://www.linkedin.com/in/autozone-tooling-23721b291/",
+
+  indiamart:
+    "https://www.indiamart.com/autozonetooling/profile.html",
 };
 
 /* ==========================================
    QUICK LINKS
 ========================================== */
-
 
 const quickLinks = [
   { label: "Home", href: "/" },
@@ -74,7 +77,6 @@ const quickLinks = [
   { label: "About Us", href: "/about" },
   { label: "Contact Us", href: "/contact" },
 ];
-
 
 /* ==========================================
    SOCIAL LINKS
@@ -95,7 +97,18 @@ const socialLinks = [
     hover:
       "hover:bg-[#0A66C2] hover:border-[#0A66C2] hover:text-white",
   },
+  {
+    name: "IndiaMART",
+    href: company.indiamart,
+    icon: FiShoppingBag,
+    hover:
+      "hover:bg-[#2563EB] hover:border-[#2563EB] hover:text-white",
+  },
 ];
+
+/* ==========================================
+   ACCORDION TYPES
+========================================== */
 
 type AccordionKey =
   | "links"
@@ -116,6 +129,10 @@ export default function MobileFooter() {
     );
   };
 
+  /* ==========================================
+     WHATSAPP MESSAGE
+  ========================================== */
+
   const whatsappMessage = encodeURIComponent(
     "Hello Autozone Tooling, I would like to enquire about your press brake tooling products."
   );
@@ -125,6 +142,7 @@ export default function MobileFooter() {
 
   return (
     <footer className="border-t border-slate-800 bg-slate-950 font-sans text-white">
+
       <div className="mx-auto max-w-lg px-5 pb-8 pt-12">
 
         {/* ==================================
@@ -202,6 +220,8 @@ export default function MobileFooter() {
 
           <div className="mt-3 grid grid-cols-2 gap-3">
 
+            {/* WHATSAPP */}
+
             <a
               href={whatsappUrl}
               target="_blank"
@@ -215,6 +235,8 @@ export default function MobileFooter() {
               WhatsApp
             </a>
 
+            {/* CALL */}
+
             <a
               href={`tel:${contacts[0].phoneLink}`}
               className="flex min-h-11 items-center justify-center gap-2 rounded-lg border border-slate-700 bg-slate-800 px-3 text-[12px] font-semibold text-white transition-colors active:border-amber-400"
@@ -225,7 +247,6 @@ export default function MobileFooter() {
               />
               Call Us
             </a>
-
           </div>
         </div>
 
@@ -275,7 +296,6 @@ export default function MobileFooter() {
 
                 <FiExternalLink size={13} />
               </a>
-
             </div>
           </div>
         </div>
@@ -286,21 +306,19 @@ export default function MobileFooter() {
 
         <div className="mt-9 rounded-xl border border-slate-800 bg-slate-900/60 p-5">
 
-          <div className="flex items-center justify-between gap-3">
+          <div>
+            <h3 className="text-[13px] font-semibold text-white">
+              Follow Autozone Tooling
+            </h3>
 
-            <div>
-              <h3 className="text-[13px] font-semibold text-white">
-                Follow Autozone Tooling
-              </h3>
-
-              <p className="mt-1.5 text-[11px] leading-relaxed text-slate-400">
-                Stay connected for updates and industry insights.
-              </p>
-            </div>
-
+            <p className="mt-1.5 text-[11px] leading-relaxed text-slate-400">
+              Stay connected for updates and industry insights.
+            </p>
           </div>
 
-          <div className="mt-5 grid grid-cols-2 gap-3">
+          {/* UPDATED 3-COLUMN SOCIAL GRID */}
+
+          <div className="mt-5 grid grid-cols-3 gap-2">
 
             {socialLinks.map((social) => {
               const Icon = social.icon;
@@ -312,19 +330,55 @@ export default function MobileFooter() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`Autozone Tooling on ${social.name}`}
-                  className={`flex min-h-12 items-center justify-center gap-2 rounded-lg border border-slate-700 bg-slate-800 px-3 text-[12px] font-semibold text-slate-300 transition-all duration-200 active:scale-[0.98] ${social.hover}`}
+                  title={social.name}
+                  className={`flex min-h-14 flex-col items-center justify-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800 px-2 py-2 text-[11px] font-semibold text-slate-300 transition-all duration-200 active:scale-[0.98] ${social.hover}`}
                 >
-                  <Icon size={17} />
-                  {social.name}
-                  <FiArrowUpRight
-                    size={13}
-                    className="opacity-60"
-                  />
+                  <Icon size={18} />
+
+                  <span className="text-center">
+                    {social.name}
+                  </span>
                 </a>
               );
             })}
-
           </div>
+        </div>
+
+        {/* ==================================
+            INDIAMART PROFILE CTA
+        ================================== */}
+
+        <div className="mt-5 rounded-xl border border-blue-500/25 bg-gradient-to-br from-blue-500/10 via-slate-900 to-slate-900 p-5">
+
+          <div className="flex items-start gap-3">
+
+            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-blue-400/20 bg-blue-500/10 text-blue-300">
+              <FiShoppingBag size={20} />
+            </div>
+
+            <div className="min-w-0 flex-1">
+
+              <h3 className="text-[13px] font-semibold text-white">
+                Explore Us on IndiaMART
+              </h3>
+
+              <p className="mt-2 text-[11px] leading-[1.8] text-slate-400">
+                Visit our IndiaMART business profile
+                for product information and enquiries.
+              </p>
+            </div>
+          </div>
+
+          <a
+            href={company.indiamart}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-4 flex min-h-11 items-center justify-center gap-2 rounded-lg border border-blue-500/40 bg-blue-500/15 px-4 text-[12px] font-semibold text-blue-200 transition-colors hover:bg-blue-500/25 active:bg-blue-500/30"
+          >
+            View Our IndiaMART Profile
+
+            <FiExternalLink size={14} />
+          </a>
         </div>
 
         {/* ==================================
@@ -333,7 +387,10 @@ export default function MobileFooter() {
 
         <div className="mt-8 divide-y divide-slate-800 border-y border-slate-800">
 
-          {/* QUICK LINKS */}
+          {/* ==================================
+              QUICK LINKS
+          ================================== */}
+
           <div>
             <button
               type="button"
@@ -370,8 +427,10 @@ export default function MobileFooter() {
                 className="pb-5 pl-8"
               >
                 <ul className="space-y-1">
+
                   {quickLinks.map((link) => (
                     <li key={link.href}>
+
                       <Link
                         href={link.href}
                         className="flex min-h-10 items-center justify-between py-2 text-[12px] text-slate-300 transition-colors active:text-amber-400"
@@ -390,7 +449,10 @@ export default function MobileFooter() {
             )}
           </div>
 
-          {/* CONTACT DETAILS */}
+          {/* ==================================
+              CONTACT DETAILS
+          ================================== */}
+
           <div>
             <button
               type="button"
@@ -425,8 +487,10 @@ export default function MobileFooter() {
                 id="mobile-footer-contacts"
                 className="space-y-5 pb-6 pl-8"
               >
+
                 {contacts.map((contact) => (
                   <div key={contact.phoneLink}>
+
                     <p className="text-[11px] font-semibold text-amber-400">
                       {contact.name}
                     </p>
@@ -442,13 +506,16 @@ export default function MobileFooter() {
                       href={`https://wa.me/${contact.whatsapp}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="mt-1 flex w-fit min-h-8 items-center gap-1.5 text-[11px] font-medium text-emerald-400"
+                      className="mt-1 flex min-h-8 w-fit items-center gap-1.5 text-[11px] font-medium text-emerald-400"
                     >
                       <FiMessageCircle size={14} />
+
                       WhatsApp
                     </a>
                   </div>
                 ))}
+
+                {/* EMAIL */}
 
                 <a
                   href={`mailto:${company.email}`}
@@ -458,13 +525,17 @@ export default function MobileFooter() {
                     size={16}
                     className="shrink-0 text-amber-400"
                   />
+
                   {company.email}
                 </a>
               </div>
             )}
           </div>
 
-          {/* BUSINESS INFORMATION */}
+          {/* ==================================
+              BUSINESS INFORMATION
+          ================================== */}
+
           <div>
             <button
               type="button"
@@ -499,6 +570,9 @@ export default function MobileFooter() {
                 id="mobile-footer-business"
                 className="space-y-5 pb-6 pl-8"
               >
+
+                {/* BUSINESS NAME */}
+
                 <div>
                   <p className="text-[11px] text-slate-500">
                     Business Name
@@ -508,6 +582,8 @@ export default function MobileFooter() {
                     {company.name}
                   </p>
                 </div>
+
+                {/* GSTIN */}
 
                 <div>
                   <p className="text-[11px] text-slate-500">
@@ -519,6 +595,8 @@ export default function MobileFooter() {
                   </p>
                 </div>
 
+                {/* SPECIALIZATION */}
+
                 <div>
                   <p className="text-[11px] text-slate-500">
                     Specialization
@@ -529,6 +607,27 @@ export default function MobileFooter() {
                     Punches, Press Brake Dies, Shearing
                     Blades, and Custom Tooling Solutions.
                   </p>
+                </div>
+
+                {/* INDIAMART BUSINESS PROFILE */}
+
+                <div>
+                  <p className="text-[11px] text-slate-500">
+                    IndiaMART Business Profile
+                  </p>
+
+                  <a
+                    href={company.indiamart}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-2 inline-flex min-h-9 items-center gap-2 text-[12px] font-semibold text-amber-400 transition-colors hover:text-amber-300"
+                  >
+                    <FiShoppingBag size={15} />
+
+                    View IndiaMART Profile
+
+                    <FiExternalLink size={13} />
+                  </a>
                 </div>
               </div>
             )}
@@ -554,7 +653,6 @@ export default function MobileFooter() {
           >
             Terms of Service
           </Link>
-
         </div>
 
         {/* ==================================
@@ -572,7 +670,6 @@ export default function MobileFooter() {
           <p className="mt-3 text-[10px] font-medium uppercase tracking-[0.15em] text-slate-600">
             Precision Tooling. Reliable Partnerships.
           </p>
-
         </div>
       </div>
     </footer>
