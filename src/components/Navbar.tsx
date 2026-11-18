@@ -486,7 +486,7 @@ export default function Navbar() {
           >
             <div className="relative flex h-11 w-11 shrink-0 items-center justify-center sm:h-12 sm:w-12">
               <Image
-                src="/images/logo.png"
+                src="/images/logo.avif"
                 alt="Autozone Tooling Logo"
                 fill
                 sizes="(max-width: 640px) 44px, 48px"

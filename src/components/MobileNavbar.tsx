@@ -819,7 +819,7 @@ export default function MobileNavbar() {
             >
               <div className="relative h-11 w-11 shrink-0">
                 <Image
-                  src="/images/logo.png"
+                  src="/images/logo.avif"
                   alt="Autozone Tooling Logo"
                   fill
                   sizes="44px"

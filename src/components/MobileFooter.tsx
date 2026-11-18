@@ -167,7 +167,7 @@ export default function MobileFooter() {
           >
             <div className="relative h-12 w-12 shrink-0">
               <Image
-                src="/images/logo.png"
+                src="/images/logo.avif"
                 alt="Autozone Tooling Logo"
                 fill
                 sizes="48px"
