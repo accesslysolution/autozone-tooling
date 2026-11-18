@@ -39,6 +39,9 @@ const company = {
   facebook:
     "https://www.facebook.com/people/Autozone-Tooling/61593862056621/",
 
+  instagram:
+    "https://www.instagram.com/autozonetooling/",
+
   linkedin:
     "https://www.linkedin.com/in/autozone-tooling-23721b291/",
 
@@ -81,6 +84,52 @@ function FacebookIcon({
 }
 
 /* ==========================================
+   INSTAGRAM ICON
+========================================== */
+
+function InstagramIcon({
+  className = "w-5 h-5",
+}: {
+  className?: string;
+}) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <rect
+        x="2"
+        y="2"
+        width="20"
+        height="20"
+        rx="5"
+        ry="5"
+      />
+
+      <circle
+        cx="12"
+        cy="12"
+        r="4"
+      />
+
+      <circle
+        cx="17.5"
+        cy="6.5"
+        r="1"
+        fill="currentColor"
+        stroke="none"
+      />
+    </svg>
+  );
+}
+
+/* ==========================================
    LINKEDIN ICON
 ========================================== */
 
@@ -103,7 +152,6 @@ function LinkedInIcon({
 
 /* ==========================================
    INDIAMART ICON
-
    MARKETPLACE SYMBOL
    NO EXTERNAL ICON PACKAGE REQUIRED
 ========================================== */
@@ -200,6 +248,13 @@ const socialLinks = [
       "hover:bg-blue-600 hover:border-blue-600 hover:text-white",
   },
   {
+    name: "Instagram",
+    href: company.instagram,
+    Icon: InstagramIcon,
+    hoverClass:
+      "hover:bg-pink-600 hover:border-pink-600 hover:text-white",
+  },
+  {
     name: "LinkedIn",
     href: company.linkedin,
     Icon: LinkedInIcon,
@@ -228,7 +283,6 @@ export default function Footer() {
       ====================================== */}
 
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-
         <div className="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-5 lg:gap-8">
 
           {/* ==================================
@@ -255,7 +309,6 @@ export default function Footer() {
               </div>
 
               <div className="flex flex-col">
-
                 <span className="font-heading text-xl font-bold uppercase tracking-wide text-white">
                   AUTOZONE
                 </span>
@@ -279,7 +332,6 @@ export default function Footer() {
             {/* SPECIALIZATION CARD */}
 
             <div className="space-y-2 rounded-lg border border-slate-800/80 bg-slate-900/80 p-4">
-
               <span className="block text-xs font-semibold uppercase tracking-wider text-amber-400">
                 Our Specialization
               </span>
@@ -296,7 +348,6 @@ export default function Footer() {
             ================================== */}
 
             <div className="space-y-4 pt-2 text-sm">
-
               <h3 className="font-semibold text-white">
                 Contact Details
               </h3>
@@ -306,7 +357,6 @@ export default function Footer() {
                   key={contact.phoneLink}
                   className="space-y-1.5"
                 >
-
                   <p className="text-xs font-semibold text-amber-400">
                     {contact.name}
                   </p>
@@ -325,7 +375,6 @@ export default function Footer() {
                     className="inline-flex items-center gap-1.5 text-xs text-emerald-400 transition-colors hover:text-emerald-300"
                   >
                     <WhatsAppIcon />
-
                     WhatsApp
                   </a>
                 </div>
@@ -348,7 +397,6 @@ export default function Footer() {
             ================================== */}
 
             <div className="space-y-3 pt-3">
-
               <h3 className="text-sm font-semibold text-white">
                 Follow Autozone Tooling
               </h3>
@@ -361,7 +409,6 @@ export default function Footer() {
               {/* SOCIAL ICONS */}
 
               <div className="flex items-center gap-3">
-
                 {socialLinks.map((social) => {
                   const Icon = social.Icon;
 
@@ -389,16 +436,13 @@ export default function Footer() {
           ================================== */}
 
           <div className="space-y-4">
-
             <h3 className="border-l-2 border-amber-500 pl-3 font-heading text-sm font-semibold uppercase tracking-wider text-white">
               Quick Links
             </h3>
 
             <ul className="space-y-3 text-sm">
-
               {quickLinks.map((link) => (
                 <li key={link.href}>
-
                   <Link
                     href={link.href}
                     className="transition-colors hover:text-amber-400"
@@ -416,13 +460,11 @@ export default function Footer() {
           ================================== */}
 
           <div className="space-y-4">
-
             <h3 className="border-l-2 border-amber-500 pl-3 font-heading text-sm font-semibold uppercase tracking-wider text-white">
               Our Location
             </h3>
 
             <div className="space-y-3 text-sm leading-relaxed text-slate-400">
-
               <p className="font-semibold text-white">
                 Autozone Tooling
               </p>
@@ -481,7 +523,6 @@ export default function Footer() {
             {/* BUSINESS INFORMATION */}
 
             <div className="space-y-4">
-
               <h3 className="border-l-2 border-amber-500 pl-3 font-heading text-sm font-semibold uppercase tracking-wider text-white">
                 Business Details
               </h3>
@@ -531,7 +572,6 @@ export default function Footer() {
             ================================== */}
 
             <div className="space-y-3">
-
               <h3 className="border-l-2 border-amber-500 pl-3 font-heading text-sm font-semibold uppercase tracking-wider text-white">
                 Connect With Us
               </h3>
@@ -596,7 +636,6 @@ export default function Footer() {
             ================================== */}
 
             <div className="space-y-3 pt-2">
-
               <h4 className="text-xs font-semibold uppercase tracking-wider text-white">
                 Our Social Networks
               </h4>
@@ -630,7 +669,6 @@ export default function Footer() {
       ====================================== */}
 
       <div className="border-t border-slate-800 bg-slate-950/80 py-6">
-
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 text-xs text-slate-500 sm:flex-row sm:px-6 lg:px-8">
 
           {/* COPYRIGHT */}
@@ -655,7 +693,7 @@ export default function Footer() {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={social.name}
+                  aria-label={`Autozone Tooling on ${social.name}`}
                   title={social.name}
                   className="transition-colors hover:text-amber-400"
                 >

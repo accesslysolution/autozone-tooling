@@ -16,6 +16,7 @@ import {
   FiFileText,
   FiBriefcase,
   FiFacebook,
+  FiInstagram,
   FiLinkedin,
   FiExternalLink,
   FiShoppingBag,
@@ -58,6 +59,9 @@ const company = {
   facebook:
     "https://www.facebook.com/people/Autozone-Tooling/61593862056621/",
 
+  instagram:
+    "https://www.instagram.com/autozonetooling/",
+
   linkedin:
     "https://www.linkedin.com/in/autozone-tooling-23721b291/",
 
@@ -89,6 +93,13 @@ const socialLinks = [
     icon: FiFacebook,
     hover:
       "hover:bg-blue-600 hover:border-blue-600 hover:text-white",
+  },
+  {
+    name: "Instagram",
+    href: company.instagram,
+    icon: FiInstagram,
+    hover:
+      "hover:bg-pink-600 hover:border-pink-600 hover:text-white",
   },
   {
     name: "LinkedIn",
@@ -142,7 +153,6 @@ export default function MobileFooter() {
 
   return (
     <footer className="border-t border-slate-800 bg-slate-950 font-sans text-white">
-
       <div className="mx-auto max-w-lg px-5 pb-8 pt-12">
 
         {/* ==================================
@@ -188,7 +198,6 @@ export default function MobileFooter() {
         ================================== */}
 
         <div className="mt-8 rounded-2xl border border-slate-700 bg-slate-900 p-5">
-
           <div className="flex items-center gap-2">
             <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
 
@@ -256,13 +265,11 @@ export default function MobileFooter() {
 
         <div className="mt-9">
           <div className="flex items-start gap-3">
-
             <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-900 text-amber-400">
               <FiMapPin size={19} />
             </span>
 
             <div className="min-w-0 flex-1">
-
               <h3 className="text-[13px] font-semibold text-white">
                 Visit Our Facility
               </h3>
@@ -305,7 +312,6 @@ export default function MobileFooter() {
         ================================== */}
 
         <div className="mt-9 rounded-xl border border-slate-800 bg-slate-900/60 p-5">
-
           <div>
             <h3 className="text-[13px] font-semibold text-white">
               Follow Autozone Tooling
@@ -316,10 +322,9 @@ export default function MobileFooter() {
             </p>
           </div>
 
-          {/* UPDATED 3-COLUMN SOCIAL GRID */}
+          {/* FOUR SOCIAL LINKS - TWO-COLUMN GRID */}
 
-          <div className="mt-5 grid grid-cols-3 gap-2">
-
+          <div className="mt-5 grid grid-cols-2 gap-3">
             {socialLinks.map((social) => {
               const Icon = social.icon;
 
@@ -331,13 +336,18 @@ export default function MobileFooter() {
                   rel="noopener noreferrer"
                   aria-label={`Autozone Tooling on ${social.name}`}
                   title={social.name}
-                  className={`flex min-h-14 flex-col items-center justify-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800 px-2 py-2 text-[11px] font-semibold text-slate-300 transition-all duration-200 active:scale-[0.98] ${social.hover}`}
+                  className={`flex min-h-14 items-center justify-center gap-2 rounded-lg border border-slate-700 bg-slate-800 px-2 py-3 text-[12px] font-semibold text-slate-300 transition-all duration-200 active:scale-[0.98] ${social.hover}`}
                 >
                   <Icon size={18} />
 
                   <span className="text-center">
                     {social.name}
                   </span>
+
+                  <FiArrowUpRight
+                    size={13}
+                    className="shrink-0 opacity-60"
+                  />
                 </a>
               );
             })}
@@ -349,15 +359,12 @@ export default function MobileFooter() {
         ================================== */}
 
         <div className="mt-5 rounded-xl border border-blue-500/25 bg-gradient-to-br from-blue-500/10 via-slate-900 to-slate-900 p-5">
-
           <div className="flex items-start gap-3">
-
             <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-blue-400/20 bg-blue-500/10 text-blue-300">
               <FiShoppingBag size={20} />
             </div>
 
             <div className="min-w-0 flex-1">
-
               <h3 className="text-[13px] font-semibold text-white">
                 Explore Us on IndiaMART
               </h3>
@@ -427,10 +434,8 @@ export default function MobileFooter() {
                 className="pb-5 pl-8"
               >
                 <ul className="space-y-1">
-
                   {quickLinks.map((link) => (
                     <li key={link.href}>
-
                       <Link
                         href={link.href}
                         className="flex min-h-10 items-center justify-between py-2 text-[12px] text-slate-300 transition-colors active:text-amber-400"
@@ -487,10 +492,8 @@ export default function MobileFooter() {
                 id="mobile-footer-contacts"
                 className="space-y-5 pb-6 pl-8"
               >
-
                 {contacts.map((contact) => (
                   <div key={contact.phoneLink}>
-
                     <p className="text-[11px] font-semibold text-amber-400">
                       {contact.name}
                     </p>
@@ -570,7 +573,6 @@ export default function MobileFooter() {
                 id="mobile-footer-business"
                 className="space-y-5 pb-6 pl-8"
               >
-
                 {/* BUSINESS NAME */}
 
                 <div>
@@ -639,7 +641,6 @@ export default function MobileFooter() {
         ================================== */}
 
         <div className="mt-7 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
-
           <Link
             href="/privacy"
             className="text-[11px] text-slate-400 transition-colors active:text-amber-400"
@@ -660,7 +661,6 @@ export default function MobileFooter() {
         ================================== */}
 
         <div className="mt-7 border-t border-slate-800 pt-6 text-center">
-
           <p className="text-[11px] leading-relaxed text-slate-500">
             © {new Date().getFullYear()} Autozone Tooling.
             <br />

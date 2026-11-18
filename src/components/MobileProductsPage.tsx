@@ -218,14 +218,14 @@ const products: Product[] = [
 
   {
     id: 23,
-    name: "Press Brake Tooling Storage Rack",
+    name: "Press Brake Tooling Storage Rack Type-1",
     description:
       "Organized industrial press brake tooling storage system designed for safe handling, identification and efficient access to bending tools.",
     image: "/images/products/press-brake-2.avif",
   },
   {
     id: 24,
-    name: "Press Brake Punch Storage System",
+    name: "Press Brake Punch Storage System Type-2",
     description:
       "Heavy-duty tooling rack for organized storage of precision press brake punches and forming tools.",
     image: "/images/products/press brake-1.avif",

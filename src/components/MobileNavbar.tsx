@@ -9,6 +9,7 @@ import { usePathname } from "next/navigation";
 
 import {
   FiFacebook,
+  FiInstagram,
   FiLinkedin,
   FiArrowUpRight,
   FiMapPin,
@@ -31,31 +32,18 @@ const navLinks = [
 ];
 
 /* ==========================================
-   UPDATED PRODUCT CATEGORIES
-   MATCHES PRODUCTS PAGE
+   PRODUCT CATEGORIES
 ========================================== */
 
 const productCategories = [
-  {
-    name: "Press Brake Tool",
-    id: "press-brake-tool",
-  },
-  {
-    name: "Press Brake Punch",
-    id: "press-brake-punch",
-  },
-  {
-    name: "Press Brake Dies",
-    id: "press-brake-dies",
-  },
+  { name: "Press Brake Tool", id: "press-brake-tool" },
+  { name: "Press Brake Punch", id: "press-brake-punch" },
+  { name: "Press Brake Dies", id: "press-brake-dies" },
   {
     name: "Radius Tools Holders & Inserts",
     id: "radius-tools-holder-inserts",
   },
-  {
-    name: "Punch Clamps",
-    id: "punch-clamps",
-  },
+  { name: "Punch Clamps", id: "punch-clamps" },
   {
     name: "Press Brake Hemming Tools",
     id: "press-brake-hemming-tools",
@@ -64,10 +52,7 @@ const productCategories = [
     name: "Self Centering 2V Die",
     id: "self-centering-2v-die",
   },
-  {
-    name: "Shear Blade",
-    id: "shear-blade",
-  },
+  { name: "Shear Blade", id: "shear-blade" },
   {
     name: "Joggle Tool & Insert",
     id: "joggle-tool-insert",
@@ -87,30 +72,12 @@ const productCategories = [
 ========================================== */
 
 const designCategories = [
-  {
-    name: "Product Design",
-    id: "product-design",
-  },
-  {
-    name: "Die Design",
-    id: "die-design",
-  },
-  {
-    name: "Fixture Design",
-    id: "fixture-design",
-  },
-  {
-    name: "Mould Design",
-    id: "mould-design",
-  },
-  {
-    name: "Electrode Design",
-    id: "electrode-design",
-  },
-  {
-    name: "2D to 3D Design",
-    id: "2d-to-3d-design",
-  },
+  { name: "Product Design", id: "product-design" },
+  { name: "Die Design", id: "die-design" },
+  { name: "Fixture Design", id: "fixture-design" },
+  { name: "Mould Design", id: "mould-design" },
+  { name: "Electrode Design", id: "electrode-design" },
+  { name: "2D to 3D Design", id: "2d-to-3d-design" },
   {
     name: "Manufacturing Drawings",
     id: "manufacturing-drawings",
@@ -149,6 +116,9 @@ const company = {
   facebook:
     "https://www.facebook.com/people/Autozone-Tooling/61593862056621/",
 
+  instagram:
+    "https://www.instagram.com/autozonetooling/",
+
   linkedin:
     "https://www.linkedin.com/in/autozone-tooling-23721b291/",
 };
@@ -162,11 +132,22 @@ const socialLinks = [
     name: "Facebook",
     href: company.facebook,
     icon: FiFacebook,
+    hover:
+      "hover:border-blue-500/50 hover:bg-blue-500/10 hover:text-blue-400",
+  },
+  {
+    name: "Instagram",
+    href: company.instagram,
+    icon: FiInstagram,
+    hover:
+      "hover:border-pink-500/50 hover:bg-pink-500/10 hover:text-pink-400",
   },
   {
     name: "LinkedIn",
     href: company.linkedin,
     icon: FiLinkedin,
+    hover:
+      "hover:border-sky-500/50 hover:bg-sky-500/10 hover:text-sky-400",
   },
 ];
 
@@ -180,14 +161,9 @@ export default function MobileNavbar() {
   const [mounted, setMounted] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const [productsOpen, setProductsOpen] =
-    useState(false);
-
-  const [designOpen, setDesignOpen] =
-    useState(false);
-
-  const [isScrolled, setIsScrolled] =
-    useState(false);
+  const [productsOpen, setProductsOpen] = useState(false);
+  const [designOpen, setDesignOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   /* ==========================================
      CLIENT MOUNT
@@ -240,36 +216,7 @@ export default function MobileNavbar() {
     document.body.style.overflow = "hidden";
 
     return () => {
-      document.body.style.overflow =
-        previousOverflow;
-    };
-  }, [menuOpen]);
-
-  /* ==========================================
-     ESCAPE KEY
-  ========================================== */
-
-  useEffect(() => {
-    if (!menuOpen) return;
-
-    const handleKeyDown = (
-      event: KeyboardEvent
-    ) => {
-      if (event.key === "Escape") {
-        closeMenu();
-      }
-    };
-
-    window.addEventListener(
-      "keydown",
-      handleKeyDown
-    );
-
-    return () => {
-      window.removeEventListener(
-        "keydown",
-        handleKeyDown
-      );
+      document.body.style.overflow = previousOverflow;
     };
   }, [menuOpen]);
 
@@ -291,6 +238,35 @@ export default function MobileNavbar() {
     }
   };
 
+  /* ==========================================
+     ESCAPE KEY
+  ========================================== */
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        setProductsOpen(false);
+        setDesignOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener(
+        "keydown",
+        handleKeyDown
+      );
+    };
+  }, [menuOpen]);
+
+  /* ==========================================
+     ACTIVE LINK CHECK
+  ========================================== */
+
   const isActiveLink = (href: string) => {
     return href === "/"
       ? pathname === "/"
@@ -299,7 +275,7 @@ export default function MobileNavbar() {
   };
 
   /* ==========================================
-     CATEGORY NAVIGATION HELPER
+     CATEGORY NAVIGATION
   ========================================== */
 
   const handleCategoryClick = (
@@ -308,16 +284,11 @@ export default function MobileNavbar() {
   ) => {
     closeMenu();
 
-    // On another page, Next.js handles
-    // navigation using the URL hash.
     if (pathname !== page) return;
 
-    // On the same page, scroll smoothly
-    // to the matching category section.
     window.requestAnimationFrame(() => {
       window.requestAnimationFrame(() => {
-        const target =
-          document.getElementById(id);
+        const target = document.getElementById(id);
 
         if (!target) return;
 
@@ -329,26 +300,12 @@ export default function MobileNavbar() {
     });
   };
 
-  /* ==========================================
-     PRODUCT CATEGORY NAVIGATION
-  ========================================== */
-
   const handleProductClick = (id: string) => {
-    handleCategoryClick(
-      "/products",
-      `mobile-${id}`
-    );
+    handleCategoryClick("/products", `mobile-${id}`);
   };
 
-  /* ==========================================
-     DESIGN CATEGORY NAVIGATION
-  ========================================== */
-
   const handleDesignClick = (id: string) => {
-    handleCategoryClick(
-      "/design-services",
-      id
-    );
+    handleCategoryClick("/design-services", id);
   };
 
   /* ==========================================
@@ -375,9 +332,7 @@ export default function MobileNavbar() {
         className="absolute inset-y-0 right-0 flex w-[min(88vw,380px)] flex-col overflow-hidden border-l border-slate-700 bg-slate-950 shadow-2xl"
       >
 
-        {/* ==================================
-            DRAWER HEADER
-        ================================== */}
+        {/* DRAWER HEADER */}
 
         <div className="flex shrink-0 items-center justify-between border-b border-slate-800 px-5 py-5">
           <div>
@@ -413,18 +368,13 @@ export default function MobileNavbar() {
           </button>
         </div>
 
-        {/* ==================================
-            SCROLLABLE MENU
-        ================================== */}
+        {/* SCROLLABLE MENU */}
 
         <div className="min-h-0 flex-1 space-y-2 overflow-y-auto overscroll-contain px-4 py-5">
           {navLinks.map((link) => {
-            const isActive =
-              isActiveLink(link.href);
+            const isActive = isActiveLink(link.href);
 
-            /* ==================================
-               PRODUCTS DROPDOWN
-            ================================== */
+            /* PRODUCTS DROPDOWN */
 
             if (link.name === "Products") {
               return (
@@ -454,7 +404,6 @@ export default function MobileNavbar() {
                         setProductsOpen(
                           (previous) => !previous
                         );
-
                         setDesignOpen(false);
                       }}
                       aria-expanded={productsOpen}
@@ -468,15 +417,11 @@ export default function MobileNavbar() {
                     >
                       <FiChevronDown
                         className={`h-4 w-4 transition-transform duration-300 ${
-                          productsOpen
-                            ? "rotate-180"
-                            : ""
+                          productsOpen ? "rotate-180" : ""
                         }`}
                       />
                     </button>
                   </div>
-
-                  {/* PRODUCT SUBMENU */}
 
                   {productsOpen && (
                     <div
@@ -493,16 +438,15 @@ export default function MobileNavbar() {
                             key={category.id}
                             href={`/products#mobile-${category.id}`}
                             onClick={() =>
-                              handleProductClick(
-                                category.id
-                              )
+                              handleProductClick(category.id)
                             }
                             className="flex items-center gap-3 rounded-lg px-3 py-3 transition-colors hover:bg-slate-800 active:bg-slate-800"
                           >
                             <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-amber-500/10 text-[10px] font-bold text-amber-400">
-                              {String(
-                                index + 1
-                              ).padStart(2, "0")}
+                              {String(index + 1).padStart(
+                                2,
+                                "0"
+                              )}
                             </span>
 
                             <span className="flex-1 text-xs font-medium leading-relaxed text-slate-300">
@@ -527,9 +471,7 @@ export default function MobileNavbar() {
               );
             }
 
-            /* ==================================
-               DESIGN SERVICES DROPDOWN
-            ================================== */
+            /* DESIGN SERVICES DROPDOWN */
 
             if (link.name === "Design Services") {
               return (
@@ -559,7 +501,6 @@ export default function MobileNavbar() {
                         setDesignOpen(
                           (previous) => !previous
                         );
-
                         setProductsOpen(false);
                       }}
                       aria-expanded={designOpen}
@@ -573,15 +514,11 @@ export default function MobileNavbar() {
                     >
                       <FiChevronDown
                         className={`h-4 w-4 transition-transform duration-300 ${
-                          designOpen
-                            ? "rotate-180"
-                            : ""
+                          designOpen ? "rotate-180" : ""
                         }`}
                       />
                     </button>
                   </div>
-
-                  {/* DESIGN SERVICES SUBMENU */}
 
                   {designOpen && (
                     <div
@@ -603,16 +540,15 @@ export default function MobileNavbar() {
                             key={category.id}
                             href={`/design-services#${category.id}`}
                             onClick={() =>
-                              handleDesignClick(
-                                category.id
-                              )
+                              handleDesignClick(category.id)
                             }
                             className="flex items-center gap-3 rounded-lg px-3 py-3 transition-colors hover:bg-slate-800 active:bg-slate-800"
                           >
                             <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-amber-500/10 text-[10px] font-bold text-amber-400">
-                              {String(
-                                index + 1
-                              ).padStart(2, "0")}
+                              {String(index + 1).padStart(
+                                2,
+                                "0"
+                              )}
                             </span>
 
                             <span className="flex-1 text-xs font-medium leading-relaxed text-slate-300">
@@ -637,9 +573,7 @@ export default function MobileNavbar() {
               );
             }
 
-            /* ==================================
-               STANDARD NAVIGATION LINKS
-            ================================== */
+            /* STANDARD NAVIGATION LINKS */
 
             return (
               <Link
@@ -678,9 +612,6 @@ export default function MobileNavbar() {
             </p>
 
             <div className="space-y-4 rounded-xl bg-slate-900 p-4">
-
-              {/* CONTACT 1 */}
-
               <div>
                 <p className="text-xs text-slate-500">
                   Mr. Santosh Hodage
@@ -693,8 +624,6 @@ export default function MobileNavbar() {
                   {company.phone1}
                 </a>
               </div>
-
-              {/* CONTACT 2 */}
 
               <div>
                 <p className="text-xs text-slate-500">
@@ -709,16 +638,12 @@ export default function MobileNavbar() {
                 </a>
               </div>
 
-              {/* EMAIL */}
-
               <a
                 href={`mailto:${company.email}`}
                 className="block break-all text-xs text-slate-300"
               >
                 {company.email}
               </a>
-
-              {/* GOOGLE MAPS */}
 
               <a
                 href={company.mapUrl}
@@ -750,7 +675,7 @@ export default function MobileNavbar() {
               Follow Autozone Tooling
             </p>
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-3 gap-2">
               {socialLinks.map((social) => {
                 const Icon = social.icon;
 
@@ -761,14 +686,15 @@ export default function MobileNavbar() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`Autozone Tooling on ${social.name}`}
-                    className="flex min-h-12 items-center justify-center gap-2 rounded-lg border border-slate-700 bg-slate-900 px-3 text-xs font-semibold text-slate-300 transition-all hover:border-amber-500/50 hover:text-amber-400 active:bg-slate-800"
+                    title={social.name}
+                    className={`flex min-h-16 flex-col items-center justify-center gap-1.5 rounded-lg border border-slate-700 bg-slate-900 px-2 py-3 text-[11px] font-semibold text-slate-300 transition-all duration-200 active:bg-slate-800 ${social.hover}`}
                   >
-                    <Icon size={17} />
+                    <Icon size={19} />
 
                     <span>{social.name}</span>
 
                     <FiArrowUpRight
-                      size={13}
+                      size={12}
                       className="opacity-60"
                     />
                   </a>
@@ -808,7 +734,6 @@ export default function MobileNavbar() {
           isScrolled ? "shadow-xl" : ""
         }`}
       >
-
         {/* ==================================
             TOP CONTACT STRIP
         ================================== */}
@@ -840,28 +765,26 @@ export default function MobileNavbar() {
               {company.phone1}
             </a>
 
-            {/* SOCIAL ICONS */}
+            {/* FACEBOOK / INSTAGRAM / LINKEDIN */}
 
             <div className="flex items-center gap-1">
-              <a
-                href={company.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Autozone Tooling Facebook"
-                className="flex h-7 w-7 items-center justify-center rounded-md text-slate-400 transition-colors hover:bg-blue-500/10 hover:text-blue-400"
-              >
-                <FiFacebook size={14} />
-              </a>
+              {socialLinks.map((social) => {
+                const Icon = social.icon;
 
-              <a
-                href={company.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Autozone Tooling LinkedIn"
-                className="flex h-7 w-7 items-center justify-center rounded-md text-slate-400 transition-colors hover:bg-sky-500/10 hover:text-sky-400"
-              >
-                <FiLinkedin size={14} />
-              </a>
+                return (
+                  <a
+                    key={social.name}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Autozone Tooling ${social.name}`}
+                    title={social.name}
+                    className={`flex h-7 w-7 items-center justify-center rounded-md text-slate-400 transition-colors ${social.hover}`}
+                  >
+                    <Icon size={14} />
+                  </a>
+                );
+              })}
 
               <span className="mx-1 h-4 w-px bg-slate-700" />
 
@@ -945,16 +868,10 @@ export default function MobileNavbar() {
                 type="button"
                 onClick={toggleMenu}
                 aria-label={
-                  menuOpen
-                    ? "Close menu"
-                    : "Open menu"
+                  menuOpen ? "Close menu" : "Open menu"
                 }
                 aria-expanded={menuOpen}
-                aria-controls={
-                  menuOpen
-                    ? "autozone-mobile-menu"
-                    : undefined
-                }
+                aria-controls="autozone-mobile-menu"
                 className={`relative flex h-10 w-10 touch-manipulation items-center justify-center rounded-lg border transition-colors ${
                   menuOpen
                     ? "border-amber-500 bg-amber-500 text-slate-950"
@@ -990,16 +907,11 @@ export default function MobileNavbar() {
         </div>
       </header>
 
-      {/* ==========================================
-          PORTAL DRAWER
-      ========================================== */}
+      {/* PORTAL DRAWER */}
 
       {mounted &&
         menuOpen &&
-        createPortal(
-          mobileDrawer,
-          document.body
-        )}
+        createPortal(mobileDrawer, document.body)}
     </>
   );
 }

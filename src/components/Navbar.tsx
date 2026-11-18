@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 
 import {
   FiFacebook,
+  FiInstagram,
   FiLinkedin,
   FiArrowUpRight,
   FiChevronDown,
@@ -146,6 +147,9 @@ const company = {
   facebook:
     "https://www.facebook.com/people/Autozone-Tooling/61593862056621/",
 
+  instagram:
+    "https://www.instagram.com/autozonetooling/",
+
   linkedin:
     "https://www.linkedin.com/in/autozone-tooling-23721b291/",
 };
@@ -160,6 +164,12 @@ const socialLinks = [
     href: company.facebook,
     icon: FiFacebook,
     hover: "hover:text-blue-400 hover:bg-blue-500/10",
+  },
+  {
+    name: "Instagram",
+    href: company.instagram,
+    icon: FiInstagram,
+    hover: "hover:text-pink-400 hover:bg-pink-500/10",
   },
   {
     name: "LinkedIn",
@@ -405,7 +415,7 @@ export default function Navbar() {
               <span>{company.location}</span>
             </a>
 
-            {/* SOCIAL ICONS */}
+            {/* SOCIAL ICONS: FACEBOOK / INSTAGRAM / LINKEDIN */}
 
             <div className="flex items-center gap-1 border-r border-slate-700 pr-2 sm:gap-2 sm:pr-3">
               {socialLinks.map((social) => {
@@ -1007,7 +1017,7 @@ export default function Navbar() {
                 Follow Autozone Tooling
               </p>
 
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-3 gap-2">
                 {socialLinks.map((social) => {
                   const Icon = social.icon;
 
@@ -1018,14 +1028,14 @@ export default function Navbar() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`Autozone Tooling on ${social.name}`}
-                      className={`flex min-h-12 items-center justify-center gap-2 rounded-lg border border-slate-700 bg-slate-800 px-3 text-sm font-medium text-slate-300 transition-all duration-200 ${social.hover}`}
+                      className={`flex min-h-14 flex-col items-center justify-center gap-1.5 rounded-lg border border-slate-700 bg-slate-800 px-2 py-2 text-[11px] font-medium text-slate-300 transition-all duration-200 ${social.hover}`}
                     >
-                      <Icon size={17} />
+                      <Icon size={18} />
 
                       <span>{social.name}</span>
 
                       <FiArrowUpRight
-                        size={13}
+                        size={12}
                         className="opacity-60"
                       />
                     </a>
