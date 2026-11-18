@@ -30,7 +30,7 @@ export default function HomeCompanyOverview() {
           <div className="flex items-center gap-4">
             <div className="relative flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden">
               <Image
-                src="/images/logo.png"
+                src="/images/logo.avif"
                 alt="Autozone Tooling Logo"
                 fill
                 sizes="56px"

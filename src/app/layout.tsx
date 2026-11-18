@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     type: "website",
     siteName: site.name,
     locale: "en_IN",
-    images: ["/images/logo.png"],
+    images: ["/images/logo.avif"],
   },
 
   icons: {
